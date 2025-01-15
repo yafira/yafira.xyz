@@ -1,0 +1,70 @@
+body {
+	font-family: 'Pixelify Sans', sans-serif;
+	margin: 0;
+}
+
+.container {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.image-box {
+	width: 650px;
+	height: 650px;
+	/* border: 5px solid #f310d5; */
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.flower-image {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+}
+
+/* all boxes */
+.line-box {
+	width: 130px;
+	height: 120px;
+	position: absolute;
+	border: solid 3px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	border-radius: 30%;
+	background-color: #ffffff;
+}
+
+/* box at the end of the respective lines */
+.box1 {
+	border-color: #f4b8cd;
+	top: 50px;
+	left: 48px;
+}
+
+.box2 {
+	border-color: #cdf2aa;
+	top: 80px;
+	left: 490px;
+}
+
+.box3 {
+	border-color: #efd0fa;
+	top: 360px;
+	left: 0px;
+}
+
+.box4 {
+	border-color: #f2dac9;
+	top: 300px;
+	left: 515px;
+}
+
+.box5 {
+	border-color: #d7efff;
+	top: 520px;
+	left: 260px;
+}
