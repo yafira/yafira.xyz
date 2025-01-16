@@ -29,7 +29,7 @@ body {
 
 /* all boxes */
 .line-box {
-	width: 130px;
+	width: 125px;
 	height: 120px;
 	position: absolute;
 	border: solid 3px;
@@ -40,7 +40,7 @@ body {
 
 /* box at the end of the respective lines */
 .box1 {
-	border-color: #f4b8cd;
+	border-color: #f5c3d4;
 	top: 50px;
 	left: 48px;
 }
