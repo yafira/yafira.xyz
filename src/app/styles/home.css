@@ -13,7 +13,6 @@ body {
 .image-box {
 	width: 650px;
 	height: 650px;
-	/* border: 5px solid #f310d5; */
 	border-radius: 10px;
 	display: flex;
 	justify-content: center;
@@ -36,6 +35,25 @@ body {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	border-radius: 30%;
 	background-color: #ffffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	overflow: hidden; /*hide text when not hovered */
+}
+
+.line-box .box-text {
+	display: none; /* hide text initially */
+	position: absolute;
+	bottom: 10px;
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/* Box hover effect */
+.line-box:hover .box-text {
+	display: block;
 }
 
 /* box at the end of the respective lines */
