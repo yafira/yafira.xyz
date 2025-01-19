@@ -1,5 +1,12 @@
+:root {
+	--font-family: 'Pixelify Sans', sans-serif;
+	--transition-ease: 0.3s ease;
+	--box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	--border-radius: 30%;
+}
+
 body {
-	font-family: 'Pixelify Sans', sans-serif;
+	font-family: var(--font-family);
 	margin: 0;
 }
 
@@ -18,71 +25,135 @@ body {
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	position: relative;
 }
 
 .flower-image {
 	max-width: 100%;
 	max-height: 100%;
 	display: block;
+	transition: opacity var(--transition-ease);
 }
 
-/* all boxes */
 .line-box {
+	background-color: #ffffff;
 	width: 125px;
 	height: 120px;
 	position: absolute;
 	border: solid 3px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	border-radius: 30%;
-	background-color: #ffffff;
+	box-shadow: var(--box-shadow);
+	border-radius: var(--border-radius);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
-	overflow: hidden; /*hide text when not hovered */
+	overflow: hidden;
+	transition: background-color var(--transition-ease),
+		color var(--transition-ease);
 }
 
-.line-box .box-text {
-	display: none; /* hide text initially */
-	position: absolute;
-	bottom: 10px;
+.line-box img {
+	background-color: #ffffff;
+}
+
+.line-box[data-color] .box-text {
 	color: #333;
 	font-size: 14px;
 	font-weight: bold;
 }
 
-/* Box hover effect */
-.line-box:hover .box-text {
+.line-box .box-content {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+}
+
+.box-content img {
+	padding: 10px;
+	border-radius: 15%;
+}
+
+.line-box .box-text {
+	display: none;
+	position: absolute;
+	bottom: 10px;
+}
+
+/* Hover and focus effects */
+.line-box:hover {
+	background-color: var(--box-color, #ffffff);
+}
+
+.line-box:hover .box-text,
+.line-box:focus .box-text {
+	background-color: transparent;
 	display: block;
 }
 
-/* box at the end of the respective lines */
+.line-box:hover img {
+	background-color: transparent;
+}
+
+.line-box:focus {
+	outline: 2px dashed var(--box-color, #333);
+	outline-offset: 4px;
+}
+
+/* Box-specific styles */
 .box1 {
 	border-color: #f5c3d4;
 	top: 50px;
 	left: 48px;
+	--box-color: #f5c3d4;
+}
+
+.box1:hover {
+	background-color: rgba(247, 210, 223, 0.8);
 }
 
 .box2 {
 	border-color: #cdf2aa;
 	top: 80px;
 	left: 490px;
+	--box-color: #cdf2aa;
+}
+
+.box2:hover {
+	background-color: rgba(235, 247, 224, 0.8);
 }
 
 .box3 {
 	border-color: #efd0fa;
 	top: 360px;
 	left: 0px;
+	--box-color: #efd0fa;
+}
+
+.box3:hover {
+	background-color: rgba(247, 225, 254, 0.8);
 }
 
 .box4 {
 	border-color: #f2dac9;
 	top: 300px;
 	left: 515px;
+	--box-color: #f2dac9;
+}
+
+.box4:hover {
+	background-color: rgba(242, 218, 201, 0.8);
 }
 
 .box5 {
 	border-color: #d7efff;
 	top: 520px;
 	left: 260px;
+	--box-color: #d7efff;
+}
+
+.box5:hover {
+	background-color: rgba(214, 235, 248, 0.8);
 }
