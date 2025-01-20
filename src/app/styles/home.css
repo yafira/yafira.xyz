@@ -1,10 +1,26 @@
+/* CSS Variables */
 :root {
 	--font-family: 'Pixelify Sans', sans-serif;
 	--transition-ease: 0.3s ease;
 	--box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	--border-radius: 30%;
+
+	/* Color variables */
+	--craft-color: #f5c3d4;
+	--code-color: #cdf2aa;
+	--design-color: #efd0fa;
+	--electronics-color: #f2dac9;
+	--text-color: #d7efff;
+
+	/* Drawer background colors with transparency */
+	--craft-bg: rgba(245, 195, 212, 0.95);
+	--code-bg: rgba(205, 242, 170, 0.95);
+	--design-bg: rgba(239, 208, 250, 0.95);
+	--electronics-bg: rgba(242, 218, 201, 0.95);
+	--text-bg: rgba(215, 239, 255, 0.95);
 }
 
+/* Base styles */
 body {
 	font-family: var(--font-family);
 	margin: 0;
@@ -14,6 +30,7 @@ body {
 	min-height: 100vh;
 }
 
+/* Layout containers */
 .container,
 .image-box,
 .projects-grid {
@@ -32,6 +49,7 @@ body {
 	text-align: center;
 }
 
+/* Main image box styles */
 .image-box {
 	width: 650px;
 	height: 650px;
@@ -49,6 +67,7 @@ body {
 	transition: opacity var(--transition-ease);
 }
 
+/* Line box styles */
 .line-box {
 	background-color: #ffffff;
 	width: 125px;
@@ -92,6 +111,7 @@ body {
 	border-radius: 15%;
 }
 
+/* Line box text and hover states */
 .line-box .box-text {
 	display: none;
 	position: absolute;
@@ -122,42 +142,44 @@ body {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Box positioning and colors */
 .box1 {
-	border-color: #f5c3d4;
+	border-color: var(--craft-color);
 	top: 6%;
 	left: 3%;
-	--box-color: #f5c3d4;
+	--box-color: var(--craft-color);
 }
 
 .box2 {
-	border-color: #cdf2aa;
+	border-color: var(--code-color);
 	top: 10%;
 	right: 7%;
-	--box-color: #cdf2aa;
+	--box-color: var(--code-color);
 }
 
 .box3 {
-	border-color: #efd0fa;
+	border-color: var(--design-color);
 	top: 60%;
 	left: 0;
-	--box-color: #efd0fa;
+	--box-color: var(--design-color);
 }
 
 .box4 {
-	border-color: #f2dac9;
+	border-color: var(--electronics-color);
 	top: 46%;
 	left: 85%;
 	right: 0;
-	--box-color: #f2dac9;
+	--box-color: var(--electronics-color);
 }
 
 .box5 {
-	border-color: #d7efff;
+	border-color: var(--text-color);
 	bottom: 0;
 	left: 40%;
-	--box-color: #d7efff;
+	--box-color: var(--text-color);
 }
 
+/* Box hover backgrounds */
 .box1:hover {
 	background-color: rgba(247, 210, 223, 0.8);
 }
@@ -174,6 +196,7 @@ body {
 	background-color: rgba(214, 235, 248, 0.8);
 }
 
+/* Page container and main section */
 .page-container {
 	min-height: 100vh;
 	position: relative;
@@ -196,6 +219,7 @@ body {
 	align-items: center;
 }
 
+/* Projects drawer */
 .projects-drawer {
 	position: fixed;
 	bottom: 0;
@@ -213,6 +237,11 @@ body {
 	padding: 2rem 1rem;
 }
 
+.projects-drawer.open {
+	transform: translateY(0);
+}
+
+/* Projects grid */
 .projects-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -223,6 +252,7 @@ body {
 	margin: 0 auto;
 }
 
+/* Project box styles */
 .project-box {
 	width: 100%;
 	min-height: 200px;
@@ -237,10 +267,7 @@ body {
 	position: relative;
 }
 
-.projects-drawer.open {
-	transform: translateY(0);
-}
-
+/* Drawer close button */
 .drawer-close {
 	position: absolute;
 	top: 16px;
@@ -260,10 +287,9 @@ body {
 	background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* Grid layout for projects */
-
+/* Scrollbar styles */
 .projects-grid::-webkit-scrollbar {
-	height: 8px; /* Set scrollbar height */
+	height: 8px;
 }
 
 .projects-grid::-webkit-scrollbar-thumb {
@@ -276,6 +302,7 @@ body {
 	border-radius: 10px;
 }
 
+/* Project box content */
 .project-box .box-content {
 	height: 100%;
 	display: flex;
@@ -311,27 +338,28 @@ body {
 	font-size: 1rem;
 }
 
-/* Updated background colors for different sections */
+/* Section-specific drawer backgrounds */
 .projects-drawer[data-section='craft'] {
-	background-color: rgba(245, 195, 212, 0.95);
+	background-color: var(--craft-bg);
 }
 
 .projects-drawer[data-section='code'] {
-	background-color: rgba(205, 242, 170, 0.95);
+	background-color: var(--code-bg);
 }
 
 .projects-drawer[data-section='design'] {
-	background-color: rgba(239, 208, 250, 0.95);
+	background-color: var(--design-bg);
 }
 
 .projects-drawer[data-section='electronics'] {
-	background-color: rgba(242, 218, 201, 0.95);
+	background-color: var(--electronics-bg);
 }
 
 .projects-drawer[data-section='text'] {
-	background-color: rgba(215, 239, 255, 0.95);
+	background-color: var(--text-bg);
 }
 
+/* Responsive styles */
 @media (max-width: 768px) {
 	.projects-drawer {
 		max-height: 70vh;
