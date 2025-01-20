@@ -8,6 +8,20 @@
 body {
 	font-family: var(--font-family);
 	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.container,
+.image-box,
+.projects-grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 0 auto;
 }
 
 .container {
@@ -15,6 +29,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 }
 
 .image-box {
@@ -24,7 +39,6 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* overflow: hidden; */
 	position: relative;
 }
 
@@ -59,6 +73,7 @@ body {
 	color: #333;
 	font-size: 14px;
 	font-weight: bold;
+	text-align: center;
 }
 
 .line-box .box-content {
@@ -69,6 +84,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 	position: relative;
+	text-align: center;
 }
 
 .box-content img {
@@ -82,7 +98,6 @@ body {
 	bottom: 10px;
 }
 
-/* Hover and focus effects */
 .line-box:hover {
 	background-color: var(--box-color, #ffffff);
 }
@@ -102,7 +117,11 @@ body {
 	outline-offset: 4px;
 }
 
-/* Box-specific styles */
+.line-box.active {
+	transform: scale(1.1);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 .box1 {
 	border-color: #f5c3d4;
 	top: 6%;
@@ -153,4 +172,175 @@ body {
 }
 .box5:hover {
 	background-color: rgba(214, 235, 248, 0.8);
+}
+
+.page-container {
+	min-height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.main-section.fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.projects-drawer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	transform: translateY(100%);
+	transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	z-index: 2;
+	max-height: 50vh;
+	overflow-y: auto;
+	box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	padding: 2rem 1rem;
+}
+
+.projects-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 1rem;
+	padding: 2rem;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.project-box {
+	width: 100%;
+	min-height: 200px;
+	margin-bottom: 1rem;
+	background-color: #f0f0f0;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden;
+	box-shadow: var(--box-shadow);
+	position: relative;
+}
+
+.projects-drawer.open {
+	transform: translateY(0);
+}
+
+.drawer-close {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s ease;
+}
+
+.drawer-close:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Grid layout for projects */
+
+.projects-grid::-webkit-scrollbar {
+	height: 8px; /* Set scrollbar height */
+}
+
+.projects-grid::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+}
+
+.projects-grid::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+}
+
+.project-box .box-content {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.project-link {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 0.5rem;
+	background-color: rgba(255, 255, 255, 0.9);
+	text-align: center;
+	text-decoration: none;
+	color: #333;
+	font-size: 0.9rem;
+	opacity: 0;
+	transition: opacity var(--transition-ease);
+}
+
+.project-box:hover .project-link {
+	opacity: 1;
+}
+
+.project-box .box-text {
+	display: block !important;
+	position: relative;
+	margin-top: 1rem;
+	text-align: center;
+	color: #333;
+	font-size: 1rem;
+}
+
+/* Updated background colors for different sections */
+.projects-drawer[data-section='craft'] {
+	background-color: rgba(245, 195, 212, 0.95);
+}
+
+.projects-drawer[data-section='code'] {
+	background-color: rgba(205, 242, 170, 0.95);
+}
+
+.projects-drawer[data-section='design'] {
+	background-color: rgba(239, 208, 250, 0.95);
+}
+
+.projects-drawer[data-section='electronics'] {
+	background-color: rgba(242, 218, 201, 0.95);
+}
+
+.projects-drawer[data-section='text'] {
+	background-color: rgba(215, 239, 255, 0.95);
+}
+
+@media (max-width: 768px) {
+	.projects-drawer {
+		max-height: 70vh;
+		padding: 1rem;
+	}
+
+	.projects-grid {
+		grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+		gap: 0.5rem;
+		padding: 1rem;
+	}
 }
