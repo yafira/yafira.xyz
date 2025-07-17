@@ -1,6 +1,7 @@
-import { Pixelify_Sans } from 'next/font/google' // Import the font
+import { Pixelify_Sans } from 'next/font/google'
 import Link from 'next/link'
 import './styles/globals.css'
+import './styles/home.css'
 
 const pixelifySans = Pixelify_Sans({
 	weight: '400',
@@ -13,6 +14,9 @@ export default function RootLayout({ children }) {
 			<body className={pixelifySans.className}>
 				<nav className='navigation'>
 					<div className='nav-links'>
+						<Link href='/' className='home-icon'>
+							⌂
+						</Link>
 						<Link href='/about'>about</Link>
 						<Link href='/projects'>projects</Link>
 						<Link href='/contact'>contact</Link>
