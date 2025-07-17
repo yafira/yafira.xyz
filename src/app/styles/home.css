@@ -244,8 +244,8 @@ body {
 /* Projects grid */
 .projects-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	gap: 1rem;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 1.5rem;
 	padding: 2rem;
 	width: 100%;
 	max-width: 1200px;
@@ -265,6 +265,14 @@ body {
 	overflow: hidden;
 	box-shadow: var(--box-shadow);
 	position: relative;
+}
+
+.project-box .project-image {
+	width: 150px;
+	height: 150px;
+	object-fit: contain;
+	margin: 0 auto;
+	display: block;
 }
 
 /* Drawer close button */
