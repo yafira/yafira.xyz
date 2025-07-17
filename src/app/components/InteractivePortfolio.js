@@ -38,56 +38,78 @@ export default function InteractivePortfolio() {
 
 	const projectSections = {
 		craft: [
-			{ title: 'Craft Project 1', imageUrl: '/assets/tools.png', link: '#' },
-			{ title: 'Craft Project 2', imageUrl: '/assets/tools.png', link: '#' },
-			{ title: 'Craft Project 3', imageUrl: '/assets/tools.png', link: '#' },
-			{ title: 'Craft Project 4', imageUrl: '/assets/tools.png', link: '#' },
-			{ title: 'Craft Project 5', imageUrl: '/assets/tools.png', link: '#' },
-			{ title: 'Craft Project 6', imageUrl: '/assets/tools.png', link: '#' },
+			{
+				title: 'AirSense',
+				imageUrl: '/assets/airsense.png',
+				link: 'https://electrocuteitp.wordpress.com/2025/03/16/troubleshooting-mqtt-connection-issues-in-react-from-vite-to-plain-javascript-back-to-react-more-updates/',
+				description:
+					'Indoor air quality monitor and dashboard using Arduino and React.',
+			},
+			{
+				title: 'Glowmotion',
+				imageUrl: '/assets/glow.gif',
+				link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
+				description: 'Gesture-controlled interactive light.',
+			},
+			{
+				title: 'Past, Pastry, Future',
+				imageUrl: '/assets/ppf.gif',
+				link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
+				description: 'Augmented reality experience using Unity and Vuforia.',
+			},
 		],
+
 		code: [
 			{
-				title: 'cute technologies',
-				imageUrl: '/assets/Logo.png',
-				link: 'https://cutetech.tools',
-				description:
-					'A digital catalog featuring a collection of cybertwee functional tools and resources to make your computing .env cuter.',
+				title: 'TinkerThread',
+				imageUrl: '/assets/tt.gif',
+				link: 'https://tinkerthread.netlify.app/',
+				description: 'Circuit simulator made with JavaScript.',
 			},
 			{
-				title: 'snax',
-				imageUrl: '/assets/Logo2.png',
-				link: 'https://snax.blog',
-				description:
-					'A pokedex-like blog for sharing my own reviews and ratings on vegan/plant-based snacks and bevs. Also a peanut-free zone.',
+				title: 'Cute Technologies',
+				imageUrl: '/assets/cute-tech.gif',
+				link: 'https://cutetech.tools/',
+				description: 'A blog built with Next.js and Notion API.',
 			},
 			{
-				title: 'sailor moon calculator',
-				imageUrl: '/assets/Logo3.png',
-				link: 'https://sailor-moon-calculator.glitch.me/',
-				description:
-					'A basic on-screen calculator inspired by one of the communicators used in Sailor Moon.',
-			},
-			{
-				title: 'synthwave chimes',
-				imageUrl: '/assets/Logo14.png',
-				link: 'https://synthwave-chimes.glitch.me/',
-				description:
-					'A digital synth chime that blends shapes with interactive sound.',
-			},
-			{
-				title: 'salvador dalle',
-				imageUrl: '/assets/salvador.png',
+				title: 'Salvador DALL·E',
+				imageUrl: '/assets/sdalle.gif',
 				link: 'https://salvadordalle.vercel.app/',
-				description: 'A surrealist AI art generator inspired by Salvador Dalí.',
+				description: 'AI image generator using DALL·E 2.',
 			},
 			{
-				title: 'markie',
-				imageUrl: '/assets/markie.png',
+				title: 'Synthwave Chimes',
+				imageUrl: '/assets/synthchime.gif',
+				link: 'https://synthwave-chimes.netlify.app/',
+				description: 'Interactive sound and shape sketch with p5.js.',
+			},
+			{
+				title: 'Sailor Moon Calculator',
+				imageUrl: '/assets/calculator.gif',
+				link: 'https://sailor-moon-calculator.netlify.app/',
+				description: 'On-screen calculator with a Sailor Moon theme.',
+			},
+			{
+				title: 'Markie',
+				imageUrl: '/assets/notes.gif',
 				link: 'https://markie.netlify.app/',
-				description:
-					'A markdown editor and previewer for creating formatted text.',
+				description: 'Markdown editor and preview app.',
+			},
+			{
+				title: 'Scribble Pop',
+				imageUrl: '/assets/scribble.gif',
+				link: 'https://scribble-pop.netlify.app/',
+				description: 'Creative drawing tool using canvas.',
+			},
+			{
+				title: 'NewsBits',
+				imageUrl: '/assets/news-app.gif',
+				link: 'https://github.com/Yafira/newsBits',
+				description: 'News reading app built with React Native.',
 			},
 		],
+
 		design: [
 			{
 				title: 'Cosmic Snax',
@@ -121,53 +143,24 @@ export default function InteractivePortfolio() {
 				},
 			},
 		],
+
 		electronics: [
 			{
-				title: 'Tap Rhythms',
-				imageUrl: '/assets/circuit.png',
-				link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
+				title: 'AirSense',
+				imageUrl: '/assets/airsense.png',
+				link: 'https://electrocuteitp.wordpress.com/2025/03/16/troubleshooting-mqtt-connection-issues-in-react-from-vite-to-plain-javascript-back-to-react-more-updates/',
 				description:
-					'An exploration of rhythm through tap interactive electronics.',
+					'Indoor air quality monitor and dashboard using Arduino and React.',
 			},
 			{
-				title: 'Glow Motion',
-				imageUrl: '/assets/circuit.png',
-				link: 'https://months-tap-da9.craft.me/glowmotion',
-				description: 'Interactive light installation responding to movement.',
-			},
-			{
-				title: 'LED Matrix Display',
-				imageUrl: '/assets/circuit.png',
-				link: '#',
-				description: 'Programmable LED matrix for dynamic pattern displays.',
-			},
-			{
-				title: 'Sound Reactive LEDs',
-				imageUrl: '/assets/circuit.png',
-				link: '#',
-				description: 'LED system that responds to ambient sound.',
-			},
-			{
-				title: 'Touch Sensors',
-				imageUrl: '/assets/circuit.png',
-				link: '#',
-				description: 'Capacitive touch sensor experiments.',
-			},
-			{
-				title: 'Arduino Synthesizer',
-				imageUrl: '/assets/circuit.png',
-				link: '#',
-				description: 'DIY synthesizer built with Arduino.',
+				title: 'Glowmotion',
+				imageUrl: '/assets/glow.gif',
+				link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
+				description: 'Gesture-controlled interactive light.',
 			},
 		],
-		text: [
-			{ title: 'Text Project 1', imageUrl: '/assets/text.png', link: '#' },
-			{ title: 'Text Project 2', imageUrl: '/assets/text.png', link: '#' },
-			{ title: 'Text Project 3', imageUrl: '/assets/text.png', link: '#' },
-			{ title: 'Text Project 4', imageUrl: '/assets/text.png', link: '#' },
-			{ title: 'Text Project 5', imageUrl: '/assets/text.png', link: '#' },
-			{ title: 'Text Project 6', imageUrl: '/assets/text.png', link: '#' },
-		],
+
+		text: [],
 	}
 
 	const handleBoxClick = (section) => {
