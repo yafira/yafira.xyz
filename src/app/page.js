@@ -1,6 +1,6 @@
-import InteractivePortfolio from '@/app/components/InteractivePortfolio'
+import Portfolio from '@/app/components/Portfolio'
 import './styles/home.css'
 
 export default function HomePage() {
-	return <InteractivePortfolio />
+	return <Portfolio />
 }

@@ -32,7 +32,7 @@ const ProjectBox = ({ title, imageUrl, link, description, links }) => (
 	</div>
 )
 
-export default function InteractivePortfolio() {
+export default function Portfolio() {
 	const [activeSection, setActiveSection] = useState(null)
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
