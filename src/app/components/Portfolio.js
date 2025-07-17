@@ -273,9 +273,7 @@ export default function Portfolio() {
 					<button className='drawer-close' onClick={handleCloseDrawer}>
 						<ChevronDown />
 					</button>
-					<h2 className='section-title'>
-						{activeSection.toUpperCase()} Projects
-					</h2>
+					<h2 className='section-title'>{activeSection.toUpperCase()}</h2>
 					<div className='projects-grid'>
 						{projectSections[activeSection].map((project, index) => (
 							<ProjectBox key={index} {...project} />

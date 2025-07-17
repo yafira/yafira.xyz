@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	background-color: #f8f6ff;
+	/* background-color: #f8f6ff; */
 }
 
 body {
@@ -11,8 +11,13 @@ body {
 
 .navigation {
 	width: 100%;
-	padding: 20px;
+	padding: 24px 0;
 	border-bottom: 1px solid #eaeaea;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	z-index: 10;
 }
 
 .nav-links {
@@ -21,12 +26,16 @@ body {
 	display: flex;
 	justify-content: center;
 	gap: 48px;
+	font-family: monospace;
+	font-size: 1rem;
+	text-transform: lowercase;
 }
 
 .nav-links a {
 	color: #666;
 	text-decoration: none;
 	padding: 8px 16px;
+	transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -36,5 +45,5 @@ body {
 .main-content {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 32px;
+	padding: 96px 32px 32px; /* Add top padding to avoid overlap with fixed nav */
 }
