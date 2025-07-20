@@ -25,7 +25,6 @@ const projectSections = {
 			description: 'Augmented reality experience using Unity and Vuforia.',
 		},
 	],
-
 	code: [
 		{
 			title: 'TinkerThread',
@@ -76,7 +75,6 @@ const projectSections = {
 			description: 'News reading app built with React Native.',
 		},
 	],
-
 	design: [
 		{
 			title: 'Cosmic Snax',
@@ -85,7 +83,7 @@ const projectSections = {
 			links: {
 				prototype:
 					'https://www.figma.com/proto/oTPH8BW7owaY91IVOlR6KC/Cosmic-Snax?page-id=248%3A2311&node-id=256%3A1892&viewport=245%2C48%2C0.23&scaling=min-zoom&starting-point-node-id=256%3A1892',
-				casestudy: '/assets/Cosmic Snax - Case study.pdf',
+				casestudy: 'assets/Cosmic Snax - Case study.pdf',
 			},
 		},
 		{
@@ -96,7 +94,7 @@ const projectSections = {
 				mobile:
 					'https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223',
 				web: 'https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=46%3A1304&node-id=50%3A3254&viewport=245%2C48%2C0.07&scaling=min-zoom&starting-point-node-id=50%3A3254&show-proto-sidebar=1',
-				casestudy: '/assets/Seedling - Case study.pdf',
+				casestudy: 'assets/Seedling - Case study.pdf',
 			},
 		},
 		{
@@ -106,11 +104,10 @@ const projectSections = {
 			links: {
 				prototype:
 					'https://www.figma.com/proto/GdO2Bto4BnWhiwRuo6coS1/bDazzled?node-id=38%3A5020&starting-point-node-id=38%3A5020',
-				casestudy: '/assets/bDazzled - Case study.pdf',
+				casestudy: 'assets/bDazzled - Case study.pdf',
 			},
 		},
 	],
-
 	electronics: [
 		{
 			title: 'AirSense',
@@ -125,14 +122,7 @@ const projectSections = {
 			link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
 			description: 'Gesture-controlled interactive light.',
 		},
-		{
-			title: 'Past, Pastry, Future',
-			imageUrl: '/assets/ppf.gif',
-			link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
-			description: 'Augmented reality experience using Unity and Vuforia.',
-		},
 	],
-
 	text: [],
 }
 

@@ -1,18 +1,18 @@
-/* CSS Variables */
+/* css variables */
 :root {
 	--font-family: 'Pixelify Sans', sans-serif;
 	--transition-ease: 0.3s ease;
 	--box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	--border-radius: 30%;
 
-	/* Color variables */
+	/* color variables */
 	--craft-color: #f5c3d4;
 	--code-color: #cdf2aa;
 	--design-color: #efd0fa;
 	--electronics-color: #f2dac9;
 	--text-color: #d7efff;
 
-	/* Drawer background colors with transparency */
+	/* drawer background colors with transparency */
 	--craft-bg: rgba(245, 195, 212, 0.95);
 	--code-bg: rgba(205, 242, 170, 0.95);
 	--design-bg: rgba(239, 208, 250, 0.95);
@@ -20,7 +20,7 @@
 	--text-bg: rgba(215, 239, 255, 0.95);
 }
 
-/* Base styles */
+/* base styles */
 body {
 	font-family: var(--font-family);
 	margin: 0;
@@ -30,10 +30,9 @@ body {
 	min-height: 100vh;
 }
 
-/* Layout containers */
+/* layout containers */
 .container,
-.image-box,
-.projects-grid {
+.image-box {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -43,13 +42,10 @@ body {
 
 .container {
 	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	text-align: center;
 }
 
-/* Main image box styles */
+/* main image box styles */
 .image-box {
 	width: 650px;
 	height: 650px;
@@ -67,7 +63,7 @@ body {
 	transition: opacity var(--transition-ease);
 }
 
-/* Line box styles */
+/* line box styles */
 .line-box {
 	background-color: #ffffff;
 	width: 125px;
@@ -82,17 +78,11 @@ body {
 	overflow: hidden;
 	transition: background-color var(--transition-ease),
 		color var(--transition-ease);
+	cursor: pointer;
 }
 
 .line-box img {
 	background-color: #ffffff;
-}
-
-.line-box[data-color] .box-text {
-	color: #333;
-	font-size: 14px;
-	font-weight: bold;
-	text-align: center;
 }
 
 .line-box .box-content {
@@ -111,7 +101,6 @@ body {
 	border-radius: 15%;
 }
 
-/* Line box text and hover states */
 .line-box .box-text {
 	display: none;
 	position: absolute;
@@ -142,7 +131,7 @@ body {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Box positioning and colors */
+/* box positioning and colors */
 .box1 {
 	border-color: var(--craft-color);
 	top: 6%;
@@ -179,7 +168,7 @@ body {
 	--box-color: var(--text-color);
 }
 
-/* Box hover backgrounds */
+/* box hover backgrounds */
 .box1:hover {
 	background-color: rgba(247, 210, 223, 0.8);
 }
@@ -196,7 +185,7 @@ body {
 	background-color: rgba(214, 235, 248, 0.8);
 }
 
-/* Page container and main section */
+/* page container and main section */
 .page-container {
 	min-height: 100vh;
 	position: relative;
@@ -219,7 +208,7 @@ body {
 	align-items: center;
 }
 
-/* Projects drawer */
+/* projects drawer for flower */
 .projects-drawer {
 	position: fixed;
 	bottom: 0;
@@ -240,30 +229,54 @@ body {
 	transform: translateY(0);
 }
 
-/* Projects grid */
-.projects-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 1.5rem;
-	padding: 2rem;
+/* horizontal scroll for drawer projects */
+.projects-scroll-container {
 	width: 100%;
-	max-width: 1200px;
-	margin: 0 auto;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 1rem 0;
 }
 
-/* Project box styles */
+.projects-scroll-container::-webkit-scrollbar {
+	height: 8px;
+}
+
+.projects-scroll-container::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+
+.projects-scroll-container::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+}
+
+.projects-drawer-grid {
+	display: flex;
+	gap: 1.5rem;
+	padding: 1rem;
+	width: max-content;
+	min-width: 100%;
+}
+
+/* project box styles shared */
 .project-box {
-	width: 100%;
-	min-height: 200px;
-	margin-bottom: 1rem;
+	width: 220px;
+	min-width: 220px;
+	height: 240px;
 	background-color: #fff;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	overflow: hidden;
+	justify-content: center;
+	align-items: center;
 	box-shadow: var(--box-shadow);
 	position: relative;
+	transition: transform 0.3s ease;
+}
+
+.project-box:hover {
+	transform: translateY(-5px);
 }
 
 .project-box .project-image {
@@ -274,42 +287,6 @@ body {
 	display: block;
 }
 
-/* Drawer close button */
-.drawer-close {
-	position: absolute;
-	top: 16px;
-	right: 16px;
-	background: none;
-	border: none;
-	cursor: pointer;
-	padding: 8px;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: background-color 0.3s ease;
-}
-
-.drawer-close:hover {
-	background-color: rgba(0, 0, 0, 0.05);
-}
-
-/* Scrollbar styles */
-.projects-grid::-webkit-scrollbar {
-	height: 8px;
-}
-
-.projects-grid::-webkit-scrollbar-thumb {
-	background-color: rgba(0, 0, 0, 0.2);
-	border-radius: 10px;
-}
-
-.projects-grid::-webkit-scrollbar-track {
-	background-color: rgba(0, 0, 0, 0.05);
-	border-radius: 10px;
-}
-
-/* Project box content */
 .project-box .box-content {
 	height: 100%;
 	display: flex;
@@ -345,7 +322,27 @@ body {
 	font-size: 1rem;
 }
 
-/* Section-specific drawer backgrounds */
+/* drawer close button */
+.drawer-close {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s ease;
+}
+
+.drawer-close:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* drawer section-specific backgrounds */
 .projects-drawer[data-section='craft'] {
 	background-color: var(--craft-bg);
 }
@@ -366,16 +363,37 @@ body {
 	background-color: var(--text-bg);
 }
 
-/* Responsive styles */
+/* all projects page grid */
+.projects-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 220px); /* narrower boxes */
+	justify-content: center; /* centers the grid */
+	gap: 2rem;
+	padding: 3rem 2rem;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* responsive styles */
 @media (max-width: 768px) {
 	.projects-drawer {
 		max-height: 70vh;
 		padding: 1rem;
 	}
 
+	.project-box {
+		width: 240px;
+		min-width: 240px;
+	}
+
+	.projects-drawer-grid {
+		gap: 1rem;
+		padding: 1rem;
+	}
+
 	.projects-grid {
-		grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-		gap: 0.5rem;
+		gap: 1rem;
 		padding: 1rem;
 	}
 }

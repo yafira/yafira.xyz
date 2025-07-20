@@ -3,34 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
-
-const ProjectBox = ({ title, imageUrl, link, description, links }) => (
-	<div className='project-box line-box'>
-		<div className='box-content'>
-			<Image
-				src={imageUrl}
-				alt={title}
-				width={60}
-				height={60}
-				className='project-image'
-			/>
-			<span className='box-text'>{title}</span>
-		</div>
-		{links ? (
-			<div className='project-links'>
-				{Object.entries(links).map(([key, url]) => (
-					<a key={key} href={url} className={`project-link ${key}-btn`}>
-						{key.charAt(0).toUpperCase() + key.slice(1)}
-					</a>
-				))}
-			</div>
-		) : (
-			<a href={link} className='project-link'>
-				View Project
-			</a>
-		)}
-	</div>
-)
+import ProjectBox from '@/app/components/ProjectBox'
 
 export default function Portfolio() {
 	const [activeSection, setActiveSection] = useState(null)
@@ -58,7 +31,6 @@ export default function Portfolio() {
 				description: 'Augmented reality experience using Unity and Vuforia.',
 			},
 		],
-
 		code: [
 			{
 				title: 'TinkerThread',
@@ -109,7 +81,6 @@ export default function Portfolio() {
 				description: 'News reading app built with React Native.',
 			},
 		],
-
 		design: [
 			{
 				title: 'Cosmic Snax',
@@ -143,7 +114,6 @@ export default function Portfolio() {
 				},
 			},
 		],
-
 		electronics: [
 			{
 				title: 'AirSense',
@@ -159,7 +129,6 @@ export default function Portfolio() {
 				description: 'Gesture-controlled interactive light.',
 			},
 		],
-
 		text: [],
 	}
 
@@ -187,7 +156,6 @@ export default function Portfolio() {
 						width={500}
 						height={500}
 					/>
-
 					<div
 						className={`line-box box1 ${
 							activeSection === 'craft' ? 'active' : ''
@@ -202,7 +170,6 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>craft</span>
 					</div>
-
 					<div
 						className={`line-box box2 ${
 							activeSection === 'code' ? 'active' : ''
@@ -217,7 +184,6 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>code</span>
 					</div>
-
 					<div
 						className={`line-box box3 ${
 							activeSection === 'design' ? 'active' : ''
@@ -232,7 +198,6 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>design</span>
 					</div>
-
 					<div
 						className={`line-box box4 ${
 							activeSection === 'electronics' ? 'active' : ''
@@ -247,7 +212,6 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>electronics</span>
 					</div>
-
 					<div
 						className={`line-box box5 ${
 							activeSection === 'text' ? 'active' : ''
@@ -273,11 +237,12 @@ export default function Portfolio() {
 					<button className='drawer-close' onClick={handleCloseDrawer}>
 						<ChevronDown />
 					</button>
-					<h2 className='section-title'>{activeSection.toUpperCase()}</h2>
-					<div className='projects-grid'>
-						{projectSections[activeSection].map((project, index) => (
-							<ProjectBox key={index} {...project} />
-						))}
+					<div className='projects-scroll-container'>
+						<div className='projects-drawer-grid'>
+							{projectSections[activeSection].map((project, index) => (
+								<ProjectBox key={index} {...project} />
+							))}
+						</div>
 					</div>
 				</div>
 			)}
