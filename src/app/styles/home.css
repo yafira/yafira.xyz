@@ -7,17 +7,17 @@
 
 	/* color variables */
 	--craft-color: #f5c3d4;
-	--code-color: #cdf2aa;
+	--code-color: #baefce;
 	--design-color: #efd0fa;
-	--electronics-color: #f2dac9;
+	--electronics-color: #f9ffa9cc;
 	--text-color: #d7efff;
 
 	/* drawer background colors with transparency */
-	--craft-bg: rgba(245, 195, 212, 0.95);
-	--code-bg: rgba(205, 242, 170, 0.95);
-	--design-bg: rgba(239, 208, 250, 0.95);
-	--electronics-bg: rgba(242, 218, 201, 0.95);
-	--text-bg: rgba(215, 239, 255, 0.95);
+	--craft-bg: #f5c3d4f2;
+	--code-bg: #baefce;
+	--design-bg: #efd0faf2;
+	--electronics-bg: #f9fad8;
+	--text-bg: #d7effff2;
 }
 
 /* base styles */
@@ -170,19 +170,19 @@ body {
 
 /* box hover backgrounds */
 .box1:hover {
-	background-color: rgba(247, 210, 223, 0.8);
+	background-color: #f7d2dfcc;
 }
 .box2:hover {
-	background-color: rgba(235, 247, 224, 0.8);
+	background-color: #e5fbed;
 }
 .box3:hover {
-	background-color: rgba(247, 225, 254, 0.8);
+	background-color: #f7e1fecc;
 }
 .box4:hover {
-	background-color: rgba(242, 218, 201, 0.8);
+	background-color: #fcfee3cc;
 }
 .box5:hover {
-	background-color: rgba(214, 235, 248, 0.8);
+	background-color: #d6ebf8cc;
 }
 
 /* page container and main section */

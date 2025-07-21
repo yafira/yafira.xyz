@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 const ProjectBox = ({ title, imageUrl, link, description, links }) => (
 	<div className='project-box line-box'>
 		<div className='box-content'>
