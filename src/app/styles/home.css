@@ -294,23 +294,37 @@ body {
 	align-items: center;
 }
 
-.project-link {
+.project-links {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
 	padding: 0.5rem;
-	background-color: oklch(100% 0.00011 271.152 / 0.9);
-	text-align: center;
-	text-decoration: none;
-	color: #333;
-	font-size: 0.9rem;
-	opacity: 0;
+	background-color: rgba(255, 255, 255, 0.9);
+	opacity: 1;
 	transition: opacity var(--transition-ease);
 }
 
-.project-box:hover .project-link {
+.project-box:hover .project-links {
 	opacity: 1;
+}
+
+.project-links a {
+	text-decoration: none;
+	color: #333;
+	background-color: #eee;
+	padding: 4px 8px;
+	border-radius: 6px;
+	font-size: 0.8rem;
+	transition: background-color 0.3s ease;
+}
+
+.project-links a:hover {
+	background-color: #ddd;
 }
 
 .project-box .box-text {
