@@ -1,29 +1,27 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { ChevronDown } from 'lucide-react'
-import ProjectBox from '@/app/components/ProjectBox'
+import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { ChevronDown } from 'lucide-react';
+import ProjectBox from '@/app/components/ProjectBox';
 
 export default function Portfolio() {
-	const [activeSection, setActiveSection] = useState(null)
-	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+	const [activeSection, setActiveSection] = useState(null);
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+	const [lines, setLines] = useState([]);
+
+	const svgRef = useRef(null);
+	const flowerRef = useRef(null);
+	const boxRefs = {
+		craft: useRef(null),
+		code: useRef(null),
+		design: useRef(null),
+		electronics: useRef(null),
+		text: useRef(null),
+	};
 
 	const projectSections = {
 		craft: [
-			{
-				title: 'AirSense',
-				imageUrl: '/assets/airsense.png',
-				link: 'https://electrocuteitp.wordpress.com/2025/03/16/troubleshooting-mqtt-connection-issues-in-react-from-vite-to-plain-javascript-back-to-react-more-updates/',
-				description:
-					'Indoor air quality monitor and dashboard using Arduino and React.',
-			},
-			{
-				title: 'Glowmotion',
-				imageUrl: '/assets/glow.gif',
-				link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
-				description: 'Gesture-controlled interactive light.',
-			},
 			{
 				title: 'Past, Pastry, Future',
 				imageUrl: '/assets/ppf.gif',
@@ -130,36 +128,85 @@ export default function Portfolio() {
 			},
 		],
 		text: [],
-	}
+	};
+
+	useEffect(() => {
+		const updateLines = () => {
+			if (!svgRef.current || !flowerRef.current) return;
+
+			const svgRect = svgRef.current.getBoundingClientRect();
+			const flowerRect = flowerRef.current.getBoundingClientRect();
+			const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
+			const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
+
+			const newLines = Object.values(boxRefs)
+				.map((ref) => {
+					if (!ref.current) return null;
+					const rect = ref.current.getBoundingClientRect();
+					return {
+						x1: centerX,
+						y1: centerY,
+						x2: rect.left + rect.width / 2 - svgRect.left,
+						y2: rect.top + rect.height / 2 - svgRect.top,
+					};
+				})
+				.filter(Boolean);
+
+			setLines(newLines);
+		};
+
+		requestAnimationFrame(updateLines);
+		window.addEventListener('resize', updateLines);
+		return () => window.removeEventListener('resize', updateLines);
+	}, []);
 
 	const handleBoxClick = (section) => {
 		if (activeSection === section) {
-			setIsDrawerOpen(!isDrawerOpen)
+			setIsDrawerOpen(!isDrawerOpen);
 		} else {
-			setActiveSection(section)
-			setIsDrawerOpen(true)
+			setActiveSection(section);
+			setIsDrawerOpen(true);
 		}
-	}
+	};
 
-	const handleCloseDrawer = () => {
-		setIsDrawerOpen(false)
-	}
+	const handleCloseDrawer = () => setIsDrawerOpen(false);
 
 	return (
 		<div className='page-container'>
 			<div className='main-section fixed'>
-				<div className='image-box'>
-					<Image
-						src='/assets/flower.png'
-						alt='flower shape'
-						className='flower-image'
-						width={500}
-						height={500}
-					/>
+				<div className='flower-network'>
+					<svg
+						className='connector-lines'
+						ref={svgRef}
+						xmlns='http://www.w3.org/2000/svg'
+					>
+						{lines.map((line, index) => (
+							<line
+								key={index}
+								x1={line.x1}
+								y1={line.y1}
+								x2={line.x2}
+								y2={line.y2}
+								stroke='black'
+								strokeWidth='2'
+							/>
+						))}
+					</svg>
+
+					<div className='image-box' ref={flowerRef}>
+						<Image
+							src='/assets/flower.png'
+							alt='flower shape'
+							className='flower-image'
+							width={500}
+							height={500}
+						/>
+					</div>
 					<div
 						className={`line-box box1 ${
 							activeSection === 'craft' ? 'active' : ''
 						}`}
+						ref={boxRefs.craft}
 						onClick={() => handleBoxClick('craft')}
 					>
 						<Image
@@ -174,6 +221,7 @@ export default function Portfolio() {
 						className={`line-box box2 ${
 							activeSection === 'code' ? 'active' : ''
 						}`}
+						ref={boxRefs.code}
 						onClick={() => handleBoxClick('code')}
 					>
 						<Image
@@ -188,6 +236,7 @@ export default function Portfolio() {
 						className={`line-box box3 ${
 							activeSection === 'design' ? 'active' : ''
 						}`}
+						ref={boxRefs.design}
 						onClick={() => handleBoxClick('design')}
 					>
 						<Image
@@ -202,6 +251,7 @@ export default function Portfolio() {
 						className={`line-box box4 ${
 							activeSection === 'electronics' ? 'active' : ''
 						}`}
+						ref={boxRefs.electronics}
 						onClick={() => handleBoxClick('electronics')}
 					>
 						<Image
@@ -216,6 +266,7 @@ export default function Portfolio() {
 						className={`line-box box5 ${
 							activeSection === 'text' ? 'active' : ''
 						}`}
+						ref={boxRefs.text}
 						onClick={() => handleBoxClick('text')}
 					>
 						<Image
@@ -247,5 +298,5 @@ export default function Portfolio() {
 				</div>
 			)}
 		</div>
-	)
+	);
 }

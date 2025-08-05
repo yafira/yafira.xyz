@@ -67,6 +67,24 @@ body {
 	transition: opacity var(--transition-ease);
 }
 
+.flower-network {
+	position: relative;
+	width: 900px;
+	height: 900px;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.connector-lines {
+	position: absolute;
+	width: 900px;
+	height: 900px;
+	z-index: 0;
+	pointer-events: none;
+}
+
 /* line box styles */
 .line-box {
 	background-color: #ffffff;
@@ -76,7 +94,7 @@ body {
 	border: solid 3px;
 	box-shadow: var(--box-shadow);
 	border-radius: var(--border-radius);
-	display: flex;
+	display: flex !important;
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
