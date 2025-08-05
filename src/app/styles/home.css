@@ -25,9 +25,11 @@ body {
 	font-family: var(--font-family);
 	margin: 0;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	min-height: 100vh;
+	padding-top: 96px; /* leave space for fixed nav */
 }
 
 /* layout containers */
@@ -47,8 +49,9 @@ body {
 
 /* main image box styles */
 .image-box {
-	width: 650px;
-	height: 650px;
+	width: 900px;
+	height: 900px;
+	transform: scale(1.2);
 	border-radius: 10px;
 	display: flex;
 	justify-content: center;
@@ -57,6 +60,7 @@ body {
 }
 
 .flower-image {
+	background-color: transparent;
 	max-width: 100%;
 	max-height: 100%;
 	display: block;
@@ -66,8 +70,8 @@ body {
 /* line box styles */
 .line-box {
 	background-color: #ffffff;
-	width: 125px;
-	height: 120px;
+	width: 150px;
+	height: 150px;
 	position: absolute;
 	border: solid 3px;
 	box-shadow: var(--box-shadow);
@@ -99,6 +103,8 @@ body {
 .box-content img {
 	padding: 10px;
 	border-radius: 15%;
+	width: 80px;
+	height: 80px;
 }
 
 .line-box .box-text {
@@ -190,10 +196,12 @@ body {
 	min-height: 100vh;
 	position: relative;
 	overflow-x: hidden;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	padding-top: 96px; /* match nav height */
 }
 
 .main-section.fixed {
@@ -409,5 +417,11 @@ body {
 	.projects-grid {
 		gap: 1rem;
 		padding: 1rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.image-box {
+		transform: scale(1.3);
 	}
 }
