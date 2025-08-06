@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import ProjectBox from '@/app/components/ProjectBox'
-import '@/app/styles/globals.css'
+import ProjectBox from '@/app/components/ProjectBox';
+import '@/app/styles/globals.css';
 
 const projectSections = {
 	craft: [
@@ -124,19 +124,39 @@ const projectSections = {
 		},
 	],
 	text: [],
-}
+};
 
 export default function ProjectsPage() {
-	const allProjects = Object.values(projectSections).flat()
+	const uniqueProjectsMap = new Map();
+
+	Object.entries(projectSections).forEach(([category, projects]) => {
+		projects.forEach((proj) => {
+			const key = proj.title; // or use another unique identifier
+			if (!uniqueProjectsMap.has(key)) {
+				uniqueProjectsMap.set(key, { ...proj, categories: [category] });
+			} else {
+				const existing = uniqueProjectsMap.get(key);
+				if (!existing.categories.includes(category)) {
+					existing.categories.push(category);
+				}
+			}
+		});
+	});
+
+	const allProjects = Array.from(uniqueProjectsMap.values());
 
 	return (
 		<div className='main-content'>
 			<h1>All Projects</h1>
 			<div className='projects-grid'>
 				{allProjects.map((project, index) => (
-					<ProjectBox key={index} {...project} />
+					<ProjectBox
+						key={index}
+						{...project}
+						category={project.categories?.[0]} // ensures hover buttons show for design projects
+					/>
 				))}
 			</div>
 		</div>
-	)
+	);
 }

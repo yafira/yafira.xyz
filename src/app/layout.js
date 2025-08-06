@@ -1,12 +1,12 @@
-import { Pixelify_Sans } from 'next/font/google'
-import Link from 'next/link'
-import './styles/globals.css'
-import './styles/home.css'
+import { Pixelify_Sans } from 'next/font/google';
+import Link from 'next/link';
+import './styles/globals.css';
+import './styles/styles.css';
 
 const pixelifySans = Pixelify_Sans({
 	weight: '400',
 	subsets: ['latin'],
-})
+});
 
 export default function RootLayout({ children }) {
 	return (
@@ -25,5 +25,5 @@ export default function RootLayout({ children }) {
 				<main className='main-content'>{children}</main>
 			</body>
 		</html>
-	)
+	);
 }

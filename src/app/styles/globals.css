@@ -8,7 +8,7 @@
 
 /* graph paper background */
 body {
-	background-color: #fffffa;
+	background-color: #feffed;
 	background-image: linear-gradient(
 			to right,
 			rgba(0, 0, 0, 0.05) 1px,
@@ -17,66 +17,4 @@ body {
 		linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
 	background-size: 24px 24px;
 	font-family: monospace;
-}
-
-/* navigation bar */
-.navigation {
-	width: 100%;
-	padding: 24px 0;
-	background-color: #e5e7f6;
-	position: fixed;
-	top: 0;
-	left: 0;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-	z-index: 10;
-}
-
-/* navigation links centered and spaced */
-.nav-links {
-	max-width: 600px;
-	margin: 0 auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 48px;
-}
-
-/* home icon link */
-.nav-links .home-icon {
-	font-size: 1.75rem;
-	line-height: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #333;
-	text-decoration: none;
-	padding: 4px 8px;
-	transition: color 0.3s ease;
-	position: relative;
-	top: 2px;
-}
-
-.nav-links .home-icon:hover {
-	color: #000;
-}
-
-/* regular links */
-.nav-links a {
-	color: #333;
-	text-decoration: none;
-	padding: 8px 16px;
-	transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-	color: #000;
-}
-
-/* main content padding below fixed nav */
-.main-content {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 96px 32px 32px;
 }

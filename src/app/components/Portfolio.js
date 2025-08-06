@@ -8,8 +8,6 @@ import ProjectBox from '@/app/components/ProjectBox';
 export default function Portfolio() {
 	const [activeSection, setActiveSection] = useState(null);
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-	const [lines, setLines] = useState([]);
-
 	const svgRef = useRef(null);
 	const flowerRef = useRef(null);
 	const boxRefs = {
@@ -19,6 +17,8 @@ export default function Portfolio() {
 		electronics: useRef(null),
 		text: useRef(null),
 	};
+
+	const [lines, setLines] = useState([]);
 
 	const projectSections = {
 		craft: [
@@ -132,32 +132,98 @@ export default function Portfolio() {
 
 	useEffect(() => {
 		const updateLines = () => {
-			if (!svgRef.current || !flowerRef.current) return;
+			if (!svgRef.current) return;
+
+			const flower = document.querySelector('.image-box');
+			const boxes = document.querySelectorAll('.line-box');
+
+			// Log for debugging
+			console.log('Flower element:', flower);
+			console.log('Box elements:', boxes);
+			console.log('SVG element:', svgRef.current);
+
+			if (!flower || boxes.length < 5) {
+				console.log(
+					'Missing elements - flower:',
+					!!flower,
+					'boxes count:',
+					boxes.length
+				);
+				return;
+			}
 
 			const svgRect = svgRef.current.getBoundingClientRect();
-			const flowerRect = flowerRef.current.getBoundingClientRect();
+			const flowerRect = flower.getBoundingClientRect();
+
 			const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
 			const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
 
-			const newLines = Object.values(boxRefs)
-				.map((ref) => {
-					if (!ref.current) return null;
-					const rect = ref.current.getBoundingClientRect();
-					return {
-						x1: centerX,
-						y1: centerY,
-						x2: rect.left + rect.width / 2 - svgRect.left,
-						y2: rect.top + rect.height / 2 - svgRect.top,
-					};
-				})
-				.filter(Boolean);
+			console.log('Center coordinates:', { centerX, centerY });
+
+			const newLines = Array.from(boxes).map((box, index) => {
+				const boxRect = box.getBoundingClientRect();
+				const x = boxRect.left + boxRect.width / 2 - svgRect.left;
+				const y = boxRect.top + boxRect.height / 2 - svgRect.top;
+
+				console.log(`Box ${index} coordinates:`, { x, y });
+
+				return { x1: centerX, y1: centerY, x2: x, y2: y };
+			});
+
+			console.log('New lines:', newLines);
+			setLines(newLines);
+		};
+
+		// Add a small delay to ensure elements are rendered
+		const timeout = setTimeout(updateLines, 100);
+
+		window.addEventListener('resize', updateLines);
+		window.addEventListener('load', updateLines);
+
+		return () => {
+			clearTimeout(timeout);
+			window.removeEventListener('resize', updateLines);
+			window.removeEventListener('load', updateLines);
+		};
+	}, []);
+
+	// Also update lines when active section changes
+	useEffect(() => {
+		const updateLines = () => {
+			if (!svgRef.current) return;
+
+			const flower = document.querySelector('.image-box');
+			const flowerNetwork = document.querySelector('.flower-network');
+			const boxes = flowerNetwork?.querySelectorAll('.line-box');
+
+			if (!flower || !boxes || boxes.length !== 5) return;
+
+			const svgRect = svgRef.current.getBoundingClientRect();
+			const flowerRect = flower.getBoundingClientRect();
+
+			const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
+			const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
+
+			const newLines = Array.from(boxes).map((box) => {
+				const boxRect = box.getBoundingClientRect();
+				const x = boxRect.left + boxRect.width / 2 - svgRect.left;
+				const y = boxRect.top + boxRect.height / 2 - svgRect.top;
+				return { x1: centerX, y1: centerY, x2: x, y2: y };
+			});
 
 			setLines(newLines);
 		};
 
-		requestAnimationFrame(updateLines);
+		const timeout = setTimeout(updateLines, 100);
+
 		window.addEventListener('resize', updateLines);
-		return () => window.removeEventListener('resize', updateLines);
+		window.addEventListener('load', updateLines);
+
+		return () => {
+			clearTimeout(timeout);
+			window.removeEventListener('resize', updateLines);
+			window.removeEventListener('load', updateLines);
+		};
 	}, []);
 
 	const handleBoxClick = (section) => {
@@ -169,7 +235,9 @@ export default function Portfolio() {
 		}
 	};
 
-	const handleCloseDrawer = () => setIsDrawerOpen(false);
+	const handleCloseDrawer = () => {
+		setIsDrawerOpen(false);
+	};
 
 	return (
 		<div className='page-container'>
@@ -179,6 +247,15 @@ export default function Portfolio() {
 						className='connector-lines'
 						ref={svgRef}
 						xmlns='http://www.w3.org/2000/svg'
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							top: 0,
+							left: 0,
+							zIndex: 1,
+							pointerEvents: 'none',
+						}}
 					>
 						{lines.map((line, index) => (
 							<line
@@ -187,33 +264,39 @@ export default function Portfolio() {
 								y1={line.y1}
 								x2={line.x2}
 								y2={line.y2}
-								stroke='black'
+								stroke='#333'
 								strokeWidth='2'
+								strokeOpacity='0.7'
 							/>
 						))}
 					</svg>
 
 					<div className='image-box' ref={flowerRef}>
-						<Image
-							src='/assets/flower.png'
-							alt='flower shape'
-							className='flower-image'
-							width={500}
-							height={500}
-						/>
+						<div style={{ position: 'relative', width: 500, height: 500 }}>
+							<Image
+								src='/assets/flower.png'
+								alt='flower shape'
+								fill
+								style={{ objectFit: 'contain' }}
+								className='flower-image'
+								priority
+							/>
+						</div>
 					</div>
+
 					<div
 						className={`line-box box1 ${
 							activeSection === 'craft' ? 'active' : ''
 						}`}
-						ref={boxRefs.craft}
 						onClick={() => handleBoxClick('craft')}
+						ref={boxRefs.craft}
 					>
 						<Image
 							src='/assets/tools.png'
 							alt='craft icon'
 							width={60}
 							height={60}
+							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>craft</span>
 					</div>
@@ -221,14 +304,15 @@ export default function Portfolio() {
 						className={`line-box box2 ${
 							activeSection === 'code' ? 'active' : ''
 						}`}
-						ref={boxRefs.code}
 						onClick={() => handleBoxClick('code')}
+						ref={boxRefs.code}
 					>
 						<Image
 							src='/assets/code.png'
 							alt='code icon'
 							width={60}
 							height={60}
+							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>code</span>
 					</div>
@@ -236,14 +320,15 @@ export default function Portfolio() {
 						className={`line-box box3 ${
 							activeSection === 'design' ? 'active' : ''
 						}`}
-						ref={boxRefs.design}
 						onClick={() => handleBoxClick('design')}
+						ref={boxRefs.design}
 					>
 						<Image
 							src='/assets/design.png'
 							alt='design icon'
 							width={60}
 							height={60}
+							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>design</span>
 					</div>
@@ -251,14 +336,15 @@ export default function Portfolio() {
 						className={`line-box box4 ${
 							activeSection === 'electronics' ? 'active' : ''
 						}`}
-						ref={boxRefs.electronics}
 						onClick={() => handleBoxClick('electronics')}
+						ref={boxRefs.electronics}
 					>
 						<Image
 							src='/assets/circuit.png'
 							alt='electronics icon'
 							width={60}
 							height={60}
+							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>electronics</span>
 					</div>
@@ -266,14 +352,15 @@ export default function Portfolio() {
 						className={`line-box box5 ${
 							activeSection === 'text' ? 'active' : ''
 						}`}
-						ref={boxRefs.text}
 						onClick={() => handleBoxClick('text')}
+						ref={boxRefs.text}
 					>
 						<Image
 							src='/assets/text.png'
 							alt='text icon'
 							width={60}
 							height={60}
+							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>text</span>
 					</div>
@@ -291,7 +378,7 @@ export default function Portfolio() {
 					<div className='projects-scroll-container'>
 						<div className='projects-drawer-grid'>
 							{projectSections[activeSection].map((project, index) => (
-								<ProjectBox key={index} {...project} />
+								<ProjectBox key={index} {...project} category={activeSection} />
 							))}
 						</div>
 					</div>
