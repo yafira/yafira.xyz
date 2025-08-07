@@ -27,23 +27,33 @@ const ProjectBox = ({
 							style={{ background: 'transparent' }}
 						/>
 					</div>
+
+					{/* move description to bottom */}
+					{(description || links?.description) && (
+						<p className='project-description'>
+							{description || links.description}
+						</p>
+					)}
+
 					<div
 						className={`project-links design-links ${
 							showLinksAlways ? 'always-visible' : ''
 						}`}
 					>
 						{links &&
-							Object.entries(links).map(([key, url]) => (
-								<a
-									key={key}
-									href={url}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='project-link button-link'
-								>
-									{key.toUpperCase()}
-								</a>
-							))}
+							Object.entries(links)
+								.filter(([key]) => key !== 'description') // ignore description
+								.map(([key, url]) => (
+									<a
+										key={key}
+										href={url}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='project-link button-link'
+									>
+										{key.toUpperCase()}
+									</a>
+								))}
 					</div>
 				</>
 			) : (
@@ -61,6 +71,9 @@ const ProjectBox = ({
 						className='project-image'
 						style={{ background: 'transparent' }}
 					/>
+
+					{/* description below image for non-design */}
+					{description && <p className='project-description'>{description}</p>}
 				</a>
 			)}
 		</div>

@@ -631,6 +631,15 @@ img {
 	box-shadow: 0 4px 8px rgba(120, 63, 143, 0.3) !important;
 }
 
+.project-description {
+	margin-bottom: 12px;
+	font-size: 0.85rem;
+	line-height: 1.4;
+	color: var(--text-secondary, #333);
+	max-width: 180px;
+	text-align: center;
+}
+
 /* drawer close */
 .drawer-close {
 	position: absolute;
