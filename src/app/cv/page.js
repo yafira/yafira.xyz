@@ -7,12 +7,14 @@ export default function CVPage() {
 		<div className='cv-page main-content'>
 			{/* about */}
 			<section className='cv-section'>
-				<h1 className='cv-heading'>tldr; about me</h1>
+				<h1 className='cv-heading'>Yafira Martinez</h1>
 				<p>
 					i am a creative technologist blending engineering with art through
 					experimental interfaces, wearable + soft technologies, and speculative
 					interactive objects. my practice explores inclusive tech practices,
-					open source development, and creative research.
+					open source development, and creative research. my goal is to build
+					tools and platforms that expand access to creative computing and
+					support expressive, thoughtful interaction.
 				</p>
 			</section>
 
@@ -128,7 +130,10 @@ export default function CVPage() {
 						<span className='cv-date'>dec 2020</span>
 					</div>
 					<div className='cv-item'>
-						<strong>bba, international business · minor in journalism</strong>
+						<strong>
+							bba, business administration (international business) · minor in
+							journalism
+						</strong>
 						<span>city university of new york — lehman college</span>
 						<span className='cv-date'>sep 2012</span>
 					</div>

@@ -232,6 +232,10 @@ img {
 	letter-spacing: -0.5px;
 }
 
+.about-page h2 {
+	color: rebeccapurple;
+}
+
 #about p {
 	font-size: 20px;
 }

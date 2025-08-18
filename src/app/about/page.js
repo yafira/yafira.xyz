@@ -15,7 +15,6 @@ export default function AboutPage() {
 						priority
 					/>
 				</div>
-
 				<h1 className='typewriter'>
 					<span className='typing-text'>Hello, World</span>
 					<Image
@@ -27,7 +26,6 @@ export default function AboutPage() {
 						priority
 					/>
 				</h1>
-
 				<p>
 					I'm Yafira (YAH-fee-rah) — a programmer, designer, and creative
 					technologist based in NYC. I build at the intersection of code,
@@ -53,23 +51,43 @@ export default function AboutPage() {
 					<em>more</em>.
 				</p>
 				<p>
-					Before ITP, I earned my BSc in Computer Science at CUNY — but my path
-					to tech wasn’t straightforward. I originally studied Business
-					Administration with a minor in journalism, but just before graduating,
-					I realized business wasn’t my calling. I felt lost and unsure of my
-					direction. Since I’d always been fascinated by electricity, physics,
-					and how things work, I decided to go back to school for electrical
-					engineering. But everything changed when I took my first programming
-					class — something clicked. I fell in love with the logic, creativity,
-					and problem-solving that code offered, and eventually switched my
-					major to computer science. <br></br>
-					<br></br>My journey into tech has been shaped by self-discovery,
-					curiosity, and a childhood love for customizing MySpace pages, playing
-					computer games, and tinkering with electronics. Over time, I realized
-					that technology could be my creative medium — a way to make useful,
-					joyful, and meaningful things.
+					{' '}
+					For as long as I can remember, I have lived in the orbit of
+					creativity. As a child, I filled notebooks with drawings and
+					scrapbooks with magazine clippings, assembling mood boards before I
+					even knew the term existed. I invented with cardboard and scraps,
+					finding joy in self-expression through art and storytelling. In high
+					school, this passion expanded: a marketing internship I tried on a
+					whim made me consider business as a future path, while winning a
+					writing contest that brought me on a short trip to London sparked my
+					love for writing and travel. For a time, I dreamed of creating an
+					international print magazine — a life of creative direction,
+					storytelling, visual design, and exploration.{' '}
+				</p>{' '}
+				<p>
+					{' '}
+					That dream eventually led me to pursue a BBA, but I soon realized the
+					spark I longed for was missing. Business offered structure, but not
+					the creativity that had always driven me. After graduating, it took
+					time — and uncertainty — to recognize what I truly wanted. Drawn by my
+					fascination with electricity, physics, and the hidden mechanics of how
+					things work, I returned to school for electrical engineering. Entering
+					a field where women were underrepresented felt daunting, but I was
+					determined to explore it fully. Everything shifted when I took my
+					first programming class: something clicked. I fell in love with the
+					logic, creativity, and problem-solving of code, and shortly after, I
+					switched my major to computer science.{' '}
 				</p>
-
+				<p>
+					Looking back, my journey into tech has been one of self-discovery and
+					curiosity, rooted in the creative spark that shaped me since
+					childhood. From customizing MySpace pages and playing computer games
+					to tinkering with electronics, I began to see technology as my medium
+					— a way to build tools, stories, and experiences that feel both useful
+					and joyful. And what better way to combine all these interests than
+					finding my place at ITP, where creativity and computation speak the
+					same language.
+				</p>
 				<h2>whoami? </h2>
 				<p>
 					I'm a visual learner, creative thinker, and detail-oriented developer
@@ -79,7 +97,6 @@ export default function AboutPage() {
 					systems that translate digital ideas into interactive, often physical,
 					inventions.
 				</p>
-
 				<h2>why i compute</h2>
 				<p>
 					Programming is my paintbrush — a way to solve puzzles, express ideas,
@@ -87,7 +104,6 @@ export default function AboutPage() {
 					shaping the world around me in practical, poetic ways. I code because
 					it challenges me, and because it gives form to imagination.
 				</p>
-
 				<h2>feeling through form</h2>
 				<p>
 					Design is where I feel most at home. It's where logic and emotion meet
