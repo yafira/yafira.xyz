@@ -114,6 +114,13 @@ export default function Portfolio() {
 		],
 		electronics: [
 			{
+				title: 'Moon Pocket',
+				imageUrl: '/assets/moonpocket.png',
+				link: 'https://months-tap-da9.craft.me/moonpocket',
+				description:
+					'A poetic connected device for tracking lunar and tidal cycles in real time.',
+			},
+			{
 				title: 'AirSense',
 				imageUrl: '/assets/airsense.png',
 				link: 'https://electrocuteitp.wordpress.com/2025/03/16/troubleshooting-mqtt-connection-issues-in-react-from-vite-to-plain-javascript-back-to-react-more-updates/',
