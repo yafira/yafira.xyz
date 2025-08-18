@@ -52,17 +52,17 @@ export default function AboutPage() {
 				</p>
 				<p>
 					{' '}
-					For as long as I can remember, I have lived in the orbit of
+					For as long as I can remember, I have lived in the current of
 					creativity. As a child, I filled notebooks with drawings and
 					scrapbooks with magazine clippings, assembling mood boards before I
 					even knew the term existed. I invented with cardboard and scraps,
-					finding joy in self-expression through art and storytelling. In high
-					school, this passion expanded: a marketing internship I tried on a
-					whim made me consider business as a future path, while winning a
+					finding joy in self-expression through art, writing, and storytelling.
+					In high school, this passion expanded: a marketing internship I tried
+					on a whim made me consider business as a future path, while winning a
 					writing contest that brought me on a short trip to London sparked my
-					love for writing and travel. For a time, I dreamed of creating an
-					international print magazine — a life of creative direction,
-					storytelling, visual design, and exploration.{' '}
+					love for language and travel. For a time, I dreamed of creating an
+					international print magazine — a life shaped by storytelling, visual
+					design, and exploration.{' '}
 				</p>{' '}
 				<p>
 					{' '}

@@ -190,6 +190,7 @@ img {
 }
 
 .typing-text {
+	color: rgb(59, 197, 215);
 	font-family: 'Fira Code', monospace;
 	font-size: 20px;
 	font-weight: bold;
