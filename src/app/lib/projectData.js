@@ -1,14 +1,6 @@
 import '@/app/styles/globals.css';
 
 export const projectSections = {
-	craft: [
-		{
-			title: 'Past, Pastry, Future',
-			imageUrl: '/assets/ppf.gif',
-			link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
-			description: 'Augmented reality experience using Unity and Vuforia.',
-		},
-	],
 	code: [
 		{
 			title: 'TinkerThread',
@@ -112,6 +104,14 @@ export const projectSections = {
 			imageUrl: '/assets/glow.gif',
 			link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
 			description: 'Gesture-controlled interactive light.',
+		},
+	],
+	craft: [
+		{
+			title: 'Past, Pastry, Future',
+			imageUrl: '/assets/ppf.gif',
+			link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
+			description: 'Augmented reality experience using Unity and Vuforia.',
 		},
 	],
 	text: [],

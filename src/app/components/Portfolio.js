@@ -21,14 +21,6 @@ export default function Portfolio() {
 	const [lines, setLines] = useState([]);
 
 	const projectSections = {
-		craft: [
-			{
-				title: 'Past, Pastry, Future',
-				imageUrl: '/assets/ppf.gif',
-				link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
-				description: 'Augmented reality experience using Unity and Vuforia.',
-			},
-		],
 		code: [
 			{
 				title: 'TinkerThread',
@@ -132,6 +124,14 @@ export default function Portfolio() {
 				imageUrl: '/assets/glow.gif',
 				link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
 				description: 'Gesture-controlled interactive light.',
+			},
+		],
+		craft: [
+			{
+				title: 'Past, Pastry, Future',
+				imageUrl: '/assets/ppf.gif',
+				link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
+				description: 'Augmented reality experience using Unity and Vuforia.',
 			},
 		],
 		text: [],
@@ -293,22 +293,6 @@ export default function Portfolio() {
 
 					<div
 						className={`line-box box1 ${
-							activeSection === 'craft' ? 'active' : ''
-						}`}
-						onClick={() => handleBoxClick('craft')}
-						ref={boxRefs.craft}
-					>
-						<Image
-							src='/assets/tools.png'
-							alt='craft icon'
-							width={60}
-							height={60}
-							style={{ background: 'transparent' }}
-						/>
-						<span className='box-text'>craft</span>
-					</div>
-					<div
-						className={`line-box box2 ${
 							activeSection === 'code' ? 'active' : ''
 						}`}
 						onClick={() => handleBoxClick('code')}
@@ -322,6 +306,22 @@ export default function Portfolio() {
 							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>code</span>
+					</div>
+					<div
+						className={`line-box box2 ${
+							activeSection === 'electronics' ? 'active' : ''
+						}`}
+						onClick={() => handleBoxClick('electronics')}
+						ref={boxRefs.electronics}
+					>
+						<Image
+							src='/assets/circuit.png'
+							alt='electronics icon'
+							width={60}
+							height={60}
+							style={{ background: 'transparent' }}
+						/>
+						<span className='box-text'>electronics</span>
 					</div>
 					<div
 						className={`line-box box3 ${
@@ -341,19 +341,19 @@ export default function Portfolio() {
 					</div>
 					<div
 						className={`line-box box4 ${
-							activeSection === 'electronics' ? 'active' : ''
+							activeSection === 'craft' ? 'active' : ''
 						}`}
-						onClick={() => handleBoxClick('electronics')}
-						ref={boxRefs.electronics}
+						onClick={() => handleBoxClick('craft')}
+						ref={boxRefs.craft}
 					>
 						<Image
-							src='/assets/circuit.png'
-							alt='electronics icon'
+							src='/assets/tools.png'
+							alt='craft icon'
 							width={60}
 							height={60}
 							style={{ background: 'transparent' }}
 						/>
-						<span className='box-text'>electronics</span>
+						<span className='box-text'>craft</span>
 					</div>
 					<div
 						className={`line-box box5 ${

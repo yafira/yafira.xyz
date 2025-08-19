@@ -84,7 +84,7 @@ export default function FlowerNetwork({ projectSections }) {
 					</div>
 
 					{/* 5 category nodes */}
-					{['craft', 'code', 'design', 'electronics', 'text'].map((sec, i) => (
+					{['code', 'design', 'electronics', 'craft', 'text'].map((sec, i) => (
 						<div
 							key={sec}
 							className={`line-box box${i + 1} ${
