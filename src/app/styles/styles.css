@@ -379,16 +379,16 @@ img {
 }
 
 .box1 {
-	border-color: var(--craft-color);
+	border-color: var(--code-color);
 	top: 6%;
 	left: 3%;
-	--box-color: var(--craft-color);
+	--box-color: var(--code-color);
 }
 .box2 {
-	border-color: var(--code-color);
+	border-color: var(--electronics-color);
 	top: 10%;
 	right: 7%;
-	--box-color: var(--code-color);
+	--box-color: var(--electronics-color);
 }
 .box3 {
 	border-color: var(--design-color);
@@ -397,10 +397,10 @@ img {
 	--box-color: var(--design-color);
 }
 .box4 {
-	border-color: var(--electronics-color);
+	border-color: var(--craft-color);
 	top: 46%;
 	left: 85%;
-	--box-color: var(--electronics-color);
+	--box-color: var(--craft-color);
 }
 .box5 {
 	border-color: var(--text-color);
@@ -410,16 +410,16 @@ img {
 }
 
 .box1:hover {
-	background-color: #f7d2dfcc;
+	background-color: #e5fbedd3;
 }
 .box2:hover {
-	background-color: #e5fbedd3;
+	background-color: #d7cff9d9;
 }
 .box3:hover {
 	background-color: #f7e1fecc;
 }
 .box4:hover {
-	background-color: #d7cff9d9;
+	background-color: #f7d2dfcc;
 }
 .box5:hover {
 	background-color: #d6ebf8cc;
