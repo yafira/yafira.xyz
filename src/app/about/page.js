@@ -88,7 +88,7 @@ export default function AboutPage() {
 					finding my place at ITP, where creativity and computation speak the
 					same language.
 				</p>
-				<h2>whoami? </h2>
+				<h2>$ whoami </h2>
 				<p>
 					I'm a visual learner, creative thinker, and detail-oriented developer
 					who thrives in imaginative environments. Whether designing interfaces
@@ -97,21 +97,21 @@ export default function AboutPage() {
 					systems that translate digital ideas into interactive, often physical,
 					inventions.
 				</p>
-				<h2>why i compute</h2>
+				<h2>://why i compute</h2>
 				<p>
 					Programming is my paintbrush — a way to solve puzzles, express ideas,
 					and build things that matter. I see code as craft: a practice of
 					shaping the world around me in practical, poetic ways. I code because
 					it challenges me, and because it gives form to imagination.
 				</p>
-				<h2>feeling through form</h2>
+				<h2>://feeling through form</h2>
 				<p>
 					Design is where I feel most at home. It's where logic and emotion meet
 					— the art of interface at its most meaningful. I've always been drawn
 					to the quiet power of arrangement, detail, and color — and how good
 					design can turn the ordinary into something magical.
 				</p>
-				<h2>tea & terminal</h2>
+				<h2>://tea & terminal</h2>
 				<p>
 					These days, you'll find me coding interfaces, designing playful
 					experiences, learning new tools, and always making something. I'm
