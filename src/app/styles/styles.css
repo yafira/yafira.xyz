@@ -81,6 +81,7 @@ img {
 
 /* navigation bar */
 .navigation {
+	font-size: 1.7rem;
 	width: 100%;
 	padding: 24px 0;
 	background-color: #e8e8fa;
@@ -728,8 +729,40 @@ img {
 	line-height: 1.6;
 }
 
+/* base accent style */
 .cv-section {
 	margin-bottom: var(--spacing-xl);
+	padding-left: var(--spacing-md);
+	border-left: 4px solid transparent; /* default transparent */
+}
+
+/* assign accent colors per section */
+.cv-section.experience {
+	border-color: var(--design-color);
+}
+
+.cv-section.education {
+	border-color: var(--code-color);
+}
+
+.cv-section.creative-explorations {
+	border-color: var(--craft-color);
+}
+
+.cv-section.technologies {
+	border-color: var(--electronics-color);
+}
+
+.cv-section.tools {
+	border-color: var(--text-color);
+}
+
+.cv-section.certifications {
+	border-color: var(--design-color);
+}
+
+.cv-section.interests {
+	border-color: var(--craft-color);
 }
 
 .cv-heading {
@@ -747,7 +780,7 @@ img {
 .cv-item {
 	display: flex;
 	flex-direction: column;
-	font-size: 1rem;
+	font-size: 1.12rem;
 }
 
 .cv-date {

@@ -6,7 +6,7 @@ export default function CVPage() {
 	return (
 		<div className='cv-page main-content'>
 			{/* about */}
-			<section className='cv-section'>
+			<section className='cv-section about'>
 				<h1 className='cv-heading'>tldr; about me</h1>
 				<p>
 					i am a creative technologist who merges engineering with art,
@@ -19,7 +19,7 @@ export default function CVPage() {
 			</section>
 
 			{/* experience */}
-			<section className='cv-section'>
+			<section className='cv-section experience'>
 				<h2 className='cv-heading'>experience</h2>
 				<div className='cv-list'>
 					<div className='cv-item'>
@@ -136,7 +136,7 @@ export default function CVPage() {
 			</section>
 
 			{/* education */}
-			<section className='cv-section'>
+			<section className='cv-section education'>
 				<h2 className='cv-heading'>education</h2>
 				<div className='cv-list'>
 					<div className='cv-item'>
@@ -152,10 +152,8 @@ export default function CVPage() {
 						<span>school for poetic computation, new york (remote)</span>
 						<span className='cv-date'>jun 2022 – mar 2025</span>
 						<p>
-							explored artistic interventions in code, design, hardware, and
-							critical theory through thematic courses such as gift interfaces,
-							httpoetics, the musical web, algorithmic botany, and expressive
-							design with video games.
+							gift interfaces; httpoetics; the musical web; algorithmic botany;
+							expressive design with videogames
 						</p>
 					</div>
 
@@ -171,12 +169,7 @@ export default function CVPage() {
 						</strong>
 						<span>city university of new york — lehman college</span>
 						<span className='cv-date'>nov 2019 – may 2020</span>
-						<p>
-							selected from a pool of advanced computer science undergraduates
-							to participate in a pre-internship training and intensive
-							four-week bootcamp covering web development and professional
-							skills.
-						</p>
+						<p>4-week web development and professional skills bootcamp.</p>
 					</div>
 					<div className='cv-item'>
 						<strong>
@@ -189,9 +182,9 @@ export default function CVPage() {
 				</div>
 			</section>
 
-			{/* workshops & creative explorations */}
-			<section className='cv-section'>
-				<h2 className='cv-heading'>workshops & creative explorations</h2>
+			{/* creative explorations */}
+			<section className='cv-section creative-explorations'>
+				<h2 className='cv-heading'>creative explorations</h2>
 				<div className='cv-list'>
 					<div className='cv-item'>
 						<strong>
@@ -278,8 +271,8 @@ export default function CVPage() {
 			</section>
 
 			{/* technical skills */}
-			<section className='cv-section'>
-				<h2 className='cv-heading'>technical skills</h2>
+			<section className='cv-section technologies'>
+				<h2 className='cv-heading'>technologies</h2>
 				<p>
 					front-end/web development (javascript - react.js, next.js, html/css )
 					· ux/ui design · interaction design · git · creative coding · sql ·
@@ -288,7 +281,7 @@ export default function CVPage() {
 			</section>
 
 			{/* tools & platforms */}
-			<section className='cv-section'>
+			<section className='cv-section tools'>
 				<h2 className='cv-heading'>tools & platforms</h2>
 				<p>
 					vs code · figma · github · arduino ide · fritzing · warp terminal ·
@@ -297,7 +290,7 @@ export default function CVPage() {
 			</section>
 
 			{/* certifications */}
-			<section className='cv-section'>
+			<section className='cv-section certifications'>
 				<h2 className='cv-heading'>certifications</h2>
 				<div className='cv-list'>
 					<div className='cv-item'>
@@ -312,7 +305,7 @@ export default function CVPage() {
 			</section>
 
 			{/* interests */}
-			<section className='cv-section'>
+			<section className='cv-section interests'>
 				<h2 className='cv-heading'>interests</h2>
 				<p>
 					blending engineering with art; experimental interfaces; textile-based
