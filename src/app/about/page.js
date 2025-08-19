@@ -119,8 +119,9 @@ export default function AboutPage() {
 					especially those that merge art, code, and engineering. I'm also drawn
 					to projects involving e-textiles, physical computing, and tactile
 					interaction — anywhere technology meets texture, gesture, or form. In
-					my orbit: you'll often find me taking photos, sketching ideas,
-					experimenting in the kitchen, reviewing snacks at{' '}
+					my orbit: you'll often find me tinkering with arts & crafts, taking
+					photos, sketching ideas, experimenting in the kitchen, reviewing
+					snacks at{' '}
 					<a href='https://snax.blog' target='_blank' rel='noopener noreferrer'>
 						snax
 					</a>
