@@ -132,7 +132,7 @@ export default function Archive() {
 			)}
 
 			{view === 'cards' ? (
-				<div className='archive-grid'>
+				<div className='archive-grid masonry'>
 					{filtered.map((p) => (
 						<a
 							key={`${p.siteLabel}-${p.id}`}
