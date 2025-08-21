@@ -27,6 +27,18 @@ export const projectSections = {
 			description: 'Interactive sound and shape sketch with p5.js.',
 		},
 		{
+			title: 'Snax',
+			imageUrl: '/assets/snax.png',
+			link: 'https://www.snax.blog/',
+			description: 'Vegan snack reviews blog.',
+		},
+		{
+			title: 'Mind Write',
+			imageUrl: '/assets/mindwrite.png',
+			link: 'https://the-write-mind.vercel.app/',
+			description: 'Simple writing tool exploring creative cognition.',
+		},
+		{
 			title: 'Sailor Moon Calculator',
 			imageUrl: '/assets/calculator.gif',
 			link: 'https://sailor-moon-calculator.netlify.app/',
@@ -55,7 +67,7 @@ export const projectSections = {
 		{
 			title: 'Cosmic Snax',
 			imageUrl: '/assets/cosmic-snax.gif',
-			description: 'A snack ordering app for a movie theater',
+			description: 'A snack ordering app for a movie theater.',
 			links: {
 				prototype:
 					'https://www.figma.com/proto/oTPH8BW7owaY91IVOlR6KC/Cosmic-Snax?page-id=248%3A2311&node-id=256%3A1892&viewport=245%2C48%2C0.23&scaling=min-zoom&starting-point-node-id=256%3A1892',
@@ -65,7 +77,7 @@ export const projectSections = {
 		{
 			title: 'Seedling',
 			imageUrl: '/assets/seedling.gif',
-			description: 'A tool to help people develop their creativity',
+			description: 'A tool to help people develop their creativity.',
 			links: {
 				mobile:
 					'https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223',
@@ -76,12 +88,18 @@ export const projectSections = {
 		{
 			title: 'bDazzled',
 			imageUrl: '/assets/bdazzled.gif',
-			description: 'A custom bicycle web shop',
+			description: 'A custom bicycle web shop.',
 			links: {
 				prototype:
 					'https://www.figma.com/proto/GdO2Bto4BnWhiwRuo6coS1/bDazzled?node-id=38%3A5020&starting-point-node-id=38%3A5020',
 				casestudy: 'assets/bDazzled - Case study.pdf',
 			},
+		},
+		{
+			title: 'Kawaii ML',
+			imageUrl: '/assets/kawaii-ml.png',
+			link: 'https://www.figma.com/community/file/1282166884816539041',
+			description: 'Cute digital card deck exploring machine learning.',
 		},
 	],
 	electronics: [
@@ -105,6 +123,19 @@ export const projectSections = {
 			link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
 			description: 'Gesture-controlled interactive light.',
 		},
+		{
+			title: 'Custom LEDs',
+			imageUrl: '/assets/custom-leds.png',
+			link: 'https://months-tap-da9.craft.me/UPIseOWDQQ2AAx',
+			description: 'Custom LEDs experimenting with resin.',
+		},
+		{
+			title: 'Electrojute',
+			imageUrl: '/assets/electrojute.png',
+			link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
+			description:
+				'E-textile tote bag exploring jute fiber and conductive materials.',
+		},
 	],
 	craft: [
 		{
@@ -114,7 +145,7 @@ export const projectSections = {
 			description: 'Augmented reality experience using Unity and Vuforia.',
 		},
 	],
-	text: [],
+	text: [], // will be populated from WordPress (blogPosts)
 };
 
 export const allProjects = Object.entries(projectSections).flatMap(
