@@ -1,7 +1,7 @@
-// app/posts/Archive.jsx
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Space_Grotesk } from 'next/font/google';
+
 const spaceGrotesk = Space_Grotesk({
 	subsets: ['latin'],
 	weight: ['400', '500', '700'],
@@ -26,6 +26,7 @@ export default function Archive() {
 		if (typeof window !== 'undefined') localStorage.setItem('postsView', view);
 	}, [view]);
 
+	// fetch all posts
 	useEffect(() => {
 		(async () => {
 			try {
@@ -33,6 +34,8 @@ export default function Archive() {
 				const res = await fetch('/api/blog/all');
 				if (!res.ok) throw new Error(`api ${res.status}`);
 				const data = await res.json();
+
+				// decode any HTML entities in titles
 				const decode = (s = '') => {
 					const el = document.createElement('textarea');
 					el.innerHTML = s;
@@ -56,6 +59,20 @@ export default function Archive() {
 	}, [posts, q, filters]);
 
 	const toggle = (key) => setFilters((f) => ({ ...f, [key]: !f[key] }));
+
+	// microinteraction: update glow position (only visible on :hover via CSS)
+	const followGlow = (e) => {
+		const r = e.currentTarget.getBoundingClientRect();
+		const x = e.clientX - r.left;
+		const y = e.clientY - r.top;
+		e.currentTarget.style.setProperty('--mx', x + 'px');
+		e.currentTarget.style.setProperty('--my', y + 'px');
+	};
+	const resetGlow = (e) => {
+		const el = e.currentTarget;
+		el.style.setProperty('--mx', el.offsetWidth / 2 + 'px');
+		el.style.setProperty('--my', el.offsetHeight / 2 + 'px');
+	};
 
 	return (
 		<div className={`archive ${spaceGrotesk.className}`}>
@@ -143,12 +160,13 @@ export default function Archive() {
 								href={p.link}
 								target='_blank'
 								rel='noopener noreferrer'
+								onMouseEnter={resetGlow}
+								onMouseMove={followGlow}
+								onMouseLeave={resetGlow}
+								title={p.title}
 							>
 								<span className='row-title'>{p.title}</span>
 								<span className='row-meta'>
-									<span className={`row-chip ${p.siteLabel}`}>
-										{p.siteLabel}
-									</span>
 									<time className='row-date' dateTime={p.date}>
 										{new Date(p.date).toLocaleDateString(undefined, {
 											year: 'numeric',
