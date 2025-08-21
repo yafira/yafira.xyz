@@ -438,28 +438,38 @@ export default function Portfolio() {
 
 					{/* link to the full blog when text is active */}
 					{activeSection === 'text' && (
-						<div className='posts-all'>
-							<span className='posts-all-label'>blogs:</span>
+						<nav className='posts-all' aria-label='more'>
+							<span className='posts-all-label'>more:</span>
+
 							<a
 								href='https://electrocuteblog.wordpress.com/'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='project-link button-link blog-electrocute'
+								className='link-btn electrocute'
+								aria-label='open Electrocute blog'
 							>
 								electrocute
 							</a>
+
 							<a
 								href='https://electrocuteitp.wordpress.com/'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='project-link button-link blog-itp'
+								className='link-btn itp'
+								aria-label='open ITP blog'
 							>
 								itp
 							</a>
-							<a href='/posts' className='project-link button-link'>
-								archive
+
+							<a
+								href='/posts'
+								className='link-btn archive primary'
+								aria-label='view full archive'
+							>
+								<span>view full archive</span>
+								<span aria-hidden='true'>→</span>
 							</a>
-						</div>
+						</nav>
 					)}
 				</div>
 			)}

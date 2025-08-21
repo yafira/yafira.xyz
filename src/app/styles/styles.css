@@ -1086,6 +1086,83 @@ img {
 	background-color: var(--soft-pink);
 	color: #000;
 }
+
+/* pastel pill buttons for blog links */
+.link-btn {
+	--btn-bg: #eee;
+	--btn-fg: #111;
+	--btn-border: transparent;
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
+
+	padding: 0.42rem 0.85rem;
+	border-radius: 999px;
+	border: 1px solid var(--btn-border);
+	background: var(--btn-bg);
+	color: var(--btn-fg);
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 0.95rem;
+	line-height: 1;
+
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+	transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+		background 0.2s ease;
+	-webkit-tap-highlight-color: transparent;
+}
+.link-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+.link-btn:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 2px #fff,
+		0 0 0 6px color-mix(in oklab, var(--btn-bg) 55%, #0000);
+}
+
+/* variants */
+.link-btn.electrocute {
+	--btn-bg: var(--soft-pink);
+	--btn-fg: #000;
+}
+.link-btn.itp {
+	--btn-bg: lavender;
+	--btn-fg: #000;
+}
+.link-btn.archive {
+	--btn-bg: color-mix(in oklab, #000 9%, #fff 91%);
+	--btn-fg: #111;
+	--btn-border: rgba(0, 0, 0, 0.08);
+}
+
+/* make Archive the primary action */
+.link-btn.primary {
+	padding: 0.52rem 1rem; /* a touch larger */
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	background: #fff;
+	box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+	gap: 0.55rem;
+}
+.link-btn.primary:hover {
+	transform: translateY(-1.5px);
+	box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+}
+.link-btn.primary span:last-child {
+	/* the arrow */
+	font-weight: 800;
+	letter-spacing: 0.02em;
+}
+
+/* label tone */
+.posts-all-label {
+	opacity: 0.75;
+	font-weight: 600;
+}
+
+/* container */
 .posts-all {
 	display: flex;
 	align-items: center;
@@ -1094,9 +1171,32 @@ img {
 	padding: 0 1.25rem 1rem;
 }
 .posts-all-label {
-	opacity: 0.8;
+	opacity: 0.7;
 	margin-right: 0.25rem;
+	font-weight: 600;
+	font-size: 0.9rem;
 }
+
+/* motion prefs */
+@media (prefers-reduced-motion: reduce) {
+	.link-btn {
+		transition: none;
+	}
+	.link-btn:hover {
+		transform: none;
+	}
+}
+
+/* motion preferences */
+@media (prefers-reduced-motion: reduce) {
+	.link-btn {
+		transition: none;
+	}
+	.link-btn:hover {
+		transform: none;
+	}
+}
+
 /* on touch devices (no hover), keep badge visible everywhere */
 @media (hover: none) and (pointer: coarse) {
 	.project-badge {
