@@ -168,6 +168,10 @@ export default function CVPage() {
 						<div className='cv-org'>
 							new york university — tisch school of the arts
 						</div>
+						<div className='cv-affiliations'>
+							<strong>affiliations:</strong> adjacent (editor/web) · equitable
+							syllabus project (web/research) · ml5.js (web/community/research)
+						</div>
 					</div>
 
 					<div className='cv-item'>

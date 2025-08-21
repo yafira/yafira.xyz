@@ -29,15 +29,16 @@ export default function AboutPage() {
 				<p>
 					I'm Yafira (YAH-fee-rah) — a programmer, designer, and creative
 					technologist based in NYC. I build at the intersection of code,
-					design, and human interaction — crafting digital and physical
+					design, and human-computer interaction — crafting digital and physical
 					experiences that are as thoughtful as they are functional.
 				</p>
 				<p>
 					Currently, I'm a graduate student at NYU's Interactive
-					Telecommunications Program (ITP), where I experiment with creative
-					coding, physical computing, and interaction design. My work lives at
-					the expressive overlap of technology and art — spanning front-end
-					development, UX/UI/product design, and playful, tactile computing.
+					Telecommunications Program (ITP), where I experiment with physical
+					computing, web development, creative coding, fabrication, and
+					interaction design. My work lives at the expressive overlap of
+					technology and art — spanning front-end development, UX/UI/product
+					design, and playful, tactile computing.
 				</p>
 				<p>
 					With a background in computer science and a lifelong passion for

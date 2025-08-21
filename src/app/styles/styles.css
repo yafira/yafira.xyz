@@ -856,6 +856,20 @@ img {
 	text-transform: lowercase;
 }
 
+.cv-sub {
+	margin: 0.5rem 0 0 0;
+	padding-left: 1.2rem;
+	list-style: disc;
+	font-size: 0.9rem;
+	opacity: 0.9;
+}
+
+.cv-affiliations {
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+	opacity: 0.9;
+}
+
 /* small screens */
 @media (max-width: 720px) {
 	.cv-page {
@@ -879,6 +893,21 @@ img {
 	margin: 0 auto;
 	padding: var(--spacing-lg);
 	font-family: var(--font-body);
+}
+
+.flower-wrapper {
+	margin: 0.5rem auto 1rem auto;
+	display: flex;
+	justify-content: center;
+}
+
+.flower-icon {
+	opacity: 0.9;
+	transition: transform 0.2s ease;
+}
+
+.flower-icon:hover {
+	transform: rotate(8deg) scale(1.05);
 }
 
 .contact-hero {
@@ -982,13 +1011,16 @@ img {
 } /* figma */
 #profile-link3.social-link {
 	border-color: var(--craft-color);
-} /* dribbble */
+} /* arena */
 #profile-link4.social-link {
 	border-color: var(--text-color);
-} /* email */
+} /* ig */
 #profile-link5.social-link {
 	border-color: var(--electronics-color);
 } /* linkedin */
+#profile-link6.social-link {
+	border-color: rgb(215, 211, 211);
+} /* chess */
 
 /* small screens */
 @media (max-width: 640px) {
