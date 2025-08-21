@@ -91,8 +91,8 @@ export default function Portfolio() {
 				description: 'Vegan snack reviews blog.',
 			},
 			{
-				title: 'Mind Write',
-				imageUrl: '/assets/mindwrite.png',
+				title: 'Write Mind',
+				imageUrl: '/assets/write-mind.png',
 				link: 'https://the-write-mind.vercel.app/',
 				description: 'Simple writing tool exploring creative cognition.',
 			},
@@ -183,7 +183,7 @@ export default function Portfolio() {
 			},
 			{
 				title: 'Custom LEDs',
-				imageUrl: '/assets/custom-leds.png',
+				imageUrl: '/assets/leds.jpg',
 				link: 'https://months-tap-da9.craft.me/UPIseOWDQQ2AAx',
 				description: 'Custom LEDs experimenting with resin.',
 			},

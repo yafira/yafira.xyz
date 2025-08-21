@@ -765,7 +765,7 @@ img {
 	border-color: var(--code-color);
 }
 .cv-section.creative-explorations {
-	border-color: var(--craft-color);
+	border-color: #4eecd2;
 }
 .cv-section.technologies {
 	border-color: var(--electronics-color);
@@ -774,7 +774,7 @@ img {
 	border-color: var(--text-color);
 }
 .cv-section.certifications {
-	border-left: 4px solid var(--design-color); /* unique accent */
+	border-left: 4px solid var(--design-color);
 	padding-left: 12px;
 }
 .cv-section.interests {

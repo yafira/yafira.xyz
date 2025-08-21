@@ -154,6 +154,122 @@ export default function CVPage() {
 				</div>
 			</section>
 
+			{/* creative explorations */}
+			<section className='cv-section creative-explorations'>
+				<h2 className='cv-heading'>creative explorations</h2>
+				<div className='cv-list'>
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
+								UN Open Source Week Hackathon — “Ahead of the Storm” Challenge
+							</div>
+							<span className='cv-date'>jun 2025</span>
+						</div>
+						<div className='cv-org'>
+							united nations headquarters — new york, ny
+						</div>
+						<p className='cv-summary'>
+							participated in a global hackathon focused on open-source
+							solutions for child-centered climate emergency response, advancing
+							un sustainable development goals through geospatial data and
+							collaborative innovation.
+						</p>
+					</div>
+
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
+								volt couture: wearables + e-textiles “open mic”
+							</div>
+							<span className='cv-date'>may 2025</span>
+						</div>
+						<div className='cv-org'>nyc resistor — brooklyn, ny</div>
+						<p className='cv-summary'>
+							presented <i>static chic</i>, a 3d-printed inductive handbag that
+							wirelessly lights up embedded leds. part of an open mic curated by
+							kari love and liza stark.
+						</p>
+					</div>
+
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
+								rejects: a benefit auction for culturehub
+							</div>
+							<span className='cv-date'>may 2025</span>
+						</div>
+						<div className='cv-org'>culturehub — new york, ny</div>
+						<p className='cv-summary'>
+							contributed three oddities — <i>gothic teacrypt</i>,{' '}
+							<i>orbit offtrack</i>, and <i>pixel shell</i> — to a curated
+							auction of discarded prototypes celebrating the charm of
+							unfinished ideas and studio leftovers.
+						</p>
+					</div>
+
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
+								e-textile swatch open call — radiant fibers exhibition
+							</div>
+							<span className='cv-date'>jan – mar 2025</span>
+						</div>
+						<div className='cv-org'>nyu clive davis gallery — new york, ny</div>
+						<p className='cv-summary'>
+							accepted into radiant fibers for <i>soft glitch</i>, an e-textile
+							swatch combining punch needle, chaotic yarns, and
+							electroluminescent thread to explore digital disruption through
+							texture and light.
+						</p>
+					</div>
+
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>mit reality hack 2025</div>
+							<span className='cv-date'>jan 2025</span>
+						</div>
+						<div className='cv-org'>
+							massachusetts institute of technology — cambridge, ma
+						</div>
+						<p className='cv-summary'>
+							implemented sound and haptic feedback for <i>hangarpro vr</i>, a
+							training simulation powered by cognitive 3d. designed to enhance
+							pre-flight safety through visual interaction analysis for
+							aerospace exploration.
+						</p>
+					</div>
+
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
+								ecothreads: sustainable smart textiles workshop
+							</div>
+							<span className='cv-date'>oct 2024</span>
+						</div>
+						<div className='cv-org'>hybrid body lab — cornell tech</div>
+						<p className='cv-summary'>
+							created biodegradable thermo-chromic conductive threads with a diy
+							wet spinning tool, exploring eco-conscious approaches in e-textile
+							design.
+						</p>
+					</div>
+
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
+								noisy speakers: crafting fabric speakers
+							</div>
+							<span className='cv-date'>sep 2024</span>
+						</div>
+						<div className='cv-org'>nyc resistor — brooklyn, ny</div>
+						<p className='cv-summary'>
+							crafted fabric-based speakers using conductive threads, sensors,
+							and an amplifier, blending soft materials with sound.
+						</p>
+					</div>
+				</div>
+			</section>
+
 			{/* education */}
 			<section className='cv-section education'>
 				<h2 className='cv-heading'>education</h2>
