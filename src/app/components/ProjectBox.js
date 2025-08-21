@@ -7,6 +7,7 @@ const ProjectBox = ({
 	links,
 	category,
 	showLinksAlways = false,
+	badge, // 'itp' | 'electrocute'
 }) => {
 	const isDesign =
 		category === 'design' || (links && Object.keys(links).length > 0);
@@ -19,7 +20,9 @@ const ProjectBox = ({
 			{isDesign ? (
 				<>
 					<div className='box-content'>
+						{badge && <span className={`project-badge ${badge}`}>{badge}</span>}
 						<span className='box-text'>{title}</span>
+						{/* design keeps images */}
 						<img
 							src={imageUrl}
 							alt={title}
@@ -28,7 +31,6 @@ const ProjectBox = ({
 						/>
 					</div>
 
-					{/* move description to bottom */}
 					{(description || links?.description) && (
 						<p className='project-description'>
 							{description || links.description}
@@ -42,7 +44,7 @@ const ProjectBox = ({
 					>
 						{links &&
 							Object.entries(links)
-								.filter(([key]) => key !== 'description') // ignore description
+								.filter(([key]) => key !== 'description')
 								.map(([key, url]) => (
 									<a
 										key={key}
@@ -61,19 +63,27 @@ const ProjectBox = ({
 					href={link}
 					target='_blank'
 					rel='noopener noreferrer'
-					className='box-content'
+					className={`box-content ${category === 'text' ? 'text-only' : ''}`}
 					style={{ textDecoration: 'none', background: 'transparent' }}
 				>
-					<span className='box-text'>{title}</span>
-					<img
-						src={imageUrl}
-						alt={title}
-						className='project-image'
-						style={{ background: 'transparent' }}
-					/>
+					{badge && <span className={`project-badge ${badge}`}>{badge}</span>}
 
-					{/* description below image for non-design */}
-					{description && <p className='project-description'>{description}</p>}
+					<span className='box-text'>{title}</span>
+
+					{/* hide image for blog posts (text) */}
+					{category !== 'text' && imageUrl && (
+						<img
+							src={imageUrl}
+							alt={title}
+							className='project-image'
+							style={{ background: 'transparent' }}
+						/>
+					)}
+
+					{/* we already hid description for text earlier */}
+					{category !== 'text' && description && (
+						<p className='project-description'>{description}</p>
+					)}
 				</a>
 			)}
 		</div>

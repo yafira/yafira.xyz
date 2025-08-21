@@ -5,6 +5,9 @@ import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import ProjectBox from '@/app/components/ProjectBox';
 
+const WP_API =
+	'https://electrocuteblog.wordpress.com/wp-json/wp/v2/posts?per_page=12&_embed';
+
 export default function Portfolio() {
 	const [activeSection, setActiveSection] = useState(null);
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -19,6 +22,41 @@ export default function Portfolio() {
 	};
 
 	const [lines, setLines] = useState([]);
+
+	// blog posts state
+	const [blogPosts, setBlogPosts] = useState([]);
+	const [blogLoading, setBlogLoading] = useState(false);
+	const [blogError, setBlogError] = useState(null);
+
+	useEffect(() => {
+		const fetchPosts = async () => {
+			try {
+				setBlogLoading(true);
+				const res = await fetch('/api/blog'); // <-- hits your server route
+				if (!res.ok) throw new Error(`API error: ${res.status}`);
+				const data = await res.json();
+
+				// Titles from WP may contain entities; decode in browser
+				const decode = (s = '') => {
+					const el = document.createElement('textarea');
+					el.innerHTML = s;
+					return el.value;
+				};
+
+				setBlogPosts(
+					data.map((p) => ({
+						...p,
+						title: decode(p.title),
+					}))
+				);
+			} catch (e) {
+				setBlogError(e.message);
+			} finally {
+				setBlogLoading(false);
+			}
+		};
+		fetchPosts();
+	}, []);
 
 	const projectSections = {
 		code: [
@@ -134,9 +172,10 @@ export default function Portfolio() {
 				description: 'Augmented reality experience using Unity and Vuforia.',
 			},
 		],
-		text: [],
+		text: [], // will be populated from WordPress (blogPosts)
 	};
 
+	// Line drawing logic (unchanged)
 	useEffect(() => {
 		const updateLines = () => {
 			if (!svgRef.current) return;
@@ -144,20 +183,7 @@ export default function Portfolio() {
 			const flower = document.querySelector('.image-box');
 			const boxes = document.querySelectorAll('.line-box');
 
-			// Log for debugging
-			console.log('Flower element:', flower);
-			console.log('Box elements:', boxes);
-			console.log('SVG element:', svgRef.current);
-
-			if (!flower || boxes.length < 5) {
-				console.log(
-					'Missing elements - flower:',
-					!!flower,
-					'boxes count:',
-					boxes.length
-				);
-				return;
-			}
+			if (!flower || boxes.length < 5) return;
 
 			const svgRect = svgRef.current.getBoundingClientRect();
 			const flowerRect = flower.getBoundingClientRect();
@@ -165,25 +191,17 @@ export default function Portfolio() {
 			const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
 			const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
 
-			console.log('Center coordinates:', { centerX, centerY });
-
-			const newLines = Array.from(boxes).map((box, index) => {
+			const newLines = Array.from(boxes).map((box) => {
 				const boxRect = box.getBoundingClientRect();
 				const x = boxRect.left + boxRect.width / 2 - svgRect.left;
 				const y = boxRect.top + boxRect.height / 2 - svgRect.top;
-
-				console.log(`Box ${index} coordinates:`, { x, y });
-
 				return { x1: centerX, y1: centerY, x2: x, y2: y };
 			});
 
-			console.log('New lines:', newLines);
 			setLines(newLines);
 		};
 
-		// Add a small delay to ensure elements are rendered
 		const timeout = setTimeout(updateLines, 100);
-
 		window.addEventListener('resize', updateLines);
 		window.addEventListener('load', updateLines);
 
@@ -222,7 +240,6 @@ export default function Portfolio() {
 		};
 
 		const timeout = setTimeout(updateLines, 100);
-
 		window.addEventListener('resize', updateLines);
 		window.addEventListener('load', updateLines);
 
@@ -231,7 +248,7 @@ export default function Portfolio() {
 			window.removeEventListener('resize', updateLines);
 			window.removeEventListener('load', updateLines);
 		};
-	}, []);
+	}, [activeSection]);
 
 	const handleBoxClick = (section) => {
 		if (activeSection === section) {
@@ -245,6 +262,12 @@ export default function Portfolio() {
 	const handleCloseDrawer = () => {
 		setIsDrawerOpen(false);
 	};
+
+	// Choose which items to show in the drawer
+	const itemsForSection =
+		activeSection === 'text'
+			? blogPosts // mapped to ProjectBox shape
+			: projectSections[activeSection] || [];
 
 	return (
 		<div className='page-container'>
@@ -307,6 +330,7 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>code</span>
 					</div>
+
 					<div
 						className={`line-box box2 ${
 							activeSection === 'electronics' ? 'active' : ''
@@ -323,6 +347,7 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>electronics</span>
 					</div>
+
 					<div
 						className={`line-box box3 ${
 							activeSection === 'design' ? 'active' : ''
@@ -339,6 +364,7 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>design</span>
 					</div>
+
 					<div
 						className={`line-box box4 ${
 							activeSection === 'craft' ? 'active' : ''
@@ -355,6 +381,7 @@ export default function Portfolio() {
 						/>
 						<span className='box-text'>craft</span>
 					</div>
+
 					<div
 						className={`line-box box5 ${
 							activeSection === 'text' ? 'active' : ''
@@ -382,13 +409,58 @@ export default function Portfolio() {
 					<button className='drawer-close' onClick={handleCloseDrawer}>
 						<ChevronDown />
 					</button>
+
 					<div className='projects-scroll-container'>
+						{/* Drawer header for text/blog */}
+						{activeSection === 'text' && (
+							<div style={{ padding: '0 1rem', marginBottom: '.5rem' }}>
+								{blogLoading && <p style={{ opacity: 0.8 }}>loading posts…</p>}
+								{blogError && (
+									<p style={{ color: 'crimson' }}>error: {blogError}</p>
+								)}
+								{!blogLoading && !blogError && blogPosts.length === 0 && (
+									<p style={{ opacity: 0.8 }}>no posts found.</p>
+								)}
+							</div>
+						)}
+
 						<div className='projects-drawer-grid'>
-							{projectSections[activeSection].map((project, index) => (
-								<ProjectBox key={index} {...project} category={activeSection} />
+							{itemsForSection.map((item, index) => (
+								<ProjectBox
+									key={index}
+									{...item}
+									category={activeSection}
+									badge={activeSection === 'text' ? item.siteLabel : undefined}
+								/>
 							))}
 						</div>
 					</div>
+
+					{/* link to the full blog when text is active */}
+					{activeSection === 'text' && (
+						<div className='posts-all'>
+							<span className='posts-all-label'>blogs:</span>
+							<a
+								href='https://electrocuteblog.wordpress.com/'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='project-link button-link blog-electrocute'
+							>
+								electrocute
+							</a>
+							<a
+								href='https://electrocuteitp.wordpress.com/'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='project-link button-link blog-itp'
+							>
+								itp
+							</a>
+							<a href='/posts' className='project-link button-link'>
+								archive
+							</a>
+						</div>
+					)}
 				</div>
 			)}
 		</div>
