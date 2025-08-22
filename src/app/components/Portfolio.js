@@ -11,7 +11,14 @@ const WP_API =
 	'https://electrocuteblog.wordpress.com/wp-json/wp/v2/posts?per_page=12&_embed';
 
 export default function Portfolio() {
+	// NEW: wait for client mount to avoid SSR/client branching mismatch
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []);
+
 	const isMobile = useMediaQuery('(max-width: 640px)');
+
+	// Don't render until mounted; prevents hydration mismatch
+	if (!mounted) return null;
 
 	// Shared data: project sections (used by both views)
 	const projectSections = {

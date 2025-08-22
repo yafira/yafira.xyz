@@ -193,11 +193,16 @@ export default function Archive() {
 							>
 								<span className='row-title'>{p.title}</span>
 								<span className='row-meta'>
-									<time className='row-date' dateTime={p.date}>
-										{new Date(p.date).toLocaleDateString(undefined, {
+									<time
+										className='row-date'
+										dateTime={p.date}
+										suppressHydrationWarning
+									>
+										{new Date(p.date).toLocaleDateString('en-US', {
 											year: 'numeric',
 											month: 'short',
 											day: '2-digit',
+											timeZone: 'UTC', // keeps it deterministic
 										})}
 									</time>
 								</span>
