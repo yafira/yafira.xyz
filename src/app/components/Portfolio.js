@@ -4,60 +4,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import ProjectBox from '@/app/components/ProjectBox';
+import ProjectsGrid from '@/app/components/ProjectsGrid';
+import useMediaQuery from '@/app/hooks/useMediaQuery';
 
 const WP_API =
 	'https://electrocuteblog.wordpress.com/wp-json/wp/v2/posts?per_page=12&_embed';
 
 export default function Portfolio() {
-	const [activeSection, setActiveSection] = useState(null);
-	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-	const svgRef = useRef(null);
-	const flowerRef = useRef(null);
-	const boxRefs = {
-		craft: useRef(null),
-		code: useRef(null),
-		design: useRef(null),
-		electronics: useRef(null),
-		text: useRef(null),
-	};
+	const isMobile = useMediaQuery('(max-width: 640px)');
 
-	const [lines, setLines] = useState([]);
-
-	// blog posts state
-	const [blogPosts, setBlogPosts] = useState([]);
-	const [blogLoading, setBlogLoading] = useState(false);
-	const [blogError, setBlogError] = useState(null);
-
-	useEffect(() => {
-		const fetchPosts = async () => {
-			try {
-				setBlogLoading(true);
-				const res = await fetch('/api/blog'); // <-- hits your server route
-				if (!res.ok) throw new Error(`API error: ${res.status}`);
-				const data = await res.json();
-
-				// Titles from WP may contain entities; decode in browser
-				const decode = (s = '') => {
-					const el = document.createElement('textarea');
-					el.innerHTML = s;
-					return el.value;
-				};
-
-				setBlogPosts(
-					data.map((p) => ({
-						...p,
-						title: decode(p.title),
-					}))
-				);
-			} catch (e) {
-				setBlogError(e.message);
-			} finally {
-				setBlogLoading(false);
-			}
-		};
-		fetchPosts();
-	}, []);
-
+	// Shared data: project sections (used by both views)
 	const projectSections = {
 		code: [
 			{
@@ -157,7 +113,7 @@ export default function Portfolio() {
 				title: 'Kawaii ML',
 				imageUrl: '/assets/kawaii-ml.png',
 				link: 'https://www.figma.com/community/file/1282166884816539041',
-				description: 'Cute digital card deck exploring machine learning.',
+				description: 'Kawaii ML card deck.',
 			},
 		],
 		electronics: [
@@ -203,102 +159,320 @@ export default function Portfolio() {
 				description: 'Augmented reality experience using Unity and Vuforia.',
 			},
 		],
-		text: [], // will be populated from WordPress (blogPosts)
+		text: [],
 	};
 
-	// Line drawing logic (unchanged)
+	if (isMobile) {
+		return <MobilePortfolioView projectSections={projectSections} />;
+	}
+	return <DesktopPortfolioView projectSections={projectSections} />;
+}
+
+/* -------------------- MOBILE VIEW -------------------- */
+function MobilePortfolioView({ projectSections }) {
+	const [active, setActive] = useState(null);
+	const [showFlowerMenu, setShowFlowerMenu] = useState(false);
+	const listRef = useRef(null);
+
+	const closeMenu = () => setShowFlowerMenu(false);
+
+	const categories = [
+		{ id: 'code', label: 'code', icon: '/assets/code.png' },
+		{ id: 'design', label: 'design', icon: '/assets/design.png' },
+		{ id: 'electronics', label: 'electronics', icon: '/assets/circuit.png' },
+		{ id: 'craft', label: 'craft', icon: '/assets/tools.png' },
+		{ id: 'text', label: 'text', icon: '/assets/text.png' },
+	];
+
+	const getItemLinks = (item) => {
+		if (item?.links && typeof item.links === 'object') {
+			return Object.entries(item.links)
+				.filter(([k]) => k !== 'description')
+				.map(([label, href]) => ({ label: String(label).toUpperCase(), href }));
+		}
+		if (item?.link) return [{ label: '→', href: item.link }];
+		return [];
+	};
+
+	const items = active ? projectSections[active] ?? [] : [];
+
+	const handleSelect = (id) => {
+		setShowFlowerMenu(false); // close site menu if open
+		setActive((prev) => (prev === id ? null : id));
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				listRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+		});
+	};
+
+	return (
+		<div className='page-container mobile-wrap'>
+			<div className='mobile-categories' role='tablist' aria-label='sections'>
+				{categories.map((c) => (
+					<button
+						key={c.id}
+						role='tab'
+						aria-selected={active === c.id}
+						data-cat={c.id}
+						className={`chip-btn raised ${active === c.id ? 'is-active' : ''}`}
+						onClick={() => handleSelect(c.id)}
+					>
+						<Image src={c.icon} alt='' width={36} height={36} />
+						<span>{c.label}</span>
+					</button>
+				))}
+
+				{/* 6th tile: flower (always rendered) */}
+				<button
+					type='button'
+					className={`chip-btn flower-mobile-tile ${
+						active ? 'is-disabled' : ''
+					}`}
+					aria-haspopup='true'
+					aria-expanded={showFlowerMenu}
+					aria-disabled={!!active}
+					tabIndex={active ? -1 : 0}
+					onClick={() => {
+						if (!active) setShowFlowerMenu((v) => !v);
+					}}
+				>
+					<Image
+						src='/assets/flower-logo.png'
+						alt='open menu'
+						width={90}
+						height={90}
+					/>
+					<span className='sr-only'></span>
+				</button>
+			</div>
+
+			{/* mini menu (about / cv / contact) */}
+			{showFlowerMenu && !active && (
+				<nav className='flower-menu' aria-label='site'>
+					<button
+						className='flower-menu-close'
+						onClick={closeMenu}
+						aria-label='close menu'
+					>
+						×
+					</button>
+					<a href='/about' onClick={closeMenu}>
+						about
+					</a>
+					<a href='/cv' onClick={closeMenu}>
+						cv
+					</a>
+					<a href='/contact' onClick={closeMenu}>
+						contact
+					</a>
+				</nav>
+			)}
+
+			{active && (
+				<div ref={listRef} className='mobile-links'>
+					<h2 className='mobile-section-title'>{active}</h2>
+					<ul className='mobile-list' aria-label={`${active} projects`}>
+						{items.map((item, i) => {
+							const links = getItemLinks(item);
+							return (
+								<li
+									key={`${active}-${i}`}
+									className='mobile-row'
+									data-cat={active}
+								>
+									<div className='row-main'>
+										{item.imageUrl && active !== 'text' && (
+											<Image
+												className='row-thumb'
+												src={item.imageUrl}
+												alt=''
+												width={40}
+												height={40}
+											/>
+										)}
+										<span className='row-title'>{item.title}</span>
+									</div>
+									<div className='row-actions'>
+										{links.length > 0 ? (
+											links.map((lnk, idx) => (
+												<a
+													key={idx}
+													href={lnk.href}
+													target='_blank'
+													rel='noopener noreferrer'
+													className={`link-btn ${
+														active === 'design' ? 'itp' : 'archive'
+													}`}
+												>
+													{lnk.label}
+												</a>
+											))
+										) : (
+											<span className='no-link'>no link</span>
+										)}
+									</div>
+								</li>
+							);
+						})}
+					</ul>
+
+					{active === 'text' && (
+						<div className='mobile-blog-shortcuts'>
+							<a
+								href='https://electrocuteblog.wordpress.com/'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='link-btn electrocute'
+							>
+								electrocute blog
+							</a>
+							<a
+								href='https://electrocuteitp.wordpress.com/'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='link-btn itp'
+							>
+								itp blog
+							</a>
+							<a href='/posts' className='link-btn archive'>
+								view full archive →
+							</a>
+						</div>
+					)}
+				</div>
+			)}
+		</div>
+	);
+}
+
+/* -------------------- DESKTOP/TABLET VIEW -------------------- */
+function DesktopPortfolioView({ projectSections }) {
+	const [activeSection, setActiveSection] = useState(null);
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+	const [hovered, setHovered] = useState(null);
+	const [lines, setLines] = useState([]);
+	const [blogPosts, setBlogPosts] = useState([]);
+	const [blogLoading, setBlogLoading] = useState(false);
+	const [blogError, setBlogError] = useState(null);
+
+	const [active, setActive] = useState(null);
+	const [showFlowerMenu, setShowFlowerMenu] = useState(false); // <-- add
+	const closeMenu = () => setShowFlowerMenu(false); // <-- add
+	const listRef = useRef(null);
+
+	const svgRef = useRef(null);
+	const flowerRef = useRef(null);
+
+	const colors = {
+		code: 'var(--code-color)',
+		electronics: 'var(--electronics-color)',
+		design: 'var(--design-color)',
+		craft: 'var(--craft-color)',
+		text: 'var(--text-color)',
+	};
+
+	// fetch blog posts (desktop only)
 	useEffect(() => {
-		const updateLines = () => {
-			if (!svgRef.current) return;
+		const fetchPosts = async () => {
+			try {
+				setBlogLoading(true);
+				const res = await fetch('/api/blog');
+				if (!res.ok) throw new Error(`API error: ${res.status}`);
+				const data = await res.json();
 
-			const flower = document.querySelector('.image-box');
-			const boxes = document.querySelectorAll('.line-box');
+				const decode = (s = '') => {
+					const el = document.createElement('textarea');
+					el.innerHTML = s;
+					return el.value;
+				};
 
-			if (!flower || boxes.length < 5) return;
+				setBlogPosts(
+					data.map((p) => ({
+						...p,
+						title: decode(p.title),
+					}))
+				);
+			} catch (e) {
+				setBlogError(e.message);
+			} finally {
+				setBlogLoading(false);
+			}
+		};
+		fetchPosts();
+	}, []);
 
-			const svgRect = svgRef.current.getBoundingClientRect();
-			const flowerRect = flower.getBoundingClientRect();
+	const categories = ['code', 'electronics', 'design', 'craft', 'text'];
 
-			const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
-			const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
+	const updateLines = () => {
+		if (!svgRef.current) return;
 
-			const newLines = Array.from(boxes).map((box) => {
-				const boxRect = box.getBoundingClientRect();
-				const x = boxRect.left + boxRect.width / 2 - svgRect.left;
-				const y = boxRect.top + boxRect.height / 2 - svgRect.top;
-				return { x1: centerX, y1: centerY, x2: x, y2: y };
+		const network = document.querySelector('.flower-network');
+		const flower = document.querySelector('.image-box');
+		const boxes = network ? network.querySelectorAll(':scope > .line-box') : [];
+
+		if (!flower || boxes.length < 5) return;
+
+		const svgRect = svgRef.current.getBoundingClientRect();
+		const flowerRect = flower.getBoundingClientRect();
+		const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
+		const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
+
+		const newLines = Array.from(boxes)
+			.slice(0, 5)
+			.map((box) => {
+				const r = box.getBoundingClientRect();
+				return {
+					x1: centerX,
+					y1: centerY,
+					x2: r.left + r.width / 2 - svgRect.left,
+					y2: r.top + r.height / 2 - svgRect.top,
+				};
 			});
 
-			setLines(newLines);
-		};
+		setLines(newLines);
+	};
 
-		const timeout = setTimeout(updateLines, 100);
+	useEffect(() => {
+		const t = setTimeout(updateLines, 100);
 		window.addEventListener('resize', updateLines);
 		window.addEventListener('load', updateLines);
-
 		return () => {
-			clearTimeout(timeout);
+			clearTimeout(t);
 			window.removeEventListener('resize', updateLines);
 			window.removeEventListener('load', updateLines);
 		};
 	}, []);
 
-	// Also update lines when active section changes
 	useEffect(() => {
-		const updateLines = () => {
-			if (!svgRef.current) return;
-
-			const flower = document.querySelector('.image-box');
-			const flowerNetwork = document.querySelector('.flower-network');
-			const boxes = flowerNetwork?.querySelectorAll('.line-box');
-
-			if (!flower || !boxes || boxes.length !== 5) return;
-
-			const svgRect = svgRef.current.getBoundingClientRect();
-			const flowerRect = flower.getBoundingClientRect();
-
-			const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
-			const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
-
-			const newLines = Array.from(boxes).map((box) => {
-				const boxRect = box.getBoundingClientRect();
-				const x = boxRect.left + boxRect.width / 2 - svgRect.left;
-				const y = boxRect.top + boxRect.height / 2 - svgRect.top;
-				return { x1: centerX, y1: centerY, x2: x, y2: y };
-			});
-
-			setLines(newLines);
-		};
-
-		const timeout = setTimeout(updateLines, 100);
+		const t = setTimeout(updateLines, 100);
 		window.addEventListener('resize', updateLines);
 		window.addEventListener('load', updateLines);
-
 		return () => {
-			clearTimeout(timeout);
+			clearTimeout(t);
 			window.removeEventListener('resize', updateLines);
 			window.removeEventListener('load', updateLines);
 		};
 	}, [activeSection]);
 
+	useEffect(() => {
+		const onKey = (e) => e.key === 'Escape' && setIsDrawerOpen(false);
+		window.addEventListener('keydown', onKey);
+		return () => window.removeEventListener('keydown', onKey);
+	}, []);
+
 	const handleBoxClick = (section) => {
-		if (activeSection === section) {
-			setIsDrawerOpen(!isDrawerOpen);
-		} else {
+		if (activeSection === section) setIsDrawerOpen(!isDrawerOpen);
+		else {
 			setActiveSection(section);
 			setIsDrawerOpen(true);
 		}
 	};
 
-	const handleCloseDrawer = () => {
-		setIsDrawerOpen(false);
-	};
+	const handleCloseDrawer = () => setIsDrawerOpen(false);
 
-	// Choose which items to show in the drawer
 	const itemsForSection =
-		activeSection === 'text'
-			? blogPosts // mapped to ProjectBox shape
-			: projectSections[activeSection] || [];
+		activeSection === 'text' ? blogPosts : projectSections[activeSection] || [];
 
 	return (
 		<div className='page-container'>
@@ -318,25 +492,28 @@ export default function Portfolio() {
 							pointerEvents: 'none',
 						}}
 					>
-						{lines.map((line, index) => (
-							<line
-								key={index}
-								x1={line.x1}
-								y1={line.y1}
-								x2={line.x2}
-								y2={line.y2}
-								stroke='#333'
-								strokeWidth='2'
-								strokeOpacity='0.7'
-							/>
-						))}
+						{categories.map((sec, i) => {
+							const hot = hovered === sec || activeSection === sec;
+							return (
+								<line
+									key={sec}
+									x1={lines[i]?.x1 ?? 0}
+									y1={lines[i]?.y1 ?? 0}
+									x2={lines[i]?.x2 ?? 0}
+									y2={lines[i]?.y2 ?? 0}
+									stroke={hot ? colors[sec] : '#333'}
+									strokeWidth={hot ? 4 : 2}
+									strokeOpacity={hot ? 1 : 0.7}
+								/>
+							);
+						})}
 					</svg>
 
-					<div className='image-box' ref={flowerRef}>
+					<div className='image-box' ref={flowerRef} aria-hidden='true'>
 						<div style={{ position: 'relative', width: 500, height: 500 }}>
 							<Image
 								src='/assets/flower-logo.png'
-								alt='flower shape'
+								alt='portfolio flower hub'
 								fill
 								style={{ objectFit: 'contain' }}
 								className='flower-image'
@@ -345,19 +522,26 @@ export default function Portfolio() {
 						</div>
 					</div>
 
+					{/* 5 category nodes */}
 					<div
 						className={`line-box box1 ${
 							activeSection === 'code' ? 'active' : ''
 						}`}
 						onClick={() => handleBoxClick('code')}
-						ref={boxRefs.code}
+						onMouseEnter={() => setHovered('code')}
+						onMouseLeave={() => setHovered(null)}
+						role='button'
+						tabIndex={0}
+						onKeyDown={(e) =>
+							(e.key === 'Enter' || e.key === ' ') && handleBoxClick('code')
+						}
+						aria-pressed={activeSection === 'code'}
 					>
 						<Image
 							src='/assets/code.png'
 							alt='code icon'
 							width={60}
 							height={60}
-							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>code</span>
 					</div>
@@ -367,14 +551,21 @@ export default function Portfolio() {
 							activeSection === 'electronics' ? 'active' : ''
 						}`}
 						onClick={() => handleBoxClick('electronics')}
-						ref={boxRefs.electronics}
+						onMouseEnter={() => setHovered('electronics')}
+						onMouseLeave={() => setHovered(null)}
+						role='button'
+						tabIndex={0}
+						onKeyDown={(e) =>
+							(e.key === 'Enter' || e.key === ' ') &&
+							handleBoxClick('electronics')
+						}
+						aria-pressed={activeSection === 'electronics'}
 					>
 						<Image
 							src='/assets/circuit.png'
 							alt='electronics icon'
 							width={60}
 							height={60}
-							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>electronics</span>
 					</div>
@@ -384,14 +575,20 @@ export default function Portfolio() {
 							activeSection === 'design' ? 'active' : ''
 						}`}
 						onClick={() => handleBoxClick('design')}
-						ref={boxRefs.design}
+						onMouseEnter={() => setHovered('design')}
+						onMouseLeave={() => setHovered(null)}
+						role='button'
+						tabIndex={0}
+						onKeyDown={(e) =>
+							(e.key === 'Enter' || e.key === ' ') && handleBoxClick('design')
+						}
+						aria-pressed={activeSection === 'design'}
 					>
 						<Image
 							src='/assets/design.png'
 							alt='design icon'
 							width={60}
 							height={60}
-							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>design</span>
 					</div>
@@ -401,14 +598,20 @@ export default function Portfolio() {
 							activeSection === 'craft' ? 'active' : ''
 						}`}
 						onClick={() => handleBoxClick('craft')}
-						ref={boxRefs.craft}
+						onMouseEnter={() => setHovered('craft')}
+						onMouseLeave={() => setHovered(null)}
+						role='button'
+						tabIndex={0}
+						onKeyDown={(e) =>
+							(e.key === 'Enter' || e.key === ' ') && handleBoxClick('craft')
+						}
+						aria-pressed={activeSection === 'craft'}
 					>
 						<Image
 							src='/assets/tools.png'
 							alt='craft icon'
 							width={60}
 							height={60}
-							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>craft</span>
 					</div>
@@ -418,14 +621,20 @@ export default function Portfolio() {
 							activeSection === 'text' ? 'active' : ''
 						}`}
 						onClick={() => handleBoxClick('text')}
-						ref={boxRefs.text}
+						onMouseEnter={() => setHovered('text')}
+						onMouseLeave={() => setHovered(null)}
+						role='button'
+						tabIndex={0}
+						onKeyDown={(e) =>
+							(e.key === 'Enter' || e.key === ' ') && handleBoxClick('text')
+						}
+						aria-pressed={activeSection === 'text'}
 					>
 						<Image
 							src='/assets/text.png'
 							alt='text icon'
 							width={60}
 							height={60}
-							style={{ background: 'transparent' }}
 						/>
 						<span className='box-text'>text</span>
 					</div>
@@ -442,7 +651,6 @@ export default function Portfolio() {
 					</button>
 
 					<div className='projects-scroll-container'>
-						{/* Drawer header for text/blog */}
 						{activeSection === 'text' && (
 							<div style={{ padding: '0 1rem', marginBottom: '.5rem' }}>
 								{blogLoading && <p style={{ opacity: 0.8 }}>loading posts…</p>}
@@ -456,7 +664,10 @@ export default function Portfolio() {
 						)}
 
 						<div className='projects-drawer-grid'>
-							{itemsForSection.map((item, index) => (
+							{(activeSection === 'text'
+								? blogPosts
+								: projectSections[activeSection] || []
+							).map((item, index) => (
 								<ProjectBox
 									key={index}
 									{...item}
@@ -467,11 +678,9 @@ export default function Portfolio() {
 						</div>
 					</div>
 
-					{/* link to the full blog when text is active */}
 					{activeSection === 'text' && (
 						<nav className='posts-all' aria-label='more'>
 							<span className='posts-all-label'>more:</span>
-
 							<a
 								href='https://electrocuteblog.wordpress.com/'
 								target='_blank'
@@ -481,7 +690,6 @@ export default function Portfolio() {
 							>
 								electrocute
 							</a>
-
 							<a
 								href='https://electrocuteitp.wordpress.com/'
 								target='_blank'
@@ -491,7 +699,6 @@ export default function Portfolio() {
 							>
 								itp
 							</a>
-
 							<a
 								href='/posts'
 								className='link-btn archive primary'

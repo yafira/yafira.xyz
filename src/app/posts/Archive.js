@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Space_Grotesk } from 'next/font/google';
 
 const spaceGrotesk = Space_Grotesk({
@@ -8,6 +9,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export default function Archive() {
+	const router = useRouter();
+
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [err, setErr] = useState(null);
@@ -16,7 +19,18 @@ export default function Archive() {
 	const [filters, setFilters] = useState({ electrocute: true, itp: true });
 	const [view, setView] = useState('list'); // 'list' | 'cards'
 
-	// remember last choice
+	// mobile detection for conditional UI (back button + hide toggle)
+	const [isMobile, setIsMobile] = useState(false);
+	useEffect(() => {
+		if (typeof window === 'undefined') return;
+		const mq = window.matchMedia('(max-width: 640px)');
+		const onChange = (e) => setIsMobile(e.matches);
+		setIsMobile(mq.matches);
+		mq.addEventListener('change', onChange);
+		return () => mq.removeEventListener('change', onChange);
+	}, []);
+
+	// remember last view choice (desktop/tablet)
 	useEffect(() => {
 		const saved =
 			typeof window !== 'undefined' && localStorage.getItem('postsView');
@@ -34,8 +48,6 @@ export default function Archive() {
 				const res = await fetch('/api/blog/all');
 				if (!res.ok) throw new Error(`api ${res.status}`);
 				const data = await res.json();
-
-				// decode any HTML entities in titles
 				const decode = (s = '') => {
 					const el = document.createElement('textarea');
 					el.innerHTML = s;
@@ -60,7 +72,7 @@ export default function Archive() {
 
 	const toggle = (key) => setFilters((f) => ({ ...f, [key]: !f[key] }));
 
-	// microinteraction: update glow position (only visible on :hover via CSS)
+	// hover glow helpers (desktop only)
 	const followGlow = (e) => {
 		const r = e.currentTarget.getBoundingClientRect();
 		const x = e.clientX - r.left;
@@ -77,6 +89,18 @@ export default function Archive() {
 	return (
 		<div className={`archive ${spaceGrotesk.className}`}>
 			<header className='archive-header'>
+				{/* back button shows only on phones */}
+				{isMobile && (
+					<button
+						className='back-button'
+						onClick={() => router.back()}
+						aria-label='Go back'
+						type='button'
+					>
+						← back
+					</button>
+				)}
+
 				<h1>all posts</h1>
 
 				<div className='archive-controls'>
@@ -105,23 +129,25 @@ export default function Archive() {
 						onChange={(e) => setQ(e.target.value)}
 					/>
 
-					{/* view toggle */}
-					<div className='view-toggle' role='tablist' aria-label='layout'>
-						<button
-							className={`view-btn ${view === 'list' ? 'is-active' : ''}`}
-							onClick={() => setView('list')}
-							aria-pressed={view === 'list'}
-						>
-							list
-						</button>
-						<button
-							className={`view-btn ${view === 'cards' ? 'is-active' : ''}`}
-							onClick={() => setView('cards')}
-							aria-pressed={view === 'cards'}
-						>
-							cards
-						</button>
-					</div>
+					{/* view toggle hidden on mobile */}
+					{!isMobile && (
+						<div className='view-toggle' role='tablist' aria-label='layout'>
+							<button
+								className={`view-btn ${view === 'list' ? 'is-active' : ''}`}
+								onClick={() => setView('list')}
+								aria-pressed={view === 'list'}
+							>
+								list
+							</button>
+							<button
+								className={`view-btn ${view === 'cards' ? 'is-active' : ''}`}
+								onClick={() => setView('cards')}
+								aria-pressed={view === 'cards'}
+							>
+								cards
+							</button>
+						</div>
+					)}
 				</div>
 			</header>
 
@@ -131,7 +157,7 @@ export default function Archive() {
 				<p className='archive-status'>no posts found.</p>
 			)}
 
-			{view === 'cards' ? (
+			{!isMobile && view === 'cards' ? (
 				<div className='archive-grid masonry'>
 					{filtered.map((p) => (
 						<a

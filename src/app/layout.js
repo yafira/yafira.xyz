@@ -2,6 +2,7 @@ import { Pixelify_Sans } from 'next/font/google';
 import Link from 'next/link';
 import './styles/globals.css';
 import './styles/styles.css';
+import './styles/mobile.css';
 
 const pixelifySans = Pixelify_Sans({
 	weight: '400',

@@ -1,9 +1,11 @@
 import Image from 'next/image';
+import MobileBack from '@/app/components/MobileBack';
 
 /* eslint-disable react/no-unescaped-entities */
 export default function AboutPage() {
 	return (
 		<div className='about-page' id='about'>
+			<MobileBack />
 			<div className='bio-content'>
 				<div className='avatar-container'>
 					<Image

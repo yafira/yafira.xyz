@@ -3,10 +3,12 @@
 import Image from 'next/image';
 import { Github, Linkedin, Mail, Instagram, Figma } from 'lucide-react';
 import { FaChessPawn } from 'react-icons/fa';
+import MobileBack from '@/app/components/MobileBack';
 
 export default function ContactPage() {
 	return (
 		<div className='contact-page main-content'>
+			<MobileBack />
 			<section className='contact-hero'>
 				<h1 className='contact-title'>contact</h1>
 				{/* flower image under the title */}

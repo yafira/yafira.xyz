@@ -1,10 +1,12 @@
 'use client';
 
 import React from 'react';
+import MobileBack from '@/app/components/MobileBack';
 
 export default function CVPage() {
 	return (
 		<div className='cv-page main-content'>
+			<MobileBack />
 			{/* about */}
 			<section className='cv-section about'>
 				<h1 className='cv-heading'>tldr; about me</h1>
