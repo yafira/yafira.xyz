@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import ProjectBox from '@/app/components/ProjectBox';
-import ProjectsGrid from '@/app/components/ProjectsGrid';
 import useMediaQuery from '@/app/hooks/useMediaQuery';
 
 const WP_API =
@@ -33,7 +32,7 @@ export default function Portfolio() {
 				title: 'Cute Technologies',
 				imageUrl: '/assets/cute-tech.gif',
 				link: 'https://cutetech.tools/',
-				description: 'A blog built with Next.js and Notion API.',
+				description: 'A cute tech tools blog, Next.js and Notion API.',
 			},
 			{
 				title: 'Salvador DALL·E',
@@ -69,7 +68,7 @@ export default function Portfolio() {
 				title: 'Markie',
 				imageUrl: '/assets/notes.gif',
 				link: 'https://markie.netlify.app/',
-				description: 'Markdown editor and preview app.',
+				description: 'Markdown editor and preview app built with React.',
 			},
 			{
 				title: 'Scribble Pop',
@@ -120,7 +119,7 @@ export default function Portfolio() {
 				title: 'Kawaii ML',
 				imageUrl: '/assets/kawaii-ml.png',
 				link: 'https://www.figma.com/community/file/1282166884816539041',
-				description: 'Kawaii ML card deck.',
+				description: 'Cute digital card deck exploring machine learning.',
 			},
 		],
 		electronics: [
@@ -136,7 +135,7 @@ export default function Portfolio() {
 				imageUrl: '/assets/airsense.png',
 				link: 'https://electrocuteitp.wordpress.com/2025/03/16/troubleshooting-mqtt-connection-issues-in-react-from-vite-to-plain-javascript-back-to-react-more-updates/',
 				description:
-					'Indoor air quality monitor and dashboard using Arduino and React.',
+					'Indoor air quality monitor and dashboard built with Arduino and React.',
 			},
 			{
 				title: 'Glowmotion',
@@ -163,10 +162,11 @@ export default function Portfolio() {
 				title: 'Past, Pastry, Future',
 				imageUrl: '/assets/ppf.gif',
 				link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
-				description: 'Augmented reality experience using Unity and Vuforia.',
+				description:
+					'Time travel augmented reality experience, Unity/C# and Vuforia.',
 			},
 		],
-		text: [],
+		text: [], // will be populated from WordPress (blogPosts)
 	};
 
 	if (isMobile) {
@@ -249,7 +249,7 @@ function MobilePortfolioView({ projectSections }) {
 					}}
 				>
 					<Image
-						src='/assets/flower-logo.png'
+						src='/assets/flower-logo-transparent.png'
 						alt='open menu'
 						width={90}
 						height={90}
@@ -523,7 +523,7 @@ function DesktopPortfolioView({ projectSections }) {
 					<div className='image-box' ref={flowerRef} aria-hidden='true'>
 						<div style={{ position: 'relative', width: 500, height: 500 }}>
 							<Image
-								src='/assets/flower-logo.png'
+								src='/assets/flower-logo-transparent.png'
 								alt='portfolio flower hub'
 								fill
 								style={{ objectFit: 'contain' }}

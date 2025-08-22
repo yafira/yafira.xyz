@@ -12,7 +12,7 @@ export const projectSections = {
 			title: 'Cute Technologies',
 			imageUrl: '/assets/cute-tech.gif',
 			link: 'https://cutetech.tools/',
-			description: 'A blog built with Next.js and Notion API.',
+			description: 'A cute tech tools blog, Next.js and Notion API.',
 		},
 		{
 			title: 'Salvador DALL·E',
@@ -48,7 +48,7 @@ export const projectSections = {
 			title: 'Markie',
 			imageUrl: '/assets/notes.gif',
 			link: 'https://markie.netlify.app/',
-			description: 'Markdown editor and preview app.',
+			description: 'Markdown editor and preview app built with React.',
 		},
 		{
 			title: 'Scribble Pop',
@@ -115,7 +115,7 @@ export const projectSections = {
 			imageUrl: '/assets/airsense.png',
 			link: 'https://electrocuteitp.wordpress.com/2025/03/16/troubleshooting-mqtt-connection-issues-in-react-from-vite-to-plain-javascript-back-to-react-more-updates/',
 			description:
-				'Indoor air quality monitor and dashboard using Arduino and React.',
+				'Indoor air quality monitor and dashboard built with Arduino and React.',
 		},
 		{
 			title: 'Glowmotion',
@@ -142,7 +142,8 @@ export const projectSections = {
 			title: 'Past, Pastry, Future',
 			imageUrl: '/assets/ppf.gif',
 			link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
-			description: 'Augmented reality experience using Unity and Vuforia.',
+			description:
+				'Time travel augmented reality experience, Unity/C# and Vuforia.',
 		},
 	],
 	text: [], // will be populated from WordPress (blogPosts)

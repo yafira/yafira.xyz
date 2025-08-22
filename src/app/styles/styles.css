@@ -158,6 +158,43 @@ img {
 .avatar {
 	border-radius: 10%;
 	object-fit: cover;
+	z-index: 2; /* keep it above the blob */
+	border-radius: 12px; /* tweak as you like */
+}
+
+/* blob background */
+.avatar-container::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 900px;
+	height: 900px;
+	background: radial-gradient(
+		circle at 30% 30%,
+		var(--soft-pink) 0%,
+		#e6ddf6 40%,
+		#ffffff00 100%
+	);
+	border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; /* blob shape */
+	transform: translate(-50%, -50%);
+	z-index: 0;
+	opacity: 0.4;
+	filter: blur(20px); /* optional for softness */
+}
+
+@keyframes morph {
+	0%,
+	100% {
+		border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+	}
+	50% {
+		border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+	}
+}
+
+.avatar-container::before {
+	animation: morph 12s ease-in-out infinite;
 }
 
 /* Set Space Grotesk as the default for your About section */

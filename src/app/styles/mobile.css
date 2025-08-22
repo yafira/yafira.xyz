@@ -364,6 +364,10 @@
 		gap: var(--spacing-md);
 	}
 	.back-button {
+		position: sticky;
+		top: 8px;
+		z-index: 10000; /* above any blobs/menus */
+		pointer-events: auto;
 		display: inline-block;
 		background: var(--craft-color);
 		color: #000;

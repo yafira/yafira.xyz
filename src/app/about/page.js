@@ -29,7 +29,7 @@ export default function AboutPage() {
 					/>
 				</h1>
 				<p>
-					I'm Yafira (YAH-fee-rah) — a programmer, designer, and creative
+					I'm Yafira — a computer programmer, designer, and creative
 					technologist based in NYC. I build at the intersection of code,
 					design, and human-computer interaction — crafting digital and physical
 					experiences that are as thoughtful as they are functional.
@@ -44,7 +44,7 @@ export default function AboutPage() {
 				</p>
 				<p>
 					With a background in computer science and a lifelong passion for
-					aesthetics, I like to think of myself as a{' '}
+					design, I like to think of myself as a{' '}
 					<strong>design engineer</strong> — someone who codes with intention
 					and designs with care. My focus is on building intuitive, meaningful
 					interfaces and experiences that empower users, challenge norms, and
@@ -69,17 +69,18 @@ export default function AboutPage() {
 				</p>{' '}
 				<p>
 					{' '}
-					That dream eventually led me to pursue a BBA, but I soon realized the
-					spark I longed for was missing. Business offered structure, but not
-					the creativity that had always driven me. After graduating, it took
-					time — and uncertainty — to recognize what I truly wanted. Drawn by my
-					fascination with electricity, physics, and the hidden mechanics of how
-					things work, I returned to school for electrical engineering. Entering
-					a field where women were underrepresented felt daunting, but I was
-					determined to explore it fully. Everything shifted when I took my
-					first programming class: something clicked. I fell in love with the
-					logic, creativity, and problem-solving of code, and shortly after, I
-					switched my major to computer science.{' '}
+					That dream eventually led me to pursue a BBA with a minor in
+					journalism, but I soon realized the spark I longed for was missing.
+					Business offered structure, but not the creativity that had always
+					driven me. After graduating, it took time — and uncertainty — to
+					recognize what I truly wanted. Drawn by my fascination with
+					electricity, physics, and the hidden mechanics of how things work, I
+					returned to school for electrical engineering. Entering a field where
+					women were underrepresented felt daunting, but I was determined to
+					explore it fully. Everything shifted when I took my first programming
+					class: something clicked. I fell in love with the logic, creativity,
+					and problem-solving of code, and shortly after, I switched my major to
+					computer science.{' '}
 				</p>
 				<p>
 					Looking back, my journey into tech has been one of self-discovery and
@@ -100,21 +101,21 @@ export default function AboutPage() {
 					systems that translate digital ideas into interactive, often physical,
 					inventions.
 				</p>
-				<h2>://why i compute</h2>
+				<h2>whyicompute://</h2>
 				<p>
 					Programming is my paintbrush — a way to solve puzzles, express ideas,
 					and build things that matter. I see code as craft: a practice of
 					shaping the world around me in practical, poetic ways. I code because
 					it challenges me, and because it gives form to imagination.
 				</p>
-				<h2>://feeling through form</h2>
+				<h2>feelingthroughform://</h2>
 				<p>
 					Design is where I feel most at home. It's where logic and emotion meet
 					— the art of interface at its most meaningful. I've always been drawn
 					to the quiet power of arrangement, detail, and color — and how good
 					design can turn the ordinary into something magical.
 				</p>
-				<h2>://tea & terminal</h2>
+				<h2>tea&terminal://</h2>
 				<p>
 					These days, you'll find me coding interfaces, designing playful
 					experiences, learning new tools, and always making something. I'm

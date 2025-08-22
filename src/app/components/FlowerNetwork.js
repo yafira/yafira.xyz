@@ -73,9 +73,10 @@ export default function FlowerNetwork({ projectSections }) {
 					<div className='image-box' ref={flowerRef}>
 						<div style={{ position: 'relative', width: 500, height: 500 }}>
 							<Image
-								src='/assets/flower-logo.png'
+								src='/assets/flower-logo-transparent.png'
 								alt='flower shape'
 								fill
+								unoptimized
 								style={{ objectFit: 'contain' }}
 								className='flower-image'
 								priority
