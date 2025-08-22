@@ -14,7 +14,7 @@ export default function ContactPage() {
 				{/* flower image under the title */}
 				<div className='flower-wrapper'>
 					<Image
-						src='/assets/flower-logo.png'
+						src='/assets/flower-logo-transparents.png'
 						alt='flower'
 						width={60}
 						height={60}
