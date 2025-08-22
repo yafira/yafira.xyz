@@ -202,7 +202,7 @@ export default function Archive() {
 											year: 'numeric',
 											month: 'short',
 											day: '2-digit',
-											timeZone: 'UTC', // keeps it deterministic
+											timeZone: 'EST', // keeps it deterministic
 										})}
 									</time>
 								</span>

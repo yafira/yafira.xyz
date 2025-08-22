@@ -15,12 +15,24 @@
 		padding-top: 16px;
 	}
 
-	/* 1) Page wrappers */
+	/* Page wrappers */
 	.mobile-wrap {
 		padding: 12px 0 18px;
 	}
 
-	/* 2) Categories grid + chips */
+	.mobile-header {
+		text-align: center;
+		padding: 12px 0;
+	}
+
+	.mobile-title {
+		font-family: var(--font-code, 'Fira Code', monospace);
+		font-size: 3rem;
+		font-weight: 400;
+		color: rgb(226, 226, 249);
+	}
+
+	/* Categories grid + chips */
 	.mobile-categories {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(140px, 1fr));
@@ -77,7 +89,7 @@
 		border-color: var(--text-color);
 	}
 
-	/* 3) Flower tile + menu */
+	/* Flower tile + menu */
 	/* tile */
 	.flower-mobile-tile {
 		display: flex;
@@ -165,7 +177,7 @@
 		}
 	}
 
-	/* 4) Section heading + list rows */
+	/* Section heading + list rows */
 	.mobile-links {
 		padding: 0.25rem 0.9rem 1rem;
 	}
@@ -276,7 +288,7 @@
 		--btn-fg: #000;
 	}
 
-	/* 5) Text shortcuts (pills under "text") */
+	/* Text shortcuts (pills under "text") */
 	.mobile-blog-shortcuts {
 		display: flex;
 		flex-wrap: wrap;
@@ -342,7 +354,7 @@
 		font-weight: 800;
 	}
 
-	/* 6) Posts archive (mobile behaviour) */
+	/* Posts archive (mobile behaviour) */
 	.view-toggle {
 		display: none !important;
 	} /* hide list/cards toggle */
@@ -369,7 +381,7 @@
 		opacity: 0.8;
 	}
 
-	/* 7) Hide “All projects” links/buttons on mobile */
+	/* Hide “All projects” links/buttons on mobile */
 	.all-projects,
 	.all-projects-link,
 	a[href='/projects-all'],
@@ -377,7 +389,7 @@
 		display: none !important;
 	}
 
-	/* 8) About page tweaks */
+	/* About page tweaks */
 	.about-page {
 		padding: 16px;
 	}
@@ -402,7 +414,7 @@
 		padding: 0 12px;
 	}
 
-	/* 9) Very small phones (≤360px) */
+	/* Very small phones (≤360px) */
 	@media (max-width: 360px) {
 		.mobile-categories {
 			grid-template-columns: 1fr;

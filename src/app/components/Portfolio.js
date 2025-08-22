@@ -215,6 +215,10 @@ function MobilePortfolioView({ projectSections }) {
 
 	return (
 		<div className='page-container mobile-wrap'>
+			<div className='mobile-header'>
+				<h1 className='mobile-title'>yafira://</h1>
+			</div>
+
 			<div className='mobile-categories' role='tablist' aria-label='sections'>
 				{categories.map((c) => (
 					<button
@@ -343,7 +347,7 @@ function MobilePortfolioView({ projectSections }) {
 								itp blog
 							</a>
 							<a href='/posts' className='link-btn archive'>
-								view full archive →
+								view full archive
 							</a>
 						</div>
 					)}
