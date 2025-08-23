@@ -68,6 +68,9 @@
 
 html,
 body {
+	height: 100%;
+	overflow: hidden; /* no scrolling */
+	overscroll-behavior: none; /* no rubber-band bounce on mobile */
 	overflow-x: hidden;
 }
 
