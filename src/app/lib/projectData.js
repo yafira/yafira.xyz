@@ -145,6 +145,33 @@ export const projectSections = {
 			description:
 				'E-textile tote bag exploring jute fiber and conductive materials.',
 		},
+		{
+			title: 'TinkerStation',
+			imageUrl: '/assets/tinkerstation.png',
+			link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
+			description:
+				'A compact, industrial organizer that keeps electronic components neat and accessible for makers.',
+		},
+		{
+			title: 'PetalByte',
+			imageUrl: '/assets/petalbyte.png',
+			link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
+			description:
+				'An iridescent, flower-shaped USB enclosure that organizes file storage with style.',
+		},
+		{
+			title: 'Trinket Swivel Box',
+			imageUrl: '/assets/swivelbox.png',
+			link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
+			description: 'A wooden swivel box for organizing small items.',
+		},
+		{
+			title: 'Mini Clippyboards',
+			imageUrl: '/assets/clippyboards.png',
+			link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
+			description:
+				'A collection of mini clippyboards for holding onto your biggest ideas on the go.',
+		},
 	],
 	text: [], // will be populated from WordPress (blogPosts)
 };

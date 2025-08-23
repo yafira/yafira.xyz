@@ -172,6 +172,34 @@ export default function Portfolio() {
 				description:
 					'E-textile tote bag exploring jute fiber and conductive materials.',
 			},
+			{
+				title: 'TinkerStation',
+				imageUrl: '/assets/tinkerstation.png',
+				link: 'https://electrocuteitp.wordpress.com/2025/03/07/cute-functional-objects-series-tinkerstation-a-compact-hub-for-electronics-projects/',
+				description:
+					'A compact, industrial organizer that keeps electronic components neat and accessible for makers.',
+			},
+			{
+				title: 'PetalByte',
+				imageUrl: '/assets/petalbyte.png',
+				link: 'https://electrocuteitp.wordpress.com/2025/02/21/cute-functional-objects-series-a-flower-shape-enclosure-for-my-2gb-usb-memory-stick/',
+				description:
+					'An iridescent, flower-shaped USB enclosure that organizes file storage with style.',
+			},
+			{
+				title: 'Trinket Swivel Box',
+				imageUrl: '/assets/swivelbox.png',
+				link: 'https://electrocuteitp.wordpress.com/2025/02/01/swivel-box/',
+				description:
+					'A wooden swivel box for organizing small items/trinkets with big meanings.',
+			},
+			{
+				title: 'Mini Clippyboards',
+				imageUrl: '/assets/clippyboards.png',
+				link: 'https://electrocuteitp.wordpress.com/2025/02/07/cute-functional-objects-series-mini-clippyboards-5x1/',
+				description:
+					'A collection of mini clippyboards for holding onto your biggest ideas on the go.',
+			},
 		],
 		text: [], // will be populated from WordPress (blogPosts)
 	};
