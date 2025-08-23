@@ -437,3 +437,26 @@
 		}
 	}
 }
+
+/* disable home-locked fixed behavior on mobile */
+@media (max-width: 768px) {
+	html.home-locked .page-container {
+		position: static !important;
+		inset: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+	}
+
+	html.home-locked .main-section.fixed {
+		position: static !important;
+		inset: auto !important;
+		overflow: visible !important;
+	}
+
+	html.home-locked .flower-network {
+		width: var(--net-size);
+		height: var(--net-size);
+		margin-bottom: clamp(40px, 10vh, 120px);
+	}
+}
