@@ -10,13 +10,20 @@ const WP_API =
 	'https://electrocuteblog.wordpress.com/wp-json/wp/v2/posts?per_page=12&_embed';
 
 export default function Portfolio() {
-	// NEW: wait for client mount to avoid SSR/client branching mismatch
+	// wait for client mount to avoid ssr/client mismatch
 	const [mounted, setMounted] = useState(false);
 	useEffect(() => setMounted(true), []);
 
-	const isMobile = useMediaQuery('(max-width: 640px)');
+	// lock page scroll while the homepage (portfolio) is mounted
+	useEffect(() => {
+		const html = document.documentElement;
+		html.classList.add('home-locked');
+		return () => {
+			html.classList.remove('home-locked');
+		};
+	}, []);
 
-	// Don't render until mounted; prevents hydration mismatch
+	const isMobile = useMediaQuery('(max-width: 640px)');
 	if (!mounted) return null;
 
 	// Shared data: project sections (used by both views)

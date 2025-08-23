@@ -18,6 +18,8 @@
 	/* drawer height adapts to viewport height */
 	--drawer-height: clamp(260px, 50vh, 560px);
 
+	--nav-h: calc(96px + env(safe-area-inset-top, 0px));
+
 	/* spacing */
 	--spacing-xs: 4px;
 	--spacing-sm: 8px;
@@ -94,6 +96,43 @@ body {
 
 img {
 	mix-blend-mode: multiply;
+}
+
+/* body lock stays, but we won't double-pad the body */
+html.home-locked body {
+	padding-top: 0 !important;
+}
+
+/* fill the viewport below the nav and center the network */
+html.home-locked .page-container {
+	position: fixed;
+	inset: var(--nav-h) 0 0 0; /* sit just below the nav */
+	height: calc(100dvh - var(--nav-h));
+	display: grid; /* dead-simple centering */
+	place-items: center;
+	overflow: clip;
+}
+
+/* the inner wrapper doesn't need to be fixed anymore */
+html.home-locked .main-section.fixed {
+	position: static !important;
+	inset: auto !important;
+	overflow: visible !important;
+}
+
+/* ensure the network itself isn't adding extra offset */
+html.home-locked .flower-network {
+	margin: 0 !important;
+	width: var(--net-size);
+	height: var(--net-size);
+}
+
+/* svg should always span the network box */
+html.home-locked .connector-lines {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
 }
 
 /* navigation bar */
