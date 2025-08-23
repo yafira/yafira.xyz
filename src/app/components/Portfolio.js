@@ -35,6 +35,19 @@ export default function Portfolio() {
 				link: 'https://tinkerthread.netlify.app/',
 				description: 'Circuit simulator made with JavaScript.',
 			},
+
+			{
+				title: 'Scribble Pop',
+				imageUrl: '/assets/scribble.gif',
+				link: 'https://scribble-pop.netlify.app/',
+				description: 'Creative drawing tool using canvas.',
+			},
+			{
+				title: 'Snax',
+				imageUrl: '/assets/snax.png',
+				link: 'https://www.snax.blog/',
+				description: 'Vegan snack reviews blog.',
+			},
 			{
 				title: 'Cute Technologies',
 				imageUrl: '/assets/cute-tech.gif',
@@ -42,22 +55,10 @@ export default function Portfolio() {
 				description: 'A cute tech tools blog, Next.js and Notion API.',
 			},
 			{
-				title: 'Salvador DALL·E',
-				imageUrl: '/assets/sdalle.gif',
-				link: 'https://salvadordalle.vercel.app/',
-				description: 'AI image generator using DALL·E 2.',
-			},
-			{
 				title: 'Synthwave Chimes',
 				imageUrl: '/assets/synthchime.gif',
 				link: 'https://synthwave-chimes.netlify.app/',
 				description: 'Interactive sound and shape sketch with p5.js.',
-			},
-			{
-				title: 'Snax',
-				imageUrl: '/assets/snax.png',
-				link: 'https://www.snax.blog/',
-				description: 'Vegan snack reviews blog.',
 			},
 			{
 				title: 'Write Mind',
@@ -72,17 +73,18 @@ export default function Portfolio() {
 				description: 'On-screen calculator with a Sailor Moon theme.',
 			},
 			{
+				title: 'Salvador DALL·E',
+				imageUrl: '/assets/sdalle.gif',
+				link: 'https://salvadordalle.vercel.app/',
+				description: 'AI image generator using DALL·E 2.',
+			},
+			{
 				title: 'Markie',
 				imageUrl: '/assets/notes.gif',
 				link: 'https://markie.netlify.app/',
 				description: 'Markdown editor and preview app built with React.',
 			},
-			{
-				title: 'Scribble Pop',
-				imageUrl: '/assets/scribble.gif',
-				link: 'https://scribble-pop.netlify.app/',
-				description: 'Creative drawing tool using canvas.',
-			},
+
 			{
 				title: 'NewsBits',
 				imageUrl: '/assets/news-app.gif',
@@ -166,13 +168,6 @@ export default function Portfolio() {
 		],
 		craft: [
 			{
-				title: 'Electrojute',
-				imageUrl: '/assets/electrojute.png',
-				link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
-				description:
-					'E-textile tote bag exploring jute fiber and conductive materials.',
-			},
-			{
 				title: 'TinkerStation',
 				imageUrl: '/assets/tinkerstation.png',
 				link: 'https://electrocuteitp.wordpress.com/2025/03/07/cute-functional-objects-series-tinkerstation-a-compact-hub-for-electronics-projects/',
@@ -199,6 +194,13 @@ export default function Portfolio() {
 				link: 'https://electrocuteitp.wordpress.com/2025/02/07/cute-functional-objects-series-mini-clippyboards-5x1/',
 				description:
 					'A collection of mini clippyboards for holding onto your biggest ideas on the go.',
+			},
+			{
+				title: 'Electrojute',
+				imageUrl: '/assets/electrojute.png',
+				link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
+				description:
+					'E-textile tote bag exploring jute fiber and conductive materials.',
 			},
 		],
 		text: [], // will be populated from WordPress (blogPosts)
