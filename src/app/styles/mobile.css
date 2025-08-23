@@ -1,4 +1,5 @@
 /* ── MOBILE (≤640px) ───────────────────────────────────────────── */
+
 @media (max-width: 640px) {
 	/* 0) Global mobile overrides */
 	/* hide desktop-only UI */
@@ -474,4 +475,16 @@
 		height: var(--net-size);
 		margin-bottom: clamp(40px, 10vh, 120px);
 	}
+}
+
+/* arrow buttons match the section color */
+.mobile-row .row-actions .link-btn {
+	--btn-bg: color-mix(in oklab, var(--accent) 88%, #fff 12%);
+	--btn-fg: #000;
+	--btn-border: color-mix(in oklab, var(--accent) 45%, #0000);
+}
+
+.mobile-row .row-actions .link-btn:hover {
+	background: color-mix(in oklab, var(--accent) 100%, #fff 0%);
+	border-color: color-mix(in oklab, var(--accent) 60%, #0000);
 }

@@ -319,9 +319,7 @@ function MobilePortfolioView({ projectSections }) {
 													href={lnk.href}
 													target='_blank'
 													rel='noopener noreferrer'
-													className={`link-btn ${
-														active === 'design' ? 'itp' : 'archive'
-													}`}
+													className='link-btn' // ← now inherits --accent color
 												>
 													{lnk.label}
 												</a>
