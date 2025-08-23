@@ -438,6 +438,21 @@
 	}
 }
 
+/* force links to display as blk text */
+@media (max-width: 768px) {
+	.line-box,
+	.line-box a,
+	.line-box .box-text {
+		color: #000 !important;
+		text-decoration: none !important;
+	}
+
+	.line-box a:hover .box-text {
+		color: #000 !important;
+		text-decoration: underline; /* optional: keep a hint for hover/focus */
+	}
+}
+
 /* disable home-locked fixed behavior on mobile */
 @media (max-width: 768px) {
 	html.home-locked .page-container {
