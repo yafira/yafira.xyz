@@ -418,6 +418,10 @@
 		padding: 0 12px;
 	}
 
+	.bio-window {
+		background-image: none; /* overrides previous rule */
+	}
+
 	/* Very small phones (≤360px) */
 	@media (max-width: 360px) {
 		.mobile-categories {

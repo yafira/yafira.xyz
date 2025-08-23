@@ -92,54 +92,63 @@ export default function AboutPage() {
 					finding my place at ITP, where creativity and computation speak the
 					same language.
 				</p>
-				<h2>$ whoami </h2>
-				<p>
-					I'm a visual learner, creative thinker, and detail-oriented developer
-					who thrives in imaginative environments. Whether designing interfaces
-					or soldering circuits, I care deeply about clarity, craft, and user
-					experience. I'm passionate about creating tools, artifacts, and
-					systems that translate digital ideas into interactive, often physical,
-					inventions.
-				</p>
-				<h2>whyicompute://</h2>
-				<p>
-					Programming is my paintbrush — a way to solve puzzles, express ideas,
-					and build things that matter. I see code as craft: a practice of
-					shaping the world around me in practical, poetic ways. I code because
-					it challenges me, and because it gives form to imagination.
-				</p>
-				<h2>feelingthroughform://</h2>
-				<p>
-					Design is where I feel most at home. It's where logic and emotion meet
-					— the art of interface at its most meaningful. I've always been drawn
-					to the quiet power of arrangement, detail, and color — and how good
-					design can turn the ordinary into something magical.
-				</p>
-				<h2>tea&terminal://</h2>
-				<p>
-					These days, you'll find me coding interfaces, designing playful
-					experiences, learning new tools, and always making something. I'm
-					seeking opportunities in web development and product/UI design —
-					especially those that merge art, code, and engineering. I'm also drawn
-					to projects involving e-textiles, physical computing, and tactile
-					interaction — anywhere technology meets texture, gesture, or form. In
-					my orbit: you'll often find me tinkering with arts & crafts, taking
-					photos, sketching ideas, experimenting in the kitchen, reviewing
-					snacks at{' '}
-					<a href='https://snax.blog' target='_blank' rel='noopener noreferrer'>
-						snax
-					</a>
-					, playing chess, building odd prototypes, or tending to my side
-					project:{' '}
-					<a
-						href='https://instagram.com/electrocutelab'
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						@electrocutelab
-					</a>{' '}
-					☺
-				</p>
+				<div className='bio-window'>
+					<div className='bio-window__content'>
+						<h2>$ whoami </h2>
+						<p>
+							I'm a visual learner, creative thinker, and detail-oriented
+							developer who thrives in imaginative environments. Whether
+							designing interfaces or soldering circuits, I care deeply about
+							clarity, craft, and user experience. I'm passionate about creating
+							tools, artifacts, and systems that translate digital ideas into
+							interactive, often physical, inventions.
+						</p>
+						<h2>whyicompute://</h2>
+						<p>
+							Programming is my paintbrush — a way to solve puzzles, express
+							ideas, and build things that matter. I see code as craft: a
+							practice of shaping the world around me in practical, poetic ways.
+							I code because it challenges me, and because it gives form to
+							imagination.
+						</p>
+						<h2>feelingthroughform://</h2>
+						<p>
+							Design is where I feel most at home. It's where logic and emotion
+							meet — the art of interface at its most meaningful. I've always
+							been drawn to the quiet power of arrangement, detail, and color —
+							and how good design can turn the ordinary into something magical.
+						</p>
+						<h2>tea&terminal://</h2>
+						<p>
+							These days, you'll find me coding interfaces, designing playful
+							experiences, learning new tools, and always making something. I'm
+							seeking opportunities in web development and product/UI design —
+							especially those that merge art, code, and engineering. I'm also
+							drawn to projects involving e-textiles, physical computing, and
+							tactile interaction — anywhere technology meets texture, gesture,
+							or form. In my orbit: you'll often find me tinkering with arts &
+							crafts, taking photos, sketching ideas, experimenting in the
+							kitchen, reviewing snacks at{' '}
+							<a
+								href='https://snax.blog'
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								snax
+							</a>
+							, playing chess, building odd prototypes, or tending to my side
+							project:{' '}
+							<a
+								href='https://instagram.com/electrocutelab'
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								@electrocutelab
+							</a>{' '}
+							☺
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
