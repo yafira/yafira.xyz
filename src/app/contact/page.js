@@ -22,9 +22,10 @@ export default function ContactPage() {
 					/>
 				</div>
 				<p className='contact-blurb'>
-					want to collaborate, chat about creative tech, say hi? or play chess?
-					☺ <br></br>
+					want to collaborate, chat about creative tech, say hi or play chess?
+					ツ <br></br>
 					reach me by email or any of the links below. thanks for stopping by! ♡
+					꣑ৎ
 				</p>
 
 				<a

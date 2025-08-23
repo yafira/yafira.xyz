@@ -92,6 +92,13 @@ export default function Portfolio() {
 		],
 		design: [
 			{
+				title: 'Past, Pastry, Future',
+				imageUrl: '/assets/ppf.gif',
+				link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
+				description:
+					'Time travel augmented reality experience, Unity/C# and Vuforia.',
+			},
+			{
 				title: 'Cosmic Snax',
 				imageUrl: '/assets/cosmic-snax.gif',
 				description: 'A snack ordering app for a movie theater.',
@@ -156,21 +163,14 @@ export default function Portfolio() {
 				link: 'https://months-tap-da9.craft.me/UPIseOWDQQ2AAx',
 				description: 'Custom LEDs experimenting with resin.',
 			},
+		],
+		craft: [
 			{
 				title: 'Electrojute',
 				imageUrl: '/assets/electrojute.png',
 				link: 'https://months-tap-da9.craft.me/n728rE3K9pjrQx',
 				description:
 					'E-textile tote bag exploring jute fiber and conductive materials.',
-			},
-		],
-		craft: [
-			{
-				title: 'Past, Pastry, Future',
-				imageUrl: '/assets/ppf.gif',
-				link: 'https://electrocuteitp.wordpress.com/2024/12/20/past-pastry-future-an-ar-time-travel-experience-with-vuforia-and-unity/',
-				description:
-					'Time travel augmented reality experience, Unity/C# and Vuforia.',
 			},
 		],
 		text: [], // will be populated from WordPress (blogPosts)
