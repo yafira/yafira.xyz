@@ -216,7 +216,7 @@ export default function CVPage() {
 							</div>
 							<span className='cv-date'>jan – mar 2025</span>
 						</div>
-						<div className='cv-org'>nyu clive davis gallery — new york, ny</div>
+						<div className='cv-org'>nyu clive davis gallery — brooklyn, ny</div>
 						<p className='cv-summary'>
 							accepted into radiant fibers for <i>soft glitch</i>, an e-textile
 							swatch combining punch needle, chaotic yarns, and
