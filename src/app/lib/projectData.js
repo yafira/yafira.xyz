@@ -129,7 +129,7 @@ export const projectSections = {
 		{
 			title: 'Glowmotion',
 			imageUrl: '/assets/glow.gif',
-			link: 'https://electrocuteitp.wordpress.com/2024/12/19/glowmotion/',
+			link: 'https://months-tap-da9.craft.me/glowmotion',
 			description: 'Gesture-controlled interactive light.',
 		},
 		{
