@@ -4,29 +4,32 @@ import './styles/globals.css';
 import './styles/styles.css';
 import './styles/mobile.css';
 
-const pixelifySans = Pixelify_Sans({
-	weight: '400',
-	subsets: ['latin'],
-});
+export const viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	// leave zoom enabled for a11y (don’t set maximumScale unless necessary)
+};
+
+export const metadata = {
+	icons: {
+		icon: [
+			{ url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+			{ url: '/favicon.svg', type: 'image/svg+xml' },
+			{ url: '/favicon.ico' },
+		],
+		apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
+	},
+	manifest: '/site.webmanifest',
+	applicationName: 'my-website',
+	appleWebApp: { title: 'my-website' },
+};
+
+const pixelifySans = Pixelify_Sans({ weight: '400', subsets: ['latin'] });
 
 export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
-			<link
-				rel='icon'
-				type='image/png'
-				href='/favicon-96x96.png'
-				sizes='96x96'
-			/>
-			<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-			<link rel='shortcut icon' href='/favicon.ico' />
-			<link
-				rel='apple-touch-icon'
-				sizes='180x180'
-				href='/apple-touch-icon.png'
-			/>
-			<meta name='apple-mobile-web-app-title' content='my-website' />
-			<link rel='manifest' href='/site.webmanifest' />
+			<head />
 			<body className={pixelifySans.className}>
 				<nav className='navigation'>
 					<div className='nav-links'>

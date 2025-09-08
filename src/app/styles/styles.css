@@ -1,3 +1,6 @@
+/* full updated css — unified grid sizing, bigger readable text, no clipping */
+/* comments kept in lowercase per your preference */
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@400;600&display=swap');
 
 /* css variables */
@@ -9,15 +12,10 @@
 	--font-family: var(--font-body);
 
 	/* layout scales */
-	/* network (flower + lines) scales from phones to large desktops */
 	--net-size: clamp(340px, 70vw, 920px);
-	/* line boxes scale with viewport but capped */
 	--linebox-size: clamp(110px, 12vw, 150px);
-	/* project card width in drawers/grid */
 	--card-w: clamp(180px, 22vw, 240px);
-	/* drawer height adapts to viewport height */
 	--drawer-height: clamp(260px, 50vh, 560px);
-
 	--nav-h: calc(96px + env(safe-area-inset-top, 0px));
 
 	/* spacing */
@@ -55,17 +53,20 @@
 	--soft-pink: #f8dce8;
 	--soft-pink-hover: #f3cde2;
 
-	--bio-img-w: min(860px, 92vw); /* frame width */
-	--bio-pad-x: 28px; /* left/right text inset inside the frame */
-	--bio-pad-top: 72px; /* space for the window title bar */
-	--bio-pad-bottom: 28px; /* bottom breathing room */
+	--bio-img-w: min(860px, 92vw);
+	--bio-pad-x: 28px;
+	--bio-pad-top: 72px;
+	--bio-pad-bottom: 28px;
+
+	/* project card typography */
+	--project-title-size: clamp(1rem, 1.2vw + 0.6rem, 1.15rem);
+	--project-desc-size: clamp(0.95rem, 1vw + 0.25rem, 1.05rem);
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* user-select: none; */
 }
 
 html,
@@ -98,36 +99,28 @@ img {
 	mix-blend-mode: multiply;
 }
 
-/* body lock stays, but we won't double-pad the body */
+/* home lock */
 html.home-locked body {
 	padding-top: 0 !important;
 }
-
-/* fill the viewport below the nav and center the network */
 html.home-locked .page-container {
 	position: fixed;
-	inset: var(--nav-h) 0 0 0; /* sit just below the nav */
+	inset: var(--nav-h) 0 0 0;
 	height: calc(100dvh - var(--nav-h));
-	display: grid; /* dead-simple centering */
+	display: grid;
 	place-items: center;
 	overflow: clip;
 }
-
-/* the inner wrapper doesn't need to be fixed anymore */
 html.home-locked .main-section.fixed {
 	position: static !important;
 	inset: auto !important;
 	overflow: visible !important;
 }
-
-/* ensure the network itself isn't adding extra offset */
 html.home-locked .flower-network {
 	margin: 0 !important;
 	width: var(--net-size);
 	height: var(--net-size);
 }
-
-/* svg should always span the network box */
 html.home-locked .connector-lines {
 	position: absolute;
 	inset: 0;
@@ -149,7 +142,6 @@ html.home-locked .connector-lines {
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 	z-index: 10;
 }
-
 .nav-links {
 	max-width: min(84vw, 720px);
 	margin: 0 auto;
@@ -158,7 +150,6 @@ html.home-locked .connector-lines {
 	justify-content: center;
 	gap: clamp(20px, 6vw, 48px);
 }
-
 .nav-links .home-icon {
 	font-size: 1.75rem;
 	line-height: 1;
@@ -172,11 +163,9 @@ html.home-locked .connector-lines {
 	position: relative;
 	top: 2px;
 }
-
 .nav-links .home-icon:hover {
 	color: #000;
 }
-
 .nav-links a {
 	color: #333;
 	text-decoration: none;
@@ -187,7 +176,7 @@ html.home-locked .connector-lines {
 	color: #000;
 }
 
-/* main content padding below fixed nav */
+/* main content */
 .main-content {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -204,7 +193,7 @@ html.home-locked .connector-lines {
 .avatar {
 	border-radius: 12px;
 	object-fit: cover;
-	z-index: 2; /* keep it above the blob */
+	z-index: 2;
 }
 
 /* blob background */
@@ -221,13 +210,12 @@ html.home-locked .connector-lines {
 		#e6ddf6 40%,
 		#ffffff00 100%
 	);
-	border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; /* blob shape */
+	border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
 	transform: translate(-50%, -50%);
 	z-index: 0;
 	opacity: 0.4;
-	filter: blur(20px); /* optional for softness */
+	filter: blur(20px);
 }
-
 @keyframes morph {
 	0%,
 	100% {
@@ -237,24 +225,20 @@ html.home-locked .connector-lines {
 		border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
 	}
 }
-
 .avatar-container::before {
 	animation: morph 12s ease-in-out infinite;
 }
 
-/* Set Space Grotesk as the default for your About section */
 .about-page {
 	font-family: 'Space Grotesk', sans-serif;
 	font-weight: 400;
 	line-height: 1.6;
 }
-
 .bio-content {
 	max-width: 950px;
 	margin: 0 auto;
 	padding: 0 16px;
 }
-
 .bio-content p {
 	line-height: 1.7;
 	margin-bottom: 1.5rem;
@@ -271,11 +255,11 @@ html.home-locked .connector-lines {
 	color: #917fd2;
 }
 
-/* ===== faux window (desktop/tablet) ===== */
+/* faux window */
 .bio-window {
 	position: relative;
 	width: var(--bio-img-w);
-	aspect-ratio: 1172 / 892; /* set to your PNG ratio */
+	aspect-ratio: 1172 / 892;
 	background-image: url('/assets/browser.png');
 	background-repeat: no-repeat;
 	background-position: center top;
@@ -291,23 +275,19 @@ html.home-locked .connector-lines {
 .bio-window__content {
 	padding-inline: 12px 28px;
 	margin-inline: 0;
-	--bio-text-max: 66ch; /* readable width */
+	--bio-text-max: 66ch;
 	position: absolute;
 	inset: var(--bio-pad-top) var(--bio-pad-x) var(--bio-pad-bottom);
 	max-width: none;
 	z-index: 1;
-	overflow: auto; /* scrolls on desktop only if needed */
+	overflow: auto;
 	line-height: 1.6;
 }
-
-/* center each text block inside the window and cap width */
 .bio-window__content :is(p, h1, h3, ul, ol, blockquote) {
 	max-width: var(--bio-text-max);
 	margin-left: auto;
 	margin-right: auto;
 }
-
-/* optional: slightly tighter rhythm inside the window */
 .bio-window__content p {
 	margin-bottom: 1.2rem;
 	line-height: 1.65;
@@ -316,17 +296,14 @@ html.home-locked .connector-lines {
 	margin: 1.6rem auto 0.6rem;
 	font-size: 1.05rem;
 }
-
-/* if you want it even narrower on huge screens, let it scale */
 @media (min-width: 1200px) {
 	.bio-window__content {
 		--bio-text-max: 60ch;
 	}
 }
 
-/* ===== mobile: remove frame, plain flowing text, uniform size/spacing ===== */
+/* mobile about text */
 @media (max-width: 768px) {
-	/* drop the frame */
 	.bio-window {
 		background: none !important;
 		width: 100% !important;
@@ -339,18 +316,14 @@ html.home-locked .connector-lines {
 		max-width: 42rem;
 		margin: 0 auto;
 		padding: 0 16px 20px;
-		overflow: visible !important; /* no inner scroll */
-		font-size: clamp(16px, 4.2vw, 18px); /* one size on mobile */
-		line-height: 1.7; /* unified rhythm */
+		overflow: visible !important;
+		font-size: clamp(16px, 4.2vw, 18px);
+		line-height: 1.7;
 	}
-
-	/* consistent spacing */
 	.bio-window__content p,
 	.bio-window__content li {
 		margin: 0 0 1.5rem;
 	}
-
-	/* headings same size as body, just heavier */
 	.bio-window__content h1,
 	.bio-window__content h2,
 	.bio-window__content h3,
@@ -360,11 +333,9 @@ html.home-locked .connector-lines {
 		line-height: 1.7;
 		font-weight: 600;
 		margin: 1.5rem 0 0.75rem;
-		animation: none; /* optional */
-		border-right: none; /* optional */
+		animation: none;
+		border-right: none;
 	}
-
-	/* also normalize the top section on mobile so it matches */
 	.about-page .bio-content,
 	.about-page .bio-content p,
 	.about-page .bio-content li {
@@ -376,8 +347,6 @@ html.home-locked .connector-lines {
 		margin: 0 0 1.5rem !important;
 	}
 }
-
-/* nice mobile tweak – shrink the window insets if you ever re-enable the frame on phones */
 @media (max-width: 640px) {
 	:root {
 		--bio-pad-x: 16px;
@@ -386,11 +355,11 @@ html.home-locked .connector-lines {
 	}
 }
 
+/* typewriter accent */
 .typewriter {
 	display: inline-flex;
 	align-items: center;
 }
-
 .typing-text {
 	color: rgb(59, 197, 215);
 	font-family: 'Fira Code', monospace;
@@ -401,7 +370,6 @@ html.home-locked .connector-lines {
 	border-right: 3px solid;
 	animation: typing 2.5s steps(12, end), blink 0.5s step-end infinite alternate;
 }
-
 @keyframes typing {
 	from {
 		width: 0;
@@ -416,7 +384,6 @@ html.home-locked .connector-lines {
 	}
 }
 
-/* Use Fira Code for headings or special accents */
 .about-page h1,
 .about-page h2,
 .about-page .code-accent {
@@ -435,16 +402,7 @@ html.home-locked .connector-lines {
 	font-size: 1em;
 }
 
-@keyframes type {
-	from {
-		width: 0;
-	}
-	to {
-		width: 22ch;
-	}
-}
-
-/* layout */
+/* layout containers */
 .container,
 .image-box {
 	display: flex;
@@ -453,13 +411,12 @@ html.home-locked .connector-lines {
 	flex-wrap: wrap;
 	margin: 0 auto;
 }
-
 .container {
 	min-height: calc(100svh - 96px);
 	text-align: center;
 }
 
-/* responsive network box (no fixed 900px; scales with --net-size) */
+/* responsive network box */
 .image-box {
 	background: transparent;
 	width: var(--net-size);
@@ -467,9 +424,7 @@ html.home-locked .connector-lines {
 	border-radius: 10px;
 	position: relative;
 	z-index: 2;
-	/* removed transform scaling; size now controlled by --net-size */
 }
-
 .flower-image {
 	margin-left: 8px;
 	display: inline-block;
@@ -479,7 +434,6 @@ html.home-locked .connector-lines {
 	display: block;
 	transition: opacity var(--transition-ease);
 }
-
 .flower-network {
 	position: relative;
 	margin-bottom: clamp(40px, 10vh, 120px);
@@ -489,21 +443,19 @@ html.home-locked .connector-lines {
 	justify-content: center;
 	align-items: center;
 }
-
 .connector-lines {
 	position: absolute;
 	inset: 0;
 	z-index: 1;
 	pointer-events: none;
 }
-
 .connector-lines line {
 	stroke: #333;
 	stroke-width: 2;
 	stroke-opacity: 0.7;
 }
 
-/* line box styles */
+/* line boxes */
 .line-box {
 	background-color: #ffffff;
 	width: var(--linebox-size);
@@ -521,7 +473,6 @@ html.home-locked .connector-lines {
 	cursor: pointer;
 	z-index: 2;
 }
-
 .line-box .box-content {
 	width: 100%;
 	height: 100%;
@@ -533,7 +484,6 @@ html.home-locked .connector-lines {
 	text-align: center;
 	background: transparent;
 }
-
 .box-content img {
 	background: transparent !important;
 	padding: 10px;
@@ -542,7 +492,6 @@ html.home-locked .connector-lines {
 	height: clamp(56px, 7vw, 80px);
 	object-fit: contain;
 }
-
 .box-text {
 	font-weight: bold;
 	font-size: clamp(0.8rem, 1.2vw, 1rem);
@@ -551,17 +500,15 @@ html.home-locked .connector-lines {
 	bottom: 10px;
 	display: none;
 }
-
 .line-box:hover .box-text {
 	display: block;
 }
-
 .line-box.active {
 	transform: scale(1.06);
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* positions stay percent so they move with the container size */
+/* positions */
 .box1 {
 	border-color: var(--code-color);
 	top: 6%;
@@ -592,7 +539,6 @@ html.home-locked .connector-lines {
 	left: 40%;
 	--box-color: var(--text-color);
 }
-
 .box1:hover {
 	background-color: #e5fbedd3;
 }
@@ -626,8 +572,6 @@ html.home-locked .connector-lines {
 	position: relative;
 	z-index: 1;
 }
-
-/* fixed bottom drawer that resizes with viewport */
 .projects-drawer {
 	position: fixed;
 	bottom: 0;
@@ -647,7 +591,6 @@ html.home-locked .connector-lines {
 .projects-drawer.open {
 	transform: translateY(0);
 }
-
 .projects-drawer[data-section='craft'] {
 	background-color: var(--craft-bg);
 }
@@ -664,7 +607,6 @@ html.home-locked .connector-lines {
 	background-color: var(--text-bg);
 }
 
-/* horizontally scrollable row that snaps cards */
 .projects-scroll-container {
 	overflow-x: auto;
 	-ms-overflow-style: none;
@@ -692,7 +634,7 @@ html.home-locked .connector-lines {
 	min-width: 100%;
 }
 
-/* project box */
+/* project box base */
 .project-box {
 	text-decoration: none;
 	color: inherit;
@@ -713,11 +655,9 @@ html.home-locked .connector-lines {
 	overflow: hidden;
 	scroll-snap-align: start;
 }
-
 .project-box:hover {
 	transform: translateY(-5px);
 }
-
 .project-box[data-category='craft']:hover {
 	box-shadow: 0 8px 16px var(--shadow-craft);
 }
@@ -734,15 +674,20 @@ html.home-locked .connector-lines {
 	box-shadow: 0 8px 16px var(--shadow-text);
 }
 
+/* title (generic) */
 .project-box .box-text {
 	display: block;
 	position: relative;
-	margin-top: 1rem;
+	margin-top: 0.9rem;
 	text-align: center;
-	color: #333;
-	font-size: clamp(0.9rem, 1vw, 1rem);
+	color: #222;
+	font-weight: 700;
+	font-size: var(--project-title-size);
+	line-height: 1.25;
+	text-wrap: balance;
 }
 
+/* image */
 .project-box .project-image {
 	width: clamp(120px, 16vw, 150px);
 	height: clamp(120px, 16vw, 150px);
@@ -752,7 +697,7 @@ html.home-locked .connector-lines {
 	background: transparent !important;
 }
 
-/* updated design links */
+/* design links */
 .project-links.design-links {
 	display: none;
 	position: absolute;
@@ -773,7 +718,6 @@ html.home-locked .connector-lines {
 .project-box .project-links.design-links.always-visible {
 	display: flex !important;
 }
-
 .project-links.design-links .project-link.button-link {
 	background-color: var(--soft-pink, #f8dce8);
 	color: #000;
@@ -823,13 +767,19 @@ html.home-locked .connector-lines {
 	box-shadow: 0 4px 8px rgba(120, 63, 143, 0.3) !important;
 }
 
+/* description (generic) */
 .project-description {
-	margin-bottom: 12px;
-	font-size: 0.85rem;
-	line-height: 1.4;
-	color: var(--text-secondary, #333);
-	max-width: calc(var(--card-w) - 40px);
+	margin: 8px auto 12px;
+	padding: 0 14px;
+	font-size: var(--project-desc-size);
+	line-height: 1.5;
+	color: #222;
+	max-width: calc(var(--card-w) - 20px);
 	text-align: center;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 /* drawer close */
@@ -851,11 +801,10 @@ html.home-locked .connector-lines {
 	background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* all projects grid */
-/* === keep "all projects" styling exactly as before === */
+/* === all projects grid (single source of truth) === */
 .projects-grid {
 	display: grid;
-	grid-template-columns: repeat(4, 220px); /* original fixed 4-up grid */
+	grid-template-columns: repeat(4, 220px);
 	justify-content: center;
 	gap: 2rem;
 	padding: 3rem 2rem;
@@ -864,15 +813,60 @@ html.home-locked .connector-lines {
 	margin: 0 auto;
 }
 
-/* make the cards inside the all-projects grid stay 220px wide like before */
+/* fixed width + taller height to fit larger text */
 .projects-grid .project-box {
 	width: 220px;
 	min-width: 220px;
-	height: 260px; /* original height */
-	min-height: 260px;
+	height: 320px;
+	min-height: 320px;
+	overflow: hidden;
+	padding-top: 0.85rem;
 }
 
-/* keep the grid tidy on small screens (just like before) */
+/* slightly smaller image to make room */
+.projects-grid .project-box .project-image {
+	width: 116px;
+	height: 116px;
+}
+
+/* title: show up to 2 lines and reserve space */
+.projects-grid .project-box .box-text {
+	padding: 0 12px;
+	margin-top: 0.7rem;
+	line-height: 1.25;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	overflow: hidden;
+	min-height: calc(1.25em * 2);
+	word-break: normal;
+	overflow-wrap: anywhere;
+	text-wrap: balance;
+	color: #222;
+	font-weight: 700;
+	font-size: var(--project-title-size);
+	text-align: center;
+}
+
+/* description: show up to 3 lines and reserve space */
+.projects-grid .project-description {
+	margin: 8px auto 12px;
+	padding: 0 12px;
+	font-size: var(--project-desc-size);
+	line-height: 1.5;
+	color: #222;
+	text-align: center;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	overflow: hidden;
+	min-height: calc(1.5em * 3);
+	overflow-wrap: anywhere;
+}
+
+/* small screens for grid */
 @media (max-width: 768px) {
 	.projects-grid {
 		gap: 1rem;
@@ -882,7 +876,7 @@ html.home-locked .connector-lines {
 }
 @media (max-width: 500px) {
 	.projects-grid {
-		grid-template-columns: 220px; /* single column */
+		grid-template-columns: 220px;
 	}
 }
 
@@ -899,10 +893,6 @@ html.home-locked .connector-lines {
 		gap: 1rem;
 		padding: 0.5rem;
 	}
-	.projects-grid {
-		gap: 1rem;
-		padding: 1rem;
-	}
 	.project-links.design-links {
 		flex-direction: row;
 		justify-content: center;
@@ -911,10 +901,7 @@ html.home-locked .connector-lines {
 	}
 }
 
-@media (min-width: 1200px) {
-	/* network simply grows via --net-size; no manual scale needed */
-}
-
+/* imagery cleanup in line boxes */
 .line-box img,
 .line-box .box-content img {
 	background: transparent !important;
@@ -931,19 +918,15 @@ html.home-locked .connector-lines {
 	font-family: var(--font-body);
 	line-height: 1.55;
 }
-
-/* section accents */
 .cv-section {
 	margin-bottom: var(--spacing-lg);
 	padding-left: var(--spacing-md);
 	border-left: 4px solid transparent;
 }
-
 .cv-section h2 {
 	font-size: 1.3rem;
 	margin-bottom: 6px;
 }
-
 .certifications-list {
 	list-style: none;
 	padding: 0;
@@ -957,8 +940,6 @@ html.home-locked .connector-lines {
 	margin: 0;
 	line-height: 1.25;
 }
-
-/* per-section colors */
 .cv-section.experience {
 	border-color: var(--design-color);
 }
@@ -981,15 +962,11 @@ html.home-locked .connector-lines {
 .cv-section.interests {
 	border-color: var(--craft-color);
 }
-
-/* headings */
 .cv-heading {
 	font-family: var(--font-code);
 	font-size: 1.45rem;
 	margin: 0 0 var(--spacing-sm);
 }
-
-/* lists + item spacing */
 .cv-list {
 	display: flex;
 	flex-direction: column;
@@ -1001,8 +978,6 @@ html.home-locked .connector-lines {
 .cv-list.tight {
 	gap: 14px;
 }
-
-/* each item divider + padding */
 .cv-item {
 	margin-bottom: 8px;
 	line-height: 1.3;
@@ -1013,8 +988,6 @@ html.home-locked .connector-lines {
 .cv-item:first-child {
 	border-top: 0;
 }
-
-/* meta row */
 .cv-meta {
 	display: flex;
 	align-items: baseline;
@@ -1033,8 +1006,6 @@ html.home-locked .connector-lines {
 	font-size: 0.9rem;
 	color: #666;
 }
-
-/* text blocks */
 .cv-summary {
 	margin-top: 4px;
 	line-height: 1.6;
@@ -1050,7 +1021,6 @@ html.home-locked .connector-lines {
 	font-weight: 600;
 	text-transform: lowercase;
 }
-
 .cv-sub {
 	margin: 0.5rem 0 0 0;
 	padding-left: 1.2rem;
@@ -1058,14 +1028,11 @@ html.home-locked .connector-lines {
 	font-size: 0.9rem;
 	opacity: 0.9;
 }
-
 .cv-affiliations {
 	margin-top: 0.5rem;
 	font-size: 0.9rem;
 	opacity: 0.9;
 }
-
-/* small screens */
 @media (max-width: 720px) {
 	.cv-page {
 		padding: var(--spacing-md);
@@ -1089,13 +1056,11 @@ html.home-locked .connector-lines {
 	padding: var(--spacing-lg);
 	font-family: var(--font-body);
 }
-
 .flower-wrapper {
 	margin: 0.5rem auto 1rem auto;
 	display: flex;
 	justify-content: center;
 }
-
 .flower-icon {
 	opacity: 0.9;
 	transition: transform 0.2s ease;
@@ -1103,7 +1068,6 @@ html.home-locked .connector-lines {
 .flower-icon:hover {
 	transform: rotate(8deg) scale(1.05);
 }
-
 .contact-hero {
 	text-align: center;
 	margin-bottom: var(--spacing-xl);
@@ -1113,14 +1077,12 @@ html.home-locked .connector-lines {
 	font-size: 2rem;
 	margin-bottom: var(--spacing-sm);
 }
-
 .contact-blurb {
 	max-width: 60ch;
 	margin: 0 auto var(--spacing-md);
 	color: #333;
 	line-height: 1.6;
 }
-
 .contact-button {
 	display: inline-flex;
 	align-items: center;
@@ -1141,13 +1103,10 @@ html.home-locked .connector-lines {
 	outline: 2px solid #333;
 	outline-offset: 3px;
 }
-
-/* links grid */
 .contact-links {
 	display: flex;
 	justify-content: center;
 }
-
 .social-links {
 	list-style: none;
 	display: grid;
@@ -1158,7 +1117,6 @@ html.home-locked .connector-lines {
 	width: 100%;
 	max-width: 760px;
 }
-
 .social-link {
 	display: flex;
 	align-items: center;
@@ -1173,7 +1131,6 @@ html.home-locked .connector-lines {
 	transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease,
 		background 0.2s ease;
 }
-
 .social-link svg {
 	width: 20px;
 	height: 20px;
@@ -1191,28 +1148,24 @@ html.home-locked .connector-lines {
 	font-weight: 600;
 	text-transform: lowercase;
 }
-
-/* optional pastel accents per brand (subtle) */
 #profile-link1.social-link {
 	border-color: var(--code-color);
-} /* github */
+}
 #profile-link2.social-link {
 	border-color: var(--design-color);
-} /* figma */
+}
 #profile-link3.social-link {
 	border-color: var(--craft-color);
-} /* arena */
+}
 #profile-link4.social-link {
 	border-color: var(--text-color);
-} /* ig */
+}
 #profile-link5.social-link {
 	border-color: var(--electronics-color);
-} /* linkedin */
+}
 #profile-link6.social-link {
 	border-color: rgb(215, 211, 211);
-} /* chess */
-
-/* small screens */
+}
 @media (max-width: 640px) {
 	.contact-title {
 		font-size: 1.6rem;
@@ -1222,6 +1175,7 @@ html.home-locked .connector-lines {
 	}
 }
 
+/* blog + archive */
 .blog-section {
 	margin: 2rem 0;
 }
@@ -1249,8 +1203,6 @@ html.home-locked .connector-lines {
 	padding: 1rem 1rem 1.25rem;
 	overflow: visible;
 }
-
-/* smaller, readable title */
 .project-box[data-category='text'] .box-content.text-only .box-text {
 	text-align: center;
 	font-weight: 700;
@@ -1262,7 +1214,7 @@ html.home-locked .connector-lines {
 	hyphens: auto;
 }
 
-/* badge: hidden by default, shows on hover */
+/* badge */
 .project-badge {
 	position: absolute;
 	bottom: 0.5rem;
@@ -1281,15 +1233,11 @@ html.home-locked .connector-lines {
 	pointer-events: none;
 	z-index: 3;
 }
-
-/* reveal on hover/focus (desktop & keyboard) */
 .project-box:hover .project-badge,
 .project-box:focus-within .project-badge {
 	opacity: 1;
 	transform: translateY(0);
 }
-
-/* optional brand colors (still hover-only) */
 .project-badge.electrocute,
 .project-badge.itp {
 	font-family: 'Space Grotesk', sans-serif;
@@ -1307,17 +1255,15 @@ html.home-locked .connector-lines {
 	color: #000;
 }
 
-/* pastel pill buttons for blog links */
+/* pastel pill buttons */
 .link-btn {
 	--btn-bg: #eee;
 	--btn-fg: #111;
 	--btn-border: transparent;
-
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: 0.4rem;
-
 	padding: 0.42rem 0.85rem;
 	border-radius: 999px;
 	border: 1px solid var(--btn-border);
@@ -1327,7 +1273,6 @@ html.home-locked .connector-lines {
 	font-weight: 700;
 	font-size: 0.95rem;
 	line-height: 1;
-
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 	transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease,
 		background 0.2s ease;
@@ -1342,8 +1287,6 @@ html.home-locked .connector-lines {
 	box-shadow: 0 0 0 2px #fff,
 		0 0 0 6px color-mix(in oklab, var(--btn-bg) 55%, #0000);
 }
-
-/* variants */
 .link-btn.electrocute {
 	--btn-bg: var(--soft-pink);
 	--btn-fg: #000;
@@ -1357,8 +1300,6 @@ html.home-locked .connector-lines {
 	--btn-fg: #111;
 	--btn-border: rgba(0, 0, 0, 0.08);
 }
-
-/* make Archive the primary action */
 .link-btn.primary {
 	padding: 0.52rem 1rem;
 	border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1374,14 +1315,6 @@ html.home-locked .connector-lines {
 	font-weight: 800;
 	letter-spacing: 0.02em;
 }
-
-/* label tone */
-.posts-all-label {
-	opacity: 0.75;
-	font-weight: 600;
-}
-
-/* container */
 .posts-all {
 	display: flex;
 	align-items: center;
@@ -1395,8 +1328,6 @@ html.home-locked .connector-lines {
 	font-weight: 600;
 	font-size: 0.9rem;
 }
-
-/* motion prefs */
 @media (prefers-reduced-motion: reduce) {
 	.link-btn {
 		transition: none;
@@ -1405,8 +1336,6 @@ html.home-locked .connector-lines {
 		transform: none;
 	}
 }
-
-/* on touch devices (no hover), keep badge visible everywhere */
 @media (hover: none) and (pointer: coarse) {
 	.project-badge {
 		opacity: 1;
@@ -1414,8 +1343,7 @@ html.home-locked .connector-lines {
 	}
 }
 
-/* ===== archive (compact list + hover-only glow + masonry cards) ===== */
-
+/* archive */
 .archive {
 	--arch-radius: 8px;
 	--arch-bg: #fff;
@@ -1424,11 +1352,8 @@ html.home-locked .connector-lines {
 	--arch-title: #111;
 	--arch-muted: rgba(0, 0, 0, 0.6);
 	--arch-pad: 8px;
-
 	padding: 1rem 0.75rem;
 }
-
-/* header */
 .archive-header {
 	position: sticky;
 	top: 64px;
@@ -1444,8 +1369,6 @@ html.home-locked .connector-lines {
 	font-size: 0.95rem;
 	letter-spacing: 0.02em;
 }
-
-/* controls */
 .archive-controls {
 	display: flex;
 	align-items: center;
@@ -1479,7 +1402,6 @@ html.home-locked .connector-lines {
 	background: #ebe6ff;
 	color: #2a186a;
 }
-
 .archive-search {
 	padding: 0.45rem 0.6rem;
 	border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1491,8 +1413,6 @@ html.home-locked .connector-lines {
 .archive-search:focus {
 	border-color: rgba(0, 0, 0, 0.22);
 }
-
-/* view toggle */
 .view-toggle {
 	display: inline-flex;
 	border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1508,8 +1428,6 @@ html.home-locked .connector-lines {
 .view-btn.is-active {
 	background: #f6f6ff;
 }
-
-/* LIST */
 .archive-list {
 	list-style: none;
 	margin: 0.4rem 0 0;
@@ -1523,7 +1441,6 @@ html.home-locked .connector-lines {
 .archive-row[data-site='itp'] {
 	--accent: lavender;
 }
-
 .row-link {
 	--mx: 50%;
 	--my: 50%;
@@ -1587,9 +1504,9 @@ html.home-locked .connector-lines {
 	transform: translateX(0);
 }
 
-/* CARDS — masonry for balanced columns across uneven sources */
+/* archive cards / masonry */
 .archive-grid {
-	display: grid; /* fallback when masonry disabled */
+	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
 	gap: 10px;
 	margin-top: 0.4rem;
@@ -1606,7 +1523,6 @@ html.home-locked .connector-lines {
 	margin: 0 0 12px;
 	min-height: auto;
 }
-
 .archive-card {
 	display: flex;
 	align-items: center;
@@ -1633,8 +1549,6 @@ html.home-locked .connector-lines {
 	font-weight: 600;
 	font-size: 0.95rem;
 }
-
-/* states */
 .archive-status {
 	opacity: 0.8;
 	padding: 0.6rem 0;
@@ -1642,8 +1556,6 @@ html.home-locked .connector-lines {
 .archive-status.error {
 	color: crimson;
 }
-
-/* mobile */
 @media (max-width: 640px) {
 	.row-link {
 		grid-template-columns: 1fr;
@@ -1662,8 +1574,6 @@ html.home-locked .connector-lines {
 		column-count: 2;
 	}
 }
-
-/* reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	.row-link,
 	.archive-card {
