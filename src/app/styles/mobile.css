@@ -1,5 +1,10 @@
 /* ── MOBILE (≤640px) ───────────────────────────────────────────── */
 
+/* Hide mobile back button on desktop by default */
+.mobile-back-btn {
+	display: none;
+}
+
 @media (max-width: 640px) {
 	/* 0) Global mobile overrides */
 	/* hide desktop-only UI */
@@ -14,6 +19,21 @@
 	}
 	body {
 		padding-top: 16px;
+		overflow-x: hidden; /* Prevent horizontal scroll */
+		overflow-y: auto; /* Allow vertical scroll */
+	}
+
+	/* Ensure main content can scroll */
+	.main-content {
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+	}
+
+	/* Fix any fixed positioning issues */
+	html,
+	body {
+		height: 100%;
+		width: 100%;
 	}
 
 	/* Page wrappers */
@@ -386,7 +406,7 @@
 		opacity: 0.8;
 	}
 
-	/* Hide “All projects” links/buttons on mobile */
+	/* Hide "All projects" links/buttons on mobile */
 	.all-projects,
 	.all-projects-link,
 	a[href='/projects-all'],
@@ -394,9 +414,12 @@
 		display: none !important;
 	}
 
-	/* About page tweaks */
+	/* About page tweaks - UPDATED */
 	.about-page {
 		padding: 16px;
+		min-height: 100vh; /* Ensure full viewport height */
+		overflow-y: auto; /* Allow vertical scrolling */
+		position: relative; /* Ensure proper positioning context */
 	}
 	.about-hero {
 		display: grid;
@@ -410,17 +433,113 @@
 		margin-bottom: 12px;
 	}
 	.avatar {
-		width: min(76vw, 360px);
+		width: min(76vw, 300px); /* Slightly smaller max width */
 		height: auto;
 		object-fit: contain;
 		border-radius: 10%;
 	}
 	.bio-content {
 		padding: 0 12px;
+		max-width: 100%; /* Prevent horizontal overflow */
+		box-sizing: border-box; /* Include padding in width calculation */
 	}
 
+	/* Typography adjustments for mobile */
+	.about-page h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+		text-align: center;
+	}
+
+	.about-page p {
+		font-size: 1rem;
+		line-height: 1.6;
+		margin-bottom: 1.2rem;
+		color: #333; /* Ensure good contrast */
+	}
+
+	/* Bio window adjustments */
 	.bio-window {
+		background: #fff;
+		border-radius: 12px;
+		padding: 1.5rem;
+		margin-top: 2rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 		background-image: none; /* overrides previous rule */
+	}
+
+	.bio-window__content h2 {
+		font-size: 1.3rem;
+		margin-bottom: 0.8rem;
+		margin-top: 1.5rem;
+		color: #111;
+	}
+
+	.bio-window__content h2:first-child {
+		margin-top: 0;
+	}
+
+	.bio-window__content p {
+		margin-bottom: 1rem;
+	}
+
+	/* Links styling */
+	.bio-window__content a {
+		color: #0066cc;
+		text-decoration: underline;
+	}
+
+	.bio-window__content a:hover {
+		color: #004499;
+	}
+
+	/* Ensure proper spacing at bottom */
+	.about-page::after {
+		content: '';
+		display: block;
+		height: 2rem;
+	}
+
+	/* Mobile back button */
+	.mobile-back-btn {
+		position: sticky;
+		top: 8px;
+		left: 16px;
+		z-index: 1000;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		background: var(--craft-color, #ff9999);
+		color: #000;
+		border: none;
+		border-radius: 50%;
+		font-size: 1.2rem;
+		font-weight: 600;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+		margin-bottom: 1rem;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.mobile-back-btn:hover {
+		opacity: 0.8;
+		transform: scale(1.05);
+	}
+
+	/* Typewriter animation adjustments for mobile */
+	.typewriter {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.flower-image {
+		width: 18px;
+		height: 18px;
 	}
 
 	/* Very small phones (≤360px) */

@@ -286,7 +286,7 @@ function MobilePortfolioView({ projectSections }) {
 					}}
 				>
 					<Image
-						src='/assets/flower-logo-transparent.png'
+						src='/assets/flower-network-logo.png'
 						alt='open menu'
 						width={90}
 						height={90}
@@ -558,7 +558,7 @@ function DesktopPortfolioView({ projectSections }) {
 					<div className='image-box' ref={flowerRef} aria-hidden='true'>
 						<div style={{ position: 'relative', width: 500, height: 500 }}>
 							<Image
-								src='/assets/flower-logo-transparent.png'
+								src='/assets/flower-network-logo.png'
 								alt='portfolio flower hub'
 								fill
 								style={{ objectFit: 'contain' }}
