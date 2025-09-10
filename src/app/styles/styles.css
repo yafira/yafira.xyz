@@ -1402,6 +1402,15 @@ html.home-locked .connector-lines {
 	background: #ebe6ff;
 	color: #2a186a;
 }
+
+/* external links */
+/* .chip-pill.ml5\.js,
+.archive-row[data-site='ml5.js'],
+.archive-card[data-site='ml5.js'] {
+	background: #e6ddf6;
+	color: #24144d;
+} */
+
 .archive-search {
 	padding: 0.45rem 0.6rem;
 	border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1440,6 +1449,12 @@ html.home-locked .connector-lines {
 }
 .archive-row[data-site='itp'] {
 	--accent: lavender;
+}
+.archive-row[data-site='elsewhere'] {
+	--accent: #e6ddf6;
+}
+.archive-card[data-site='elsewhere'] {
+	border-left: 4px solid #e6ddf6;
 }
 .row-link {
 	--mx: 50%;

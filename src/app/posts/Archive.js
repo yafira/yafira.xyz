@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Space_Grotesk } from 'next/font/google';
@@ -16,10 +17,13 @@ export default function Archive() {
 	const [err, setErr] = useState(null);
 
 	const [q, setQ] = useState('');
-	const [filters, setFilters] = useState({ electrocute: true, itp: true });
+	const [filters, setFilters] = useState({
+		electrocute: true,
+		itp: true,
+	});
 	const [view, setView] = useState('list'); // 'list' | 'cards'
 
-	// mobile detection for conditional UI (back button + hide toggle)
+	// detect mobile for conditional UI (back button + hide toggle)
 	const [isMobile, setIsMobile] = useState(false);
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
@@ -30,7 +34,7 @@ export default function Archive() {
 		return () => mq.removeEventListener('change', onChange);
 	}, []);
 
-	// remember last view choice (desktop/tablet)
+	// remember last view choice
 	useEffect(() => {
 		const saved =
 			typeof window !== 'undefined' && localStorage.getItem('postsView');
@@ -48,6 +52,8 @@ export default function Archive() {
 				const res = await fetch('/api/blog/all');
 				if (!res.ok) throw new Error(`api ${res.status}`);
 				const data = await res.json();
+
+				// decode HTML entities from WP titles
 				const decode = (s = '') => {
 					const el = document.createElement('textarea');
 					el.innerHTML = s;
@@ -64,15 +70,20 @@ export default function Archive() {
 
 	const filtered = useMemo(() => {
 		const qlc = q.trim().toLowerCase();
-		return posts
-			.filter((p) => filters[p.siteLabel])
-			.filter((p) => (qlc ? (p.title || '').toLowerCase().includes(qlc) : true))
-			.sort((a, b) => new Date(b.date) - new Date(a.date));
+		return (
+			posts
+				// ignore items whose siteLabel isn't in filters (future-proof)
+				.filter((p) => (p.siteLabel in filters ? filters[p.siteLabel] : true))
+				.filter((p) =>
+					qlc ? (p.title || '').toLowerCase().includes(qlc) : true
+				)
+				.sort((a, b) => new Date(b.date) - new Date(a.date))
+		);
 	}, [posts, q, filters]);
 
 	const toggle = (key) => setFilters((f) => ({ ...f, [key]: !f[key] }));
 
-	// hover glow helpers (desktop only)
+	// hover glow (desktop only)
 	const followGlow = (e) => {
 		const r = e.currentTarget.getBoundingClientRect();
 		const x = e.clientX - r.left;
@@ -89,7 +100,6 @@ export default function Archive() {
 	return (
 		<div className={`archive ${spaceGrotesk.className}`}>
 			<header className='archive-header'>
-				{/* back button shows only on phones */}
 				{isMobile && (
 					<button
 						className='back-button'
@@ -104,7 +114,7 @@ export default function Archive() {
 				<h1>all posts</h1>
 
 				<div className='archive-controls'>
-					<label className='chip'>
+					<label className='chip' aria-label='toggle electrocute posts'>
 						<input
 							type='checkbox'
 							checked={filters.electrocute}
@@ -112,7 +122,8 @@ export default function Archive() {
 						/>
 						<span className='chip-pill electrocute'>electrocute</span>
 					</label>
-					<label className='chip'>
+
+					<label className='chip' aria-label='toggle itp posts'>
 						<input
 							type='checkbox'
 							checked={filters.itp}
@@ -127,9 +138,9 @@ export default function Archive() {
 						placeholder='search titles…'
 						value={q}
 						onChange={(e) => setQ(e.target.value)}
+						aria-label='search titles'
 					/>
 
-					{/* view toggle hidden on mobile */}
 					{!isMobile && (
 						<div className='view-toggle' role='tablist' aria-label='layout'>
 							<button
@@ -165,7 +176,7 @@ export default function Archive() {
 							className='archive-card'
 							href={p.link}
 							target='_blank'
-							rel='noopener noreferrer'
+							rel='noopener noreferrer external'
 							data-site={p.siteLabel}
 							title={p.title}
 						>
@@ -185,7 +196,7 @@ export default function Archive() {
 								className='row-link'
 								href={p.link}
 								target='_blank'
-								rel='noopener noreferrer'
+								rel='noopener noreferrer external'
 								onMouseEnter={resetGlow}
 								onMouseMove={followGlow}
 								onMouseLeave={resetGlow}
@@ -202,7 +213,7 @@ export default function Archive() {
 											year: 'numeric',
 											month: 'short',
 											day: '2-digit',
-											timeZone: 'EST', // keeps it deterministic
+											timeZone: 'America/New_York',
 										})}
 									</time>
 								</span>

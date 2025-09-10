@@ -7,8 +7,19 @@ const SITES = [
 	{ host: 'electrocuteitp.wordpress.com', label: 'itp' },
 ];
 
-const FIELDS = '_fields=id,title,link,date'; // only what we render
-const PER_SITE = 3;
+// single external you manually add (you can add more later)
+const EXTERNAL = [
+	{
+		id: 'ml5-docsify-soft-ui',
+		title: 'Contributing to ml5.js: From Docsify Plugins to Soft Interactions',
+		link: 'https://ml5js.org/blog/docsify-plugins-soft-ui/',
+		date: '2025-07-31',
+		siteLabel: 'ml5.js', // ← source name becomes the badge text
+	},
+];
+
+const FIELDS = '_fields=id,title,link,date';
+const PER_SITE = 3; // 3 per site, then we also include the externals
 
 export async function GET() {
 	try {
@@ -19,25 +30,28 @@ export async function GET() {
 					headers: { Accept: 'application/json' },
 				});
 				if (!res.ok) return [];
-
 				const posts = await res.json();
-
 				return posts.map((p) => ({
 					id: p.id,
 					title: p?.title?.rendered || 'Untitled',
 					link: p?.link || `https://${host}/?p=${p.id}`,
 					date: p?.date,
-					siteLabel: label, // used for your hover badge
+					siteLabel: label,
 				}));
 			})
 		);
 
-		// combine both sites; newest first overall (6 total)
+		// add your manual externals, then sort newest-first and cap if you want
 		const merged = results
 			.flat()
+			.concat(EXTERNAL)
 			.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-		return new Response(JSON.stringify(merged), {
+		// keep the list tight (e.g., 6–8 cards); tweak as you like
+		const MAX = 8;
+		const trimmed = merged.slice(0, MAX);
+
+		return new Response(JSON.stringify(trimmed), {
 			status: 200,
 			headers: {
 				'content-type': 'application/json',

@@ -145,7 +145,7 @@ export default function AboutPage() {
 							>
 								@electrocutelab
 							</a>{' '}
-							☺
+							〄 ꣑ৎ
 						</p>
 					</div>
 				</div>

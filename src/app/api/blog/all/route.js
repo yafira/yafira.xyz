@@ -7,18 +7,24 @@ const SITES = [
 	{ host: 'electrocuteitp.wordpress.com', label: 'itp' },
 ];
 
+// any hand-added external posts live here
+const EXTERNAL = [
+	{
+		id: 'ml5-docsify-soft-ui',
+		title: 'Contributing to ml5.js: From Docsify Plugins to Soft Interactions',
+		link: 'https://ml5js.org/blog/docsify-plugins-soft-ui/',
+		date: '2025-07-31',
+		siteLabel: 'ml5.js', // ← this is what shows on the badge & filter chip
+	},
+];
+
 const FIELDS = '_fields=id,title,link,date';
 
 async function fetchAllFromSite(host, label) {
-	const perPage = 100; // WP.com max
+	const perPage = 100;
 	let page = 1;
 	let out = [];
 
-	// loop pages until we've got them all
-	// (uses X-WP-TotalPages header to stop)
-	// also breaks on empty pages
-	// keeps payload light with _fields
-	// newest-first by API, we’ll re-sort anyway
 	while (true) {
 		const url = `https://public-api.wordpress.com/wp/v2/sites/${host}/posts?per_page=${perPage}&page=${page}&orderby=date&order=desc&${FIELDS}`;
 		const res = await fetch(url, { headers: { Accept: 'application/json' } });
@@ -56,6 +62,7 @@ export async function GET() {
 
 		const merged = results
 			.flat()
+			.concat(EXTERNAL) // include your manual posts
 			.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 		return new Response(JSON.stringify(merged), {
