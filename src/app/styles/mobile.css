@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 640px) {
-	/* 0) Global mobile overrides */
+	/* Global mobile overrides */
 	/* hide desktop-only UI */
 	.flower-network,
 	.image-box,
@@ -483,16 +483,6 @@
 		margin-bottom: 1rem;
 	}
 
-	/* Links styling */
-	.bio-window__content a {
-		color: #0066cc;
-		text-decoration: underline;
-	}
-
-	.bio-window__content a:hover {
-		color: #004499;
-	}
-
 	/* Ensure proper spacing at bottom */
 	.about-page::after {
 		content: '';
@@ -511,7 +501,7 @@
 		justify-content: center;
 		width: 40px;
 		height: 40px;
-		background: var(--craft-color, #ff9999);
+		background: lavender;
 		color: #000;
 		border: none;
 		border-radius: 50%;
@@ -540,6 +530,25 @@
 	.flower-image {
 		width: 18px;
 		height: 18px;
+	}
+
+	.about-page .bio-window__content a,
+	.about-page .bio-content a {
+		color: #9d87eb; /* lavender */
+		text-decoration: none;
+	}
+	.about-page .bio-window__content a:hover,
+	.about-page .bio-content a:hover {
+		color: #917fd2; /* slightly darker on hover */
+		text-decoration: none;
+	}
+	.about-page .bio-window__content a:visited,
+	.about-page .bio-content a:visited {
+		color: #866fe0; /* visited state (optional) */
+	}
+	.about-page .bio-window__content a:active,
+	.about-page .bio-content a:active {
+		opacity: 0.85; /* tap feedback */
 	}
 
 	/* Very small phones (≤360px) */
