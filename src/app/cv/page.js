@@ -391,7 +391,7 @@ export default function CVPage() {
 			<section className='cv-section interests'>
 				<h2 className='cv-heading'>interests</h2>
 				<p className='cv-summary'>
-					blending engineering with art; experimental interfaces; textile-based
+					blending engineering with art; web dev/design, experimental interfaces; textile-based
 					media; wearable + soft tech; speculative objects; open source
 					development; archival systems.
 				</p>
