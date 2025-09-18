@@ -287,8 +287,10 @@ export default function CVPage() {
 							new york university — tisch school of the arts
 						</div>
 						<div className='cv-affiliations'>
-							<strong>affiliations:</strong> adjacent (editor/web) · equitable
-							syllabus project (web/research) · ml5.js (web/community/research)
+							<strong>affiliations:</strong> ml5.js (web/community/research) ·
+							equitable syllabus project (web/research) · adjacent (editor/web)
+							· nyu ability project: making fashion accessible
+							(design/fabrication, hardware/software/tool hacking)
 						</div>
 					</div>
 
@@ -316,6 +318,10 @@ export default function CVPage() {
 						</div>
 						<div className='cv-org'>
 							city university of new york — lehman college
+						</div>
+						<div className='cv-activities'>
+							<strong>activities:</strong> tech talent pipeline (ttp), women in
+							computer science (wics), google developer group (gdg)
 						</div>
 					</div>
 
@@ -391,9 +397,9 @@ export default function CVPage() {
 			<section className='cv-section interests'>
 				<h2 className='cv-heading'>interests</h2>
 				<p className='cv-summary'>
-					blending engineering with art; web dev/design, experimental interfaces; textile-based
-					media; wearable + soft tech; speculative objects; open source
-					development; archival systems.
+					blending engineering with art; web dev/design, experimental
+					interfaces; textile-based media; wearable + soft tech; speculative
+					objects; open source development; archival systems.
 				</p>
 			</section>
 		</div>
