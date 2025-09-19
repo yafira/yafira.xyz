@@ -27,7 +27,7 @@ export default function CVPage() {
 					<div className='cv-item'>
 						<div className='cv-meta'>
 							<div className='cv-title'>
-								incoming graduate assistant — creative computing (nyu itp/ima)
+								graduate assistant — creative computing
 							</div>
 							<span className='cv-date'>starting sep 2025</span>
 						</div>
