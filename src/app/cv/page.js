@@ -29,7 +29,7 @@ export default function CVPage() {
 							<div className='cv-title'>
 								graduate assistant — creative computing
 							</div>
-							<span className='cv-date'>starting sep 2025</span>
+							<span className='cv-date'>sep 2025 - present</span>
 						</div>
 						<p className='cv-summary'>
 							supporting professor dan shiffman in teaching and mentoring for
