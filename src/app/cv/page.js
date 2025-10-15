@@ -27,6 +27,24 @@ export default function CVPage() {
 					<div className='cv-item'>
 						<div className='cv-meta'>
 							<div className='cv-title'>
+								ml5.js researcher, speech-to-text — ml5.js
+							</div>
+							<span className='cv-date'>sep 2025 – present</span>
+						</div>
+						<p className='cv-summary'>
+							researching and prototyping speech-to-text models with the goal of
+							integrating accessible, browser-based transcription into
+							transformer.js.
+						</p>
+						<p className='cv-skills'>
+							<span className='label'>skills:</span> javascript, web-based
+							machine learning implementation, research, speech recognition
+						</p>
+					</div>
+
+					<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
 								graduate assistant, creative computing (nyu ima)
 							</div>
 							<span className='cv-date'>sep 2025 - present</span>
@@ -48,7 +66,7 @@ export default function CVPage() {
 							<div className='cv-title'>
 								open source contributor, web development & community — ml5.js
 							</div>
-							<span className='cv-date'>jun 2025 – present</span>
+							<span className='cv-date'>jun 2025 – aug 2025</span>
 						</div>
 						<p className='cv-summary'>
 							contributing to the growth of ml5.js, an open-source,
@@ -57,8 +75,8 @@ export default function CVPage() {
 							community engagement.
 						</p>
 						<p className='cv-skills'>
-							<span className='label'>skills:</span> gatsby, docsify, machine
-							learning, user interface design, research
+							<span className='label'>skills:</span> gatsby, docsify,
+							javascript, user interface design, research
 						</p>
 					</div>
 
