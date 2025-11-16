@@ -12,7 +12,7 @@ export default function CVPage() {
 				<h1 className='cv-heading'>tldr; about me</h1>
 				<p className='cv-summary'>
 					i am a creative technologist who merges engineering with art,
-					designing experimental interfaces, wearable/soft technologies, and
+					designing experimental interfaces, soft technologies, and
 					speculative interactive objects. my work explores inclusive tech
 					practices, open-source development, and creative research — with the
 					goal of expanding access to creative computing and enabling
