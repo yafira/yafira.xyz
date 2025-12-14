@@ -176,7 +176,7 @@ export default function CVPage() {
 
 			{/* creative explorations */}
 			<section className='cv-section creative-explorations'>
-				<h2 className='cv-heading'>creative explorations</h2>
+				<h2 className='cv-heading'>creative explorations + selected work</h2>
 				<div className='cv-list'>
 				<div className='cv-item'>
 						<div className='cv-meta'>
