@@ -178,6 +178,23 @@ export default function CVPage() {
 			<section className='cv-section creative-explorations'>
 				<h2 className='cv-heading'>creative explorations</h2>
 				<div className='cv-list'>
+				<div className='cv-item'>
+						<div className='cv-meta'>
+							<div className='cv-title'>
+								NYU Tandon School of Engineering — Print + Code gallery
+							</div>
+							<span className='cv-date'>dec 2025</span>
+						</div>
+						<div className='cv-org'>
+							nyu tandon school of engineering — brooklyn, ny
+						</div>
+						<p className='cv-summary'>
+							exhibited generative and computational print work exploring the 
+							relationship between code, materiality, and experimental publishing 
+							within nyu’s print + code curriculum.
+						</p>
+					</div>
+								
 					<div className='cv-item'>
 						<div className='cv-meta'>
 							<div className='cv-title'>
