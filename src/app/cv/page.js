@@ -102,7 +102,7 @@ export default function CVPage() {
 					<div className='cv-item'>
 						<div className='cv-meta'>
 							<div className='cv-title'>
-								web developer — equitable syllabus project (nyu itp/ima)
+								lead web developer — equitable syllabus project (nyu itp/ima)
 							</div>
 							<span className='cv-date'>nov 2024 – present</span>
 						</div>
