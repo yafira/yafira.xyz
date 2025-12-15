@@ -47,10 +47,10 @@ export default function CVPage() {
 							<div className='cv-title'>
 								graduate assistant, creative computing (nyu ima)
 							</div>
-							<span className='cv-date'>sep 2025 - present</span>
+							<span className='cv-date'>sep 2025 - dec 2025</span>
 						</div>
 						<p className='cv-summary'>
-							supporting professor dan shiffman in teaching and mentoring for
+							supported professor dan shiffman in teaching and mentoring for
 							the creative computing course, a new minor open to all nyu
 							students, offering office hours, assisting in class workshops, and
 							providing feedback on assignments.
@@ -69,7 +69,7 @@ export default function CVPage() {
 							<span className='cv-date'>jun 2025 – aug 2025</span>
 						</div>
 						<p className='cv-summary'>
-							contributing to the growth of ml5.js, an open-source,
+							contributed to the growth of ml5.js, an open-source,
 							beginner-friendly machine learning library for the web, through
 							technical development, creative ml research, documentation, and
 							community engagement.
