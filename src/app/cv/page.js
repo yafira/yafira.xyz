@@ -290,20 +290,6 @@ export default function CVPage() {
 							design.
 						</p>
 					</div>
-
-					<div className='cv-item'>
-						<div className='cv-meta'>
-							<div className='cv-title'>
-								noisy speakers: crafting fabric speakers
-							</div>
-							<span className='cv-date'>sep 2024</span>
-						</div>
-						<div className='cv-org'>nyc resistor — brooklyn, ny</div>
-						<p className='cv-summary'>
-							crafted fabric-based speakers using conductive threads, sensors,
-							and an amplifier, blending soft materials with sound.
-						</p>
-					</div>
 				</div>
 			</section>
 
