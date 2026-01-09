@@ -107,7 +107,7 @@ export const projectSections = {
 		{
 			title: 'Kawaii ML',
 			imageUrl: '/assets/kawaii-ml.png',
-			link: 'https://www.figma.com/community/file/1282166884816539041',
+			link: 'https://www.figma.com/community/file/1282166884816539041/kawaii-ml-card-deck',
 			description: 'Cute digital card deck exploring machine learning.',
 		},
 	],
