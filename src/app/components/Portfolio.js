@@ -30,6 +30,13 @@ export default function Portfolio() {
   const projectSections = {
     code: [
       {
+        title: "Useless Machines",
+        imageUrl: "/assets/um.gif",
+        link: "https://uselessmachines.vercel.app/",
+        description:
+          "A digital archive of whimsical, conceptual, and defiant machines. ",
+      },
+      {
         title: "TinkerThread",
         imageUrl: "/assets/tt.gif",
         link: "https://tinkerthread.netlify.app/",
@@ -41,12 +48,6 @@ export default function Portfolio() {
         imageUrl: "/assets/scribble.gif",
         link: "https://scribble-pop.netlify.app/",
         description: "Creative drawing tool using canvas.",
-      },
-      {
-        title: "Snax",
-        imageUrl: "/assets/snax.png",
-        link: "https://www.snax.blog/",
-        description: "Vegan snack reviews blog.",
       },
       {
         title: "Cute Technologies",
@@ -67,32 +68,20 @@ export default function Portfolio() {
         description: "Simple writing tool exploring creative cognition.",
       },
       {
-        title: "Sailor Moon Calculator",
-        imageUrl: "/assets/calculator.gif",
-        link: "https://sailor-moon-calculator.netlify.app/",
-        description: "On-screen calculator with a Sailor Moon theme.",
-      },
-      {
-        title: "Salvador DALL·E",
-        imageUrl: "/assets/sdalle.gif",
-        link: "https://salvadordalle.vercel.app/",
-        description: "AI image generator using DALL·E 2.",
-      },
-      {
         title: "Markie",
         imageUrl: "/assets/notes.gif",
         link: "https://markie.netlify.app/",
         description: "Markdown editor and preview app built with React.",
       },
-
-      {
-        title: "NewsBits",
-        imageUrl: "/assets/news-app.gif",
-        link: "https://github.com/Yafira/newsBits",
-        description: "News reading app built with React Native.",
-      },
     ],
     design: [
+      {
+        title: "Department of Lost Circuits",
+        imageUrl: "/assets/dlc.gif",
+        link: "https://lost-circuits.netlify.app/",
+        description:
+          "A generative system that creates Riso-printable stamps from obsolete electronics. ",
+      },
       {
         title: "Past, Pastry, Future",
         imageUrl: "/assets/ppf.gif",
