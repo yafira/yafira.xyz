@@ -161,7 +161,7 @@ export default function Portfolio() {
         imageUrl: "/assets/tinkerstation.png",
         link: "https://electrocuteitp.wordpress.com/2025/03/07/cute-functional-objects-series-tinkerstation-a-compact-hub-for-electronics-projects/",
         description:
-          "A compact, industrial organizer that keeps electronic components neat and accessible for makers.",
+          "A compact organizer for neatly storing electronic components.",
       },
       {
         title: "PetalByte",
