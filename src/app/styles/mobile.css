@@ -67,15 +67,25 @@ body {
     display: none !important;
   }
 
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   body {
     padding-top: 16px;
     overflow-x: hidden; /* prevent horizontal scroll */
     overflow-y: auto; /* allow vertical scroll */
+    width: 100%;
+    max-width: 100vw;
   }
 
   /* ensure main content can scroll */
   .main-content {
     overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
     -webkit-overflow-scrolling: touch; /* smooth scrolling on ios */
   }
 
@@ -84,6 +94,7 @@ body {
   body {
     height: 100%;
     width: 100%;
+    position: relative;
   }
 
   /* page wrappers */
@@ -514,9 +525,12 @@ body {
     padding: 16px;
     min-height: 100vh; /* ensure full viewport height */
     overflow-y: auto; /* allow vertical scrolling */
+    overflow-x: hidden; /* prevent horizontal scroll */
     position: relative; /* ensure proper positioning context */
     z-index: 1;
     pointer-events: auto;
+    width: 100%;
+    max-width: 100vw;
   }
 
   .about-hero {
@@ -542,10 +556,12 @@ body {
   .bio-content {
     padding: 0 12px;
     max-width: 100%; /* prevent horizontal overflow */
+    width: 100%;
     box-sizing: border-box; /* include padding in width calculation */
     position: relative;
     z-index: 2;
     pointer-events: auto;
+    overflow-x: hidden;
   }
 
   /* typography adjustments for mobile */
@@ -573,6 +589,10 @@ body {
     position: relative;
     z-index: 2;
     pointer-events: auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .bio-window__content h2 {
@@ -580,6 +600,8 @@ body {
     margin-bottom: 0.8rem;
     margin-top: 1.5rem;
     color: #111;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .bio-window__content h2:first-child {
@@ -588,6 +610,8 @@ body {
 
   .bio-window__content p {
     margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   /* ensure proper spacing at bottom */
@@ -640,12 +664,18 @@ body {
     height: 18px;
   }
 
-  /* about links: make them obviously links on mobile */
+  /* about links: make them obviously links on mobile - FIXED */
   .about-page .bio-window__content a,
   .about-page .bio-content a {
     color: #9d87eb;
     text-decoration: none;
-    font-weight: 600; /* helps links still read as links */
+    font-weight: 600;
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+    display: inline;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(157, 135, 235, 0.3);
   }
 
   .about-page .bio-window__content a:hover,
@@ -660,7 +690,7 @@ body {
 
   .about-page .bio-window__content a:visited,
   .about-page .bio-content a:visited {
-    color: #866fe0; /* visited state */
+    color: #866fe0;
   }
 
   /* very small phones (≤360px) */
