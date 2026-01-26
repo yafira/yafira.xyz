@@ -581,7 +581,7 @@ html.home-locked .connector-lines {
   transition: transform 0.5s ease;
   z-index: 10;
   max-height: var(--drawer-height);
-  overflow-y: auto;
+  overflow: visible !important; /* Allow tab to show */
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -590,6 +590,7 @@ html.home-locked .connector-lines {
 }
 .projects-drawer.open {
   transform: translateY(0);
+  overflow-y: auto; /* Enable scrolling when open */
 }
 .projects-drawer[data-section="craft"] {
   background-color: var(--craft-bg);
@@ -613,6 +614,7 @@ html.home-locked .connector-lines {
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
   padding-bottom: 4px;
+  margin-top: 8px; /* Space for chevron tab */
 }
 .projects-scroll-container::-webkit-scrollbar {
   height: 8px;
@@ -651,14 +653,11 @@ html.home-locked .connector-lines {
   box-shadow: var(--box-shadow);
   position: relative;
   padding-top: 1rem;
-  padding-bottom: 1.25rem; /* gives text room */
+  padding-bottom: 1.25rem;
   transition: transform 0.3s ease;
-
-  /* critical: never clip text */
   overflow: visible;
-
   scroll-snap-align: start;
-  min-width: 0; /* prevents child text/images from forcing overflow */
+  min-width: 0;
 }
 .project-box:hover {
   transform: translateY(-5px);
@@ -713,7 +712,6 @@ html.home-locked .connector-lines {
   color: #222;
   max-width: calc(var(--card-w) - 20px);
   text-align: center;
-
   display: block;
   overflow: visible;
   max-height: none;
@@ -792,24 +790,109 @@ html.home-locked .connector-lines {
   box-shadow: 0 4px 8px rgba(120, 63, 143, 0.3) !important;
 }
 
-/* drawer close */
+/* ========== UPDATED DRAWER CLOSE BUTTON - PROMINENT TAB ========== */
 .drawer-close {
+  /* Positioning - right side of drawer */
   position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
+  top: -40px;
+  right: 2%;
+  transform: translateX(0);
+
+  /* Styling - inherits section color */
+  background: inherit;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+
+  /* Size */
+  padding: 12px 32px;
+  min-width: 80px;
+  height: 44px;
+
+  /* Visual effects */
+  box-shadow:
+    0 -4px 12px rgba(0, 0, 0, 0.15),
+    0 -2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Layout */
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+
+  /* Interaction */
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+
+  /* Stacking */
+  z-index: 100;
+
+  /* Hidden by default */
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
+
+/* Only show when drawer is open */
+.projects-drawer.open .drawer-close {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
 .drawer-close:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 -6px 16px rgba(0, 0, 0, 0.2),
+    0 -3px 6px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
 }
+
+/* Chevron icon styling */
+.drawer-close svg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 3;
+  color: #333;
+}
+
+/* Section-specific colors */
+.projects-drawer[data-section="craft"] .drawer-close {
+  background-color: var(--craft-bg);
+}
+
+.projects-drawer[data-section="code"] .drawer-close {
+  background-color: var(--code-bg);
+}
+
+.projects-drawer[data-section="design"] .drawer-close {
+  background-color: var(--design-bg);
+}
+
+.projects-drawer[data-section="electronics"] .drawer-close {
+  background-color: var(--electronics-bg);
+}
+
+.projects-drawer[data-section="text"] .drawer-close {
+  background-color: var(--text-bg);
+}
+
+/* Responsive chevron */
+@media (max-width: 768px) {
+  .drawer-close {
+    right: 1%;
+    padding: 10px 24px;
+    min-width: 60px;
+    height: 38px;
+  }
+
+  .drawer-close svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+/* ========== END DRAWER CLOSE BUTTON ========== */
 
 /* === all projects grid — responsive + FULL TEXT === */
 .projects-grid {
@@ -838,7 +921,7 @@ html.home-locked .connector-lines {
 
 /* drawers: guarantee full text + room for hover buttons */
 .projects-drawer .project-box {
-  padding-bottom: 3rem; /* space for hover buttons area */
+  padding-bottom: 3rem;
   height: auto !important;
   min-height: 0 !important;
   overflow: visible !important;
@@ -887,8 +970,6 @@ html.home-locked .connector-lines {
     gap: 0.3rem;
     padding-bottom: 0.5rem;
   }
-
-  /* reduce padding on grid for smaller screens */
   .projects-grid {
     padding: 1.5rem 1rem;
   }
