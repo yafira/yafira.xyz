@@ -46,7 +46,7 @@ body {
   font-family: monospace;
 }
 
-/* mobile (≤640px) */
+/* ── MOBILE (≤640px) ───────────────────────────────────────────── */
 
 /* hide mobile back button on desktop by default */
 .mobile-back-btn {
@@ -54,7 +54,6 @@ body {
 }
 
 @media (max-width: 640px) {
-  /* global mobile overrides */
   /* hide desktop-only ui */
   .flower-network,
   .image-box,
@@ -478,10 +477,34 @@ body {
     font-weight: 800;
   }
 
-  /* posts archive (mobile behaviour) */
+  /* posts archive (mobile behaviour) - fixed */
+  .archive {
+    position: relative !important;
+    padding: 16px;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .archive-header {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .archive-controls {
+    position: relative !important;
+  }
+
+  .archive-list,
+  .archive-grid {
+    position: relative;
+    z-index: 1;
+  }
+
   .view-toggle {
     display: none !important;
-  }
+  } /* hide list/cards toggle */
 
   .posts-container {
     display: grid !important;
@@ -490,8 +513,8 @@ body {
   }
 
   .back-button {
-    position: sticky;
-    top: 8px;
+    position: relative !important;
+    top: auto !important;
     z-index: 10000; /* above any blobs/menus */
     pointer-events: auto;
     display: inline-block;
@@ -623,10 +646,10 @@ body {
 
   /* mobile back button */
   .mobile-back-btn {
-    position: sticky;
-    top: 8px;
-    left: 16px;
-    z-index: 10;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 1000;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -722,7 +745,7 @@ body {
 
   .line-box a:hover .box-text {
     color: #000 !important;
-    text-decoration: underline;
+    text-decoration: underline; /* optional: keep a hint for hover/focus */
   }
 }
 

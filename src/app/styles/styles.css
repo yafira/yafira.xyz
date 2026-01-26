@@ -1,5 +1,5 @@
-/* full updated css — unified grid sizing, bigger readable text, no clipping */
-/* merged version combining improvements from both files */
+/* full updated css — responsive grid + full text in grid + full text in drawers */
+/* copy/paste replacement */
 
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@400;600&display=swap");
 
@@ -651,10 +651,14 @@ html.home-locked .connector-lines {
   box-shadow: var(--box-shadow);
   position: relative;
   padding-top: 1rem;
+  padding-bottom: 1.25rem; /* gives text room */
   transition: transform 0.3s ease;
-  overflow: hidden;
+
+  /* critical: never clip text */
+  overflow: visible;
+
   scroll-snap-align: start;
-  min-width: 0; /* critical: prevents child text/images from forcing overflow */
+  min-width: 0; /* prevents child text/images from forcing overflow */
 }
 .project-box:hover {
   transform: translateY(-5px);
@@ -686,6 +690,8 @@ html.home-locked .connector-lines {
   font-size: var(--project-title-size);
   line-height: 1.25;
   text-wrap: balance;
+  padding: 0 12px;
+  overflow-wrap: anywhere;
 }
 
 /* image */
@@ -696,6 +702,22 @@ html.home-locked .connector-lines {
   display: block;
   margin: 0 auto;
   background: transparent !important;
+}
+
+/* description (global default) — FULL TEXT (no clamp) */
+.project-description {
+  margin: 8px auto 12px;
+  padding: 0 14px;
+  font-size: var(--project-desc-size);
+  line-height: 1.55;
+  color: #222;
+  max-width: calc(var(--card-w) - 20px);
+  text-align: center;
+
+  display: block;
+  overflow: visible;
+  max-height: none;
+  overflow-wrap: anywhere;
 }
 
 /* design links */
@@ -770,23 +792,6 @@ html.home-locked .connector-lines {
   box-shadow: 0 4px 8px rgba(120, 63, 143, 0.3) !important;
 }
 
-/* description (generic) */
-.project-description {
-  margin: 8px auto 12px;
-  padding: 0 14px;
-  font-size: var(--project-desc-size);
-  line-height: 1.5;
-  color: #222;
-  max-width: calc(var(--card-w) - 20px);
-  text-align: center;
-  display: -webkit-box;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 /* drawer close */
 .drawer-close {
   position: absolute;
@@ -806,21 +811,23 @@ html.home-locked .connector-lines {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* all projects grid */
-/* keep 4 columns on wide screens, collapse only when window shrinks */
+/* === all projects grid — responsive + FULL TEXT === */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, var(--card-w)));
   gap: clamp(20px, 3vw, 36px);
   justify-content: center;
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 3rem 2rem;
 }
 
 /* critical: prevent grid overflow when resizing browser */
 .projects-grid .project-box {
   width: var(--card-w);
-  min-width: 0; /* prevents horizontal overflow */
+  min-width: 0;
+  height: auto;
 }
 
 /* keep image responsive inside the card */
@@ -829,48 +836,17 @@ html.home-locked .connector-lines {
   height: clamp(110px, 12vw, 135px);
 }
 
-/* makes sure long titles/descriptions never force width */
-.projects-grid .project-box .box-text,
-.projects-grid .project-box .project-description {
-  min-width: 0;
-  overflow-wrap: anywhere;
+/* drawers: guarantee full text + room for hover buttons */
+.projects-drawer .project-box {
+  padding-bottom: 3rem; /* space for hover buttons area */
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
 }
-
-/* title: show up to 2 lines and reserve space */
-.projects-grid .project-box .box-text {
-  padding: 0 12px;
-  margin-top: 0.7rem;
-  line-height: 1.25;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
-  min-height: calc(1.25em * 2);
-  word-break: normal;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
-  color: #222;
-  font-weight: 700;
-  font-size: var(--project-title-size);
-  text-align: center;
-}
-
-/* description: show up to 3 lines and reserve space */
-.projects-grid .project-description {
-  margin: 8px auto 12px;
-  padding: 0 12px;
-  font-size: var(--project-desc-size);
-  line-height: 1.5;
-  color: #222;
-  text-align: center;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  overflow: hidden;
-  min-height: calc(1.5em * 3);
-  overflow-wrap: anywhere;
+.projects-drawer .project-description {
+  max-height: none !important;
+  overflow: visible !important;
+  display: block !important;
 }
 
 /* responsive breakpoints for the grid */
@@ -888,6 +864,7 @@ html.home-locked .connector-lines {
   .projects-grid {
     grid-template-columns: 1fr;
     justify-items: center;
+    padding: 1.25rem 1rem;
   }
   .projects-grid .project-box {
     width: min(92vw, var(--card-w));
@@ -900,9 +877,6 @@ html.home-locked .connector-lines {
     max-height: clamp(320px, 70vh, 80vh);
     padding: 1rem clamp(0.75rem, 3vw, 1rem);
   }
-  .project-box {
-    padding-bottom: 2.5rem;
-  }
   .projects-drawer-grid {
     gap: 1rem;
     padding: 0.5rem;
@@ -912,6 +886,11 @@ html.home-locked .connector-lines {
     justify-content: center;
     gap: 0.3rem;
     padding-bottom: 0.5rem;
+  }
+
+  /* reduce padding on grid for smaller screens */
+  .projects-grid {
+    padding: 1.5rem 1rem;
   }
 }
 
@@ -924,7 +903,7 @@ html.home-locked .connector-lines {
   box-shadow: none !important;
 }
 
-/* cv page — grouped timeline */
+/* cv page */
 .cv-page {
   max-width: 900px;
   margin: 0 auto;
@@ -932,59 +911,76 @@ html.home-locked .connector-lines {
   font-family: var(--font-body);
   line-height: 1.55;
 }
-
-/* unified left rail for every cv section */
 .cv-section {
   margin-bottom: var(--spacing-lg);
-  padding-left: 18px;
-  border-left: 2px solid rgba(0, 0, 0, 0.14);
+  padding-left: var(--spacing-md);
+  border-left: 4px solid transparent;
 }
-
+.cv-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+.certifications-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.certifications-list li {
+  margin: 2px 0;
+  line-height: 1.3;
+}
+.certifications li {
+  margin: 0;
+  line-height: 1.25;
+}
 .cv-section.experience {
-  border-left-color: var(--design-color);
+  border-color: var(--design-color);
 }
 .cv-section.education {
-  border-left-color: var(--code-color);
+  border-color: var(--code-color);
 }
 .cv-section.creative-explorations {
-  border-left-color: #4eecd2;
+  border-color: #4eecd2;
 }
 .cv-section.technologies {
-  border-left-color: var(--electronics-color);
+  border-color: var(--electronics-color);
 }
 .cv-section.tools {
-  border-left-color: var(--text-color);
+  border-color: var(--text-color);
+}
+.cv-section.certifications {
+  border-left: 4px solid var(--design-color);
+  padding-left: 12px;
 }
 .cv-section.interests {
-  border-left-color: var(--craft-color);
+  border-color: var(--craft-color);
 }
-.cv-section.honors {
-  border-left-color: var(--design-color);
-}
-
 .cv-heading {
   font-family: var(--font-code);
   font-size: 1.45rem;
   margin: 0 0 var(--spacing-sm);
 }
-
 .cv-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
 }
-
-/* remove card styling everywhere */
-.cv-item,
-.cv-item.grouped {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
+.cv-list.dense {
+  gap: 10px;
 }
-
-/* meta rows (non-grouped items) */
+.cv-list.tight {
+  gap: 14px;
+}
+.cv-item {
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.cv-item p {
+  margin: 2px 0;
+}
+.cv-item:first-child {
+  border-top: 0;
+}
 .cv-meta {
   display: flex;
   align-items: baseline;
@@ -992,201 +988,62 @@ html.home-locked .connector-lines {
   flex-wrap: wrap;
   gap: 6px;
 }
-
 .cv-title {
-  font-weight: 650;
-  color: #111;
+  font-weight: 600;
 }
-
 .cv-org {
   color: #555;
   margin-top: 2px;
 }
-
 .cv-date {
   font-size: 0.9rem;
   color: #666;
-  font-variant-numeric: tabular-nums;
 }
-
-.cv-date-inline {
-  font-size: 0.9rem;
-  color: #666;
-  margin-left: 6px;
-  font-variant-numeric: tabular-nums;
-}
-
 .cv-summary {
-  margin-top: 6px;
+  margin-top: 4px;
   line-height: 1.6;
-  max-width: 70ch;
+  max-width: 68ch;
   color: #333;
 }
-
 .cv-skills {
-  margin-top: 6px;
+  margin-top: 4px;
   font-size: 1rem;
   color: #555;
 }
-
 .cv-skills .label {
-  font-weight: 650;
+  font-weight: 600;
   text-transform: lowercase;
 }
-
-/* grouped company header */
-.cv-company-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-  padding-bottom: 6px;
-  margin-bottom: 10px;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.18);
-}
-
-.cv-company {
-  font-weight: 750;
-  letter-spacing: -0.2px;
-  color: #111;
-}
-
-.cv-company a {
-  color: inherit;
-  text-decoration: none;
-}
-.cv-company a:hover {
-  text-decoration: underline;
-}
-
-/* timeline inside grouped roles */
-.cv-roles {
-  position: relative;
-  padding-left: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* vertical timeline line */
-.cv-roles::before {
-  content: "";
-  position: absolute;
-  left: 9px;
-  top: 2px;
-  bottom: 2px;
-  width: 1.5px;
-  background: rgba(0, 0, 0, 0.18);
-  border-radius: 999px;
-}
-
-/* role node */
-.cv-role {
-  position: relative;
-}
-
-/* timeline dot */
-.cv-role::before {
-  content: "";
-  position: absolute;
-  left: -18px;
-  top: 4px;
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: rebeccapurple;
-  box-shadow: 0 0 0 2px #feffed;
-}
-
-/* role meta: title + date */
-.cv-role-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 4px;
-}
-
-.cv-role-title {
-  font-weight: 650;
-  color: #111;
-}
-
-.cv-role-date {
-  font-size: 0.88rem;
-  color: #666;
-  font-variant-numeric: tabular-nums;
-}
-
-/* honors list */
-.cv-bullets {
+.cv-sub {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.2rem;
   list-style: disc;
-  padding-left: 1.1rem;
-  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
-
-.cv-bullets li {
-  margin: 6px 0;
-  line-height: 1.5;
+.cv-affiliations {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  opacity: 0.9;
 }
-
-/* certifications list */
-.certifications-list {
-  list-style: disc;
-  padding-left: 1.1rem;
-  margin: 0;
-}
-
-.certifications-list li {
-  margin: 6px 0;
-  line-height: 1.5;
-}
-
-/* optional: compact long lines under education */
-.cv-affiliations,
 .cv-activities {
   margin-top: 0.5rem;
   font-size: 1rem;
-  opacity: 0.92;
-  max-width: 72ch;
+  opacity: 0.9;
 }
-
-/* mobile cv */
 @media (max-width: 720px) {
   .cv-page {
     padding: var(--spacing-md);
   }
-
   .cv-section {
     padding-left: 12px;
-    border-left-width: 2px;
+    border-left-width: 3px;
   }
-
   .cv-heading {
     font-size: 1.25rem;
   }
-
-  .cv-company-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-  }
-
-  .cv-roles {
-    padding-left: 20px;
-  }
-
-  .cv-roles::before {
-    left: 8px;
-  }
-
-  .cv-role::before {
-    left: -17px;
-  }
-
   .cv-date {
-    font-size: 0.86rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -1751,18 +1608,88 @@ html.home-locked .connector-lines {
   }
 }
 
+/* grouped roles / linkedin-style */
+.cv-item.grouped {
+  padding: 10px 0 2px;
+}
+.cv-company-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cv-company {
+  font-weight: 650;
+}
+.cv-roles {
+  margin-top: 8px;
+  padding-left: 14px;
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cv-role {
+  position: relative;
+  padding-left: 10px;
+}
+.cv-role::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 0.55rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+}
+.cv-role-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cv-role-title {
+  font-weight: 600;
+}
+.cv-role-date {
+  font-size: 0.9rem;
+  color: #666;
+}
+.cv-role p {
+  margin-top: 4px;
+}
+.cv-section.honors {
+  border-color: var(--text-color);
+}
+.cv-bullets {
+  margin: 6px 0 0;
+  padding-left: 1.1rem;
+}
+.cv-bullets li {
+  margin: 6px 0;
+  line-height: 1.5;
+  color: #333;
+}
+.cv-date-inline {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
 /* opportunities section */
 .opportunities-section {
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 2px solid rgba(0, 0, 0, 0.08);
 }
-
 .opportunities-section h2 {
   margin-bottom: 1rem;
   color: #f5a5c3;
 }
-
 .opportunities-section p {
   font-size: 1.05rem;
   line-height: 1.7;
