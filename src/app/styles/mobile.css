@@ -46,7 +46,7 @@ body {
   font-family: monospace;
 }
 
-/* ── mobile (≤640px) ───────────────────────────────────────────── */
+/* mobile (≤640px) */
 
 /* hide mobile back button on desktop by default */
 .mobile-back-btn {
@@ -520,7 +520,7 @@ body {
     display: none !important;
   }
 
-  /* about page tweaks - updated */
+  /* about page tweaks */
   .about-page {
     padding: 16px;
     min-height: 100vh; /* ensure full viewport height */
@@ -580,12 +580,12 @@ body {
 
   /* bio window adjustments */
   .bio-window {
-    background: #fff;
+    background: #fff !important;
+    background-image: none !important;
     border-radius: 12px;
     padding: 1.5rem;
     margin-top: 2rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    background-image: none; /* overrides previous rule */
     position: relative;
     z-index: 2;
     pointer-events: auto;
@@ -599,7 +599,7 @@ body {
     font-size: 1.3rem;
     margin-bottom: 0.8rem;
     margin-top: 1.5rem;
-    color: #111;
+    color: #9d87eb !important;
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
@@ -664,7 +664,7 @@ body {
     height: 18px;
   }
 
-  /* about links: make them obviously links on mobile - FIXED */
+  /* about links: make them obviously links on mobile */
   .about-page .bio-window__content a,
   .about-page .bio-content a {
     color: #9d87eb;

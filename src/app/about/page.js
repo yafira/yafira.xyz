@@ -142,7 +142,7 @@ export default function AboutPage() {
 
         {/* What I'm Looking For */}
         <div className="opportunities-section">
-          <h2>let's build something together</h2>
+          <h2>let's build something together!</h2>
           <p>
             I'm seeking opportunities in web development and product/UI design,
             especially projects that merge art, code, and engineering. I'm also
