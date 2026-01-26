@@ -144,10 +144,11 @@ export default function AboutPage() {
         <div className="opportunities-section">
           <h2>let's build something together!</h2>
           <p>
-            I'm seeking opportunities in web development and product/UI design,
-            especially projects that merge art, code, and engineering. I'm also
-            drawn to work involving e-textiles, physical computing, and tactile
-            interaction - anywhere technology meets texture, gesture, or form.
+            I'm seeking opportunities in ux engineering, design engineering,
+            product design, interaction design, creative technology, especially
+            projects that merge design and engineering. I'm also drawn to work
+            involving e-textiles, physical computing, and tactile interaction -
+            anywhere technology meets texture, gesture, or form.
           </p>
         </div>
       </div>
