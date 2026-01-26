@@ -2,6 +2,13 @@ import "@/app/styles/globals.css";
 const projectSections = {
   code: [
     {
+      title: "Print + Code",
+      imageUrl: "/assets/pc.png",
+      link: "https://print-code.netlify.app/",
+      description:
+        "Generative print work exploring code, form, and materiality.",
+    },
+    {
       title: "Useless Machines",
       imageUrl: "/assets/um.gif",
       link: "https://uselessmachines.vercel.app/",
@@ -168,5 +175,5 @@ const projectSections = {
 };
 
 export const allProjects = Object.entries(projectSections).flatMap(
-  ([category, arr]) => arr.map((p) => ({ ...p, category }))
+  ([category, arr]) => arr.map((p) => ({ ...p, category })),
 );

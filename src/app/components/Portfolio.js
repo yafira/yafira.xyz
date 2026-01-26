@@ -30,6 +30,13 @@ export default function Portfolio() {
   const projectSections = {
     code: [
       {
+        title: "Print + Code",
+        imageUrl: "/assets/pc.png",
+        link: "https://print-code.netlify.app/",
+        description:
+          "Generative print work exploring code, form, and materiality.",
+      },
+      {
         title: "Useless Machines",
         imageUrl: "/assets/um.gif",
         link: "https://uselessmachines.vercel.app/",
@@ -227,7 +234,7 @@ function MobilePortfolioView({ projectSections }) {
     return [];
   };
 
-  const items = active ? projectSections[active] ?? [] : [];
+  const items = active ? (projectSections[active] ?? []) : [];
 
   const handleSelect = (id) => {
     setShowFlowerMenu(false); // close site menu if open
@@ -426,7 +433,7 @@ function DesktopPortfolioView({ projectSections }) {
           data.map((p) => ({
             ...p,
             title: decode(p.title),
-          }))
+          })),
         );
       } catch (e) {
         setBlogError(e.message);

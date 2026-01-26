@@ -1,5 +1,5 @@
 /* full updated css — unified grid sizing, bigger readable text, no clipping */
-/* comments kept in lowercase per your preference */
+/* merged version combining improvements from both files */
 
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@400;600&display=swap");
 
@@ -1062,7 +1062,7 @@ html.home-locked .connector-lines {
 /* timeline inside grouped roles */
 .cv-roles {
   position: relative;
-  padding-left: 22px; /* space for line + dots */
+  padding-left: 22px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1095,7 +1095,7 @@ html.home-locked .connector-lines {
   height: 9px;
   border-radius: 999px;
   background: rebeccapurple;
-  box-shadow: 0 0 0 2px #feffed; /* blends with your page bg */
+  box-shadow: 0 0 0 2px #feffed;
 }
 
 /* role meta: title + date */
@@ -1119,10 +1119,10 @@ html.home-locked .connector-lines {
   font-variant-numeric: tabular-nums;
 }
 
-/* honors list: keep simple but aligned */
+/* honors list */
 .cv-bullets {
   list-style: disc;
-  padding-left: 1.1rem; /* keep bullet indent clean */
+  padding-left: 1.1rem;
   margin: 0;
 }
 
@@ -1152,7 +1152,7 @@ html.home-locked .connector-lines {
   max-width: 72ch;
 }
 
-/* mobile */
+/* mobile cv */
 @media (max-width: 720px) {
   .cv-page {
     padding: var(--spacing-md);
@@ -1555,14 +1555,6 @@ html.home-locked .connector-lines {
   color: #2a186a;
 }
 
-/* external links */
-/* .chip-pill.ml5\.js,
-.archive-row[data-site='ml5.js'],
-.archive-card[data-site='ml5.js'] {
-	background: #e6ddf6;
-	color: #24144d;
-} */
-
 .archive-search {
   padding: 0.45rem 0.6rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1759,6 +1751,7 @@ html.home-locked .connector-lines {
   }
 }
 
+/* opportunities section */
 .opportunities-section {
   margin-top: 3rem;
   padding-top: 2rem;
