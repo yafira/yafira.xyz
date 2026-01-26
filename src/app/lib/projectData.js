@@ -108,6 +108,13 @@ const projectSections = {
   ],
   electronics: [
     {
+      title: "tendertronic",
+      imageUrl: "/assets/nime.png",
+      link: "https://months-tap-da9.craft.me/tendertronic",
+      description:
+        "An analog electronic instrument built from raw circuitry and slow tuning.",
+    },
+    {
       title: "Moon Pocket",
       imageUrl: "/assets/moonpocket.png",
       link: "https://months-tap-da9.craft.me/moonpocket",
