@@ -654,6 +654,7 @@ html.home-locked .connector-lines {
   transition: transform 0.3s ease;
   overflow: hidden;
   scroll-snap-align: start;
+  min-width: 0; /* critical: prevents child text/images from forcing overflow */
 }
 .project-box:hover {
   transform: translateY(-5px);
@@ -782,6 +783,8 @@ html.home-locked .connector-lines {
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* drawer close */
@@ -803,32 +806,34 @@ html.home-locked .connector-lines {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* === all projects grid (single source of truth) === */
+/* all projects grid */
+/* keep 4 columns on wide screens, collapse only when window shrinks */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(4, 220px);
+  grid-template-columns: repeat(4, minmax(0, var(--card-w)));
+  gap: clamp(20px, 3vw, 36px);
   justify-content: center;
-  gap: 2rem;
-  padding: 3rem 2rem;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* fixed width + taller height to fit larger text */
+/* critical: prevent grid overflow when resizing browser */
 .projects-grid .project-box {
-  width: 220px;
-  min-width: 220px;
-  height: 320px;
-  min-height: 320px;
-  overflow: hidden;
-  padding-top: 0.85rem;
+  width: var(--card-w);
+  min-width: 0; /* prevents horizontal overflow */
 }
 
-/* slightly smaller image to make room */
+/* keep image responsive inside the card */
 .projects-grid .project-box .project-image {
-  width: 116px;
-  height: 116px;
+  width: clamp(110px, 12vw, 135px);
+  height: clamp(110px, 12vw, 135px);
+}
+
+/* makes sure long titles/descriptions never force width */
+.projects-grid .project-box .box-text,
+.projects-grid .project-box .project-description {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* title: show up to 2 lines and reserve space */
@@ -868,17 +873,24 @@ html.home-locked .connector-lines {
   overflow-wrap: anywhere;
 }
 
-/* small screens for grid */
-@media (max-width: 768px) {
+/* responsive breakpoints for the grid */
+@media (max-width: 1200px) {
   .projects-grid {
-    gap: 1rem;
-    padding: 1rem;
-    grid-template-columns: repeat(2, 220px);
+    grid-template-columns: repeat(3, minmax(0, var(--card-w)));
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 900px) {
   .projects-grid {
-    grid-template-columns: 220px;
+    grid-template-columns: repeat(2, minmax(0, var(--card-w)));
+  }
+}
+@media (max-width: 520px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .projects-grid .project-box {
+    width: min(92vw, var(--card-w));
   }
 }
 
