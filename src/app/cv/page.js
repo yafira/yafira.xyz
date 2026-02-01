@@ -12,12 +12,12 @@ export default function CVPage() {
       <section className="cv-section about">
         <h1 className="cv-heading">tldr; about me</h1>
         <p className="cv-summary">
-          i am a design engineer & creative technologist working at the intersection of
-          engineering and art, designing experimental interfaces, soft
-          technologies, and speculative interactive objects. my practice centers
-          on inclusive technology, open-source development, and creative
-          research, aiming to expand access to creative computing and foster
-          expressive, intentional forms of interaction.
+          i am a design engineer & creative technologist working at the
+          intersection of engineering and art, designing experimental
+          interfaces, soft technologies, and speculative interactive objects. my
+          practice centers on inclusive technology, open-source development, and
+          creative research, aiming to expand access to creative computing and
+          foster expressive, intentional forms of interaction.
         </p>
       </section>
 
@@ -52,7 +52,7 @@ export default function CVPage() {
                 <p className="cv-skills">
                   <span className="label">skills:</span> wearables, basic
                   electronics, e-textiles, physical computing, soft circuits,
-                  teaching support, fabrication, accessibility
+                  teaching support, fabrication, digital accessibility
                 </p>
               </div>
 
