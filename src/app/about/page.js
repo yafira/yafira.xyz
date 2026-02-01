@@ -146,9 +146,10 @@ export default function AboutPage() {
           <p>
             I'm seeking opportunities in ux engineering, design engineering,
             product design, interaction design, creative technology, especially
-            projects that merge design and engineering. I'm also drawn to work
-            involving e-textiles, physical computing, and tactile interaction -
-            anywhere technology meets texture, gesture, or form.
+            projects that merge design and code across software and/or hardware.
+            I'm also drawn to work involving e-textiles, physical computing, and
+            tactile interaction - anywhere technology meets texture, gesture, or
+            form.
           </p>
         </div>
       </div>
