@@ -236,6 +236,22 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">moon pocket</div>
+              <span className="cv-date">jan 2026</span>
+            </div>
+            <div className="cv-org">
+              pedestal playtime: art toy & tech toy open mic, nyc resistor ·
+              brooklyn, ny
+            </div>
+            <p className="cv-summary">
+              showcased a connected device built with an Arduino Nano 33 IoT
+              that fetches real-time moon and tide data from public web APIs and
+              renders it on a round TFT display through touch-based interaction.
+            </p>
+          </div>
+
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">print + code gallery</div>
               <span className="cv-date">dec 2025</span>
             </div>
@@ -252,7 +268,7 @@ export default function CVPage() {
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
-                tendertronics, analog circuit performance
+                tendertronic, analog circuit performance
               </div>
               <span className="cv-date">dec 2025</span>
             </div>
@@ -303,14 +319,29 @@ export default function CVPage() {
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
-                the internet book, annual publication on the poetic web
+                <a
+                  href="https://internetphonebook.net/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  the internet book
+                </a>
+                , annual publication on the poetic web
               </div>
               <span className="cv-date">may 2025</span>
             </div>
             <p className="cv-summary">
-              featured for <i>electrocute.io</i>, a collection of
-              soft-technology and poetic computing experiments, in a curated
-              directory of designers, developers, writers, and digital artists.
+              featured for{" "}
+              <a
+                href="https://electrocute.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i>electrocute.io</i>
+              </a>
+              , a collection of soft-technology and poetic computing
+              experiments, in a curated directory of designers, developers,
+              writers, and digital artists.
             </p>
           </div>
 
@@ -410,8 +441,9 @@ export default function CVPage() {
             <div className="cv-affiliations">
               <strong>affiliations:</strong> ml5.js (web/community/research) ·
               equitable syllabus project (web/research) · adjacent (editor/web)
-              · nyu ability project, making fashion accessible
-              (design/fabrication, hardware/software/tool hacking)
+              · nyu ability lab (vertically integrated project;
+              accessibility-focused design, fabrication, and hardware/software
+              tool prototyping for fashion and assistive technology)
             </div>
           </div>
 
