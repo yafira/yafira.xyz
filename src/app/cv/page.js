@@ -236,6 +236,22 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">pocket oracle of time</div>
+              <span className="cv-date">feb 2026-present</span>
+            </div>
+            <div className="cv-org">
+              horological society of new york (hsny) · new york, ny
+            </div>
+            <p className="cv-summary">
+              Exhibiting a handheld timekeeping device combining a real-time
+              clock and e-ink display with poetic prompts that appear throughout
+              the day, reframing time as an emotional and reflective experience
+              rather than a purely mechanical measure.
+            </p>
+          </div>
+
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">moon pocket</div>
               <span className="cv-date">jan 2026</span>
             </div>
