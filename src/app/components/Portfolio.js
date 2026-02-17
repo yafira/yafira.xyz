@@ -136,6 +136,13 @@ export default function Portfolio() {
     ],
     electronics: [
       {
+        title: "Pocket Oracle of Time",
+        imageUrl: "/assets/oracle.png",
+        link: "https://months-tap-da9.craft.me/oracle",
+        description:
+          "A small timekeeping object for slower encounters with time. Softly present.",
+      },
+      {
         title: "tendertronic",
         imageUrl: "/assets/nime.png",
         link: "https://months-tap-da9.craft.me/tendertronic",
