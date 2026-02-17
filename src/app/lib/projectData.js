@@ -131,7 +131,7 @@ const projectSections = {
     {
       title: "AirSense",
       imageUrl: "/assets/airsense.png",
-      link: "https://electrocuteitp.wordpress.com/2025/03/16/troubleshooting-mqtt-connection-issues-in-react-from-vite-to-plain-javascript-back-to-react-more-updates/",
+      link: "https://months-tap-da9.craft.me/airsense",
       description:
         "Indoor air quality monitor and dashboard built with Arduino and React.",
     },
