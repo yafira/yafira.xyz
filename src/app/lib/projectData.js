@@ -135,11 +135,19 @@ const projectSections = {
       description:
         "Indoor air quality monitor and dashboard built with Arduino and React.",
     },
+
     {
       title: "Glowmotion",
       imageUrl: "/assets/glow.gif",
       link: "https://months-tap-da9.craft.me/glowmotion",
       description: "Gesture-controlled interactive light.",
+    },
+    {
+      title: "Static Chic",
+      imageUrl: "/assets/static.png",
+      link: "https://months-tap-da9.craft.me/static-chic",
+      description:
+        "A wearable experiment in wireless energy, where LEDs glow through electromagnetic coupling.",
     },
     {
       title: "Custom LEDs",

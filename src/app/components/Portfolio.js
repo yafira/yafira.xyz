@@ -170,6 +170,13 @@ export default function Portfolio() {
         description: "Gesture-controlled interactive light.",
       },
       {
+        title: "Static Chic",
+        imageUrl: "/assets/static.png",
+        link: "https://months-tap-da9.craft.me/static-chic",
+        description:
+          "A wearable experiment in wireless energy, where LEDs glow through electromagnetic coupling.",
+      },
+      {
         title: "Custom LEDs",
         imageUrl: "/assets/leds.jpg",
         link: "https://months-tap-da9.craft.me/UPIseOWDQQ2AAx",
