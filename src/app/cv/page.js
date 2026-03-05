@@ -448,9 +448,9 @@ export default function CVPage() {
               hybrid body lab, cornell tech · new york, ny
             </div>
             <p className="cv-summary">
-              explored sustainable e-textile fabrication by creating
-              biodegradable thermo-chromic conductive threads using a diy
-              wet-spinning process.
+              selected participant contributing to research on sustainable
+              e-textile fabrication, developing biodegradable thermo-chromic
+              conductive threads through a DIY wet-spinning process.
             </p>
           </div>
         </div>
