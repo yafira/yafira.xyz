@@ -236,6 +236,22 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">open hardware summit fellow</div>
+              <span className="cv-date">feb 2026-present</span>
+            </div>
+            <div className="cv-org">
+              open source hardware summit · berlin, germany
+            </div>
+            <p className="cv-summary">
+              selected as a 2026 fellow to exhibit my thesis project at nyu’s
+              interactive telecommunications program (itp),{" "}
+              <i>the soft computer</i>, along with additional experimental
+              open-source hardware and soft interface projects exploring tactile
+              computing and alternative interaction design.
+            </p>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">pocket oracle of time</div>
               <span className="cv-date">feb 2026-present</span>
             </div>
@@ -529,6 +545,10 @@ export default function CVPage() {
       <section className="cv-section honors">
         <h2 className="cv-heading">honors + awards</h2>
         <ul className="cv-bullets">
+          <li>
+            open hardware summit fellow, open source hardware association{" "}
+            <span className="cv-date-inline">2026</span>
+          </li>
           <li>
             o’reilly deij scholarship, o’reilly{" "}
             <span className="cv-date-inline">2024</span>
