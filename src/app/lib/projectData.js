@@ -108,6 +108,13 @@ const projectSections = {
   ],
   electronics: [
     {
+      title: "Puffcast",
+      imageUrl: "/assets/puffcast.png",
+      link: "https://months-tap-da9.craft.me/cIaDWsryPp9LdS",
+      description:
+        "A handmade craft foam controller for Philips Hue, inspired by soft foam novelty phones of the 80s-90s.",
+    },
+    {
       title: "Pocket Oracle of Time",
       imageUrl: "/assets/oracle.png",
       link: "https://months-tap-da9.craft.me/oracle",
