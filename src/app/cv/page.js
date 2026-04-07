@@ -236,6 +236,45 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">
+                guardians of the groceries (g.o.t.g.) — team awarded ☆ best of
+                software ☆
+              </div>
+              <span className="cv-date">apr 2026</span>
+            </div>
+            <div className="cv-org">
+              playfulnyc 2026 hackathon · parsons school of design · new york,
+              ny
+            </div>
+            <p className="cv-summary">
+              contributed to a handheld esp32-based device for documenting nyc
+              bodega cats — point the camera, press a soft conductive fabric
+              button, and the device captures a photo, uploads it to supabase
+              via wifi, and opens a new file in the g.o.t.g. registry. each
+              entry is browsable on the live site, where every cat has an alter
+              ego, a dossier of hidden powers, and a classified cuteness rating.
+            </p>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">enoki, focus companion</div>
+              <span className="cv-date">mar 2026</span>
+            </div>
+            <div className="cv-org">
+              hard mode: hardware x ai hackathon · mit · cambridge, ma
+            </div>
+            <p className="cv-summary">
+              built the software layer for <i>enoki</i>, a living focus
+              companion that thrives when you&apos;re on task and wilts when you
+              drift. designed the react native app, integrated mentra smart
+              glasses via the mentra sdk, and connected claude vision ai for
+              real-time attention detection, with a bun + hono backend handling
+              coaching nudges and session reflections.
+            </p>
+          </div>
+
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">open hardware summit fellow</div>
               <span className="cv-date">feb 2026-present</span>
             </div>
