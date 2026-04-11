@@ -236,6 +236,21 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">soft circuit library</div>
+              <span className="cv-date">apr 2026</span>
+            </div>
+            <div className="cv-org">
+              electronics faire (theme: repair) · temple university libraries
+            </div>
+            <p className="cv-summary">
+              a collection of handmade textile circuit boards organized as a
+              living archive, each designed to be handled, studied, and repaired
+              by touch. visible repair notes and patched connections treat
+              maintenance as part of the circuit&apos;s ongoing life.
+            </p>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">
                 guardians of the groceries (g.o.t.g.) — team awarded ☆ best of
                 software ☆
