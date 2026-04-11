@@ -633,7 +633,7 @@ export default function CVPage() {
           front-end / web (javascript, react, next.js, html/css) · ui/ux ·
           interaction design · git/github · creative coding (p5.js, ml5.js) ·
           data (sql, data analysis) · physical computing (arduino, raspberry pi,
-          adafruit/sparkfun) · fabrication (laser cutting, 3d modeling &
+          esp32, adafruit/sparkfun) · fabrication (laser cutting, 3d modeling &
           printing)
         </p>
       </section>
