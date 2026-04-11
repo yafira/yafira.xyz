@@ -276,7 +276,7 @@ export default function CVPage() {
               <span className="cv-date">mar 2026</span>
             </div>
             <div className="cv-org">
-              hard mode: hardware x ai hackathon · mit · cambridge, ma
+              hard mode: hardware x ai hackathon · mit media lab · cambridge, ma
             </div>
             <p className="cv-summary">
               built the software layer for <i>enoki</i>, a living focus
