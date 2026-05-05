@@ -26,7 +26,7 @@ const projectSections = {
       title: "TinkerThread",
       imageUrl: "/assets/tt.gif",
       link: "https://tinkerthread.netlify.app/",
-      description: "Circuit simulator made with JavaScript.",
+      description: "A circuit simulator for e-textiles and soft electronics.",
     },
 
     {
