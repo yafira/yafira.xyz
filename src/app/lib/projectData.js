@@ -2,6 +2,13 @@ import "@/app/styles/globals.css";
 const projectSections = {
   code: [
     {
+      title: "tinytinker.tools",
+      imageUrl: "/assets/tinytinker.png",
+      link: "https://tinytinker.tools",
+      description:
+        "A handmade web toolkit for makers & tinkerers. 22+ free, open source browser tools.",
+    },
+    {
       title: "Print + Code",
       imageUrl: "/assets/pc.png",
       link: "https://print-code.netlify.app/",
