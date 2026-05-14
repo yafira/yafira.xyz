@@ -115,6 +115,13 @@ const projectSections = {
   ],
   electronics: [
     {
+      title: "the soft computer",
+      imageUrl: "/assets/tsc.png",
+      link: "https://thesoft.computer/",
+      description:
+        "A textile-based computing object exploring calm technology, slow tech, and soft interfaces.",
+    },
+    {
       title: "ribbon_logic",
       imageUrl: "/assets/rlogic.png",
       link: "https://months-tap-da9.craft.me/ribbon-logic",
