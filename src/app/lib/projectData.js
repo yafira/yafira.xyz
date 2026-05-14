@@ -115,6 +115,13 @@ const projectSections = {
   ],
   electronics: [
     {
+      title: "ribbon_logic",
+      imageUrl: "/assets/rlogic.png",
+      link: "https://months-tap-da9.craft.me/ribbon-logic",
+      description:
+        "A handheld poetry generator that creates generative text based on Markov chains.",
+    },
+    {
       title: "Puffcast",
       imageUrl: "/assets/puffcast.png",
       link: "https://months-tap-da9.craft.me/cIaDWsryPp9LdS",
