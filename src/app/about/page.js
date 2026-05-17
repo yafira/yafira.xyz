@@ -1,6 +1,10 @@
 import Image from "next/image";
 import MobileBack from "@/app/components/MobileBack";
 
+export const metadata = {
+  title: "Yafira  ✿",
+};
+
 /* eslint-disable react/no-unescaped-entities */
 export default function AboutPage() {
   return (
@@ -39,12 +43,12 @@ export default function AboutPage() {
 
         {/* Current Work */}
         <p>
-          Currently, I'm a graduate student at NYU's Interactive
-          Telecommunications Program (ITP), where I experiment with physical
-          computing, web development, creative coding, fabrication, and
-          interaction design. My work lives at the expressive overlap of
-          technology and art, spanning front-end development, UX/UI/product
-          design, and playful, tactile computing.
+          I recently completed my master's degree at NYU's Interactive
+          Telecommunications Program (ITP), where I explored physical computing,
+          web development, creative coding, fabrication, and interaction design.
+          My work lives at the expressive overlap of technology and art,
+          spanning front-end development, UX/UI/product design, and playful,
+          tactile computing.
         </p>
 
         {/* Philosophy */}
