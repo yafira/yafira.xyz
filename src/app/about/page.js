@@ -2,7 +2,7 @@ import Image from "next/image";
 import MobileBack from "@/app/components/MobileBack";
 
 export const metadata = {
-  title: "Yafira  ✿",
+  title: "yafira.xyz",
 };
 
 /* eslint-disable react/no-unescaped-entities */
