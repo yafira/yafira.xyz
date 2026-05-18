@@ -30,7 +30,7 @@ export default function ContactPage() {
 
 				<a
 					className='contact-button'
-					href='mailto:ym3317@nyu.edu'
+					href='mailto:yafira@proton.me'
 					aria-label='send me an email'
 				>
 					<Mail size={18} aria-hidden='true' />
