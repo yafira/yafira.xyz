@@ -37,9 +37,28 @@ export default function CVPage() {
               <div className="cv-role">
                 <div className="cv-role-meta">
                   <div className="cv-role-title">
-                    graduate assistant, intro to wearables
+                    lead camp counselor, itp camp
                   </div>
-                  <span className="cv-role-date">jan 2026 – present</span>
+                  <span className="cv-role-date">may 2026 - present</span>
+                </div>
+                <p className="cv-summary">
+                  supporting 150+ participants at nyu’s itp camp by providing
+                  hands-on technical help, mentoring counselors, running
+                  workshops, coordinating events, and producing the final
+                  showcase.
+                </p>
+                <p className="cv-skills">
+                  <span className="label">skills:</span> community support,
+                  event coordination, technical assistance
+                </p>
+              </div>
+
+              <div className="cv-role">
+                <div className="cv-role-meta">
+                  <div className="cv-role-title">
+                    teaching assistant, intro to wearables
+                  </div>
+                  <span className="cv-role-date">jan 2026 – may 2026</span>
                 </div>
                 <p className="cv-summary">
                   supporting instruction for an introductory wearables and
@@ -62,7 +81,7 @@ export default function CVPage() {
                     web application developer & designer, useless machines
                     archive
                   </div>
-                  <span className="cv-role-date">mar 2025 – present</span>
+                  <span className="cv-role-date">mar 2025 – may 2026</span>
                 </div>
                 <p className="cv-summary">
                   leading development and design of a digital archive for nyu
@@ -82,7 +101,7 @@ export default function CVPage() {
                   <div className="cv-role-title">
                     lead web developer, equitable syllabus project
                   </div>
-                  <span className="cv-role-date">nov 2024 – present</span>
+                  <span className="cv-role-date">nov 2024 – may 2026</span>
                 </div>
                 <p className="cv-summary">
                   designing and developing a platform to support faculty in
@@ -98,7 +117,7 @@ export default function CVPage() {
               <div className="cv-role">
                 <div className="cv-role-meta">
                   <div className="cv-role-title">
-                    graduate assistant, creative computing
+                    teaching assistant, creative computing
                   </div>
                   <span className="cv-role-date">sep 2025 – dec 2025</span>
                 </div>
@@ -119,7 +138,7 @@ export default function CVPage() {
                   <div className="cv-role-title">
                     research assistant, computational text
                   </div>
-                  <span className="cv-role-date">may – aug 2025</span>
+                  <span className="cv-role-date">may 2025 – aug 2025</span>
                 </div>
                 <p className="cv-summary">
                   assisted Professor Daniel Shiffman in his course{" "}
@@ -137,7 +156,7 @@ export default function CVPage() {
               <div className="cv-role">
                 <div className="cv-role-meta">
                   <div className="cv-role-title">camp counselor, itp camp</div>
-                  <span className="cv-role-date">jun – jul 2025</span>
+                  <span className="cv-role-date">jun 2025 – jul 2025</span>
                 </div>
                 <p className="cv-summary">
                   supported 150+ participants at nyu’s itp camp by providing
@@ -164,7 +183,7 @@ export default function CVPage() {
                   ml5.js
                 </a>
               </div>
-              <span className="cv-date">jun 2025 – present</span>
+              <span className="cv-date">jun 2025 – may 2026</span>
             </div>
 
             <div className="cv-roles">
@@ -173,7 +192,7 @@ export default function CVPage() {
                   <div className="cv-role-title">
                     ml5.js researcher, speech-to-text
                   </div>
-                  <span className="cv-role-date">sep 2025 – present</span>
+                  <span className="cv-role-date">sep 2025 – may 2026</span>
                 </div>
                 <p className="cv-summary">
                   researching and prototyping speech-to-text models with the
@@ -214,7 +233,7 @@ export default function CVPage() {
               <div className="cv-title">
                 software engineer & creative technologist intern, floreo labs
               </div>
-              <span className="cv-date">jan – may 2020</span>
+              <span className="cv-date">jan 2020 – may 2020</span>
             </div>
             <p className="cv-summary">
               developed responsive front-end applications in react.js, designed
@@ -291,7 +310,7 @@ export default function CVPage() {
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">open hardware summit fellow</div>
-              <span className="cv-date">feb 2026-present</span>
+              <span className="cv-date">feb 2026 - present</span>
             </div>
             <div className="cv-org">
               open source hardware summit · berlin, germany
@@ -307,7 +326,7 @@ export default function CVPage() {
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">pocket oracle of time</div>
-              <span className="cv-date">feb 2026-present</span>
+              <span className="cv-date">feb 2026 - apr 2026</span>
             </div>
             <div className="cv-org">
               horological society of new york (hsny) · new york, ny
