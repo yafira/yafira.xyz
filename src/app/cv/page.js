@@ -538,7 +538,7 @@ export default function CVPage() {
               <div className="cv-title">
                 mps, interactive telecommunications program (itp)
               </div>
-              <span className="cv-date">expected may 2026</span>
+              <span className="cv-date">may 2026</span>
             </div>
             <div className="cv-org">
               new york university, tisch school of the arts
