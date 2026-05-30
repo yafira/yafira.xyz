@@ -545,8 +545,8 @@ export default function CVPage() {
             </div>
             <div className="cv-affiliations">
               <strong>affiliations:</strong> ml5.js (web/community/research) ·
-              equitable syllabus project (web/research) · adjacent (editor/web)
-              · nyu ability lab (vertically integrated project;
+              itp camp · equitable syllabus project (web/research) · adjacent
+              (editor/web) · nyu ability lab (vertically integrated project;
               accessibility-focused design, fabrication, and hardware/software
               tool prototyping for fashion and assistive technology)
             </div>
