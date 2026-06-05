@@ -3,14 +3,12 @@ import Link from "next/link";
 import "./styles/globals.css";
 import "./styles/styles.css";
 import "./styles/mobile.css";
-
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  // leave zoom enabled for a11y (don’t set maximumScale unless necessary)
 };
-
 export const metadata = {
+  title: "Yafira ✿",
   icons: {
     icon: [
       { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
@@ -23,9 +21,7 @@ export const metadata = {
   applicationName: "Yafira ✿",
   appleWebApp: { title: "Yafira ✿" },
 };
-
 const pixelifySans = Pixelify_Sans({ weight: "400", subsets: ["latin"] });
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
