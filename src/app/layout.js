@@ -20,8 +20,8 @@ export const metadata = {
     apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
   },
   manifest: "/site.webmanifest",
-  applicationName: "my-website",
-  appleWebApp: { title: "Yafira" },
+  applicationName: "Yafira ✿",
+  appleWebApp: { title: "Yafira ✿" },
 };
 
 const pixelifySans = Pixelify_Sans({ weight: "400", subsets: ["latin"] });
