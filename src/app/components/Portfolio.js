@@ -37,6 +37,13 @@ export default function Portfolio() {
           "A handmade web toolkit for makers & tinkerers. 22+ free, open source browser tools.",
       },
       {
+        title: "NYU ITP's Equitable Syllabus Project",
+        imageUrl: "/assets/esp.gif",
+        link: "https://itp.nyu.edu/esp#/",
+        description:
+          "A redesigned and rebuilt website for the Equitable Syllabus Project, developed with Next.js.",
+      },
+      {
         title: "Print + Code",
         imageUrl: "/assets/pc.png",
         link: "https://print-code.netlify.app/",
