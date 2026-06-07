@@ -273,17 +273,17 @@ export default function CVPage() {
 
           <div className="cv-item">
             <div className="cv-meta">
-              <div className="cv-title">the soft computer</div>
+              <div className="cv-title">the soft computer mini</div>
               <span className="cv-date">may 2026</span>
             </div>
             <div className="cv-org">
-              nyu itp graduate thesis · open hardware summit · berlin, germany
+              nyu itp thesis · open hardware summit · berlin, germany
             </div>
             <p className="cv-summary">
-              presented a textile-based computing object combining machine-knit
-              wool, capacitive fabric inputs, haptics, and a flexible e-ink
-              display driven by markov chain text generation across four
-              corpus-mapped channels.
+              selected as a 2026 open hardware summit fellow and presented the
+              soft computer mini — a travel-ready extension of my itp thesis
+              exploring embodied input, generative text, and textile as
+              substrate, compressed into a tarot-sized device.
             </p>
           </div>
 
