@@ -255,6 +255,40 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">petalbyte</div>
+              <span className="cv-date">jun 2026</span>
+            </div>
+            <div className="cv-org">
+              bring your own data (byod): a creative tech potluck · ny tech week
+              · brooklyn, ny
+            </div>
+            <p className="cv-summary">
+              showcased a portable generative text device built with a raspberry
+              pi and python/pygame that reads and generates poetic text from a
+              flower-shaped laser-cut acrylic usb drive — treating local,
+              personal writing and text corpora as both archive and interface
+              for electronic text.
+            </p>
+          </div>
+
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">the soft computer</div>
+              <span className="cv-date">may 2026</span>
+            </div>
+            <div className="cv-org">
+              nyu itp graduate thesis · open hardware summit · berlin, germany
+            </div>
+            <p className="cv-summary">
+              presented a textile-based computing object combining machine-knit
+              wool, capacitive fabric inputs, haptics, and a flexible e-ink
+              display driven by markov chain text generation across four
+              corpus-mapped channels.
+            </p>
+          </div>
+
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">soft circuit library</div>
               <span className="cv-date">apr 2026</span>
             </div>
@@ -332,7 +366,7 @@ export default function CVPage() {
               horological society of new york (hsny) · new york, ny
             </div>
             <p className="cv-summary">
-              Exhibiting a handheld timekeeping device combining a real-time
+              exhibited a handheld timekeeping device combining a real-time
               clock and e-ink display with poetic prompts that appear throughout
               the day, reframing time as an emotional and reflective experience
               rather than a purely mechanical measure.
