@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
 import { isEmbeddable } from "./IframePanel";
@@ -20,12 +20,19 @@ const ProjectBox = ({
   badge,
 }) => {
   const [panelUrl, setPanelUrl] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia("(max-width: 640px)").matches);
+  }, []);
 
   const isDesign =
     category === "design" || (links && Object.keys(links).length > 0);
 
   const handleClick = (e, url) => {
     if (!url) return;
+    // on mobile, let the browser open in new tab as normal
+    if (isMobile) return;
     if (isEmbeddable(url)) {
       e.preventDefault();
       setPanelUrl(url);
@@ -39,7 +46,7 @@ const ProjectBox = ({
           (v) => typeof v === "string" && v.startsWith("http"),
         )
       : null);
-  const showLaunchBtn = primaryLink && category !== "text";
+  const showLaunchBtn = primaryLink && category !== "text" && !isMobile;
 
   const panel =
     panelUrl && typeof document !== "undefined"
