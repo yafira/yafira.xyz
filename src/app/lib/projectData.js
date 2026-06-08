@@ -122,6 +122,13 @@ const projectSections = {
   ],
   electronics: [
     {
+      title: "PetalByte",
+      imageUrl: "/assets/petalbyte.png",
+      link: "https://months-tap-da9.craft.me/petalbyte",
+      description:
+        "A flower-shaped laser-cut USB drive and generative text device running a custom pygame file explorer on a Raspberry Pi.",
+    },
+    {
       title: "the soft computer",
       imageUrl: "/assets/tsc.png",
       link: "https://thesoft.computer/",
@@ -198,13 +205,6 @@ const projectSections = {
       link: "https://electrocuteitp.wordpress.com/2025/03/07/cute-functional-objects-series-tinkerstation-a-compact-hub-for-electronics-projects/",
       description:
         "A compact organizer for neatly storing electronic components.",
-    },
-    {
-      title: "PetalByte",
-      imageUrl: "/assets/petalbyte.png",
-      link: "https://electrocuteitp.wordpress.com/2025/02/21/cute-functional-objects-series-a-flower-shape-enclosure-for-my-2gb-usb-memory-stick/",
-      description:
-        "An iridescent, flower-shaped USB enclosure that organizes file storage with style.",
     },
     {
       title: "Trinket Swivel Box",
