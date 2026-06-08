@@ -192,7 +192,7 @@ export default function CVPage() {
                   <div className="cv-role-title">
                     ml5.js researcher, speech-to-text
                   </div>
-                  <span className="cv-role-date">sep 2025 – may 2026</span>
+                  <span className="cv-role-date">sep 2025 – dec 2025</span>
                 </div>
                 <p className="cv-summary">
                   researching and prototyping speech-to-text models with the
