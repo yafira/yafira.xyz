@@ -26,7 +26,7 @@ export default function Portfolio() {
   const isMobile = useMediaQuery("(max-width: 640px)");
   if (!mounted) return null;
 
-  // Shared data: project sections (used by both views)
+  // shared data: project sections (used by both views)
   const projectSections = {
     code: [
       {
@@ -264,7 +264,7 @@ export default function Portfolio() {
   return <DesktopPortfolioView projectSections={projectSections} />;
 }
 
-/* -------------------- MOBILE VIEW -------------------- */
+/* MOBILE VIEW  */
 function MobilePortfolioView({ projectSections }) {
   const [active, setActive] = useState(null);
   const [showFlowerMenu, setShowFlowerMenu] = useState(false);

@@ -270,7 +270,6 @@ export default function CVPage() {
               for electronic text.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">the soft computer mini</div>
@@ -284,6 +283,27 @@ export default function CVPage() {
               soft computer mini — a travel-ready extension of my itp thesis
               exploring embodied input, generative text, and textile as
               substrate, compressed into a tarot-sized device.
+            </p>
+          </div>
+
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">the soft computer</div>
+              <span className="cv-date">may 2026</span>
+            </div>
+
+            <div className="cv-org">
+              master&apos;s thesis · interactive telecommunications program
+              (itp)
+              <br />
+              nyu tisch school of the arts
+            </div>
+
+            <p className="cv-summary">
+              a textile-based computing interface combining machine-knit wool,
+              capacitive fabric inputs, haptics, and a flexible e-ink display.
+              powered by a raspberry pi 5, the system generates text using
+              markov chains across four corpus-mapped channels.
             </p>
           </div>
 
@@ -340,7 +360,6 @@ export default function CVPage() {
               coaching nudges and session reflections.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">open hardware summit fellow</div>
@@ -372,7 +391,6 @@ export default function CVPage() {
               rather than a purely mechanical measure.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">moon pocket</div>
@@ -388,7 +406,6 @@ export default function CVPage() {
               renders it on a round TFT display through touch-based interaction.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">print + code gallery</div>
@@ -403,7 +420,6 @@ export default function CVPage() {
               publishing.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
@@ -421,7 +437,6 @@ export default function CVPage() {
               through handcrafted circuitry.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
@@ -437,7 +452,6 @@ export default function CVPage() {
               human-centered interfaces.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
@@ -454,7 +468,6 @@ export default function CVPage() {
               contributing geospatial analysis and collaborative design work.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
@@ -483,7 +496,6 @@ export default function CVPage() {
               writers, and digital artists.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">static chic</div>
@@ -499,7 +511,6 @@ export default function CVPage() {
               e-textiles open mic curated by kari love and liza stark.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">rejects, a benefit auction</div>
@@ -513,7 +524,6 @@ export default function CVPage() {
               prototypes and creative misfires.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">soft glitch, e-textile swatch</div>
@@ -528,7 +538,6 @@ export default function CVPage() {
               through texture and light.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">mit reality hack 2025</div>
@@ -543,7 +552,6 @@ export default function CVPage() {
               pre-flight safety through visual interaction analysis.
             </p>
           </div>
-
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
