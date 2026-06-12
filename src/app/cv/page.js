@@ -43,9 +43,9 @@ export default function CVPage() {
                 </div>
                 <p className="cv-summary">
                   supporting 150+ participants at nyu’s itp camp by providing
-                  hands-on technical help, mentoring counselors, running
-                  workshops, coordinating events, and producing the final
-                  showcase.
+                  hands-on technical help, mentoring first-year counselors
+                  across day-to-day camp operations, coordinating events, and
+                  producing the final showcase.
                 </p>
                 <p className="cv-skills">
                   <span className="label">skills:</span> community support,
