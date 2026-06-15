@@ -69,6 +69,16 @@ const projectSections = {
   ],
   design: [
     {
+      title: "Lumi",
+      imageUrl: "/assets/lumi-preview.gif",
+      description:
+        "A speculative wearable and companion app for migraine prodrome detection, designed and built end-to-end in React and TypeScript.",
+      links: {
+        prototype: "https://lumi-wearable.vercel.app",
+        casestudy: "https://lumi-case-study.vercel.app",
+      },
+    },
+    {
       title: "Department of Lost Circuits",
       imageUrl: "/assets/dlc.gif",
       link: "https://lost-circuits.netlify.app/",
