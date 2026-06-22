@@ -9,6 +9,19 @@ export const viewport = {
 };
 export const metadata = {
   title: "Yafira ✿",
+  openGraph: {
+    images: [
+      {
+        url: "/assets/flower-network-logo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/assets/flower-network-logo.png"],
+  },
   icons: {
     icon: [
       { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
