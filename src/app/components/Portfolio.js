@@ -30,6 +30,13 @@ export default function Portfolio() {
   const projectSections = {
     code: [
       {
+        title: "Spot Mapper",
+        imageUrl: "/assets/spot-mapper.gif",
+        link: "https://spot-mapper.vercel.app",
+        description:
+          "A collaborative map tool for spot assignments at exhibitions and events. Built with Leaflet and SheetJS for ITP Camp.",
+      },
+      {
         title: "tinytinker.tools",
         imageUrl: "/assets/tinytinker.png",
         link: "https://tinytinker.tools",
