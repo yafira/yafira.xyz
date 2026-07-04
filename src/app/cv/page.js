@@ -39,7 +39,7 @@ export default function CVPage() {
                   <div className="cv-role-title">
                     lead camp counselor, itp camp
                   </div>
-                  <span className="cv-role-date">may 2026 - present</span>
+                  <span className="cv-role-date">may 2026 - jul 2026</span>
                 </div>
                 <p className="cv-summary">
                   supporting 150+ participants at nyu’s itp camp by providing
