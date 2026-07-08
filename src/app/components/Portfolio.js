@@ -6,9 +6,6 @@ import { ChevronDown } from "lucide-react";
 import ProjectBox from "@/app/components/ProjectBox";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 
-const WP_API =
-  "https://electrocuteblog.wordpress.com/wp-json/wp/v2/posts?per_page=12&_embed";
-
 export default function Portfolio() {
   // wait for client mount to avoid ssr/client mismatch
   const [mounted, setMounted] = useState(false);
@@ -272,7 +269,7 @@ export default function Portfolio() {
           "E-textile tote bag exploring jute fiber and conductive materials.",
       },
     ],
-    text: [], // will be populated from WordPress (blogPosts)
+    text: [], // will be populated from the blog API (blogPosts)
   };
 
   if (isMobile) {
@@ -435,7 +432,7 @@ function MobilePortfolioView({ projectSections }) {
           {active === "text" && (
             <div className="mobile-blog-shortcuts">
               <a
-                href="https://electrocuteblog.wordpress.com/"
+                href="https://blog.electrocute.io/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-btn electrocute"
@@ -461,7 +458,7 @@ function MobilePortfolioView({ projectSections }) {
   );
 }
 
-/* -------------------- DESKTOP/TABLET VIEW -------------------- */
+/* DESKTOP/TABLET VIEW */
 function DesktopPortfolioView({ projectSections }) {
   const [activeSection, setActiveSection] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -797,7 +794,7 @@ function DesktopPortfolioView({ projectSections }) {
             <nav className="posts-all" aria-label="more">
               <span className="posts-all-label">more:</span>
               <a
-                href="https://electrocuteblog.wordpress.com/"
+                href="https://blog.electrocute.io/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-btn electrocute"
