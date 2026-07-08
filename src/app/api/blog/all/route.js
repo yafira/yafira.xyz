@@ -3,7 +3,7 @@ export const revalidate = 900; // 15 min
 export const runtime = 'nodejs';
 
 const SITES = [
-	{ host: 'electrocuteblog.wordpress.com', label: 'electrocute' },
+	{ host: 'https://blog.electrocute.io/', label: 'electrocute' },
 	{ host: 'electrocuteitp.wordpress.com', label: 'itp' },
 ];
 
