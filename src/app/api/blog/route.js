@@ -2,7 +2,6 @@ export const revalidate = 300;
 export const runtime = "nodejs";
 
 const WP_SITES = [{ host: "electrocuteitp.wordpress.com", label: "itp" }];
-
 const ELECTROCUTE_POSTS_URL = "https://blog.electrocute.io/api/posts.json";
 
 const EXTERNAL = [
@@ -20,7 +19,10 @@ const PER_SITE = 3;
 
 async function fetchWpSite(host, label) {
   const url = `https://public-api.wordpress.com/wp/v2/sites/${host}/posts?per_page=${PER_SITE}&orderby=date&order=desc&${FIELDS}`;
-  const res = await fetch(url, { headers: { Accept: "application/json" } });
+  const res = await fetch(url, {
+    headers: { Accept: "application/json" },
+    next: { revalidate: 300 },
+  });
   if (!res.ok) return [];
   const posts = await res.json();
   return posts.map((p) => ({
@@ -33,14 +35,23 @@ async function fetchWpSite(host, label) {
 }
 
 async function fetchElectrocutePosts() {
-  const res = await fetch(ELECTROCUTE_POSTS_URL, {
-    headers: { Accept: "application/json" },
-  });
-  if (!res.ok) return [];
-  const posts = await res.json();
-  return posts
-    .slice(0, PER_SITE)
-    .map((p) => ({ ...p, siteLabel: "electrocute" }));
+  try {
+    const res = await fetch(ELECTROCUTE_POSTS_URL, {
+      headers: { Accept: "application/json" },
+      cache: "no-store", // bypass any stale cached failure, force a fresh hit
+    });
+    if (!res.ok) {
+      console.error("electrocute fetch failed", res.status, await res.text());
+      return [];
+    }
+    const posts = await res.json();
+    return posts
+      .slice(0, PER_SITE)
+      .map((p) => ({ ...p, siteLabel: "electrocute" }));
+  } catch (err) {
+    console.error("electrocute fetch threw", err);
+    return [];
+  }
 }
 
 export async function GET() {
@@ -49,15 +60,12 @@ export async function GET() {
       fetchElectrocutePosts(),
       ...WP_SITES.map(({ host, label }) => fetchWpSite(host, label)),
     ]);
-
     const merged = [electrocutePosts, ...wpResults]
       .flat()
       .concat(EXTERNAL)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
-
     const MAX = 8;
     const trimmed = merged.slice(0, MAX);
-
     return new Response(JSON.stringify(trimmed), {
       status: 200,
       headers: {
