@@ -255,6 +255,22 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">
+                soft circuit boards (scbs) workshop
+              </div>
+              <span className="cv-date">jun 2026</span>
+            </div>
+            <div className="cv-org">itp camp · nyu</div>
+            <p className="cv-summary">
+              designed + taught a hands-on workshop on handmade circuits: copper
+              tape traces, craft foam boards, LEDs — no soldering, no experience
+              needed. developed through soft interfaces, an extension of my
+              creative practice electrocute lab, and grown from the soft circuit
+              library (exhibited at the electronics faire, temple university)
+            </p>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">petalbyte</div>
               <span className="cv-date">jun 2026</span>
             </div>
