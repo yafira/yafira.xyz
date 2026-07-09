@@ -19,6 +19,17 @@ const projectSections = {
         "A handmade web toolkit for makers & tinkerers. 22+ free, open source browser tools.",
     },
     {
+      title: "electrocute-ui",
+      imageUrl: "/assets/ecuteui.gif",
+      description:
+        "Design system and React component library for Electrocute Lab — tokens, 8 components, and a live Storybook. Published on npm.",
+      links: {
+        site: "https://electrocute-ui.vercel.app",
+        npm: "https://www.npmjs.com/package/electrocute-ui",
+        github: "https://github.com/yafira/electrocute-ui",
+      },
+    },
+    {
       title: "NYU ITP's Equitable Syllabus Project",
       imageUrl: "/assets/esp.gif",
       link: "https://itp.nyu.edu/esp#/",
