@@ -45,7 +45,7 @@ export default function Portfolio() {
       },
       {
         title: "electrocute-ui",
-        imageUrl: "/assets/ecuteui.png",
+        imageUrl: "/assets/ecuteui.gif",
         description:
           "Design system and React component library for Electrocute Lab — tokens, 8 components, and a live Storybook. Published on npm.",
         links: {
