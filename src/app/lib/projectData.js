@@ -4,9 +4,12 @@ const projectSections = {
     {
       title: "Spot Mapper",
       imageUrl: "/assets/spot-mapper.gif",
-      link: "https://spot-mapper.vercel.app",
       description:
-        "A collaborative map tool for spot assignments at exhibitions and events. Built with Leaflet and SheetJS for ITP Camp.",
+        "A real-time collaborative floor plan tool for event spot assignments — built with Leaflet and Vercel KV for 150+ participants at ITP Camp's Show All Things Show.",
+      links: {
+        demo: "https://spot-mapper.vercel.app",
+        casestudy: "https://spot-mapper-case-study.vercel.app",
+      },
     },
     {
       title: "tinytinker.tools",
