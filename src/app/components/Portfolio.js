@@ -44,6 +44,17 @@ export default function Portfolio() {
           "A handmade web toolkit for makers & tinkerers. 22+ free, open source browser tools.",
       },
       {
+        title: "electrocute-ui",
+        imageUrl: "/assets/ecuteui.png",
+        description:
+          "Design system and React component library for Electrocute Lab — tokens, 8 components, and a live Storybook. Published on npm.",
+        links: {
+          site: "https://electrocute-ui.vercel.app",
+          npm: "https://www.npmjs.com/package/electrocute-ui",
+          github: "https://github.com/yafira/electrocute-ui",
+        },
+      },
+      {
         title: "NYU ITP's Equitable Syllabus Project",
         imageUrl: "/assets/esp.gif",
         link: "https://itp.nyu.edu/esp#/",
@@ -418,7 +429,7 @@ function MobilePortfolioView({ projectSections }) {
                           href={lnk.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="link-btn" // ← now inherits --accent color
+                          className="link-btn"
                         >
                           {lnk.label}
                         </a>
@@ -472,8 +483,8 @@ function DesktopPortfolioView({ projectSections }) {
   const [blogError, setBlogError] = useState(null);
 
   const [active, setActive] = useState(null);
-  const [showFlowerMenu, setShowFlowerMenu] = useState(false); // <-- add
-  const closeMenu = () => setShowFlowerMenu(false); // <-- add
+  const [showFlowerMenu, setShowFlowerMenu] = useState(false);
+  const closeMenu = () => setShowFlowerMenu(false);
   const listRef = useRef(null);
 
   const svgRef = useRef(null);
@@ -788,6 +799,7 @@ function DesktopPortfolioView({ projectSections }) {
                   {...item}
                   category={activeSection}
                   badge={activeSection === "text" ? item.siteLabel : undefined}
+                  showLinksAlways
                 />
               ))}
             </div>
