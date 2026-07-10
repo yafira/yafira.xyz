@@ -5,7 +5,7 @@ const projectSections = {
       title: "Spot Mapper",
       imageUrl: "/assets/spot-mapper.gif",
       description:
-        "A real-time collaborative floor plan tool for event spot assignments — built with Leaflet and Vercel KV for 150+ participants at ITP Camp's Show All Things Show.",
+        "A real-time collaborative floor plan tool for event spot assignments — built with Leaflet and Vercel KV for 150+ participants at ITP Camp's Showcase.",
       links: {
         demo: "https://spot-mapper.vercel.app",
         casestudy: "https://spot-mapper-case-study.vercel.app",
