@@ -7,11 +7,10 @@ import ProjectBox from "@/app/components/ProjectBox";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 
 export default function Portfolio() {
-  // wait for client mount to avoid ssr/client mismatch
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // lock page scroll while the homepage (portfolio) is mounted
+  // Lock page scroll on mount
   useEffect(() => {
     const html = document.documentElement;
     html.classList.add("home-locked");
@@ -23,14 +22,13 @@ export default function Portfolio() {
   const isMobile = useMediaQuery("(max-width: 640px)");
   if (!mounted) return null;
 
-  // shared data: project sections (used by both views)
   const projectSections = {
     code: [
       {
         title: "Spot Mapper",
         imageUrl: "/assets/spot-mapper.gif",
         description:
-          "A real-time collaborative floor plan tool for event spot assignments — built with Leaflet and Vercel KV for 150+ participants at ITP Camp's Show All Things Show.",
+          "A real-time collaborative floor plan tool for event spot assignments. Built with Leaflet and Vercel KV for 150+ participants at ITP Camp's Show All Things Show.",
         links: {
           demo: "https://spot-mapper.vercel.app",
           casestudy: "https://spot-mapper-case-study.vercel.app",
@@ -47,7 +45,7 @@ export default function Portfolio() {
         title: "electrocute-ui",
         imageUrl: "/assets/ecuteui.gif",
         description:
-          "Design system and React component library for Electrocute Lab — tokens, 8 components, and a live Storybook. Published on npm.",
+          "Design system and React component library for Electrocute Lab: tokens, 8 components, and a live Storybook. Published on npm.",
         links: {
           site: "https://electrocute-ui.vercel.app",
           npm: "https://www.npmjs.com/package/electrocute-ui",
@@ -81,7 +79,6 @@ export default function Portfolio() {
         link: "https://tinkerthread.netlify.app/",
         description: "A circuit simulator for e-textiles and soft electronics.",
       },
-
       {
         title: "Scribble Pop",
         imageUrl: "/assets/scribble.gif",
@@ -283,7 +280,7 @@ export default function Portfolio() {
           "E-textile tote bag exploring jute fiber and conductive materials.",
       },
     ],
-    text: [], // will be populated from the blog API (blogPosts)
+    text: [],
   };
 
   if (isMobile) {
@@ -292,7 +289,7 @@ export default function Portfolio() {
   return <DesktopPortfolioView projectSections={projectSections} />;
 }
 
-/* MOBILE VIEW  */
+/* MOBILE VIEW */
 function MobilePortfolioView({ projectSections }) {
   const [active, setActive] = useState(null);
   const [showFlowerMenu, setShowFlowerMenu] = useState(false);
@@ -321,7 +318,7 @@ function MobilePortfolioView({ projectSections }) {
   const items = active ? (projectSections[active] ?? []) : [];
 
   const handleSelect = (id) => {
-    setShowFlowerMenu(false); // close site menu if open
+    setShowFlowerMenu(false);
     setActive((prev) => (prev === id ? null : id));
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -351,7 +348,6 @@ function MobilePortfolioView({ projectSections }) {
           </button>
         ))}
 
-        {/* 6th tile: flower (always rendered) */}
         <button
           type="button"
           className={`chip-btn flower-mobile-tile ${
@@ -375,7 +371,6 @@ function MobilePortfolioView({ projectSections }) {
         </button>
       </div>
 
-      {/* mini menu (about / cv / contact) */}
       {showFlowerMenu && !active && (
         <nav className="flower-menu" aria-label="site">
           <button
@@ -472,7 +467,7 @@ function MobilePortfolioView({ projectSections }) {
   );
 }
 
-/* DESKTOP/TABLET VIEW */
+/* DESKTOP VIEW */
 function DesktopPortfolioView({ projectSections }) {
   const [activeSection, setActiveSection] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -498,7 +493,7 @@ function DesktopPortfolioView({ projectSections }) {
     text: "var(--text-color)",
   };
 
-  // fetch blog posts (desktop only)
+  // Fetch blog posts
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -648,7 +643,6 @@ function DesktopPortfolioView({ projectSections }) {
             </div>
           </div>
 
-          {/* 5 category nodes */}
           <div
             className={`line-box box1 ${
               activeSection === "code" ? "active" : ""

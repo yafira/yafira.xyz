@@ -1,4 +1,3 @@
-/* global reset */
 * {
   margin: 0;
   padding: 0;
@@ -46,6 +45,74 @@ body {
   display: none;
 }
 
+/* Fix cut-off pill buttons on desktop cards */
+.projects-drawer-grid > div {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100% !important;
+  padding-bottom: 24px !important; /* Prevents pill items from getting cut off */
+  box-sizing: border-box !important;
+}
+
+/* Align and wrap pill action rows at the bottom */
+.projects-drawer-grid div[class*="actions"],
+.projects-drawer-grid div[class*="links"] {
+  margin-top: auto !important; /* Pushes links container to absolute bottom */
+  display: flex !important;
+  flex-wrap: wrap !important; /* Allows multiple buttons to break cleanly into rows */
+  justify-content: center !important;
+  gap: 8px !important;
+  padding-top: 16px !important;
+  width: 100% !important;
+}
+
+/* Match the exact design theme pill styles */
+.projects-drawer-grid div[class*="actions"] a,
+.projects-drawer-grid div[class*="links"] a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px 14px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 9999px !important; /* Perfectly rounded pill shapes */
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+}
+
+/* Code section button color theme override */
+.projects-drawer[data-section="code"] div[class*="actions"] a,
+.projects-drawer[data-section="code"] div[class*="links"] a {
+  background-color: #e8f5e9 !important; /* Soft light green background */
+  color: #2e7d32 !important; /* Dark green readable text */
+  border-color: #c8e6c9 !important;
+}
+
+.projects-drawer[data-section="code"] div[class*="actions"] a:hover,
+.projects-drawer[data-section="code"] div[class*="links"] a:hover {
+  background-color: #c8e6c9 !important;
+}
+
+/* Design section button color theme override */
+.projects-drawer[data-section="design"] div[class*="actions"] a,
+.projects-drawer[data-section="design"] div[class*="links"] a {
+  background-color: #fce7f3 !important; /* Soft pink background */
+  color: #9d174d !important; /* Dark pink readable text */
+  border-color: #fbcfe8 !important;
+}
+
+.projects-drawer[data-section="design"] div[class*="actions"] a:hover,
+.projects-drawer[data-section="design"] div[class*="links"] a:hover {
+  background-color: #fbcfe8 !important;
+}
+
+/* Mobile responsive styles */
 @media (max-width: 640px) {
   .flower-network,
   .image-box,
