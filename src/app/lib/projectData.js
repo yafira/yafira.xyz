@@ -24,7 +24,7 @@ const projectSections = {
       description:
         "Design system and React component library for Electrocute Lab — tokens, 8 components, and a live Storybook. Published on npm.",
       links: {
-        site: "https://electrocute-ui.vercel.app",
+        site: "https://ui.electrocute.io",
         npm: "https://www.npmjs.com/package/electrocute-ui",
         github: "https://github.com/yafira/electrocute-ui",
       },
