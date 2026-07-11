@@ -291,6 +291,7 @@ body {
     margin: 0 !important;
     padding: 0 !important;
     display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     row-gap: 10px !important;
   }
 
@@ -300,9 +301,10 @@ body {
 
   /* row card */
   .mobile-row {
-    display: grid !important;
-    grid-template-columns: 1fr auto !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
     align-items: center !important;
+    justify-content: space-between !important;
     gap: 8px !important;
     padding: 10px !important;
     background: #fff !important;
@@ -310,6 +312,8 @@ body {
     border-radius: 14px !important;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04) !important;
     position: relative !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
   }
 
   .mobile-row::before {
@@ -342,6 +346,9 @@ body {
     display: inline-flex !important;
     align-items: center !important;
     gap: 10px !important;
+    flex: 1 1 12ch !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
   }
 
   .row-thumb {
@@ -356,6 +363,9 @@ body {
     font-weight: 800;
     font-size: 0.98rem;
     color: #111;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .row-actions {
@@ -363,6 +373,9 @@ body {
     gap: 6px;
     flex-wrap: wrap;
     justify-content: flex-end;
+    flex: 0 1 auto;
+    margin-left: auto;
+    min-width: 0;
   }
 
   .row-actions .link-btn {
