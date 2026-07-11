@@ -251,7 +251,7 @@ export default function CVPage() {
 
       {/* creative explorations */}
       <section className="cv-section creative-explorations">
-        <h2 className="cv-heading">creative explorations + selected work</h2>
+        <h2 className="cv-heading">selected work + creative explorations</h2>
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
@@ -310,9 +310,9 @@ export default function CVPage() {
 
             <div className="cv-org">
               master&apos;s thesis · interactive telecommunications program
-              (itp)
+              (itp) - nyu tisch school of the arts
               <br />
-              nyu tisch school of the arts
+              periphery, nyc resistor
             </div>
 
             <p className="cv-summary">
@@ -398,7 +398,8 @@ export default function CVPage() {
               <span className="cv-date">feb 2026 - apr 2026</span>
             </div>
             <div className="cv-org">
-              horological society of new york (hsny) · new york, ny
+              complications, horological society of new york (hsny) · new york,
+              ny
             </div>
             <p className="cv-summary">
               exhibited a handheld timekeeping device combining a real-time
