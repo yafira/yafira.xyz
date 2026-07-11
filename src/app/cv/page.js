@@ -310,7 +310,7 @@ export default function CVPage() {
 
             <div className="cv-org">
               master&apos;s thesis · interactive telecommunications program
-              (itp) - nyu tisch school of the arts
+              (itp) - nyu tisch
               <br />
               periphery, nyc resistor
             </div>
