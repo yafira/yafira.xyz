@@ -292,12 +292,13 @@ export default function CVPage() {
               <span className="cv-date">may 2026</span>
             </div>
             <div className="cv-org">
-              nyu itp thesis · open hardware summit · berlin, germany
+              open source hardware association, open hardware summit · berlin,
+              germany
             </div>
             <p className="cv-summary">
               selected as a 2026 open hardware summit fellow and presented the
-              soft computer mini — a travel-ready extension of my itp thesis
-              exploring embodied input, generative text, and textile as
+              soft computer mini — a travel-ready extension of my master's
+              thesis exploring embodied input, generative text, and textile as
               substrate, compressed into a tarot-sized device.
             </p>
           </div>
@@ -309,10 +310,8 @@ export default function CVPage() {
             </div>
 
             <div className="cv-org">
-              master&apos;s thesis · interactive telecommunications program
-              (itp) - nyu tisch
-              <br />
-              periphery, nyc resistor
+              nyu interactive telecommunications program (itp) master&apos;s
+              thesis · periphery, nyc resistor
             </div>
 
             <p className="cv-summary">
