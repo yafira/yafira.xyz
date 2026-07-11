@@ -350,15 +350,12 @@ function MobilePortfolioView({ projectSections }) {
 
         <button
           type="button"
-          className={`chip-btn flower-mobile-tile ${
-            active ? "is-disabled" : ""
-          }`}
+          className="chip-btn flower-mobile-tile"
           aria-haspopup="true"
           aria-expanded={showFlowerMenu}
-          aria-disabled={!!active}
-          tabIndex={active ? -1 : 0}
           onClick={() => {
-            if (!active) setShowFlowerMenu((v) => !v);
+            setActive(null); // close whatever category is open
+            setShowFlowerMenu((v) => !v);
           }}
         >
           <Image

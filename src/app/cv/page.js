@@ -297,7 +297,7 @@ export default function CVPage() {
             </div>
             <p className="cv-summary">
               selected as a 2026 open hardware summit fellow and presented the
-              soft computer mini — a travel-ready extension of my master's
+              soft computer mini — a travel-ready extension of my master&apos;s
               thesis exploring embodied input, generative text, and textile as
               substrate, compressed into a tarot-sized device.
             </p>
