@@ -1808,3 +1808,148 @@ html.home-locked .connector-lines {
   font-size: 1.05rem;
   line-height: 1.7;
 }
+
+/* patchwork sampler, replaces .bio-window on the about page. */
+
+.patchwork {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.patch {
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  --dash: 7px;
+  --gap: 6px;
+  background-color: var(--patch-bg);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    );
+  background-position:
+    0 0,
+    0 100%,
+    0 0,
+    100% 0;
+  background-size:
+    100% 2px,
+    100% 2px,
+    2px 100%,
+    2px 100%;
+  background-repeat: no-repeat;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* gentle alternating tilt + offset, like pinned patches */
+.patchwork > *:nth-child(odd) .patch {
+  transform: rotate(-0.5deg);
+}
+.patchwork > *:nth-child(even) .patch {
+  transform: rotate(0.5deg);
+  margin-left: 1.25rem;
+}
+
+/* on hover the patch straightens, lifts, and the stitches march */
+.patchwork .patch:hover {
+  transform: rotate(0deg) translateY(-2px);
+  animation: stitchMarch 0.8s linear infinite;
+}
+
+@keyframes stitchMarch {
+  to {
+    background-position:
+      calc(var(--dash) + var(--gap)) 0,
+      calc(-1 * (var(--dash) + var(--gap))) 100%,
+      0 calc(-1 * (var(--dash) + var(--gap))),
+      100% calc(var(--dash) + var(--gap));
+  }
+}
+
+.patch h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 1rem;
+  color: var(--patch-ink);
+}
+
+.patch p {
+  margin: 0 0 0.75rem;
+}
+.patch p:last-child {
+  margin-bottom: 0;
+}
+
+/* corner maker's mark */
+.patch::after {
+  content: "✿";
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  font-size: 0.85rem;
+  color: var(--patch-ink);
+  opacity: 0.7;
+}
+.patch--blush::after,
+.patch--butter::after {
+  content: "❧";
+}
+
+/* tints — soft computer palette */
+.patch--wisteria {
+  --patch-bg: var(--wisteria, #efeafb);
+  --stitch: #8b7ab8;
+  --patch-ink: #5a4a8a;
+}
+.patch--blush {
+  --patch-bg: var(--blush, #fde8ef);
+  --stitch: #c76a8f;
+  --patch-ink: #8f3b5c;
+}
+.patch--matcha {
+  --patch-bg: var(--matcha, #e4f4e8);
+  --stitch: #5f9e74;
+  --patch-ink: #2f6642;
+}
+.patch--butter {
+  --patch-bg: var(--butter, #fdf6dc);
+  --stitch: #b8952e;
+  --patch-ink: #7a5f14;
+}
+
+@media (max-width: 640px) {
+  .patchwork > *:nth-child(even) .patch {
+    margin-left: 0;
+  }
+  .patch {
+    padding: 1rem 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patch,
+  .patchwork .patch:hover {
+    transition: none;
+    animation: none !important;
+    transform: none;
+  }
+}
