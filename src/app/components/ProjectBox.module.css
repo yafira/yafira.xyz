@@ -1,5 +1,16 @@
+/* ProjectBox.module.css */
+
 .card {
   position: relative;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* subtle lift on hover — shadow does the work, not distance */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(184, 169, 217, 0.22);
 }
 
 /* launch button — hidden by default, shown on card hover */
@@ -22,7 +33,9 @@
   justify-content: center;
   opacity: 0;
   transform: scale(0.85);
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition:
+    opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 2;
 }
 
@@ -35,4 +48,78 @@
 .launchBtn:hover {
   background: currentColor;
   color: #feffed;
+}
+
+@media (max-width: 640px) {
+  .launchBtn {
+    display: none;
+  }
+}
+
+/* opt-in marching stitch — add alongside the card class:
+   className={`${styles.card} ${styles.stitch}`}
+   note: if the card already has a dashed border from globals.css,
+   remove that rule for these cards so the stitches don't double up */
+.stitch {
+  --stitchColor: #b8a9d9;
+  --dash: 7px;
+  --gap: 6px;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--stitchColor) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--stitchColor) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--stitchColor) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--stitchColor) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    );
+  background-position:
+    0 0,
+    0 100%,
+    0 0,
+    100% 0;
+  background-size:
+    100% 2px,
+    100% 2px,
+    2px 100%,
+    2px 100%;
+  background-repeat: no-repeat;
+}
+
+.stitch:hover {
+  animation: stitchMarch 0.8s linear infinite;
+}
+
+@keyframes stitchMarch {
+  to {
+    background-position:
+      calc(var(--dash) + var(--gap)) 0,
+      calc(-1 * (var(--dash) + var(--gap))) 100%,
+      0 calc(-1 * (var(--dash) + var(--gap))),
+      100% calc(var(--dash) + var(--gap));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .launchBtn,
+  .stitch {
+    transition: none;
+    animation: none !important;
+  }
+  .card:hover {
+    transform: none;
+  }
 }
