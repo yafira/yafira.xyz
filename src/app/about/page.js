@@ -1,6 +1,7 @@
 import Image from "next/image";
 import MobileBack from "@/app/components/MobileBack";
 import Reveal from "@/app/components/Reveal";
+import PatchMark from "@/app/components/PatchMark";
 
 export const metadata = {
   title: "Yafira ✿",
@@ -87,6 +88,7 @@ export default function AboutPage() {
                 creating tools, artifacts, and systems that translate digital
                 ideas into interactive, often physical, inventions.
               </p>
+              <PatchMark />
             </section>
           </Reveal>
 
@@ -100,6 +102,7 @@ export default function AboutPage() {
                 ways. I code because it challenges me, and because it gives form
                 to imagination.
               </p>
+              <PatchMark />
             </section>
           </Reveal>
 
@@ -113,6 +116,7 @@ export default function AboutPage() {
                 color, and how good design can turn the ordinary into something
                 magical.
               </p>
+              <PatchMark />
             </section>
           </Reveal>
 
@@ -142,6 +146,7 @@ export default function AboutPage() {
                 is where all these threads finally came together, where
                 creativity and computation speak the same language.
               </p>
+              <PatchMark />
             </section>
           </Reveal>
 
@@ -172,6 +177,7 @@ export default function AboutPage() {
                 </a>
                 .
               </p>
+              <PatchMark />
             </section>
           </Reveal>
         </div>

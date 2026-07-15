@@ -51,6 +51,12 @@
   --soft-pink: #f8dce8;
   --soft-pink-hover: #f3cde2;
 
+  /* electrocute-ui design tokens (from the npm color export) */
+  --wisteria-dust: #faf6ff;
+  --blush-powder: #fdf1f9;
+  --matcha-foam: #f3faea;
+  --butter-puff: #ffffd8;
+
   /* project card typography */
   --project-title-size: clamp(1rem, 1.2vw + 0.6rem, 1.15rem);
   --project-desc-size: clamp(0.95rem, 1vw + 0.25rem, 1.05rem);
@@ -1774,20 +1780,9 @@ html.home-locked .connector-lines {
   margin-left: 1.25rem;
 }
 
-/* on hover the patch straightens, lifts, and the stitches march */
+/* on hover the patch straightens and lifts */
 .patchwork .patch:hover {
   transform: rotate(0deg) translateY(-2px);
-  animation: stitchMarch 0.8s linear infinite;
-}
-
-@keyframes stitchMarch {
-  to {
-    background-position:
-      calc(var(--dash) + var(--gap)) 0,
-      calc(-1 * (var(--dash) + var(--gap))) 100%,
-      0 calc(-1 * (var(--dash) + var(--gap))),
-      100% calc(var(--dash) + var(--gap));
-  }
 }
 
 .patch h2 {
@@ -1804,39 +1799,41 @@ html.home-locked .connector-lines {
   margin-bottom: 0;
 }
 
-/* corner maker's mark */
-.patch::after {
-  content: "✿";
+/* corner maker's mark — <Inkbloom /> from electrocute-ui */
+.patch .patch-mark {
   position: absolute;
   bottom: 8px;
-  right: 14px;
-  font-size: 0.85rem;
-  color: var(--patch-ink);
-  opacity: 0.7;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.75;
+  transition:
+    transform var(--transition-ease),
+    opacity var(--transition-ease);
 }
-.patch--blush::after,
-.patch--butter::after {
-  content: "❧";
+.patchwork .patch:hover .patch-mark {
+  transform: rotate(12deg) scale(1.15);
+  opacity: 1;
 }
 
-/* tints — soft computer palette */
+/* tints — electrocute-ui tokens */
 .patch--wisteria {
-  --patch-bg: #efeafb;
+  --patch-bg: var(--wisteria-dust);
   --stitch: #8b7ab8;
   --patch-ink: #5a4a8a;
 }
 .patch--blush {
-  --patch-bg: #fde8ef;
+  --patch-bg: var(--blush-powder);
   --stitch: #c76a8f;
   --patch-ink: #8f3b5c;
 }
 .patch--matcha {
-  --patch-bg: #e4f4e8;
+  --patch-bg: var(--matcha-foam);
   --stitch: #5f9e74;
   --patch-ink: #2f6642;
 }
 .patch--butter {
-  --patch-bg: #fdf6dc;
+  --patch-bg: var(--butter-puff);
   --stitch: #b8952e;
   --patch-ink: #7a5f14;
 }
@@ -1852,9 +1849,12 @@ html.home-locked .connector-lines {
 
 @media (prefers-reduced-motion: reduce) {
   .patch,
+  .patch .patch-mark,
   .patchwork .patch:hover {
     transition: none;
-    animation: none !important;
+    transform: none;
+  }
+  .patchwork .patch:hover .patch-mark {
     transform: none;
   }
 }
