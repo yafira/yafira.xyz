@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import ProjectBox from "@/app/components/ProjectBox";
+import Reveal from "@/app/components/Reveal";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 
 export default function Portfolio() {
@@ -785,13 +786,19 @@ function DesktopPortfolioView({ projectSections }) {
                 ? blogPosts
                 : projectSections[activeSection] || []
               ).map((item, index) => (
-                <ProjectBox
-                  key={index}
-                  {...item}
-                  category={activeSection}
-                  badge={activeSection === "text" ? item.siteLabel : undefined}
-                  showLinksAlways
-                />
+                <Reveal
+                  key={`${activeSection}-${index}`}
+                  delay={Math.min(index * 70, 350)}
+                >
+                  <ProjectBox
+                    {...item}
+                    category={activeSection}
+                    badge={
+                      activeSection === "text" ? item.siteLabel : undefined
+                    }
+                    showLinksAlways
+                  />
+                </Reveal>
               ))}
             </div>
           </div>
