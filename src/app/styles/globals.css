@@ -1859,21 +1859,31 @@ html.home-locked .connector-lines {
   }
 }
 
-/* image wipe — project thumbnails inside a Reveal wrapper sweep in left→right instead of popping.
+/* image settle — thumbnails ease into place just after their card reveals.
    only affects images inside .reveal-item, so images elsewhere on the site are untouched. */
 
 .reveal-item .project-image {
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+  opacity: 0;
+  transform: scale(0.92);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
 
 .reveal-item.revealed .project-image {
-  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* reveal wrapper: let cards stretch to equal height in the drawer */
+.projects-drawer-grid > .reveal-item {
+  display: flex;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-item .project-image {
-    clip-path: none;
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 }
