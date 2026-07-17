@@ -61,7 +61,7 @@ export const selectedWork = [
     description:
       "Speculative migraine-detection wearable taken from research to a working prototype, spanning three hardware form factors and a companion app.",
     stack: "React · TypeScript · Vite",
-    tags: ["end-to-end product", "ux", "frontend"],
+    tags: ["speculative design", "product design", "hardware"],
     links: {
       prototype: "https://lumi-wearable.vercel.app",
       casestudy: "https://lumi-case-study.vercel.app",
@@ -81,13 +81,26 @@ export const selectedWork = [
 
 export const moreProjects = [
   {
+    title: "ml5.js contributions",
+    imageUrl: "/assets/ml5.gif",
+    category: "code",
+    description:
+      "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
+    stack: "Docsify · JavaScript",
+    tags: ["open source", "machine learning", "documentation"],
+    links: {
+      blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
+      docs: "https://docs.ml5js.org/#/",
+    },
+  },
+  {
     title: "TinkerThread",
     imageUrl: "/assets/tt.gif",
     category: "code",
     description:
       "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
     stack: "JavaScript · Canvas",
-    tags: ["hardware tooling", "web tooling", "frontend"],
+    tags: ["simulation", "e-textiles", "frontend"],
     link: "https://tinkerthread.netlify.app/",
   },
   {
@@ -127,7 +140,7 @@ export const moreProjects = [
     description:
       "A documentation hub for computational craft: riso-printed generative animation, a plotter-drawn machine drawing series, a generative postage stamp system, and a soft-circuits zine.",
     stack: "p5.js · HTML/CSS/JS",
-    tags: ["generative design", "frontend"],
+    tags: ["generative design", "frontend", "creative coding"],
     link: "https://print-code.netlify.app/",
   },
   {
@@ -157,7 +170,7 @@ export const moreProjects = [
     description:
       "A snack ordering app for a movie theater, taken from user flows through a high-fidelity prototype.",
     stack: "Figma",
-    tags: ["product design", "ux design"],
+    tags: ["ux design", "user flows"],
     links: {
       prototype:
         "https://www.figma.com/proto/oTPH8BW7owaY91IVOlR6KC/Cosmic-Snax?page-id=248%3A2311&node-id=256%3A1892&viewport=245%2C48%2C0.23&scaling=min-zoom&starting-point-node-id=256%3A1892",
@@ -171,7 +184,7 @@ export const moreProjects = [
     description:
       "A tool to help people develop their creativity, designed end-to-end from research through a high-fidelity prototype.",
     stack: "Figma",
-    tags: ["product design", "ux design"],
+    tags: ["ux design", "ux research"],
     links: {
       mobile:
         "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223",
@@ -183,9 +196,10 @@ export const moreProjects = [
     title: "Kawaii ML",
     imageUrl: "/assets/kawaii-ml.png",
     category: "design",
-    description: "Cute digital card deck exploring machine learning concepts.",
+    description:
+      "A cute illustrated card deck teaching machine learning fundamentals — datasets, training, classification, neural networks — one friendly concept per card.",
     stack: "Figma",
-    tags: ["illustration"],
+    tags: ["machine learning", "illustration", "education"],
     link: "https://www.figma.com/community/file/1282166884816539041/kawaii-ml-card-deck",
   },
   {
@@ -195,7 +209,7 @@ export const moreProjects = [
     description:
       "A cute tech tools blog built with Next.js and the Notion API.",
     stack: "Next.js · Notion API",
-    tags: ["web tooling", "full-stack"],
+    tags: ["cms", "full-stack"],
     link: "https://cutetech.tools/",
   },
 ];

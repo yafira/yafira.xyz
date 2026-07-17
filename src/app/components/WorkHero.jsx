@@ -2,7 +2,18 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const WORDS = ["soft", "knit", "cute", "gentle", "playful"];
+// alternating rhythm: engineering word, craft word, engineering word…
+// so the cycle itself performs the design-engineer duality
+const WORDS = [
+  "soft",
+  "functional",
+  "cute",
+  "tactile",
+  "playful",
+  "useful",
+  "gentle",
+  "interactive",
+];
 
 export default function WorkHero() {
   const [index, setIndex] = useState(0);
@@ -43,7 +54,8 @@ export default function WorkHero() {
         <span className="sr-only">soft</span> things that compute
       </h1>
       <p className="work-cred">
-        nyu itp · ml5.js · open hardware summit berlin · npm · nyc resistor
+        nyu itp · itp camp · ml5.js · open hardware summit berlin · npm · nyc
+        resistor
       </p>
     </header>
   );

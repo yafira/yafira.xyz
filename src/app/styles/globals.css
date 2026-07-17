@@ -1956,9 +1956,9 @@ html.home-locked .connector-lines {
 }
 .work-headline-cycle {
   display: inline-block;
-  /* sized to "playful", the longest word in the cycle — prevents
+  /* sized to "interactive", the longest word in the cycle — prevents
      the headline reflowing on each swap. resize if the list changes */
-  min-width: 5.6ch;
+  min-width: 8.8ch;
   text-align: center;
   color: #6b57c8;
   border-bottom: 3px dashed #b9a8e8;
@@ -2464,4 +2464,17 @@ html.home-locked .connector-lines {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
+}
+
+/* ml5 card only — the docs-plugin screen recording is wide and
+   detailed, so let it fill the card width instead of the standard
+   square thumbnail box. !important because two grid-scoped rules
+   (.projects-grid .project-box .project-image and the drawer
+   variant) tie or beat a plain override on specificity/order. */
+.project-box .project-image[src*="ml5.gif"],
+.projects-grid .project-box .project-image[src*="ml5.gif"] {
+  width: calc(100% - 24px) !important;
+  max-width: 280px !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
 }
