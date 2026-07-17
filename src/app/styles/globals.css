@@ -56,6 +56,10 @@
   --blush-powder: #fdf1f9;
   --matcha-foam: #f3faea;
   --butter-puff: #ffffd8;
+  --lilac-mist: #f7ecfb;
+  --sky-mist: #eef8fd;
+  --butter-whisper: #ffffff;
+  --pill-neutral: #ffffff;
 
   /* project card typography */
   --project-title-size: clamp(1rem, 1.2vw + 0.6rem, 1.15rem);
@@ -74,13 +78,18 @@ body {
   overflow-x: hidden;
 }
 
-/* graph paper background */
+/* graph paper background — cool blueprint tint instead of warm
+   cream, closer to white, reads a touch more "engineered".
+   this is now the ONLY body background rule in the whole codebase —
+   styles.css and mobile.css each had their own conflicting version
+   that loaded after this file and silently won every time this was
+   changed. both were removed. */
 body {
   -webkit-tap-highlight-color: transparent;
-  background-color: #feffed;
+  background-color: #fefffa;
   background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(60, 60, 90, 0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(60, 60, 90, 0.022) 1px, transparent 1px);
   background-size: 24px 24px;
   font-family: var(--font-family);
   margin: 0;
@@ -147,20 +156,15 @@ html.home-locked .connector-lines {
   gap: clamp(20px, 6vw, 48px);
 }
 .nav-links .home-icon {
-  font-size: 1.75rem;
-  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
-  text-decoration: none;
   padding: 4px 8px;
-  transition: color 0.3s ease;
-  position: relative;
-  top: 2px;
+  transition: opacity 0.3s ease;
+  opacity: 0.85;
 }
 .nav-links .home-icon:hover {
-  color: #000;
+  opacity: 1;
 }
 .nav-links a {
   color: #333;
@@ -168,19 +172,113 @@ html.home-locked .connector-lines {
   padding: 8px 16px;
   transition: color 0.3s ease;
 }
+/* fixed decorative background layer — circuit traces, flower
+   silhouettes, and a running-stitch thread, all very low opacity.
+   fixed + pointer-events:none means it can't intercept clicks or
+   scroll, and it never needs to measure anything else on the page */
+.bg-pattern {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .nav-links a:hover {
   color: #000;
 }
+.nav-links .nav-lab-link {
+  font: inherit;
+  color: #333;
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.nav-links .nav-lab-link:hover {
+  color: #000;
+}
 
-/* main content */
+/* lab toast — a brief, playful notification alongside the tab
+   opening, instead of jumping there with no acknowledgment */
+.lab-toast {
+  position: fixed;
+  top: 96px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  background: var(--wisteria-dust);
+  border: 2px dashed #8b7ab8;
+  border-radius: 999px;
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  color: #4a3d78;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  animation:
+    lab-toast-in 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    lab-toast-out 0.35s ease-in 1.25s forwards;
+  pointer-events: none;
+}
+.lab-toast-flower {
+  display: inline-block;
+  animation: lab-toast-spin 1.6s linear infinite;
+}
+
+@keyframes lab-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+@keyframes lab-toast-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+}
+@keyframes lab-toast-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-toast {
+    animation: lab-toast-out 0.2s ease-in 1.4s forwards;
+  }
+  .lab-toast-flower {
+    animation: none;
+  }
+}
+
+/* main content — top padding trimmed: body's 96px already clears
+   the fixed nav, so the old second 96px here was pure duplication
+   and pushed every page's content a full nav-height too far down */
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px clamp(16px, 3vw, 32px) 32px;
+  padding: clamp(1rem, 3vh, 2rem) clamp(16px, 3vw, 32px) 32px;
 }
 
 /* about page */
 .avatar-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,39 +290,14 @@ html.home-locked .connector-lines {
   z-index: 2;
 }
 
-/* blob background */
-.avatar-container::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(
-    circle at 30% 30%,
-    var(--soft-pink) 0%,
-    #e6ddf6 40%,
-    #ffffff00 100%
-  );
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  opacity: 0.4;
-  filter: blur(20px);
-}
-@keyframes morph {
-  0%,
-  100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-  50% {
-    border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
-  }
-}
-.avatar-container::before {
-  animation: morph 12s ease-in-out infinite;
-}
-
+/* blob background — contained inside avatar-container (position:relative
+   above) instead of escaping to the page's root positioning context.
+   without that, this 900x900px absolutely-positioned element had no
+   real containing block, so it was likely floating somewhere over
+   later content on the page — including the contact section — and
+   silently intercepting clicks since it was never pointer-events:none.
+   that combination is the most likely explanation for "can't click
+   the links" and the animation-driven repaint explains the "lag." */
 .about-page {
   font-family: "Space Grotesk", sans-serif;
   font-weight: 400;
@@ -336,6 +409,7 @@ html.home-locked .connector-lines {
   border-radius: 10px;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 .flower-image {
   margin-left: 8px;
@@ -556,7 +630,7 @@ html.home-locked .connector-lines {
   min-width: var(--card-w);
   height: auto;
   min-height: clamp(240px, 28vh, 300px);
-  background-color: #fff;
+  background-color: var(--butter-whisper);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -573,6 +647,36 @@ html.home-locked .connector-lines {
 }
 .project-box:hover {
   transform: translateY(-3px);
+}
+
+/* a small poetic moment on hover, instead of a headline explaining
+   the work — the image breathes slightly, and a ✿ blooms into the
+   corner, echoing the Inkbloom mark from the patchwork sampler */
+.project-box .project-image {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.4s ease;
+}
+.project-box:hover .project-image {
+  transform: scale(1.05);
+}
+.project-box::after {
+  content: "✿";
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 0.85rem;
+  color: #8b7ab8;
+  opacity: 0;
+  transform: rotate(-15deg) scale(0.6);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  pointer-events: none;
+}
+.project-box:hover::after {
+  opacity: 0.7;
+  transform: rotate(8deg) scale(1);
 }
 .project-box[data-category="craft"]:hover {
   box-shadow: 0 8px 16px var(--shadow-craft);
@@ -702,93 +806,65 @@ html.home-locked .connector-lines {
 
 /* ========== UPDATED DRAWER CLOSE BUTTON - PROMINENT TAB ========== */
 .drawer-close {
-  /* Positioning - right side of drawer */
   position: absolute;
   top: -40px;
   right: 2%;
   transform: translateX(0);
-
-  /* Styling - inherits section color */
   background: inherit;
   border: 3px solid rgba(0, 0, 0, 0.2);
   border-bottom: none;
   border-radius: 16px 16px 0 0;
-
-  /* Size */
   padding: 12px 32px;
   min-width: 80px;
   height: 44px;
-
-  /* Visual effects */
   box-shadow:
     0 -4px 12px rgba(0, 0, 0, 0.15),
     0 -2px 4px rgba(0, 0, 0, 0.1);
-
-  /* Layout */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Interaction */
   cursor: pointer;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
     opacity 0.3s ease;
-
-  /* Stacking */
   z-index: 100;
-
-  /* Hidden by default */
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
 }
-
-/* Only show when drawer is open */
 .projects-drawer.open .drawer-close {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
 }
-
 .drawer-close:hover {
   box-shadow:
     0 -6px 16px rgba(0, 0, 0, 0.2),
     0 -3px 6px rgba(0, 0, 0, 0.15);
   transform: translateY(-3px);
 }
-
-/* Chevron icon styling */
 .drawer-close svg {
   width: 28px;
   height: 28px;
   stroke-width: 3;
   color: #333;
 }
-
-/* Section-specific colors */
 .projects-drawer[data-section="craft"] .drawer-close {
   background-color: var(--craft-bg);
 }
-
 .projects-drawer[data-section="code"] .drawer-close {
   background-color: var(--code-bg);
 }
-
 .projects-drawer[data-section="design"] .drawer-close {
   background-color: var(--design-bg);
 }
-
 .projects-drawer[data-section="electronics"] .drawer-close {
   background-color: var(--electronics-bg);
 }
-
 .projects-drawer[data-section="text"] .drawer-close {
   background-color: var(--text-bg);
 }
-
-/* Responsive chevron */
 @media (max-width: 768px) {
   .drawer-close {
     right: 1%;
@@ -796,7 +872,6 @@ html.home-locked .connector-lines {
     min-width: 60px;
     height: 38px;
   }
-
   .drawer-close svg {
     width: 24px;
     height: 24px;
@@ -806,30 +881,25 @@ html.home-locked .connector-lines {
 
 /* === all projects grid — responsive + FULL TEXT === */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, var(--card-w)));
-  gap: clamp(20px, 3vw, 36px);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
+  gap: clamp(20px, 3vw, 36px);
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 2rem;
 }
-
-/* critical: prevent grid overflow when resizing browser */
 .projects-grid .project-box {
-  width: var(--card-w);
+  width: var(--card-w, clamp(180px, 22vw, 240px));
   min-width: 0;
   height: auto;
 }
-
-/* keep image responsive inside the card */
 .projects-grid .project-box .project-image {
   width: clamp(110px, 12vw, 135px);
   height: clamp(110px, 12vw, 135px);
 }
-
-/* drawers: guarantee full text, buttons now sit in flow below it */
 .projects-drawer .project-box {
   padding-bottom: 1.25rem;
   height: auto !important;
@@ -841,30 +911,14 @@ html.home-locked .connector-lines {
   overflow: visible !important;
   display: block !important;
 }
-
-/* responsive breakpoints for the grid */
-@media (max-width: 1200px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, var(--card-w)));
-  }
-}
-@media (max-width: 900px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, var(--card-w)));
-  }
-}
 @media (max-width: 520px) {
   .projects-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
     padding: 1.25rem 1rem;
   }
   .projects-grid .project-box {
-    width: min(92vw, var(--card-w));
+    width: 100%;
   }
 }
-
-/* responsive tweaks */
 @media (max-width: 768px) {
   .projects-drawer {
     max-height: clamp(320px, 70vh, 80vh);
@@ -902,7 +956,6 @@ html.home-locked .connector-lines {
   font-family: var(--font-body);
   line-height: 1.55;
 }
-
 .cv-page a {
   color: #6b57c8;
   text-decoration: none;
@@ -911,19 +964,15 @@ html.home-locked .connector-lines {
     color 0.2s ease,
     background-color 0.2s ease;
 }
-
 .cv-page a:hover {
   color: #3e2f8f;
   background-color: rgba(107, 87, 200, 0.08);
 }
-
 .cv-page a:focus-visible {
   outline: 2px solid rgba(0, 0, 0, 0.5);
   outline-offset: 3px;
   border-radius: 6px;
 }
-
-/* cv org line */
 .cv-org {
   margin-top: 2px;
   color: #555;
@@ -932,13 +981,11 @@ html.home-locked .connector-lines {
   line-height: 1.45;
   letter-spacing: 0.01em;
 }
-
 .cv-date,
 .cv-date-inline,
 .cv-role-date {
   font-variant-numeric: tabular-nums;
 }
-
 .cv-section {
   margin-bottom: var(--spacing-lg);
   padding-left: var(--spacing-md);
@@ -1111,17 +1158,20 @@ html.home-locked .connector-lines {
   gap: 8px;
   padding: 10px 14px;
   border-radius: 999px;
-  background: var(--soft-pink);
+  background: var(--pill-neutral);
+  border: 2px solid rgba(0, 0, 0, 0.14);
   color: #000;
   text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.15s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 .contact-button:hover {
   transform: translateY(-1px);
-  background: var(--soft-pink-hover);
+  background: var(--soft-pink);
+  border-color: transparent;
 }
 .contact-button:focus-visible {
   outline: 2px solid #333;
@@ -1147,11 +1197,11 @@ html.home-locked .connector-lines {
   gap: 10px;
   padding: 12px 14px;
   border-radius: 14px;
-  background: #fff;
-  border: 2px solid transparent;
+  background: var(--pill-neutral);
+  border: 2px solid rgba(0, 0, 0, 0.14);
   text-decoration: none;
   color: #111;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.15s ease,
     box-shadow 0.2s ease,
@@ -1435,7 +1485,6 @@ html.home-locked .connector-lines {
   background: #ebe6ff;
   color: #2a186a;
 }
-
 .archive-search {
   padding: 0.45rem 0.6rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1721,14 +1770,12 @@ html.home-locked .connector-lines {
 }
 
 /* patchwork sampler, replaces .bio-window on the about page. */
-
 .patchwork {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin: 2rem 0;
 }
-
 .patch {
   position: relative;
   padding: 1.25rem 1.5rem;
@@ -1770,8 +1817,6 @@ html.home-locked .connector-lines {
   background-repeat: no-repeat;
   transition: transform var(--transition-ease);
 }
-
-/* gentle alternating tilt + offset, like pinned patches */
 .patchwork > *:nth-child(odd) .patch {
   transform: rotate(-0.5deg);
 }
@@ -1779,27 +1824,21 @@ html.home-locked .connector-lines {
   transform: rotate(0.5deg);
   margin-left: 1.25rem;
 }
-
-/* on hover the patch straightens and lifts */
 .patchwork .patch:hover {
   transform: rotate(0deg) translateY(-2px);
 }
-
 .patch h2 {
   margin: 0 0 0.5rem;
   font-family: var(--font-code);
   font-size: 1rem;
   color: var(--patch-ink);
 }
-
 .patch p {
   margin: 0 0 0.75rem;
 }
 .patch p:last-child {
   margin-bottom: 0;
 }
-
-/* corner maker's mark — <Inkbloom /> from electrocute-ui */
 .patch .patch-mark {
   position: absolute;
   bottom: 8px;
@@ -1815,8 +1854,6 @@ html.home-locked .connector-lines {
   transform: rotate(12deg) scale(1.15);
   opacity: 1;
 }
-
-/* tints — electrocute-ui tokens */
 .patch--wisteria {
   --patch-bg: var(--wisteria-dust);
   --stitch: #8b7ab8;
@@ -1837,7 +1874,6 @@ html.home-locked .connector-lines {
   --stitch: #b8952e;
   --patch-ink: #7a5f14;
 }
-
 @media (max-width: 640px) {
   .patchwork > *:nth-child(even) .patch {
     margin-left: 0;
@@ -1846,7 +1882,6 @@ html.home-locked .connector-lines {
     padding: 1rem 1.1rem;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .patch,
   .patch .patch-mark,
@@ -1859,9 +1894,7 @@ html.home-locked .connector-lines {
   }
 }
 
-/* image settle — thumbnails ease into place just after their card reveals.
-   only affects images inside .reveal-item, so images elsewhere on the site are untouched. */
-
+/* image settle */
 .reveal-item .project-image {
   opacity: 0;
   transform: scale(0.92);
@@ -1869,21 +1902,566 @@ html.home-locked .connector-lines {
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
-
 .reveal-item.revealed .project-image {
   opacity: 1;
   transform: scale(1);
 }
-
-/* reveal wrapper: let cards stretch to equal height in the drawer */
 .projects-drawer-grid > .reveal-item {
   display: flex;
 }
-
 @media (prefers-reduced-motion: reduce) {
   .reveal-item .project-image {
     opacity: 1;
     transform: none;
     transition: none;
   }
+}
+
+/* ==========================================================
+   selected work page
+   ========================================================== */
+.work-page {
+  width: 100%;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* work hero — headline with a cycling word instead of the flower
+   mark (the mark already lives in the nav and everywhere else).
+   the dashed underline on the cycling word is the running stitch,
+   so the signature survives the flower's removal */
+.work-intro {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1rem 0.25rem;
+}
+.work-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  line-height: 1.3;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+  text-wrap: balance;
+}
+.work-headline-cycle {
+  display: inline-block;
+  /* sized to "playful", the longest word in the cycle — prevents
+     the headline reflowing on each swap. resize if the list changes */
+  min-width: 5.6ch;
+  text-align: center;
+  color: #6b57c8;
+  border-bottom: 3px dashed #b9a8e8;
+  padding-bottom: 2px;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+.work-headline-cycle.is-fading {
+  opacity: 0;
+  transform: translateY(5px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-headline-cycle {
+    transition: none;
+  }
+}
+.work-cred {
+  font-family: var(--font-code);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: #666;
+}
+.projects-grid.featured {
+  --card-w: clamp(220px, 26vw, 300px);
+  padding-top: 0.5rem;
+}
+@media (max-width: 560px) {
+  .projects-grid.featured .project-box {
+    width: 100%;
+  }
+}
+.project-stack {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  color: #777;
+  text-align: center;
+  margin: 0 auto 8px;
+  padding: 0 14px;
+  overflow-wrap: anywhere;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  margin-bottom: 4px;
+}
+/* in equal-height rows, distribute leftover space evenly between
+   content blocks instead of collecting it into one large gap.
+   scoped to simple-link cards (content lives inside .box-content);
+   design cards with link rows keep their bottom-anchored buttons. */
+.projects-grid .project-box:not(.design-project) > .box-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+/* neutralize the old single-gap anchor inside grid cards — auto
+   margins would absorb all free space and defeat space-evenly */
+.projects-grid .project-box .project-tags:last-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+.project-tags:last-child {
+  margin-top: auto;
+  padding-top: 12px;
+}
+.project-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--wisteria-dust);
+  border: 1px dashed #8b7ab8;
+  color: #5a4a8a;
+  white-space: nowrap;
+}
+.work-more-heading {
+  text-align: center;
+  margin: 3rem 0 0.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+.work-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.25rem 0 1.75rem;
+}
+.work-filter-pill {
+  font-family: var(--font-code);
+  font-size: 0.88rem;
+  text-transform: lowercase;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.14);
+  background: var(--pill-neutral);
+  color: #444;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+.work-filter-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.work-filter-pill.active {
+  background: var(--wisteria-dust);
+  border-color: #b9a8e8;
+  color: #3d2f6b;
+  font-weight: 600;
+}
+.work-filter-pill-1 {
+  border-color: var(--code-color);
+}
+.work-filter-pill-1:hover,
+.work-filter-pill-1.active {
+  background: var(--matcha-foam);
+  border-color: var(--code-color);
+  color: #1f5c33;
+}
+.work-filter-pill-2 {
+  border-color: var(--electronics-color);
+}
+.work-filter-pill-2:hover,
+.work-filter-pill-2.active {
+  background: var(--wisteria-dust);
+  border-color: var(--electronics-color);
+  color: #3d2f6b;
+}
+.work-filter-pill-3 {
+  border-color: var(--design-color);
+}
+.work-filter-pill-3:hover,
+.work-filter-pill-3.active {
+  background: var(--lilac-mist);
+  border-color: var(--design-color);
+  color: #5b3a6b;
+}
+.work-filter-pill-4 {
+  border-color: var(--craft-color);
+}
+.work-filter-pill-4:hover,
+.work-filter-pill-4.active {
+  background: var(--blush-powder);
+  border-color: var(--craft-color);
+  color: #8f3b5c;
+}
+.work-filter-pill-5 {
+  border-color: var(--text-color);
+}
+.work-filter-pill-5:hover,
+.work-filter-pill-5.active {
+  background: var(--sky-mist);
+  border-color: var(--text-color);
+  color: #1f5070;
+}
+.work-footer {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 0 3rem;
+}
+
+/* about page: cv link + embedded contact section */
+.about-cv-cta {
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem 0 1rem;
+}
+.about-contact {
+  margin-top: 1rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(0, 0, 0, 0.06);
+}
+
+/* fix: link pills stay in flow, stacked below the tag pills, not overlapping */
+.project-box .project-links.design-links,
+.project-box .project-links.design-links.always-visible {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  margin-top: 2px;
+  padding: 0.35rem 0 0;
+}
+.project-box.design-project {
+  padding-bottom: 1.4rem;
+}
+
+/* ==========================================================
+   homepage
+   ========================================================== */
+.page-container.home-flow {
+  padding: 0.5rem 1.5rem clamp(2rem, 5vh, 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: auto;
+}
+.home-hero {
+  text-align: center;
+  padding: 0 1rem;
+  margin-bottom: clamp(3rem, 8vh, 4.5rem);
+  max-width: 680px;
+}
+.hero-name-accent {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+.home-hero-flower {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+  animation: flower-float 6s ease-in-out infinite;
+}
+@keyframes flower-float {
+  0%,
+  100% {
+    margin-top: 0px;
+  }
+  50% {
+    margin-top: -6px;
+  }
+}
+.home-hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+.home-hero-role {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: #333;
+  margin-bottom: 0.6rem;
+}
+.home-hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1vw + 0.3rem, 1.05rem);
+  color: #555;
+  max-width: 42ch;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+.home-hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.home-hero-cta .link-btn.primary {
+  background: var(--wisteria-dust);
+  border: 1px solid #d4c9ee;
+  box-shadow: none;
+}
+.home-hero-cta .link-btn.primary:hover {
+  background: #f0eaff;
+  box-shadow: none;
+  transform: none;
+}
+.home-hero-cta .link-btn.primary:hover span:last-child {
+  display: inline-block;
+  transform: translateX(3px);
+  transition: transform 0.2s ease;
+}
+.home-hero-cta .link-btn.primary span:last-child {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.home-hero-cta .link-btn:not(.primary) {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: none;
+}
+.home-hero-cta .link-btn:not(.primary):hover {
+  border-color: rgba(0, 0, 0, 0.3);
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+}
+.flower-section-label {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  color: #999;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.hero-blob-field {
+  position: relative;
+  width: min(94vw, 960px);
+  min-height: 680px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.25rem;
+}
+.home-hero {
+  position: relative;
+  z-index: 2;
+}
+.hero-connector-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-connector-lines path {
+  fill: none;
+  stroke-width: 0.25;
+  stroke-dasharray: 1.2 1;
+  opacity: 0.35;
+  vector-effect: non-scaling-stroke;
+}
+.category-blob-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.category-blob-layer .category-blob {
+  pointer-events: auto;
+}
+.category-blob {
+  position: absolute;
+  width: 168px;
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  font-family: var(--font-code);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: #333;
+  box-shadow: var(--box-shadow);
+  transition:
+    box-shadow 0.35s ease,
+    scale 0.18s ease;
+  animation: blob-float 7s ease-in-out infinite;
+  transform: translate(var(--drag-x, 0px), var(--drag-y, 0px));
+}
+.category-blob:active {
+  cursor: grabbing;
+}
+.category-blob.dragging {
+  scale: 1.08 0.94;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.18);
+  z-index: 5;
+}
+.category-blob img {
+  opacity: 0.85;
+  pointer-events: none;
+}
+.category-blob:hover,
+.category-blob.active {
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+}
+.category-blob:hover img,
+.category-blob.active img {
+  opacity: 1;
+}
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate(var(--drag-x, 0px), var(--drag-y, 0px));
+  }
+  50% {
+    transform: translate(var(--drag-x, 0px), calc(var(--drag-y, 0px) - 14px))
+      rotate(-3deg);
+  }
+}
+@keyframes blob-jiggle {
+  0% {
+    scale: 1.08 0.94;
+  }
+  35% {
+    scale: 0.94 1.08;
+  }
+  60% {
+    scale: 1.04 0.97;
+  }
+  100% {
+    scale: 1 1;
+  }
+}
+.category-blob.jiggling {
+  animation: blob-jiggle 0.45s ease-out;
+}
+.category-blob.blob-1 {
+  top: 0;
+  left: 2%;
+  background-color: var(--matcha-foam);
+  border: 3px solid var(--code-color);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation-delay: 0s;
+}
+.category-blob.blob-2 {
+  top: 2%;
+  right: 0;
+  background-color: var(--wisteria-dust);
+  border: 3px solid var(--electronics-color);
+  border-radius: 42% 58% 65% 35% / 55% 45% 55% 45%;
+  animation-delay: -2.1s;
+}
+.category-blob.blob-3 {
+  top: 44%;
+  left: -4%;
+  background-color: var(--lilac-mist);
+  border: 3px solid var(--design-color);
+  border-radius: 55% 45% 40% 60% / 40% 55% 45% 60%;
+  animation-delay: -4.4s;
+}
+.category-blob.blob-4 {
+  top: 44%;
+  right: -4%;
+  background-color: var(--blush-powder);
+  border: 3px solid var(--craft-color);
+  border-radius: 35% 65% 55% 45% / 65% 40% 60% 35%;
+  animation-delay: -1.2s;
+}
+.category-blob.blob-5 {
+  bottom: 0;
+  left: 50%;
+  margin-left: -84px;
+  background-color: var(--sky-mist);
+  border: 3px solid var(--text-color);
+  border-radius: 65% 35% 45% 55% / 45% 60% 40% 55%;
+  animation-delay: -3.3s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-flower,
+  .category-blob {
+    animation: none;
+  }
+  .category-blob.jiggling {
+    animation: none;
+  }
+}
+@media (max-width: 640px) {
+  .home-hero {
+    margin-bottom: 1.5rem;
+  }
+  .home-hero-tagline {
+    display: none;
+  }
+  .hero-blob-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: auto;
+  }
+  .category-blob-layer {
+    position: static;
+    inset: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+  .category-blob {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: 0;
+    width: 120px;
+    height: 120px;
+    font-size: 0.8rem;
+  }
+  .category-blob img {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* fix: flower-network logo was rendering past its 500x500 box. */
+.image-box img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
 }

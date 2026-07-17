@@ -11,15 +11,6 @@ export default function Portfolio() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // Lock page scroll on mount
-  useEffect(() => {
-    const html = document.documentElement;
-    html.classList.add("home-locked");
-    return () => {
-      html.classList.remove("home-locked");
-    };
-  }, []);
-
   const isMobile = useMediaQuery("(max-width: 640px)");
   if (!mounted) return null;
 
@@ -290,6 +281,41 @@ export default function Portfolio() {
   return <DesktopPortfolioView projectSections={projectSections} />;
 }
 
+/* shared hero, used by both mobile and desktop */
+function HomeHero() {
+  return (
+    <div className="home-hero">
+      <div className="home-hero-flower">
+        <Image
+          src="/assets/flower-network-logo.png"
+          alt="Yafira's flower mark"
+          width={300}
+          height={300}
+          style={{ objectFit: "contain", mixBlendMode: "multiply" }}
+          priority
+        />
+      </div>
+      <h1 className="home-hero-role">
+        i&apos;m <span className="hero-name-accent">yafira</span>, a design
+        engineer &amp; creative technologist.
+      </h1>
+      <p className="home-hero-tagline">
+        i design and build interactive products across software, hardware, and
+        emerging interfaces.
+      </p>
+      <div className="home-hero-cta">
+        <a href="/work" className="link-btn primary">
+          <span>view my work</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="/contact" className="link-btn">
+          get in touch
+        </a>
+      </div>
+    </div>
+  );
+}
+
 /* MOBILE VIEW */
 function MobilePortfolioView({ projectSections }) {
   const [active, setActive] = useState(null);
@@ -329,7 +355,7 @@ function MobilePortfolioView({ projectSections }) {
   };
 
   return (
-    <div className="page-container mobile-wrap">
+    <div className="page-container mobile-wrap home-flow">
       <div className="mobile-header">
         <h1 className="mobile-title">yafira://</h1>
       </div>
@@ -469,27 +495,38 @@ function MobilePortfolioView({ projectSections }) {
 function DesktopPortfolioView({ projectSections }) {
   const [activeSection, setActiveSection] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [hovered, setHovered] = useState(null);
-  const [lines, setLines] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
   const [blogLoading, setBlogLoading] = useState(false);
   const [blogError, setBlogError] = useState(null);
 
-  const [active, setActive] = useState(null);
-  const [showFlowerMenu, setShowFlowerMenu] = useState(false);
-  const closeMenu = () => setShowFlowerMenu(false);
-  const listRef = useRef(null);
+  // drag state for the category blobs — each blob tracks only its own
+  // offset, nothing measures any other element, so this can't develop
+  // the fragility the old connector-lines system had
+  const [offsets, setOffsets] = useState({
+    code: { x: 0, y: 0 },
+    electronics: { x: 0, y: 0 },
+    design: { x: 0, y: 0 },
+    craft: { x: 0, y: 0 },
+    text: { x: 0, y: 0 },
+  });
+  const [draggingId, setDraggingId] = useState(null);
+  const [jigglingId, setJigglingId] = useState(null);
+  const dragRef = useRef({
+    id: null,
+    startX: 0,
+    startY: 0,
+    startOffset: { x: 0, y: 0 },
+    moved: false,
+  });
+  const jiggleTimeoutRef = useRef(null);
 
-  const svgRef = useRef(null);
-  const flowerRef = useRef(null);
-
-  const colors = {
-    code: "var(--code-color)",
-    electronics: "var(--electronics-color)",
-    design: "var(--design-color)",
-    craft: "var(--craft-color)",
-    text: "var(--text-color)",
-  };
+  const categories = [
+    { id: "code", label: "code", icon: "/assets/code.png" },
+    { id: "electronics", label: "electronics", icon: "/assets/circuit.png" },
+    { id: "design", label: "design", icon: "/assets/design.png" },
+    { id: "craft", label: "craft", icon: "/assets/tools.png" },
+    { id: "text", label: "text", icon: "/assets/text.png" },
+  ];
 
   // Fetch blog posts
   useEffect(() => {
@@ -521,63 +558,16 @@ function DesktopPortfolioView({ projectSections }) {
     fetchPosts();
   }, []);
 
-  const categories = ["code", "electronics", "design", "craft", "text"];
-
-  const updateLines = () => {
-    if (!svgRef.current) return;
-
-    const network = document.querySelector(".flower-network");
-    const flower = document.querySelector(".image-box");
-    const boxes = network ? network.querySelectorAll(":scope > .line-box") : [];
-
-    if (!flower || boxes.length < 5) return;
-
-    const svgRect = svgRef.current.getBoundingClientRect();
-    const flowerRect = flower.getBoundingClientRect();
-    const centerX = flowerRect.left + flowerRect.width / 2 - svgRect.left;
-    const centerY = flowerRect.top + flowerRect.height / 2 - svgRect.top;
-
-    const newLines = Array.from(boxes)
-      .slice(0, 5)
-      .map((box) => {
-        const r = box.getBoundingClientRect();
-        return {
-          x1: centerX,
-          y1: centerY,
-          x2: r.left + r.width / 2 - svgRect.left,
-          y2: r.top + r.height / 2 - svgRect.top,
-        };
-      });
-
-    setLines(newLines);
-  };
-
-  useEffect(() => {
-    const t = setTimeout(updateLines, 100);
-    window.addEventListener("resize", updateLines);
-    window.addEventListener("load", updateLines);
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("resize", updateLines);
-      window.removeEventListener("load", updateLines);
-    };
-  }, []);
-
-  useEffect(() => {
-    const t = setTimeout(updateLines, 100);
-    window.addEventListener("resize", updateLines);
-    window.addEventListener("load", updateLines);
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("resize", updateLines);
-      window.removeEventListener("load", updateLines);
-    };
-  }, [activeSection]);
-
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && setIsDrawerOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (jiggleTimeoutRef.current) clearTimeout(jiggleTimeoutRef.current);
+    };
   }, []);
 
   const handleBoxClick = (section) => {
@@ -590,172 +580,116 @@ function DesktopPortfolioView({ projectSections }) {
 
   const handleCloseDrawer = () => setIsDrawerOpen(false);
 
-  const itemsForSection =
-    activeSection === "text" ? blogPosts : projectSections[activeSection] || [];
+  const handlePointerDown = (e, id) => {
+    e.currentTarget.setPointerCapture(e.pointerId);
+    dragRef.current = {
+      id,
+      startX: e.clientX,
+      startY: e.clientY,
+      startOffset: offsets[id],
+      moved: false,
+    };
+    setDraggingId(id);
+  };
+
+  const handlePointerMove = (e) => {
+    const drag = dragRef.current;
+    if (!drag.id) return;
+    const dx = e.clientX - drag.startX;
+    const dy = e.clientY - drag.startY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) drag.moved = true;
+    setOffsets((prev) => ({
+      ...prev,
+      [drag.id]: {
+        x: drag.startOffset.x + dx,
+        y: drag.startOffset.y + dy,
+      },
+    }));
+  };
+
+  const handlePointerUp = (e, id) => {
+    const drag = dragRef.current;
+    const wasMoved = drag.moved;
+    dragRef.current = {
+      id: null,
+      startX: 0,
+      startY: 0,
+      startOffset: { x: 0, y: 0 },
+      moved: false,
+    };
+    setDraggingId(null);
+
+    if (wasMoved) {
+      setJigglingId(id);
+      if (jiggleTimeoutRef.current) clearTimeout(jiggleTimeoutRef.current);
+      jiggleTimeoutRef.current = setTimeout(() => setJigglingId(null), 450);
+    } else {
+      handleBoxClick(id);
+    }
+  };
 
   return (
-    <div className="page-container">
-      <div className="main-section fixed">
-        <div className="flower-network">
-          <svg
-            className="connector-lines"
-            ref={svgRef}
-            xmlns="http://www.w3.org/2000/svg"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              top: 0,
-              left: 0,
-              zIndex: 1,
-              pointerEvents: "none",
-            }}
-          >
-            {categories.map((sec, i) => {
-              const hot = hovered === sec || activeSection === sec;
-              return (
-                <line
-                  key={sec}
-                  x1={lines[i]?.x1 ?? 0}
-                  y1={lines[i]?.y1 ?? 0}
-                  x2={lines[i]?.x2 ?? 0}
-                  y2={lines[i]?.y2 ?? 0}
-                  stroke={hot ? colors[sec] : "#333"}
-                  strokeWidth={hot ? 4 : 2}
-                  strokeOpacity={hot ? 1 : 0.7}
-                />
-              );
-            })}
-          </svg>
+    <div className="page-container home-flow">
+      <div className="hero-blob-field">
+        <svg
+          className="hero-connector-lines"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M 50 20 L 10.75 12.35"
+            style={{ stroke: "var(--code-color)" }}
+          />
+          <path
+            d="M 50 20 L 91.25 14.35"
+            style={{ stroke: "var(--electronics-color)" }}
+          />
+          <path
+            d="M 50 20 L 4.75 56.35"
+            style={{ stroke: "var(--design-color)" }}
+          />
+          <path
+            d="M 50 20 L 95.25 56.35"
+            style={{ stroke: "var(--craft-color)" }}
+          />
+          <path
+            d="M 50 20 L 50 87.65"
+            style={{ stroke: "var(--text-color)" }}
+          />
+        </svg>
 
-          <div className="image-box" ref={flowerRef} aria-hidden="true">
-            <div style={{ position: "relative", width: 500, height: 500 }}>
-              <Image
-                src="/assets/flower-network-logo.png"
-                alt="portfolio flower hub"
-                fill
-                style={{ objectFit: "contain" }}
-                className="flower-image"
-                priority
-              />
-            </div>
-          </div>
+        <HomeHero />
 
-          <div
-            className={`line-box box1 ${
-              activeSection === "code" ? "active" : ""
-            }`}
-            onClick={() => handleBoxClick("code")}
-            onMouseEnter={() => setHovered("code")}
-            onMouseLeave={() => setHovered(null)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") && handleBoxClick("code")
-            }
-            aria-pressed={activeSection === "code"}
-          >
-            <Image
-              src="/assets/code.png"
-              alt="code icon"
-              width={60}
-              height={60}
-            />
-            <span className="box-text">code</span>
-          </div>
-
-          <div
-            className={`line-box box2 ${
-              activeSection === "electronics" ? "active" : ""
-            }`}
-            onClick={() => handleBoxClick("electronics")}
-            onMouseEnter={() => setHovered("electronics")}
-            onMouseLeave={() => setHovered(null)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") &&
-              handleBoxClick("electronics")
-            }
-            aria-pressed={activeSection === "electronics"}
-          >
-            <Image
-              src="/assets/circuit.png"
-              alt="electronics icon"
-              width={60}
-              height={60}
-            />
-            <span className="box-text">electronics</span>
-          </div>
-
-          <div
-            className={`line-box box3 ${
-              activeSection === "design" ? "active" : ""
-            }`}
-            onClick={() => handleBoxClick("design")}
-            onMouseEnter={() => setHovered("design")}
-            onMouseLeave={() => setHovered(null)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") && handleBoxClick("design")
-            }
-            aria-pressed={activeSection === "design"}
-          >
-            <Image
-              src="/assets/design.png"
-              alt="design icon"
-              width={60}
-              height={60}
-            />
-            <span className="box-text">design</span>
-          </div>
-
-          <div
-            className={`line-box box4 ${
-              activeSection === "craft" ? "active" : ""
-            }`}
-            onClick={() => handleBoxClick("craft")}
-            onMouseEnter={() => setHovered("craft")}
-            onMouseLeave={() => setHovered(null)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") && handleBoxClick("craft")
-            }
-            aria-pressed={activeSection === "craft"}
-          >
-            <Image
-              src="/assets/tools.png"
-              alt="craft icon"
-              width={60}
-              height={60}
-            />
-            <span className="box-text">craft</span>
-          </div>
-
-          <div
-            className={`line-box box5 ${
-              activeSection === "text" ? "active" : ""
-            }`}
-            onClick={() => handleBoxClick("text")}
-            onMouseEnter={() => setHovered("text")}
-            onMouseLeave={() => setHovered(null)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") && handleBoxClick("text")
-            }
-            aria-pressed={activeSection === "text"}
-          >
-            <Image
-              src="/assets/text.png"
-              alt="text icon"
-              width={60}
-              height={60}
-            />
-            <span className="box-text">text</span>
-          </div>
+        <div className="category-blob-layer">
+          {categories.map((cat, i) => {
+            const offset = offsets[cat.id];
+            const hasMoved = offset.x !== 0 || offset.y !== 0;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                className={`category-blob category-${cat.id} blob-${i + 1} ${
+                  activeSection === cat.id ? "active" : ""
+                } ${draggingId === cat.id ? "dragging" : ""} ${
+                  jigglingId === cat.id ? "jiggling" : ""
+                }`}
+                style={{
+                  "--drag-x": `${offset.x}px`,
+                  "--drag-y": `${offset.y}px`,
+                  animationPlayState:
+                    hasMoved || draggingId === cat.id ? "paused" : "running",
+                }}
+                onPointerDown={(e) => handlePointerDown(e, cat.id)}
+                onPointerMove={handlePointerMove}
+                onPointerUp={(e) => handlePointerUp(e, cat.id)}
+                aria-pressed={activeSection === cat.id}
+              >
+                <Image src={cat.icon} alt="" width={52} height={52} />
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

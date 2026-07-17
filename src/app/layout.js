@@ -1,15 +1,25 @@
 import { Pixelify_Sans } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
+import LabLink from "@/app/components/LabLink";
+import BackgroundPattern from "@/app/components/BackgroundPattern";
 import "./styles/globals.css";
 import "./styles/styles.css";
 import "./styles/mobile.css";
+
 export const viewport = {
   width: "device-width",
   initialScale: 1,
 };
+
 export const metadata = {
-  title: "Yafira ✿",
+  title: "Yafira ✿ | design engineer & creative technologist",
+  description:
+    "i design and build interactive products across software, hardware, and emerging interfaces.",
   openGraph: {
+    title: "Yafira ✿ | design engineer & creative technologist",
+    description:
+      "i design and build interactive products across software, hardware, and emerging interfaces.",
     images: [
       {
         url: "/assets/flower-network-logo.png",
@@ -20,6 +30,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: "Yafira ✿ | design engineer & creative technologist",
+    description:
+      "i design and build interactive products across software, hardware, and emerging interfaces.",
     images: ["/assets/flower-network-logo.png"],
   },
   icons: {
@@ -34,21 +47,29 @@ export const metadata = {
   applicationName: "Yafira ✿",
   appleWebApp: { title: "Yafira ✿" },
 };
+
 const pixelifySans = Pixelify_Sans({ weight: "400", subsets: ["latin"] });
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
       <body className={pixelifySans.className}>
+        <BackgroundPattern />
         <nav className="navigation">
           <div className="nav-links">
             <Link href="/" className="home-icon">
-              ⌂
+              <Image
+                src="/assets/flower-sm.png"
+                alt="home"
+                width={22}
+                height={22}
+              />
             </Link>
+            <Link href="/work">work</Link>
+            <LabLink />
             <Link href="/about">about</Link>
-            <Link href="/projects">projects</Link>
             <Link href="/cv">cv</Link>
-            <Link href="/contact">contact</Link>
           </div>
         </nav>
         <main className="main-content">{children}</main>

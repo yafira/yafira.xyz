@@ -16,6 +16,8 @@ const ProjectBox = ({
   description,
   links,
   category,
+  stack,
+  tags,
   showLinksAlways = false,
   badge,
 }) => {
@@ -60,6 +62,21 @@ const ProjectBox = ({
         )
       : null;
 
+  const metaBlock = (
+    <>
+      {stack && <p className="project-stack">{stack}</p>}
+      {Array.isArray(tags) && tags.length > 0 && (
+        <div className="project-tags">
+          {tags.map((t) => (
+            <span key={t} className="project-tag">
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+    </>
+  );
+
   return (
     <>
       <div
@@ -92,6 +109,7 @@ const ProjectBox = ({
                 {description || links.description}
               </p>
             )}
+            {metaBlock}
             {links && (
               <div
                 className={`project-links design-links ${showLinksAlways ? "always-visible" : ""}`}
@@ -135,6 +153,7 @@ const ProjectBox = ({
             {category !== "text" && description && (
               <p className="project-description">{description}</p>
             )}
+            {category !== "text" && metaBlock}
           </a>
         )}
 

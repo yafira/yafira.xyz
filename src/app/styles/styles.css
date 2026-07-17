@@ -72,22 +72,13 @@ body {
   overflow-x: hidden;
 }
 
-/* graph paper background */
-body {
-  -webkit-tap-highlight-color: transparent;
-  background-color: #feffed;
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-  font-family: var(--font-family);
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100svh;
-  padding-top: 96px;
-}
+/* NOTE: the graph-paper body background now lives ONLY in globals.css.
+   This file previously had its own conflicting `body { background-color:
+   #feffed; ... }` block here, and since this file loads AFTER globals.css
+   in layout.js, it was silently winning every time the background color
+   was changed there — that's the bug behind "the color still didn't
+   change." Removed rather than duplicated, so there's one source of
+   truth for the page background going forward. */
 
 img {
   mix-blend-mode: multiply;
@@ -179,6 +170,7 @@ html.home-locked .connector-lines {
 
 /* about page */
 .avatar-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,39 +180,6 @@ html.home-locked .connector-lines {
   border-radius: 12px;
   object-fit: cover;
   z-index: 2;
-}
-
-/* blob background */
-.avatar-container::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(
-    circle at 30% 30%,
-    var(--soft-pink) 0%,
-    #e6ddf6 40%,
-    #ffffff00 100%
-  );
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  opacity: 0.4;
-  filter: blur(20px);
-}
-@keyframes morph {
-  0%,
-  100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-  50% {
-    border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
-  }
-}
-.avatar-container::before {
-  animation: morph 12s ease-in-out infinite;
 }
 
 .about-page {
@@ -641,7 +600,7 @@ html.home-locked .connector-lines {
   min-width: var(--card-w);
   height: auto;
   min-height: clamp(240px, 28vh, 300px);
-  background-color: #fff;
+  background-color: var(--butter-whisper, #ffffff);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -891,21 +850,32 @@ html.home-locked .connector-lines {
 }
 /* ========== END DRAWER CLOSE BUTTON ========== */
 
-/* === all projects grid — responsive + FULL TEXT === */
+/* === all projects grid — masonry columns, matches globals.css.
+   NOTE: this file previously had the OLD CSS-Grid version of this
+   rule (display:grid; grid-template-columns...), and since this
+   file loads AFTER globals.css, it was silently overriding the
+   masonry conversion made there — reverting the whole /work page
+   back to a rigid 4-column grid too narrow for the content, which
+   is what caused text to clip at the card edges. === */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, var(--card-w)));
-  gap: clamp(20px, 3vw, 36px);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
+  gap: clamp(20px, 3vw, 36px);
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 2rem;
 }
+.projects-grid.featured {
+  --card-w: clamp(220px, 26vw, 300px);
+  padding-top: 0.5rem;
+}
 
 /* critical: prevent grid overflow when resizing browser */
 .projects-grid .project-box {
-  width: var(--card-w);
+  width: var(--card-w, clamp(180px, 22vw, 240px));
   min-width: 0;
   height: auto;
 }
@@ -929,25 +899,17 @@ html.home-locked .connector-lines {
   display: block !important;
 }
 
-/* responsive breakpoints for the grid */
-@media (max-width: 1200px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, var(--card-w)));
-  }
-}
-@media (max-width: 900px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, var(--card-w)));
+@media (max-width: 560px) {
+  .projects-grid.featured .project-box {
+    width: 100%;
   }
 }
 @media (max-width: 520px) {
   .projects-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
     padding: 1.25rem 1rem;
   }
   .projects-grid .project-box {
-    width: min(92vw, var(--card-w));
+    width: 100%;
   }
 }
 
@@ -1202,17 +1164,20 @@ html.home-locked .connector-lines {
   gap: 8px;
   padding: 10px 14px;
   border-radius: 999px;
-  background: var(--soft-pink);
+  background: var(--pill-neutral, #eef0f1);
+  border: 2px solid rgba(0, 0, 0, 0.14);
   color: #000;
   text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.15s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 .contact-button:hover {
   transform: translateY(-1px);
-  background: var(--soft-pink-hover);
+  background: var(--soft-pink);
+  border-color: transparent;
 }
 .contact-button:focus-visible {
   outline: 2px solid #333;
@@ -1238,11 +1203,11 @@ html.home-locked .connector-lines {
   gap: 10px;
   padding: 12px 14px;
   border-radius: 14px;
-  background: #fff;
-  border: 2px solid transparent;
+  background: var(--pill-neutral, #eef0f1);
+  border: 2px solid rgba(0, 0, 0, 0.14);
   text-decoration: none;
   color: #111;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.15s ease,
     box-shadow 0.2s ease,
@@ -1758,7 +1723,7 @@ html.home-locked .connector-lines {
   height: 8px;
   border-radius: 999px;
   background: #000;
-  box-shadow: 0 0 0 2px #feffed;
+  box-shadow: 0 0 0 2px #fefeff;
 }
 .cv-role-meta {
   display: flex;

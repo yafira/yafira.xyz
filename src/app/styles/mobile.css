@@ -36,15 +36,11 @@ span {
   -webkit-user-select: text;
 }
 
-/* graph paper background */
-body {
-  background-color: #feffed;
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-  font-family: monospace;
-}
+/* NOTE: this file previously had its own `body { background-color:
+   #feffed; ... }` block here, which — since this is the LAST stylesheet
+   imported in layout.js — was silently overriding whatever background
+   was set in globals.css every time. Removed; the page background now
+   has exactly one source of truth, in globals.css. */
 
 /* ── MOBILE (≤640px) ───────────────────────────────────────────── */
 
@@ -54,10 +50,16 @@ body {
 }
 
 @media (max-width: 640px) {
-  /* hide desktop-only ui */
+  /* hide desktop-only ui.
+     NOTE: .projects-drawer was removed from this list. It used to be
+     shared markup across mobile and desktop, so hiding it below 640px
+     made sense. It's now only rendered by DesktopPortfolioView (mobile
+     uses its own inline mobile-list markup instead), and that component
+     never mounts at mobile widths in the first place — so this rule was
+     dead weight that would have silently broken the new draggable
+     category drawer the moment anything changed that assumption. */
   .flower-network,
-  .image-box,
-  .projects-drawer {
+  .image-box {
     display: none !important;
   }
 
