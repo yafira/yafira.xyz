@@ -1,23 +1,12 @@
 // app/lib/projectData.js
 //
-// selected work: the six projects that carry the professional pitch.
-// more projects: strong secondary work.
+// selected work: the projects that carry the professional pitch,
+// ordered by design-engineering focus.
+// more projects: strong secondary work, with the electronics
+// cluster grouped at the end.
 // everything else lives at electrocute.io.
 
 export const selectedWork = [
-  {
-    title: "Spot Mapper",
-    imageUrl: "/assets/spot-mapper.gif",
-    category: "code",
-    description:
-      "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
-    stack: "Leaflet · SheetJS · Redis · Vercel",
-    tags: ["product design", "full-stack"],
-    links: {
-      demo: "https://spot-mapper.vercel.app",
-      casestudy: "https://spot-mapper-case-study.vercel.app",
-    },
-  },
   {
     title: "electrocute-ui",
     imageUrl: "/assets/ecuteui.gif",
@@ -33,18 +22,6 @@ export const selectedWork = [
     },
   },
   {
-    title: "the soft computer",
-    imageUrl: "/assets/tsc.png",
-    category: "electronics",
-    description:
-      "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
-    stack: "Raspberry Pi · RP2350 · Python · machine knitting",
-    tags: ["interaction design", "hardware ux", "hardware + web"],
-    links: {
-      web: "https://thesoft.computer/",
-    },
-  },
-  {
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
     category: "code",
@@ -53,6 +30,19 @@ export const selectedWork = [
     stack: "Next.js · TypeScript",
     tags: ["product design", "web tooling", "frontend"],
     link: "https://tinytinker.tools",
+  },
+  {
+    title: "Spot Mapper",
+    imageUrl: "/assets/spot-mapper.gif",
+    category: "code",
+    description:
+      "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
+    stack: "Leaflet · SheetJS · Redis · Vercel",
+    tags: ["product design", "full-stack"],
+    links: {
+      demo: "https://spot-mapper.vercel.app",
+      casestudy: "https://spot-mapper-case-study.vercel.app",
+    },
   },
   {
     title: "Lumi",
@@ -65,6 +55,18 @@ export const selectedWork = [
     links: {
       prototype: "https://lumi-wearable.vercel.app",
       casestudy: "https://lumi-case-study.vercel.app",
+    },
+  },
+  {
+    title: "the soft computer",
+    imageUrl: "/assets/tsc.png",
+    category: "electronics",
+    description:
+      "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
+    stack: "Raspberry Pi · RP2350 · Python · machine knitting",
+    tags: ["interaction design", "hardware ux", "hardware + web"],
+    links: {
+      web: "https://thesoft.computer/",
     },
   },
   {
@@ -104,44 +106,14 @@ export const moreProjects = [
     link: "https://tinkerthread.netlify.app/",
   },
   {
-    title: "Department of Lost Circuits",
-    imageUrl: "/assets/dlc.gif",
-    category: "design",
-    description:
-      "A generative system that creates Riso-printable stamps from obsolete electronics.",
-    tags: ["generative design", "frontend"],
-    stack: "p5.js · Riso print",
-    link: "https://lost-circuits.netlify.app/",
-  },
-  {
-    title: "ribbon_logic",
-    imageUrl: "/assets/rlogic.png",
-    category: "electronics",
-    description:
-      "A handheld poetry generator that creates generative text with Markov chains, built on an ESP32-S3 in CircuitPython.",
-    stack: "ESP32-S3 · CircuitPython",
-    tags: ["hardware", "generative text"],
-    link: "https://months-tap-da9.craft.me/ribbon-logic",
-  },
-  {
-    title: "PetalByte",
-    imageUrl: "/assets/petalbyte.png",
-    category: "electronics",
-    description:
-      "A flower-shaped laser-cut USB drive and generative text device running a custom pygame file explorer on a Raspberry Pi.",
-    stack: "Raspberry Pi · pygame",
-    tags: ["hardware"],
-    link: "https://months-tap-da9.craft.me/petalbyte",
-  },
-  {
-    title: "Print + Code",
-    imageUrl: "/assets/pc.png",
+    title: "Cute Technologies",
+    imageUrl: "/assets/cute-tech.gif",
     category: "code",
     description:
-      "A documentation hub for computational craft: riso-printed generative animation, a plotter-drawn machine drawing series, a generative postage stamp system, and a soft-circuits zine.",
-    stack: "p5.js · HTML/CSS/JS",
-    tags: ["generative design", "frontend", "creative coding"],
-    link: "https://print-code.netlify.app/",
+      "A cute tech tools blog built with Next.js and the Notion API.",
+    stack: "Next.js · Notion API",
+    tags: ["cms", "full-stack"],
+    link: "https://cutetech.tools/",
   },
   {
     title: "Useless Machines",
@@ -154,14 +126,24 @@ export const moreProjects = [
     link: "https://uselessmachines.vercel.app/",
   },
   {
-    title: "AirSense",
-    imageUrl: "/assets/airsense.png",
-    category: "electronics",
+    title: "Print + Code",
+    imageUrl: "/assets/pc.png",
+    category: "code",
     description:
-      "Indoor air quality monitor and live dashboard, built with Arduino and React.",
-    stack: "Arduino · React",
-    tags: ["hardware", "dashboard", "hardware + web"],
-    link: "https://months-tap-da9.craft.me/airsense",
+      "A documentation hub for computational craft: riso-printed generative animation, a plotter-drawn machine drawing series, a generative postage stamp system, and a soft-circuits zine.",
+    stack: "p5.js · HTML/CSS/JS",
+    tags: ["generative design", "frontend", "creative coding"],
+    link: "https://print-code.netlify.app/",
+  },
+  {
+    title: "Department of Lost Circuits",
+    imageUrl: "/assets/dlc.gif",
+    category: "design",
+    description:
+      "A generative system that creates Riso-printable stamps from obsolete electronics.",
+    tags: ["generative design", "frontend"],
+    stack: "p5.js · Riso print",
+    link: "https://lost-circuits.netlify.app/",
   },
   {
     title: "Cosmic Snax",
@@ -202,15 +184,36 @@ export const moreProjects = [
     tags: ["machine learning", "illustration", "education"],
     link: "https://www.figma.com/community/file/1282166884816539041/kawaii-ml-card-deck",
   },
+  // ── electronics cluster ──────────────────────────────────────────
   {
-    title: "Cute Technologies",
-    imageUrl: "/assets/cute-tech.gif",
-    category: "code",
+    title: "ribbon_logic",
+    imageUrl: "/assets/rlogic.png",
+    category: "electronics",
     description:
-      "A cute tech tools blog built with Next.js and the Notion API.",
-    stack: "Next.js · Notion API",
-    tags: ["cms", "full-stack"],
-    link: "https://cutetech.tools/",
+      "A handheld poetry generator that creates generative text with Markov chains, built on an ESP32-S3 in CircuitPython.",
+    stack: "ESP32-S3 · CircuitPython",
+    tags: ["hardware", "generative text"],
+    link: "https://months-tap-da9.craft.me/ribbon-logic",
+  },
+  {
+    title: "PetalByte",
+    imageUrl: "/assets/petalbyte.png",
+    category: "electronics",
+    description:
+      "A flower-shaped laser-cut USB drive and generative text device running a custom pygame file explorer on a Raspberry Pi.",
+    stack: "Raspberry Pi · pygame",
+    tags: ["hardware"],
+    link: "https://months-tap-da9.craft.me/petalbyte",
+  },
+  {
+    title: "AirSense",
+    imageUrl: "/assets/airsense.png",
+    category: "electronics",
+    description:
+      "Indoor air quality monitor and live dashboard, built with Arduino and React.",
+    stack: "Arduino · React",
+    tags: ["hardware", "dashboard", "hardware + web"],
+    link: "https://months-tap-da9.craft.me/airsense",
   },
 ];
 

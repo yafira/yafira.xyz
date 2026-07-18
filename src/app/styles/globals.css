@@ -2042,6 +2042,14 @@ html.home-locked .connector-lines {
   color: #5a4a8a;
   white-space: nowrap;
 }
+.work-section-heading {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  color: #1a1a1a;
+  margin: 0.5rem 0 0;
+}
 .work-more-heading {
   text-align: center;
   margin: 3rem 0 0.5rem;
