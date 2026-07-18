@@ -32,6 +32,19 @@ export const selectedWork = [
     link: "https://tinytinker.tools",
   },
   {
+    title: "ml5.js contributions",
+    imageUrl: "/assets/ml5.gif",
+    category: "code",
+    description:
+      "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
+    stack: "Docsify · JavaScript",
+    tags: ["open source", "machine learning", "documentation"],
+    links: {
+      blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
+      docs: "https://docs.ml5js.org/#/",
+    },
+  },
+  {
     title: "Spot Mapper",
     imageUrl: "/assets/spot-mapper.gif",
     category: "code",
@@ -45,6 +58,16 @@ export const selectedWork = [
     },
   },
   {
+    title: "TinkerThread",
+    imageUrl: "/assets/tt.gif",
+    category: "code",
+    description:
+      "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
+    stack: "JavaScript · Canvas",
+    tags: ["simulation", "e-textiles", "frontend"],
+    link: "https://tinkerthread.netlify.app/",
+  },
+  {
     title: "Lumi",
     imageUrl: "/assets/lumi-preview.gif",
     category: "design",
@@ -55,6 +78,21 @@ export const selectedWork = [
     links: {
       prototype: "https://lumi-wearable.vercel.app",
       casestudy: "https://lumi-case-study.vercel.app",
+    },
+  },
+  {
+    title: "Seedling",
+    imageUrl: "/assets/seedling.gif",
+    category: "design",
+    description:
+      "A tool to help people develop their creativity, designed end-to-end from research through a high-fidelity prototype.",
+    stack: "Figma",
+    tags: ["ux design", "ux research"],
+    links: {
+      mobile:
+        "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223",
+      web: "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=46%3A1304&node-id=50%3A3254&viewport=245%2C48%2C0.07&scaling=min-zoom&starting-point-node-id=50%3A3254&show-proto-sidebar=1",
+      casestudy: "assets/Seedling - Case study.pdf",
     },
   },
   {
@@ -83,27 +121,14 @@ export const selectedWork = [
 
 export const moreProjects = [
   {
-    title: "ml5.js contributions",
-    imageUrl: "/assets/ml5.gif",
-    category: "code",
+    title: "Department of Lost Circuits",
+    imageUrl: "/assets/dlc.gif",
+    category: "design",
     description:
-      "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
-    stack: "Docsify · JavaScript",
-    tags: ["open source", "machine learning", "documentation"],
-    links: {
-      blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
-      docs: "https://docs.ml5js.org/#/",
-    },
-  },
-  {
-    title: "TinkerThread",
-    imageUrl: "/assets/tt.gif",
-    category: "code",
-    description:
-      "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
-    stack: "JavaScript · Canvas",
-    tags: ["simulation", "e-textiles", "frontend"],
-    link: "https://tinkerthread.netlify.app/",
+      "A generative system that creates Riso-printable stamps from obsolete electronics.",
+    tags: ["generative design", "frontend"],
+    stack: "p5.js · Riso print",
+    link: "https://lost-circuits.netlify.app/",
   },
   {
     title: "Cute Technologies",
@@ -136,16 +161,6 @@ export const moreProjects = [
     link: "https://print-code.netlify.app/",
   },
   {
-    title: "Department of Lost Circuits",
-    imageUrl: "/assets/dlc.gif",
-    category: "design",
-    description:
-      "A generative system that creates Riso-printable stamps from obsolete electronics.",
-    tags: ["generative design", "frontend"],
-    stack: "p5.js · Riso print",
-    link: "https://lost-circuits.netlify.app/",
-  },
-  {
     title: "Cosmic Snax",
     imageUrl: "/assets/cosmic-snax.gif",
     category: "design",
@@ -158,31 +173,6 @@ export const moreProjects = [
         "https://www.figma.com/proto/oTPH8BW7owaY91IVOlR6KC/Cosmic-Snax?page-id=248%3A2311&node-id=256%3A1892&viewport=245%2C48%2C0.23&scaling=min-zoom&starting-point-node-id=256%3A1892",
       casestudy: "assets/Cosmic Snax - Case study.pdf",
     },
-  },
-  {
-    title: "Seedling",
-    imageUrl: "/assets/seedling.gif",
-    category: "design",
-    description:
-      "A tool to help people develop their creativity, designed end-to-end from research through a high-fidelity prototype.",
-    stack: "Figma",
-    tags: ["ux design", "ux research"],
-    links: {
-      mobile:
-        "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223",
-      web: "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=46%3A1304&node-id=50%3A3254&viewport=245%2C48%2C0.07&scaling=min-zoom&starting-point-node-id=50%3A3254&show-proto-sidebar=1",
-      casestudy: "assets/Seedling - Case study.pdf",
-    },
-  },
-  {
-    title: "Kawaii ML",
-    imageUrl: "/assets/kawaii-ml.png",
-    category: "design",
-    description:
-      "A cute illustrated card deck teaching machine learning fundamentals — datasets, training, classification, neural networks — one friendly concept per card.",
-    stack: "Figma",
-    tags: ["machine learning", "illustration", "education"],
-    link: "https://www.figma.com/community/file/1282166884816539041/kawaii-ml-card-deck",
   },
   // ── electronics cluster ──────────────────────────────────────────
   {
@@ -214,6 +204,16 @@ export const moreProjects = [
     stack: "Arduino · React",
     tags: ["hardware", "dashboard", "hardware + web"],
     link: "https://months-tap-da9.craft.me/airsense",
+  },
+  {
+    title: "Puffcast",
+    imageUrl: "/assets/puffcast.png",
+    category: "electronics",
+    description:
+      "A handmade craft foam controller for Philips Hue, inspired by soft foam novelty phones of the 80s-90s.",
+    stack: "Arduino · Philips Hue API",
+    tags: ["hardware", "e-textiles"],
+    link: "https://months-tap-da9.craft.me/cIaDWsryPp9LdS",
   },
 ];
 

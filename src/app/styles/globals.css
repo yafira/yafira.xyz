@@ -267,6 +267,232 @@ html.home-locked .connector-lines {
   }
 }
 
+/* lab flyout — the "lab" nav item opens a small menu of the lab's
+   live properties in place, instead of navigating anywhere. every
+   link opens in a new tab; the site underneath never moves.
+   each row is a little patch: its own tint + stitch color, and on
+   hover the running stitch actually runs (marching dashes). */
+.lab-flyout-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.lab-flyout {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: -10px;
+  width: max-content;
+  min-width: 268px;
+  max-width: min(320px, 92vw);
+  background: var(--wisteria-dust);
+  border: 2px dashed #8b7ab8;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+  padding: 0.85rem 0.75rem 0.75rem;
+  z-index: 60;
+  animation: lab-flyout-in 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes lab-flyout-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.lab-flyout-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  padding: 0.35rem 0.5rem 0.55rem;
+  border-bottom: 2px dashed rgba(139, 122, 184, 0.35);
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+.lab-flyout-header:hover {
+  background: #f0eaff;
+}
+.lab-flyout-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #3d2f6b;
+}
+.lab-flyout-flower {
+  display: inline-flex;
+  vertical-align: -2px;
+}
+.lab-flyout-flower svg,
+.lab-flyout-flower img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.lab-flyout-header:hover .lab-flyout-flower {
+  animation: lab-toast-spin 1.6s linear infinite;
+}
+.lab-flyout-glyph svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.lab-flyout-sub {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  color: #8b7ab8;
+  letter-spacing: 0.02em;
+}
+.lab-flyout-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* each row: glyph · label-over-note · ↗ that slides in on hover.
+   stacking the note under the label is also what fixes the text
+   overflow the old side-by-side layout had. */
+.lab-flyout-item {
+  --dash: 7px;
+  --gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+  background-color: transparent;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--item-stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--item-stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--item-stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--item-stitch) 0 var(--dash),
+      transparent var(--dash) calc(var(--dash) + var(--gap))
+    );
+  background-position:
+    0 0,
+    0 100%,
+    0 0,
+    100% 0;
+  background-size:
+    100% 0,
+    100% 0,
+    0 100%,
+    0 100%;
+  background-repeat: no-repeat;
+}
+.lab-flyout-item:hover,
+.lab-flyout-item:focus-visible {
+  background-color: var(--item-tint);
+  background-size:
+    100% 2px,
+    100% 2px,
+    2px 100%,
+    2px 100%;
+  transform: rotate(-0.5deg);
+  outline: none;
+  animation: lab-stitch-run 0.9s linear infinite;
+}
+@keyframes lab-stitch-run {
+  to {
+    background-position:
+      13px 0,
+      -13px 100%,
+      0 -13px,
+      100% 13px;
+  }
+}
+.lab-flyout-glyph {
+  color: var(--item-stitch);
+  width: 16px;
+  flex: none;
+  transition: transform 0.18s ease;
+}
+.lab-flyout-item:hover .lab-flyout-glyph {
+  transform: rotate(12deg) scale(1.2);
+}
+.lab-flyout-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.lab-flyout-label {
+  font-family: var(--font-code);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #333;
+}
+.lab-flyout-item:hover .lab-flyout-label {
+  color: #000;
+}
+.lab-flyout-note {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  color: #999;
+}
+.lab-flyout-item:hover .lab-flyout-note {
+  color: var(--item-stitch);
+}
+.lab-flyout-go {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--item-stitch);
+  opacity: 0;
+  transform: translate(-4px, 2px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  flex: none;
+}
+.lab-flyout-item:hover .lab-flyout-go,
+.lab-flyout-item:focus-visible .lab-flyout-go {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-flyout,
+  .lab-flyout-item:hover,
+  .lab-flyout-header:hover .lab-flyout-flower {
+    animation: none;
+  }
+  .lab-flyout-item:hover {
+    transform: none;
+  }
+}
+@media (max-width: 640px) {
+  .lab-flyout {
+    position: fixed;
+    top: calc(var(--nav-h) - 18px);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    min-width: 0;
+    width: min(300px, 92vw);
+    animation: none;
+  }
+}
+
 /* main content — top padding trimmed: body's 96px already clears
    the fixed nav, so the old second 96px here was pure duplication
    and pushed every page's content a full nav-height too far down */
@@ -616,10 +842,11 @@ html.home-locked .connector-lines {
 
 .projects-drawer-grid {
   display: flex;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.6rem, 1.5vw, 1rem);
   padding: 0.25rem clamp(0.5rem, 2vw, 1rem);
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
 }
 
 /* project box base */
@@ -900,16 +1127,196 @@ html.home-locked .connector-lines {
   width: clamp(110px, 12vw, 135px);
   height: clamp(110px, 12vw, 135px);
 }
+/* drawer cards, compact — a smaller, tighter variant than the
+   featured "selected work" cards, so the drawer reads as a compact
+   secondary listing rather than a sparser copy of the main grid.
+   also fixes the translucent background letting page content bleed
+   through behind the open drawer (the *-bg tokens carry alpha;
+   these mist/foam/dust tokens are solid). */
+.projects-drawer[data-section="code"] {
+  background-color: var(--matcha-foam);
+}
+.projects-drawer[data-section="design"] {
+  background-color: var(--lilac-mist);
+}
+.projects-drawer[data-section="electronics"] {
+  background-color: var(--wisteria-dust);
+}
+.projects-drawer[data-section="craft"] {
+  background-color: var(--blush-powder);
+}
+.projects-drawer[data-section="text"] {
+  background-color: var(--sky-mist);
+}
+/* the close tab sets its own background per-section elsewhere in
+   this file with matching specificity — these rules must repeat
+   that exact selector shape (not a flat .drawer-close rule) or they
+   silently lose the cascade and the tab stays translucent */
+.projects-drawer[data-section="code"] .drawer-close {
+  background-color: var(--matcha-foam);
+}
+.projects-drawer[data-section="design"] .drawer-close {
+  background-color: var(--lilac-mist);
+}
+.projects-drawer[data-section="electronics"] .drawer-close {
+  background-color: var(--wisteria-dust);
+}
+.projects-drawer[data-section="craft"] .drawer-close {
+  background-color: var(--blush-powder);
+}
+.projects-drawer[data-section="text"] .drawer-close {
+  background-color: var(--sky-mist);
+}
+
 .projects-drawer .project-box {
-  padding-bottom: 1.25rem;
+  --card-w: clamp(120px, 11vw, 150px);
   height: auto !important;
   min-height: 0 !important;
   overflow: visible !important;
+  padding-top: 0.6rem;
+  padding-bottom: 0.7rem;
+}
+.projects-drawer .project-box .project-image {
+  width: clamp(64px, 7vw, 80px);
+  height: clamp(64px, 7vw, 80px);
+}
+.projects-drawer .project-box .box-text {
+  font-size: 0.82rem;
+  margin-top: 0.45rem;
 }
 .projects-drawer .project-description {
-  max-height: none !important;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin: 4px auto 7px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.projects-drawer .project-stack {
+  display: none;
+}
+.projects-drawer .project-tags {
+  display: none;
+}
+.projects-drawer .project-links.design-links .project-link.button-link {
+  font-size: 0.6rem;
+  padding: 0.22rem 0.45rem;
+}
+/* the "more projects" drawer — an inline panel that expands in
+   normal document flow (pushes the page down) instead of a fixed
+   bottom sheet with its own max-height. this is a deliberate fix
+   for the drawer looking empty around 2-3 small cards: a panel
+   sized to its content can't have leftover space, by construction,
+   regardless of how large or small the cards inside render. */
+.more-drawer {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 1rem auto 0;
+  padding: 2.2rem 1.25rem 1.5rem;
+  border-radius: 18px;
+  animation: more-drawer-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes more-drawer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.more-drawer[data-section="code"] {
+  background-color: var(--matcha-foam);
+}
+.more-drawer[data-section="design"] {
+  background-color: var(--lilac-mist);
+}
+.more-drawer[data-section="electronics"] {
+  background-color: var(--wisteria-dust);
+}
+.more-drawer[data-section="craft"] {
+  background-color: var(--blush-powder);
+}
+.more-drawer[data-section="text"] {
+  background-color: var(--sky-mist);
+}
+.more-drawer-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.more-drawer-close:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+.more-drawer-close svg {
+  width: 18px;
+  height: 18px;
+  transform: rotate(180deg);
+}
+.more-drawer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.6rem, 1.5vw, 1rem);
+}
+
+/* compact card treatment, forced with !important — a CSS module
+   (ProjectBox.module.css) sets its own width/sizing on these cards
+   with source-order priority that non-!important overrides here
+   were losing to silently. !important is the reliable way to win
+   regardless of where that module's styles land in the bundle. */
+.more-drawer-grid .project-box {
+  width: 220px !important;
+  min-width: 220px !important;
+  height: auto !important;
+  min-height: 0 !important;
   overflow: visible !important;
+  padding-top: 0.65rem !important;
+  padding-bottom: 0.8rem !important;
+}
+.more-drawer-grid .project-box .project-image {
+  width: 72px !important;
+  height: 72px !important;
+}
+.more-drawer-grid .project-box .box-text {
+  font-size: 0.85rem !important;
+  margin-top: 0.5rem !important;
+}
+.more-drawer-grid .project-description {
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+  margin: 5px auto 8px !important;
   display: block !important;
+  overflow: visible !important;
+  max-height: none !important;
+}
+.more-drawer-grid .project-stack {
+  display: none !important;
+}
+.more-drawer-grid .project-tags {
+  display: none !important;
+}
+.more-drawer-grid .project-links.design-links .project-link.button-link {
+  font-size: 0.6rem !important;
+  padding: 0.2rem 0.4rem !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .more-drawer {
+    animation: none;
+  }
 }
 @media (max-width: 520px) {
   .projects-grid {
@@ -2191,6 +2598,10 @@ html.home-locked .connector-lines {
   margin-bottom: 0.9rem;
   animation: flower-float 6s ease-in-out infinite;
 }
+.home-hero-flower img {
+  width: clamp(220px, 24vw, 340px) !important;
+  height: auto !important;
+}
 @keyframes flower-float {
   0%,
   100% {
@@ -2485,4 +2896,270 @@ html.home-locked .connector-lines {
   max-width: 280px !important;
   height: auto !important;
   aspect-ratio: auto !important;
+}
+
+/* ==========================================================
+   merged homepage — the portfolio IS the homepage.
+   hero claim → selected work cards → more-project rows → contact.
+   (the old blob/drawer homepage styles further up are now fully
+   unused and can be deleted in a cleanup pass)
+   ========================================================== */
+.home-page {
+  position: relative;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(1rem, 4vh, 2.5rem) 1rem 3rem;
+}
+
+/* hero claim */
+.home-claim-wrap {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto clamp(2rem, 5vh, 3rem);
+}
+.home-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+  opacity: 0.85;
+}
+.home-mark svg,
+.home-mark img {
+  width: 30px;
+  height: 30px;
+}
+.home-claim {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+  line-height: 1.3;
+  color: #1a1a1a;
+  margin-bottom: 0.9rem;
+  text-wrap: balance;
+}
+.home-proof {
+  font-family: var(--font-code);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: #666;
+  margin-bottom: 1.4rem;
+  white-space: nowrap;
+  max-width: none;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .home-proof {
+    white-space: normal;
+    width: auto;
+    position: static;
+    left: auto;
+    transform: none;
+  }
+}
+
+/* homepage section headings sit above the cards grid, which
+   provides its own top padding */
+.home-page .work-section-heading {
+  position: relative;
+  z-index: 2;
+}
+
+/* more projects — now a pill row + sliding drawer instead of a
+   flat list (reusing the site's original drawer CSS below), so
+   "more projects" gets the discovery interaction back without
+   gating anything in "selected work" behind a click. */
+/* the "selected work" micro-interaction — a checkmark that draws
+   itself once, replacing a plain text label with something that
+   performs "selected" rather than stating it. */
+.selected-mark-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+.selected-mark-check {
+  width: 26px;
+  height: 26px;
+  color: #8b7ab8;
+  overflow: visible;
+}
+.selected-mark-check circle,
+.selected-mark-check path {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.selected-mark-check circle {
+  stroke-dasharray: 76;
+  stroke-dashoffset: 76;
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.selected-mark-check path {
+  stroke-dasharray: 18;
+  stroke-dashoffset: 18;
+  transition: stroke-dashoffset 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+}
+.selected-mark-check.is-drawn circle {
+  stroke-dashoffset: 0;
+}
+.selected-mark-check.is-drawn path {
+  stroke-dashoffset: 0;
+}
+.selected-mark-label {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: #1a1a1a;
+}
+@media (prefers-reduced-motion: reduce) {
+  .selected-mark-check circle,
+  .selected-mark-check path {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
+/* contact strip */
+.home-contact {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  padding-top: 2rem;
+  border-top: 3px dashed rgba(139, 122, 184, 0.35);
+}
+.home-contact-line {
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.1rem;
+}
+.contact-inkbloom {
+  display: inline-flex;
+  vertical-align: -2px;
+}
+.contact-inkbloom svg,
+.contact-inkbloom img {
+  width: 15px;
+  height: 15px;
+}
+
+/* section marks — each one is pinned to the section it lives in
+   (position: relative on that section, position: absolute on the
+   mark), never to the whole page. this is the fix for marks
+   drifting into card content as the page grows: a percentage of a
+   short header block can't ever land inside a project grid below
+   it, because it isn't measured against the page at all. */
+.home-claim-wrap,
+.index-block,
+.home-contact {
+  position: relative;
+}
+.index-block {
+  position: relative;
+  z-index: 2;
+}
+.section-mark {
+  position: absolute;
+  display: block;
+  color: #8b7ab8;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.section-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* a real, working toggle in the hero's margin — small, quiet proof
+   of component engineering rather than a picture of a UI control. */
+/* a dashed trace with a pulse that travels it — current, flowing */
+.mark-signal {
+  top: 4px;
+  right: 4px;
+  width: 50px;
+  height: 37px;
+}
+.signal-trace-svg {
+  overflow: visible;
+}
+.signal-pulse {
+  offset-path: path("M2 40 L2 24 L20 24 L20 8 L58 8");
+  animation: signal-flow 3.2s linear infinite;
+}
+@keyframes signal-flow {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+/* a dot that drifts toward the cursor within a bounded field —
+   calm, physical, capped travel distance */
+.mark-magnet {
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+}
+.magnet-field {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.magnet-dot {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8b7ab8;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 700px) {
+  .section-mark {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-pulse {
+    animation: none;
+  }
+  .magnet-dot {
+    transition: none;
+  }
+  .more-row {
+    animation: none;
+    opacity: 1;
+  }
+  .more-row:hover {
+    transform: none;
+  }
+  .more-row:hover .more-thumb {
+    transform: none;
+  }
+}
+@media (max-width: 640px) {
+  .home-claim-wrap {
+    margin-bottom: 1.75rem;
+  }
+  .more-rows {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
 }

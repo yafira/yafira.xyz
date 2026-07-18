@@ -1,7 +1,7 @@
 import { Pixelify_Sans } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import LabLink from "@/app/components/LabLink";
+import LabFlyout from "@/app/components/LabFlyout";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
 import "./styles/globals.css";
 import "./styles/styles.css";
@@ -66,10 +66,9 @@ export default function RootLayout({ children }) {
                 height={22}
               />
             </Link>
-            <Link href="/work">work</Link>
-            <LabLink />
             <Link href="/about">about</Link>
             <Link href="/cv">cv</Link>
+            <LabFlyout />
           </div>
         </nav>
         <main className="main-content">{children}</main>
