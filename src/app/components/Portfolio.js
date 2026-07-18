@@ -22,6 +22,26 @@ import { selectedWork, moreProjects } from "@/app/lib/projectData";
 const MORE_CATEGORY_ORDER = ["code", "design", "electronics"];
 const PILL_STYLE = { code: 1, design: 3, electronics: 2 };
 
+// a curated slice of the résumé's skill list — not the full dump,
+// just enough per domain to read as real breadth at a glance.
+// colored per domain using the same category tokens as everything
+// else on the site (matcha/lilac/wisteria).
+const SKILLS = [
+  { label: "React", cat: "code" },
+  { label: "Next.js", cat: "code" },
+  { label: "TypeScript", cat: "code" },
+  { label: "JavaScript", cat: "code" },
+  { label: "HTML/CSS", cat: "code" },
+  { label: "Figma", cat: "design" },
+  { label: "Design Systems", cat: "design" },
+  { label: "UX/UI", cat: "design" },
+  { label: "Arduino", cat: "electronics" },
+  { label: "Raspberry Pi", cat: "electronics" },
+  { label: "Python", cat: "electronics" },
+  { label: "Physical Computing", cat: "electronics" },
+  { label: "E-Textiles", cat: "electronics" },
+];
+
 // a dashed circuit trace with a pulse that actually travels along
 // it (CSS offset-path, not a static image) — the running-stitch
 // idea rendered as current flowing through a trace.
@@ -178,12 +198,35 @@ export default function Portfolio() {
         </div>
         <h1 className="home-claim">
           i&apos;m <span className="hero-name-accent">yafira</span>, a design
-          engineer making <CycleWord /> things that compute
+          engineer building <CycleWord />.
         </h1>
         <p className="home-proof">
           NYU ITP · electrocute-ui on npm · 22+ tools at tinytinker.tools · open
           hardware summit berlin
         </p>
+        <div className="duality-strip" aria-label="design, code, hardware">
+          <span className="duality-item">
+            <img src="/assets/design.png" alt="" />
+            design
+          </span>
+          <span className="duality-stitch" aria-hidden="true" />
+          <span className="duality-item">
+            <img src="/assets/code.png" alt="" />
+            code
+          </span>
+          <span className="duality-stitch" aria-hidden="true" />
+          <span className="duality-item">
+            <img src="/assets/circuit.png" alt="" />
+            hardware
+          </span>
+        </div>
+        <ul className="skills-strip" aria-label="core skills">
+          {SKILLS.map((s) => (
+            <li key={s.label} className="skill-chip" data-cat={s.cat}>
+              {s.label}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <div className="index-block">

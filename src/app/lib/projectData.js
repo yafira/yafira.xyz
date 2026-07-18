@@ -5,6 +5,14 @@
 // more projects: strong secondary work, with the electronics
 // cluster grouped at the end.
 // everything else lives at electrocute.io.
+//
+// `disciplines` (optional): which halves of "design engineer" a
+// project touched — renders as small icon badges on the card.
+// values: "design" | "code" | "hardware"
+//
+// `process` + `swatches` (optional, electrocute-ui only for now):
+// powers the expandable "the process" reveal — a short problem /
+// approach / result plus the actual design tokens rendered live.
 
 export const selectedWork = [
   {
@@ -15,6 +23,23 @@ export const selectedWork = [
       "Design system and React component library published on npm: 18 design tokens, 8 components, and a live documentation site. Designed, built, documented, and shipped end to end.",
     stack: "React · npm · Storybook",
     tags: ["design systems", "design engineering", "frontend"],
+    disciplines: ["design", "code"],
+    process: {
+      problem:
+        "My own projects kept reinventing the same buttons, colors, and spacing by hand — no shared source of truth across electrocute.io, tinytinker.tools, and this site.",
+      approach:
+        "Named an 18-token palette first (matchaFoam, wisteriaDust, blushPowder…), then built 8 components against those tokens only — no one-off hex values allowed — and published the whole thing to npm with a live Storybook.",
+      result:
+        "One import, three sites in sync. Every pastel on yafira.xyz traces back to a token defined once in this package.",
+    },
+    swatches: [
+      { name: "wisteriaDust", hex: "#faf6ff" },
+      { name: "blushPowder", hex: "#fdf1f9" },
+      { name: "matchaFoam", hex: "#f3faea" },
+      { name: "butterPuff", hex: "#ffffd8" },
+      { name: "lilacMist", hex: "#f7ecfb" },
+      { name: "skyMist", hex: "#eef8fd" },
+    ],
     links: {
       web: "https://ui.electrocute.io",
       npm: "https://www.npmjs.com/package/electrocute-ui",
@@ -29,6 +54,7 @@ export const selectedWork = [
       "A suite of 22+ free browser tools for makers, built as one product family on a shared design system. Designed, developed, and maintained solo.",
     stack: "Next.js · TypeScript",
     tags: ["product design", "web tooling", "frontend"],
+    disciplines: ["design", "code"],
     link: "https://tinytinker.tools",
   },
   {
@@ -39,6 +65,7 @@ export const selectedWork = [
       "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
     stack: "Docsify · JavaScript",
     tags: ["open source", "machine learning", "documentation"],
+    disciplines: ["code"],
     links: {
       blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
       docs: "https://docs.ml5js.org/#/",
@@ -52,6 +79,7 @@ export const selectedWork = [
       "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
     stack: "Leaflet · SheetJS · Redis · Vercel",
     tags: ["product design", "full-stack"],
+    disciplines: ["design", "code"],
     links: {
       demo: "https://spot-mapper.vercel.app",
       casestudy: "https://spot-mapper-case-study.vercel.app",
@@ -65,6 +93,7 @@ export const selectedWork = [
       "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
     stack: "JavaScript · Canvas",
     tags: ["simulation", "e-textiles", "frontend"],
+    disciplines: ["code", "hardware"],
     link: "https://tinkerthread.netlify.app/",
   },
   {
@@ -75,6 +104,7 @@ export const selectedWork = [
       "Speculative migraine-detection wearable taken from research to a working prototype, spanning three hardware form factors and a companion app.",
     stack: "React · TypeScript · Vite",
     tags: ["speculative design", "product design", "hardware"],
+    disciplines: ["design", "hardware"],
     links: {
       prototype: "https://lumi-wearable.vercel.app",
       casestudy: "https://lumi-case-study.vercel.app",
@@ -88,6 +118,7 @@ export const selectedWork = [
       "A tool to help people develop their creativity, designed end-to-end from research through a high-fidelity prototype.",
     stack: "Figma",
     tags: ["ux design", "ux research"],
+    disciplines: ["design"],
     links: {
       mobile:
         "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223",
@@ -103,6 +134,7 @@ export const selectedWork = [
       "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
     stack: "Raspberry Pi · RP2350 · Python · machine knitting",
     tags: ["interaction design", "hardware ux", "hardware + web"],
+    disciplines: ["design", "code", "hardware"],
     links: {
       web: "https://thesoft.computer/",
     },
@@ -115,6 +147,7 @@ export const selectedWork = [
       "Redesigned and rebuilt the Equitable Syllabus Project's website for NYU ITP as lead developer, migrating to Next.js with a new information architecture.",
     stack: "Next.js",
     tags: ["client work", "frontend"],
+    disciplines: ["design", "code"],
     link: "https://itp.nyu.edu/esp#/",
   },
 ];
@@ -131,22 +164,12 @@ export const moreProjects = [
     link: "https://lost-circuits.netlify.app/",
   },
   {
-    title: "Cute Technologies",
-    imageUrl: "/assets/cute-tech.gif",
-    category: "code",
-    description:
-      "A cute tech tools blog built with Next.js and the Notion API.",
-    stack: "Next.js · Notion API",
-    tags: ["cms", "full-stack"],
-    link: "https://cutetech.tools/",
-  },
-  {
     title: "Useless Machines",
     imageUrl: "/assets/um.gif",
     category: "code",
     description:
       "A digital archive of whimsical, conceptual, and defiant machines, built as a commissioned client project.",
-    stack: "Next.js",
+    stack: "Next.js · Are.na API",
     tags: ["client work", "frontend"],
     link: "https://uselessmachines.vercel.app/",
   },
@@ -159,6 +182,16 @@ export const moreProjects = [
     stack: "p5.js · HTML/CSS/JS",
     tags: ["generative design", "frontend", "creative coding"],
     link: "https://print-code.netlify.app/",
+  },
+  {
+    title: "Cute Technologies",
+    imageUrl: "/assets/cute-tech.gif",
+    category: "code",
+    description:
+      "A cute tech tools blog built with Next.js and the Notion API.",
+    stack: "Next.js · Notion API",
+    tags: ["cms", "full-stack"],
+    link: "https://cutetech.tools/",
   },
   {
     title: "Cosmic Snax",

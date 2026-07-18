@@ -1304,10 +1304,16 @@ html.home-locked .connector-lines {
   max-height: none !important;
 }
 .more-drawer-grid .project-stack {
-  display: none !important;
+  font-size: 0.6rem !important;
+  margin: 3px 0 !important;
 }
 .more-drawer-grid .project-tags {
-  display: none !important;
+  gap: 4px !important;
+  margin-bottom: 4px !important;
+}
+.more-drawer-grid .project-tag {
+  font-size: 0.56rem !important;
+  padding: 2px 7px !important;
 }
 .more-drawer-grid .project-links.design-links .project-link.button-link {
   font-size: 0.6rem !important;
@@ -2363,9 +2369,10 @@ html.home-locked .connector-lines {
 }
 .work-headline-cycle {
   display: inline-block;
-  /* sized to "interactive", the longest word in the cycle — prevents
-     the headline reflowing on each swap. resize if the list changes */
-  min-width: 8.8ch;
+  /* sized to "intentional interfaces", the longest pair in the
+     cycle — prevents the headline reflowing on each swap. resize
+     if the pair list changes */
+  min-width: 15ch;
   text-align: center;
   color: #6b57c8;
   border-bottom: 3px dashed #b9a8e8;
@@ -3162,4 +3169,227 @@ html.home-locked .connector-lines {
     grid-template-columns: 1fr;
     gap: 2px;
   }
+}
+
+/* ==========================================================
+   three additions: pill counts, discipline badges, the
+   process reveal + live tokens, and live github activity
+   ========================================================== */
+.pill-count {
+  font-size: 0.75rem;
+  opacity: 0.65;
+  font-weight: 400;
+}
+
+/* discipline badges — small icons on a card showing which halves of
+   "design engineer" that project touched. purely visual, renders
+   nothing when a project has no `disciplines` array. */
+.discipline-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 4px;
+  z-index: 2;
+}
+.discipline-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+.discipline-badge img {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+}
+
+/* the process — an expandable reveal showing problem / approach /
+   result, plus the project's actual tokens as live swatches instead
+   of a screenshot of them. currently used on electrocute-ui. */
+.process-reveal {
+  margin-top: 10px;
+  padding: 0 14px;
+}
+.process-toggle {
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: #6b57c8;
+  background: none;
+  border: none;
+  border-bottom: 1px dashed #b9a8e8;
+  padding: 2px 0;
+  cursor: pointer;
+}
+.process-toggle:hover {
+  color: #3e2f8f;
+}
+.process-body {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: var(--wisteria-dust);
+  border-radius: 10px;
+  border: 1px dashed #b9a8e8;
+  text-align: left;
+}
+.process-body p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #333;
+  margin: 0 0 8px;
+}
+.process-body p:last-of-type {
+  margin-bottom: 0;
+}
+.process-body strong {
+  font-family: var(--font-code);
+  font-weight: 600;
+  color: #5a4a8a;
+  text-transform: lowercase;
+}
+.process-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(139, 122, 184, 0.4);
+}
+.process-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.process-swatch-color {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.process-swatch-name {
+  font-family: var(--font-code);
+  font-size: 0.6rem;
+  color: #777;
+}
+
+/* github activity — live commit fetch, "last shipped Xd ago" */
+.github-activity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: #666;
+  text-decoration: none;
+  margin-top: 0.6rem;
+}
+.github-activity:hover {
+  color: #333;
+}
+.github-activity-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5f9e74;
+  flex: none;
+  animation: github-dot-pulse 2s ease-in-out infinite;
+}
+@keyframes github-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+.github-activity.is-loading {
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: #999;
+  margin-top: 0.6rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .github-activity-dot {
+    animation: none;
+  }
+}
+
+/* the duality strip — replaces GithubActivity. states "design
+   engineer" literally, using the same icons as the per-card
+   discipline badges so it's the existing vocabulary made explicit
+   once, up front, rather than a new decorative idea. */
+.duality-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+.duality-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: #555;
+  text-transform: lowercase;
+}
+.duality-item img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+.duality-stitch {
+  width: 18px;
+  height: 0;
+  border-top: 1.5px dashed #b9a8e8;
+}
+@media (max-width: 480px) {
+  .duality-strip {
+    flex-wrap: wrap;
+  }
+}
+
+/* skills strip — a curated, color-coded set of real skills, so the
+   duality strip's claim ("design ⌁ code ⌁ hardware") is backed by
+   concrete named tools a second later, in the same glance. */
+.skills-strip {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 560px;
+  margin: 1rem auto 0;
+  padding: 0;
+}
+.skill-chip {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px dashed;
+  white-space: nowrap;
+}
+.skill-chip[data-cat="code"] {
+  background: var(--matcha-foam);
+  border-color: var(--code-color);
+  color: #1f5c33;
+}
+.skill-chip[data-cat="design"] {
+  background: var(--lilac-mist);
+  border-color: var(--design-color);
+  color: #5b3a6b;
+}
+.skill-chip[data-cat="electronics"] {
+  background: var(--wisteria-dust);
+  border-color: var(--electronics-color);
+  color: #3d2f6b;
 }
