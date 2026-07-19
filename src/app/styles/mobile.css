@@ -763,11 +763,14 @@ span {
     color: #866fe0;
   }
 
-  /* contact — tidy centered 2-col grid of equal pills instead of a
-     ragged left-aligned stack. works for both /contact and the
-     embedded .about-contact section. written defensively with
-     !important so it wins regardless of which stylesheet was
-     collapsing the pills to content-width. */
+  /* contact — tidy centered 2-col grid of equal pills.
+     the page's own 32px side padding was what starved the cells —
+     @electrocutelab lost by ~5px. trimming .contact-page to 12px
+     per side reclaims 40px, so the label fits at full size. */
+  .contact-page {
+    padding: 24px 12px !important;
+  }
+
   .contact-links {
     display: flex !important;
     justify-content: center !important;
@@ -777,27 +780,46 @@ span {
   .social-links {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 10px !important;
+    gap: 8px !important;
     width: 100% !important;
     max-width: 400px !important;
     margin: 0 auto !important;
-    padding: 0 12px !important;
+    padding: 0 !important;
     list-style: none !important;
   }
 
-  .social-links li {
-    list-style: none !important;
+  /* every grid child — li-wrapped or not — must be allowed to
+     shrink below its content width */
+  .social-links > * {
     min-width: 0 !important;
+    max-width: 100% !important;
+    list-style: none !important;
   }
 
   .social-link {
+    display: flex !important;
     width: 100% !important;
+    min-width: 0 !important;
     justify-content: center !important;
-    padding: 12px 10px !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important; /* icon never drops to its own line */
+    gap: 7px !important;
+    padding: 12px 6px !important;
     min-height: 48px !important;
+    overflow: hidden !important;
+  }
+
+  .social-link svg,
+  .social-link img {
+    flex: none; /* icon keeps its size; only the label shrinks */
+    width: 18px !important;
+    height: 18px !important;
   }
 
   .social-link span {
+    font-size: 0.86rem !important;
+    letter-spacing: 0 !important;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -805,6 +827,17 @@ span {
 
   .contact-hero {
     margin-bottom: var(--spacing-lg) !important;
+  }
+
+  /* safety net for very narrow phones: instagram pill goes full
+     width, dense packing backfills the gap it leaves */
+  @media (max-width: 359px) {
+    .social-links {
+      grid-auto-flow: dense !important;
+    }
+    #profile-link4 {
+      grid-column: 1 / -1 !important;
+    }
   }
 
   /* very small phones (≤360px) */
