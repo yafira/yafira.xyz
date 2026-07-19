@@ -42,7 +42,7 @@ span {
    was set in globals.css every time. Removed; the page background now
    has exactly one source of truth, in globals.css. */
 
-/* ── MOBILE (≤640px) ───────────────────────────────────────────── */
+/* MOBILE (≤640px) */
 
 /* hide mobile back button on desktop by default */
 .mobile-back-btn {
@@ -63,9 +63,41 @@ span {
     display: none !important;
   }
 
-  /* hide top nav + tighten top spacing */
+  /* mobile nav — same fixed bar as desktop, just compact.
+     NOTE: this replaces the old `.navigation { display: none }` rule,
+     which was left over from the flower-tile homepage era and left
+     mobile users with no navigation at all once the portfolio became
+     the homepage. --nav-h is redefined here because the lab flyout's
+     mobile position and the body padding are both derived from it. */
+  :root {
+    --nav-h: calc(60px + env(safe-area-inset-top, 0px));
+  }
+
   .navigation {
-    display: none !important;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 8px 8px;
+    padding-top: calc(10px + env(safe-area-inset-top, 0px));
+    font-size: 1rem;
+    z-index: 20;
+  }
+
+  .nav-links {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 2px 6px;
+  }
+
+  .nav-links a,
+  .nav-links .nav-lab-link {
+    padding: 8px 10px; /* keeps tap targets comfortable */
+  }
+
+  .nav-links .home-icon {
+    padding: 8px 6px;
   }
 
   html {
@@ -74,7 +106,7 @@ span {
   }
 
   body {
-    padding-top: 16px;
+    padding-top: var(--nav-h); /* clears the now-visible fixed nav */
     overflow-x: hidden; /* prevent horizontal scroll */
     overflow-y: auto; /* allow vertical scroll */
     width: 100%;
@@ -729,6 +761,50 @@ span {
   .about-page .bio-window__content a:visited,
   .about-page .bio-content a:visited {
     color: #866fe0;
+  }
+
+  /* contact — tidy centered 2-col grid of equal pills instead of a
+     ragged left-aligned stack. works for both /contact and the
+     embedded .about-contact section. written defensively with
+     !important so it wins regardless of which stylesheet was
+     collapsing the pills to content-width. */
+  .contact-links {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .social-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    padding: 0 12px !important;
+    list-style: none !important;
+  }
+
+  .social-links li {
+    list-style: none !important;
+    min-width: 0 !important;
+  }
+
+  .social-link {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 12px 10px !important;
+    min-height: 48px !important;
+  }
+
+  .social-link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .contact-hero {
+    margin-bottom: var(--spacing-lg) !important;
   }
 
   /* very small phones (≤360px) */
