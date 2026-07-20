@@ -97,7 +97,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100svh;
-  padding-top: 96px;
+  padding-top: 80px; /* just clears the fixed nav (~66px) + a small breath */
 }
 
 img {
@@ -499,7 +499,7 @@ html.home-locked .connector-lines {
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(1rem, 3vh, 2rem) clamp(16px, 3vw, 32px) 32px;
+  padding: clamp(0.25rem, 1.5vh, 1rem) clamp(16px, 3vw, 32px) 32px;
 }
 
 /* about page */
@@ -2602,11 +2602,11 @@ html.home-locked .connector-lines {
 .home-hero-flower {
   display: flex;
   justify-content: center;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.5rem;
   animation: flower-float 6s ease-in-out infinite;
 }
 .home-hero-flower img {
-  width: clamp(220px, 24vw, 340px) !important;
+  width: clamp(140px, 16vw, 220px) !important;
   height: auto !important;
 }
 @keyframes flower-float {
@@ -2916,7 +2916,7 @@ html.home-locked .connector-lines {
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: clamp(1rem, 4vh, 2.5rem) 1rem 3rem;
+  padding: clamp(0.25rem, 1.5vh, 1rem) 1rem 3rem;
 }
 
 /* hero claim */
@@ -2926,6 +2926,35 @@ html.home-locked .connector-lines {
   text-align: center;
   max-width: 720px;
   margin: 0 auto clamp(2rem, 5vh, 3rem);
+}
+
+/* desktop-only hero air — the padding cleanup above pulled the hero
+   up hard, which read as cramped on wide screens (flower kissing the
+   nav, elements stacked tight). this restores a composed vertical
+   rhythm on desktop without re-inflating mobile, which stays tight. */
+@media (min-width: 900px) {
+  .home-claim-wrap {
+    padding-top: clamp(1.25rem, 4vh, 2.75rem);
+    margin-bottom: clamp(3.5rem, 8vh, 5rem);
+  }
+  .home-hero-flower {
+    margin-bottom: 1.1rem;
+  }
+  .home-hero-flower img {
+    width: clamp(190px, 19vw, 260px) !important;
+  }
+  .home-claim {
+    margin-bottom: 1.1rem;
+  }
+  .home-proof {
+    margin-bottom: 1.6rem;
+  }
+  .duality-strip {
+    margin-top: 1rem;
+  }
+  .skills-strip {
+    margin-top: 1.25rem;
+  }
 }
 .home-mark {
   display: flex;
@@ -3164,6 +3193,15 @@ html.home-locked .connector-lines {
 @media (max-width: 640px) {
   .home-claim-wrap {
     margin-bottom: 1.75rem;
+  }
+  .home-hero-flower {
+    margin-bottom: 0.35rem;
+  }
+  .home-hero-flower img {
+    width: 120px !important;
+  }
+  .home-page {
+    padding-top: 0.25rem;
   }
   .more-rows {
     grid-template-columns: 1fr;

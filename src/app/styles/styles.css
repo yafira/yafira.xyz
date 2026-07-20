@@ -161,12 +161,11 @@ html.home-locked .connector-lines {
   color: #000;
 }
 
-/* main content */
-.main-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 96px clamp(16px, 3vw, 32px) 32px;
-}
+/* NOTE: .main-content now lives ONLY in globals.css. this file's old
+   copy (with a second 96px top padding) loaded after globals.css and
+   silently won, double-clearing the nav and pushing every page's
+   content a full nav-height too far down. removed — one source of
+   truth, same pattern as the body background cleanup above. */
 
 /* about page */
 .avatar-container {
