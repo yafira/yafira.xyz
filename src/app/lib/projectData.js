@@ -1,5 +1,3 @@
-// app/lib/projectData.js
-//
 // selected work: the projects that carry the professional pitch,
 // ordered by design-engineering focus.
 // more projects: strong secondary work, with the electronics
@@ -64,7 +62,7 @@ export const selectedWork = [
     description:
       "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
     stack: "Docsify · JavaScript",
-    tags: ["open source", "machine learning", "web tooling", documentation"],
+    tags: ["open source", "machine learning", "web tooling", "documentation"],
     disciplines: ["code"],
     links: {
       blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
