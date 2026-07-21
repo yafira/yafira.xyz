@@ -53,7 +53,7 @@ export const selectedWork = [
     description:
       "A suite of 22+ free browser tools for makers, built as one product family on a shared design system. Designed, developed, and maintained solo.",
     stack: "Next.js · TypeScript",
-    tags: ["product design", "web tooling", "frontend"],
+    tags: ["open source", "web tooling", "frontend"],
     disciplines: ["design", "code"],
     link: "https://tinytinker.tools",
   },
@@ -64,7 +64,7 @@ export const selectedWork = [
     description:
       "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
     stack: "Docsify · JavaScript",
-    tags: ["open source", "machine learning", "documentation"],
+    tags: ["open source", "machine learning", "web tooling", documentation"],
     disciplines: ["code"],
     links: {
       blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
