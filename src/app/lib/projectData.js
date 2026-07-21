@@ -131,7 +131,7 @@ export const selectedWork = [
     description:
       "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
     stack: "Raspberry Pi · RP2350 · Python · machine knitting",
-    tags: ["interaction design", "HCI". "speculative design", "embedded systems", "software", "hardware"],
+    tags: ["interaction design", "HCI". "speculative designx", "embedded systems", "software", "hardware"],
     disciplines: ["design", "code", "hardware"],
     links: {
       web: "https://thesoft.computer/",
