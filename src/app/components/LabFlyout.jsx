@@ -46,21 +46,18 @@ const IconButton = () => (
   </svg>
 );
 
-// three linked nodes — the electrodex's linked-list chain
-const IconNodes = () => (
+// a crescent moon — poetronics' night-sky motif
+const IconMoon = () => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
+    strokeLinejoin="round"
     aria-hidden="true"
   >
-    <circle cx="5" cy="18" r="2.4" />
-    <circle cx="12" cy="7" r="2.4" />
-    <circle cx="19" cy="18" r="2.4" />
-    <path d="M6.3 16L10.7 9" />
-    <path d="M13.3 9l4.4 7" />
+    <path d="M20 13.5A8.5 8.5 0 1 1 10.5 5a6.5 6.5 0 0 0 9.5 8.5z" />
   </svg>
 );
 
@@ -82,12 +79,12 @@ const LAB_LINKS = [
     stitch: "#5f9e74",
   },
   {
-    label: "electrodex",
-    href: "https://electrocute.io/electrodex",
-    note: "community directory",
-    Icon: IconNodes,
-    tint: "var(--sky-mist)",
-    stitch: "#4a90b8",
+    label: "poetronics",
+    href: "https://electrocute.io/poetronics",
+    note: "generative poetry, gentle machines",
+    Icon: IconMoon,
+    tint: "var(--wisteria-dust)",
+    stitch: "#8f7fc9",
   },
 ];
 
