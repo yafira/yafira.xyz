@@ -306,8 +306,8 @@ export default function Portfolio() {
 
       <section className="home-contact">
         <p className="home-contact-line">
-          currently looking for design engineer &amp; creative technologist
-          roles{" "}
+          currently looking for design engineering &amp; creative
+          technologist roles{" "}
           <span className="contact-inkbloom" aria-hidden="true">
             <Inkbloom />
           </span>
