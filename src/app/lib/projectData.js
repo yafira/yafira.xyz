@@ -92,7 +92,7 @@ export const selectedWork = [
     description:
       "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
     stack: "JavaScript · Canvas",
-    tags: ["simulation", "e-textiles", "frontend"],
+    tags: ["simulation", "e-textiles", "web tooling", "frontend"],
     disciplines: ["code", "hardware"],
     link: "https://tinkerthread.netlify.app/",
   },
@@ -103,7 +103,7 @@ export const selectedWork = [
     description:
       "Speculative migraine-detection wearable taken from research to a working prototype, spanning three hardware form factors and a companion app.",
     stack: "React · TypeScript · Vite",
-    tags: ["speculative design", "product design", "hardware"],
+    tags: ["speculative design", "product design", "case study", "mobile ux/ui", "hardware"],
     disciplines: ["design", "hardware"],
     links: {
       prototype: "https://lumi-wearable.vercel.app",
@@ -117,7 +117,7 @@ export const selectedWork = [
     description:
       "A tool to help people develop their creativity, designed end-to-end from research through a high-fidelity prototype.",
     stack: "Figma",
-    tags: ["ux design", "ux research"],
+    tags: ["ux design", "ux research", "mobile app design"],
     disciplines: ["design"],
     links: {
       mobile:
@@ -200,14 +200,14 @@ export const moreProjects = [
     description:
       "A snack ordering app for a movie theater, taken from user flows through a high-fidelity prototype.",
     stack: "Figma",
-    tags: ["ux design", "user flows"],
+    tags: ["ux design", "mobile app design"],
     links: {
       prototype:
         "https://www.figma.com/proto/oTPH8BW7owaY91IVOlR6KC/Cosmic-Snax?page-id=248%3A2311&node-id=256%3A1892&viewport=245%2C48%2C0.23&scaling=min-zoom&starting-point-node-id=256%3A1892",
       casestudy: "assets/Cosmic Snax - Case study.pdf",
     },
   },
-  // ── electronics cluster ──────────────────────────────────────────
+  // electronics cluster 
   {
     title: "ribbon_logic",
     imageUrl: "/assets/rlogic.png",
@@ -245,7 +245,7 @@ export const moreProjects = [
     description:
       "A handmade craft foam controller for Philips Hue, inspired by soft foam novelty phones of the 80s-90s.",
     stack: "Arduino · Philips Hue API",
-    tags: ["hardware", "e-textiles"],
+    tags: ["hardware", "networks"],
     link: "https://months-tap-da9.craft.me/cIaDWsryPp9LdS",
   },
 ];
