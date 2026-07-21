@@ -56,17 +56,23 @@ export const selectedWork = [
     link: "https://tinytinker.tools",
   },
   {
-    title: "ml5.js contributions",
-    imageUrl: "/assets/ml5.gif",
-    category: "code",
+    title: "Lumi",
+    imageUrl: "/assets/lumi-preview.gif",
+    category: "design",
     description:
-      "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
-    stack: "Docsify · JavaScript",
-    tags: ["open source", "machine learning", "web tooling", "documentation"],
-    disciplines: ["code"],
+      "Speculative migraine-detection wearable taken from research to a working prototype, spanning three hardware form factors and a companion app.",
+    stack: "React · TypeScript · Vite",
+    tags: [
+      "speculative design",
+      "product design",
+      "case study",
+      "mobile ux/ui",
+      "hardware",
+    ],
+    disciplines: ["design", "hardware"],
     links: {
-      blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
-      docs: "https://docs.ml5js.org/#/",
+      prototype: "https://lumi-wearable.vercel.app",
+      casestudy: "https://lumi-case-study.vercel.app",
     },
   },
   {
@@ -95,17 +101,48 @@ export const selectedWork = [
     link: "https://tinkerthread.netlify.app/",
   },
   {
-    title: "Lumi",
-    imageUrl: "/assets/lumi-preview.gif",
-    category: "design",
+    title: "ml5.js contributions",
+    imageUrl: "/assets/ml5.gif",
+    category: "code",
     description:
-      "Speculative migraine-detection wearable taken from research to a working prototype, spanning three hardware form factors and a companion app.",
-    stack: "React · TypeScript · Vite",
-    tags: ["speculative design", "product design", "case study", "mobile ux/ui", "hardware"],
-    disciplines: ["design", "hardware"],
+      "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
+    stack: "Docsify · JavaScript",
+    tags: ["open source", "machine learning", "web tooling", "documentation"],
+    disciplines: ["code"],
     links: {
-      prototype: "https://lumi-wearable.vercel.app",
-      casestudy: "https://lumi-case-study.vercel.app",
+      blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
+      docs: "https://docs.ml5js.org/#/",
+    },
+  },
+  {
+    title: "Equitable Syllabus Project",
+    imageUrl: "/assets/esp.gif",
+    category: "code",
+    description:
+      "Redesigned and rebuilt the Equitable Syllabus Project's website for NYU ITP as lead developer, migrating to Next.js with a new information architecture.",
+    stack: "Next.js",
+    tags: ["client work", "ui design", "frontend", "digital accessibility"],
+    disciplines: ["design", "code"],
+    link: "https://itp.nyu.edu/esp#/",
+  },
+  {
+    title: "the soft computer",
+    imageUrl: "/assets/tsc.png",
+    category: "electronics",
+    description:
+      "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
+    stack: "Raspberry Pi · RP2350 · Python · machine knitting",
+    tags: [
+      "interaction design",
+      "HCI",
+      "speculative designx",
+      "embedded systems",
+      "software",
+      "hardware",
+    ],
+    disciplines: ["design", "code", "hardware"],
+    links: {
+      web: "https://thesoft.computer/",
     },
   },
   {
@@ -123,30 +160,6 @@ export const selectedWork = [
       web: "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=46%3A1304&node-id=50%3A3254&viewport=245%2C48%2C0.07&scaling=min-zoom&starting-point-node-id=50%3A3254&show-proto-sidebar=1",
       casestudy: "assets/Seedling - Case study.pdf",
     },
-  },
-  {
-    title: "the soft computer",
-    imageUrl: "/assets/tsc.png",
-    category: "electronics",
-    description:
-      "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
-    stack: "Raspberry Pi · RP2350 · Python · machine knitting",
-    tags: ["interaction design", "HCI", "speculative designx", "embedded systems", "software", "hardware"],
-    disciplines: ["design", "code", "hardware"],
-    links: {
-      web: "https://thesoft.computer/",
-    },
-  },
-  {
-    title: "Equitable Syllabus Project",
-    imageUrl: "/assets/esp.gif",
-    category: "code",
-    description:
-      "Redesigned and rebuilt the Equitable Syllabus Project's website for NYU ITP as lead developer, migrating to Next.js with a new information architecture.",
-    stack: "Next.js",
-    tags: ["client work", "ui design", "frontend", "digital accessibility"],
-    disciplines: ["design", "code"],
-    link: "https://itp.nyu.edu/esp#/",
   },
 ];
 
@@ -205,7 +218,7 @@ export const moreProjects = [
       casestudy: "assets/Cosmic Snax - Case study.pdf",
     },
   },
-  // electronics cluster 
+  // electronics cluster
   {
     title: "ribbon_logic",
     imageUrl: "/assets/rlogic.png",
