@@ -144,7 +144,7 @@ export const selectedWork = [
     description:
       "Redesigned and rebuilt the Equitable Syllabus Project's website for NYU ITP as lead developer, migrating to Next.js with a new information architecture.",
     stack: "Next.js",
-    tags: ["client work", "frontend"],
+    tags: ["client work", "ui design," frontend", "digital accessibility"],
     disciplines: ["design", "code"],
     link: "https://itp.nyu.edu/esp#/",
   },
