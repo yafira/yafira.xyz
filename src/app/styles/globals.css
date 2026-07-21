@@ -2579,9 +2579,7 @@ html.home-locked .connector-lines {
   padding-bottom: 1.4rem;
 }
 
-/* ==========================================================
-   homepage
-   ========================================================== */
+/* homepage */
 .page-container.home-flow {
   padding: 0.5rem 1.5rem clamp(2rem, 5vh, 3rem);
   display: flex;
@@ -2603,20 +2601,10 @@ html.home-locked .connector-lines {
   display: flex;
   justify-content: center;
   margin-bottom: 0.5rem;
-  animation: flower-float 6s ease-in-out infinite;
 }
 .home-hero-flower img {
   width: clamp(140px, 16vw, 220px) !important;
   height: auto !important;
-}
-@keyframes flower-float {
-  0%,
-  100% {
-    margin-top: 0px;
-  }
-  50% {
-    margin-top: -6px;
-  }
 }
 .home-hero-name {
   font-family: var(--font-display);
@@ -2834,7 +2822,6 @@ html.home-locked .connector-lines {
   animation-delay: -3.3s;
 }
 @media (prefers-reduced-motion: reduce) {
-  .home-hero-flower,
   .category-blob {
     animation: none;
   }
