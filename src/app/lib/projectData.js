@@ -76,7 +76,7 @@ export const selectedWork = [
     description:
       "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
     stack: "Leaflet · SheetJS · Redis · Vercel",
-    tags: ["product design", "full-stack"],
+    tags: ["full-stack", "web tooling"],
     disciplines: ["design", "code"],
     links: {
       demo: "https://spot-mapper.vercel.app",
@@ -90,7 +90,7 @@ export const selectedWork = [
     description:
       "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
     stack: "JavaScript · Canvas",
-    tags: ["simulation", "e-textiles", "web tooling", "frontend"],
+    tags: ["simulation", "circuits", "e-textiles", "web tooling", "frontend"],
     disciplines: ["code", "hardware"],
     link: "https://tinkerthread.netlify.app/",
   },
@@ -131,7 +131,7 @@ export const selectedWork = [
     description:
       "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
     stack: "Raspberry Pi · RP2350 · Python · machine knitting",
-    tags: ["interaction design", "hardware ux", "hardware + web"],
+    tags: ["interaction design", "HCI". "speculative design", "embedded systems", "software", "hardware"],
     disciplines: ["design", "code", "hardware"],
     links: {
       web: "https://thesoft.computer/",
