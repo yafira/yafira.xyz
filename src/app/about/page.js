@@ -127,14 +127,16 @@ export default function AboutPage() {
               <h2>myjourney://</h2>
               <p>
                 My path to tech wasn't linear. I've always lived in the current
-                of creativity: as a child, I filled notebooks with drawings and
-                assembled mood boards before I knew the term existed. A high
-                school writing contest earned me my first international trip—to
-                London—which broadened my perspective on the world and
-                introduced me to the excitement of connecting across cultures.
-                After that experience, I began dreaming of creating an
-                international print magazine that could bring stories and ideas
-                from different places together.
+                of creativity: as a child, I filled notebooks with poems,
+                stories, sketches, and pages of ideas, and assembled mood boards
+                long before I knew the term existed. A high school writing
+                contest earned me my first international trip—to London—which
+                broadened my perspective on the world and introduced me to the
+                excitement of connecting across cultures. Inspired by that
+                experience, I began dreaming of creating an international print
+                magazine, combining my love for writing, design, and
+                storytelling with a desire to connect people and ideas across
+                borders.
               </p>
               <p>
                 That dream took me through business school and journalism, but
