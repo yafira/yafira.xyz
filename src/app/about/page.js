@@ -142,13 +142,16 @@ export default function AboutPage() {
 
               <p>
                 That dream led me to study business and journalism, but along
-                the way I realized something was missing. I wanted to understand
-                not only how stories were told, but also how the tools behind
-                them were built. Drawn to the hidden mechanics of technology, I
-                returned to school to study electrical engineering. Everything
-                changed when I took my first programming class. I fell in love
-                with the logic, creativity, and problem-solving of code,
-                switched my major to computer science, and never looked back.
+                the way I realized something was missing. I loved creating
+                stories and experiences, but I wanted to understand the
+                technology that made them possible. I found myself asking how
+                things worked beneath the surface—how devices communicated, how
+                circuits carried information, and how ideas became physical
+                objects. That curiosity brought me back to school to study
+                electrical engineering. Everything changed when I took my first
+                programming class. I fell in love with the logic, creativity,
+                and problem-solving of code, switched my major to computer
+                science, and never looked back.
               </p>
 
               <p>
@@ -157,8 +160,8 @@ export default function AboutPage() {
                 taking things apart just to understand how they worked.
                 Technology had always been part of my life—I just never thought
                 it was something I could pursue professionally. I saw myself as
-                a writer, a designer, and a storyteller. Programming showed me
-                that technology could be a creative medium, one that combined
+                a writer, a designer, and an artist. Programming showed me that
+                technology could be a creative medium, one that combined
                 everything I loved about making, storytelling, design, and
                 solving problems. At{" "}
                 <a
