@@ -125,6 +125,7 @@ export default function AboutPage() {
           <Reveal>
             <section className="patch patch--butter">
               <h2>myjourney://</h2>
+
               <p>
                 My path to tech wasn't linear. I've always lived in the current
                 of creativity: as a child, I filled notebooks with poems,
@@ -138,22 +139,41 @@ export default function AboutPage() {
                 storytelling with a desire to connect people and ideas across
                 borders.
               </p>
+
               <p>
-                That dream took me through business school and journalism, but
-                something was missing. After graduation, I found myself drawn to
-                the hidden mechanics of how things work. I returned to school
-                for electrical engineering, and everything changed when I took
-                my first programming class. I fell in love with the logic,
-                creativity, and problem-solving of code, switched my major to
-                computer science, and never looked back.
+                That dream led me to study business and journalism, but along
+                the way I realized something was missing. I wanted to understand
+                not only how stories were told, but also how the tools behind
+                them were built. Drawn to the hidden mechanics of technology, I
+                returned to school to study electrical engineering. Everything
+                changed when I took my first programming class. I fell in love
+                with the logic, creativity, and problem-solving of code,
+                switched my major to computer science, and never looked back.
               </p>
+
               <p>
-                From customizing MySpace pages to tinkering with electronics, I
-                began to see technology as my medium: a way to build tools,
-                stories, and experiences that feel both useful and joyful. ITP
-                is where all these threads finally came together, where
-                creativity and computation speak the same language.
+                Looking back, the signs had always been there. I spent hours
+                customizing MySpace pages, tinkering with electronics, and
+                taking things apart just to understand how they worked.
+                Technology had always been part of my life—I just never thought
+                it was something I could pursue professionally. I saw myself as
+                a writer, a designer, and a storyteller. Programming showed me
+                that technology could be a creative medium, one that combined
+                everything I loved about making, storytelling, design, and
+                solving problems. At{" "}
+                <a
+                  href="https://itp.nyu.edu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ITP
+                </a>
+                , those pieces finally came together. It was the first place
+                where creativity, design, engineering, and computation all spoke
+                the same language, and where I realized I didn't have to choose
+                between being creative and being technical.
               </p>
+
               <PatchMark />
             </section>
           </Reveal>
