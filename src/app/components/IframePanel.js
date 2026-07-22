@@ -3,7 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./IframePanel.module.css";
 
-const BLOCKED = ["figma.com", "wordpress.com"];
+const BLOCKED = [
+  "figma.com",
+  "wordpress.com",
+  "github.com",
+  "npmjs.com",
+  "twitter.com",
+  "x.com",
+  "instagram.com",
+  "linkedin.com",
+  "notion.so",
+];
 
 export function isEmbeddable(url) {
   if (!url) return false;

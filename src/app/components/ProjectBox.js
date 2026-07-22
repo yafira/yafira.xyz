@@ -12,8 +12,9 @@ const IframePanel = dynamic(() => import("./IframePanel"), { ssr: false });
 // preview window restored (was removed earlier, then accidentally
 // stayed removed when the drawer was rebuilt to use these cards
 // directly). embeddable links open in the handmade preview window;
-// figma/craft.me/wordpress and anything on mobile fall through to a
-// normal new tab.
+// figma/github/npm/wordpress/twitter/x/instagram/linkedin/notion
+// (see BLOCKED in IframePanel) and anything on mobile fall through
+// to a normal new tab.
 
 const ProjectBox = ({
   title,

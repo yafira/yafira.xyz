@@ -1,6 +1,4 @@
 "use client";
-
-// components/Reveal.jsx
 // wrap anything: <Reveal>...</Reveal>
 // stagger siblings: <Reveal delay={i * 80}>...</Reveal>
 //
