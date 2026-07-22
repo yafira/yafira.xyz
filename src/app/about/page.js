@@ -129,8 +129,12 @@ export default function AboutPage() {
                 My path to tech wasn't linear. I've always lived in the current
                 of creativity: as a child, I filled notebooks with drawings and
                 assembled mood boards before I knew the term existed. A high
-                school writing contest sparked my love for storytelling and led
-                me to dream of creating an international print magazine.
+                school writing contest earned me my first international trip—to
+                London—which broadened my perspective on the world and
+                introduced me to the excitement of connecting across cultures.
+                After that experience, I began dreaming of creating an
+                international print magazine that could bring stories and ideas
+                from different places together.
               </p>
               <p>
                 That dream took me through business school and journalism, but
