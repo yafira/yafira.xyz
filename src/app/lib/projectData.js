@@ -45,6 +45,23 @@ export const selectedWork = [
     },
   },
   {
+    title: "Soft Components",
+    imageUrl: "/assets/soft-components.gif",
+    category: "code",
+    description:
+      "Interactive reference library for soft electronic components — felt buttons, fabric potentiometers, pressure sensors — each pairing a live physics-based demo with the material science underneath it.",
+    stack: "Next.js · TypeScript · GSAP · Motion",
+    tags: [
+      "design engineering",
+      "e-textiles",
+      "physical computing",
+      "creative coding",
+      "frontend",
+    ],
+    disciplines: ["design", "code"],
+    link: "https://soft-components.vercel.app/",
+  },
+  {
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
     category: "code",
@@ -145,22 +162,6 @@ export const selectedWork = [
       web: "https://thesoft.computer/",
     },
   },
-  {
-    title: "Seedling",
-    imageUrl: "/assets/seedling.gif",
-    category: "design",
-    description:
-      "A tool to help people develop their creativity, designed end-to-end from research through a high-fidelity prototype.",
-    stack: "Figma",
-    tags: ["ux design", "ux research", "mobile app design"],
-    disciplines: ["design"],
-    links: {
-      mobile:
-        "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223",
-      web: "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=46%3A1304&node-id=50%3A3254&viewport=245%2C48%2C0.07&scaling=min-zoom&starting-point-node-id=50%3A3254&show-proto-sidebar=1",
-      casestudy: "assets/Seedling - Case study.pdf",
-    },
-  },
 ];
 
 export const moreProjects = [
@@ -203,6 +204,22 @@ export const moreProjects = [
     stack: "Next.js · Notion API",
     tags: ["cms", "full-stack"],
     link: "https://cutetech.tools/",
+  },
+  {
+    title: "Seedling",
+    imageUrl: "/assets/seedling.gif",
+    category: "design",
+    description:
+      "A tool to help people develop their creativity, designed end-to-end from research through a high-fidelity prototype.",
+    stack: "Figma",
+    tags: ["ux design", "ux research", "mobile app design"],
+    disciplines: ["design"],
+    links: {
+      mobile:
+        "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=36%3A1963&node-id=36%3A2223&viewport=245%2C48%2C0.22&scaling=min-zoom&starting-point-node-id=36%3A2223",
+      web: "https://www.figma.com/proto/5iTIwNSNoKFmnuOhgL2ocn/Seedling?page-id=46%3A1304&node-id=50%3A3254&viewport=245%2C48%2C0.07&scaling=min-zoom&starting-point-node-id=50%3A3254&show-proto-sidebar=1",
+      casestudy: "assets/Seedling - Case study.pdf",
+    },
   },
   {
     title: "Cosmic Snax",
