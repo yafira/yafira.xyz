@@ -349,7 +349,7 @@ export default function AboutPage() {
                 <a
                   id="profile-link6"
                   aria-label="link to chess.com profile"
-                  href="https://www.chess.com/member/electr0cute"
+                  href="https://www.chess.com/member/mechapetal"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
