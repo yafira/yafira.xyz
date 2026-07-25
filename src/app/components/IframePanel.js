@@ -8,7 +8,7 @@ const BLOCKED = [
   "wordpress.com",
   "github.com",
   "npmjs.com",
-  "ml5.org",
+  "ml5js.org",
   "instagram.com",
   "linkedin.com",
   "notion.so",

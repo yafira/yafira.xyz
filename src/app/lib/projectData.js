@@ -22,26 +22,10 @@ export const selectedWork = [
     stack: "React · npm · Storybook",
     tags: ["design systems", "design engineering", "frontend"],
     disciplines: ["design", "code"],
-    process: {
-      problem:
-        "My own projects kept reinventing the same buttons, colors, and spacing by hand — no shared source of truth across electrocute.io, tinytinker.tools, and this site.",
-      approach:
-        "Named an 18-token palette first (matchaFoam, wisteriaDust, blushPowder…), then built 8 components against those tokens only — no one-off hex values allowed — and published the whole thing to npm with a live Storybook.",
-      result:
-        "One import, three sites in sync. Every pastel on yafira.xyz traces back to a token defined once in this package.",
-    },
-    swatches: [
-      { name: "wisteriaDust", hex: "#faf6ff" },
-      { name: "blushPowder", hex: "#fdf1f9" },
-      { name: "matchaFoam", hex: "#f3faea" },
-      { name: "butterPuff", hex: "#ffffd8" },
-      { name: "lilacMist", hex: "#f7ecfb" },
-      { name: "skyMist", hex: "#eef8fd" },
-    ],
     links: {
       web: "https://ui.electrocute.io",
       npm: "https://www.npmjs.com/package/electrocute-ui",
-      github: "https://github.com/yafira/electrocute-ui",
+      code: "https://github.com/yafira/electrocute-ui",
     },
   },
   {
@@ -56,21 +40,27 @@ export const selectedWork = [
       "e-textiles",
       "physical computing",
       "creative coding",
-      "frontend",
     ],
     disciplines: ["design", "code"],
-    link: "https://soft-components.vercel.app/",
+    links: {
+      web: "https://soft-components.vercel.app/",
+      code: "https://github.com/yafira/tinytinker-tools",
+    },
   },
+
   {
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
     category: "code",
     description:
-      "A suite of 22+ free browser tools for makers, built as one product family on a shared design system. Designed, developed, and maintained solo.",
+      "A growing suite of free browser-based tools for makers, featuring utilities for electronics, programming, color, generative text, accessibility, print, and other creative workflows.",
     stack: "Next.js · TypeScript",
     tags: ["open source", "web tooling", "frontend"],
     disciplines: ["design", "code"],
-    link: "https://tinytinker.tools",
+    links: {
+      web: "https://tinytinker.tools",
+      code: "https://github.com/yafira/soft-components",
+    },
   },
   {
     title: "Lumi",
@@ -115,7 +105,9 @@ export const selectedWork = [
     stack: "JavaScript · Canvas",
     tags: ["simulation", "circuits", "e-textiles", "web tooling", "frontend"],
     disciplines: ["code", "hardware"],
-    link: "https://tinkerthread.netlify.app/",
+    links: {
+      demo: "https://tinkerthread.netlify.app/",
+    },
   },
   {
     title: "ml5.js contributions",
@@ -128,7 +120,6 @@ export const selectedWork = [
     disciplines: ["code"],
     links: {
       blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
-      docs: "https://docs.ml5js.org/#/",
     },
   },
   {
@@ -140,7 +131,9 @@ export const selectedWork = [
     stack: "Next.js",
     tags: ["client work", "ui design", "frontend", "digital accessibility"],
     disciplines: ["design", "code"],
-    link: "https://itp.nyu.edu/esp#/",
+    links: {
+      web: "https://itp.nyu.edu/esp#/",
+    },
   },
   {
     title: "the soft computer",
@@ -152,10 +145,9 @@ export const selectedWork = [
     tags: [
       "interaction design",
       "HCI",
-      "speculative designx",
+      "speculative design",
       "embedded systems",
-      "software",
-      "hardware",
+      "alt hardware",
     ],
     disciplines: ["design", "code", "hardware"],
     links: {
