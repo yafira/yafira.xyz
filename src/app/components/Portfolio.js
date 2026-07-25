@@ -35,10 +35,12 @@ const SKILLS = [
   { label: "Figma", cat: "design" },
   { label: "Design Systems", cat: "design" },
   { label: "UX/UI", cat: "design" },
+  { label: "Interaction Design", cat: "design" },
   { label: "Arduino", cat: "electronics" },
   { label: "Raspberry Pi", cat: "electronics" },
   { label: "Python", cat: "electronics" },
   { label: "Physical Computing", cat: "electronics" },
+  { label: "Prototyping", cat: "electronics" },
   { label: "E-Textiles", cat: "electronics" },
 ];
 
@@ -306,8 +308,8 @@ export default function Portfolio() {
 
       <section className="home-contact">
         <p className="home-contact-line">
-          currently looking for design engineering &amp; creative
-          technologist roles{" "}
+          currently looking for design engineering &amp; creative technologist
+          roles{" "}
           <span className="contact-inkbloom" aria-hidden="true">
             <Inkbloom />
           </span>
