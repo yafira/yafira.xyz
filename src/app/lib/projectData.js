@@ -145,7 +145,7 @@ export const selectedWork = [
     tags: [
       "interaction design",
       "HCI",
-      "speculative design",
+      "e-textiles",
       "embedded systems",
       "alt hardware",
     ],
