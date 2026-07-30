@@ -30,7 +30,7 @@ export default function CVPage() {
           <div className="cv-item grouped">
             <div className="cv-company-row">
               <div className="cv-company">new york university (itp/ima)</div>
-              <span className="cv-date">nov 2024 – present</span>
+              <span className="cv-date">nov 2024 - jul 2026</span>
             </div>
 
             <div className="cv-roles">
@@ -253,6 +253,24 @@ export default function CVPage() {
       <section className="cv-section creative-explorations">
         <h2 className="cv-heading">selected work + creative explorations</h2>
         <div className="cv-list">
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                intro to machine learning workshop
+              </div>
+              <span className="cv-date">jul 2026</span>
+            </div>
+            <div className="cv-org">
+              nyu college & career lab (ccl) · new york city, ny
+            </div>
+            <p className="cv-summary">
+              designed + co-led a hands-on machine learning workshop for ~60
+              middle school students, building an image-classification game with
+              ml5.js and p5.js using teachable machine; developed a 16-slide
+              deck and a dual-mode game to introduce students to training and
+              using their own ml models.
+            </p>
+          </div>
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">
