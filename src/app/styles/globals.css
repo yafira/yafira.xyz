@@ -3210,3 +3210,8 @@ html.home-locked .connector-lines {
   border-color: var(--electronics-color);
   color: #3d2f6b;
 }
+
+.projects-grid .project-box:last-child {
+  flex-grow: 1.4;
+  max-width: 920px;
+}
