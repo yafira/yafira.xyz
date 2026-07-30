@@ -78,12 +78,6 @@ body {
   overflow-x: hidden;
 }
 
-/* graph paper background — cool blueprint tint instead of warm
-   cream, closer to white, reads a touch more "engineered".
-   this is now the ONLY body background rule in the whole codebase —
-   styles.css and mobile.css each had their own conflicting version
-   that loaded after this file and silently won every time this was
-   changed. both were removed. */
 body {
   -webkit-tap-highlight-color: transparent;
   background-color: #fefffa;
@@ -97,14 +91,13 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100svh;
-  padding-top: 80px; /* just clears the fixed nav (~66px) + a small breath */
+  padding-top: 80px;
 }
 
 img {
   mix-blend-mode: multiply;
 }
 
-/* home lock */
 html.home-locked body {
   padding-top: 0 !important;
 }
@@ -133,7 +126,6 @@ html.home-locked .connector-lines {
   height: 100%;
 }
 
-/* navigation bar */
 .navigation {
   font-size: clamp(1.1rem, 1.3vw + 0.8rem, 1.7rem);
   width: 100%;
@@ -172,10 +164,6 @@ html.home-locked .connector-lines {
   padding: 8px 16px;
   transition: color 0.3s ease;
 }
-/* fixed decorative background layer — circuit traces, flower
-   silhouettes, and a running-stitch thread, all very low opacity.
-   fixed + pointer-events:none means it can't intercept clicks or
-   scroll, and it never needs to measure anything else on the page */
 .bg-pattern {
   position: fixed;
   inset: 0;
@@ -201,8 +189,6 @@ html.home-locked .connector-lines {
   color: #000;
 }
 
-/* lab toast — a brief, playful notification alongside the tab
-   opening, instead of jumping there with no acknowledgment */
 .lab-toast {
   position: fixed;
   top: calc(var(--nav-h) + 8px);
@@ -267,11 +253,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* lab flyout — the "lab" nav item opens a small menu of the lab's
-   live properties in place, instead of navigating anywhere. every
-   link opens in a new tab; the site underneath never moves.
-   each row is a little patch: its own tint + stitch color, and on
-   hover the running stitch actually runs (marching dashes). */
 .lab-flyout-wrap {
   position: relative;
   display: inline-flex;
@@ -352,9 +333,6 @@ html.home-locked .connector-lines {
   gap: 4px;
 }
 
-/* each row: glyph · label-over-note · ↗ that slides in on hover.
-   stacking the note under the label is also what fixes the text
-   overflow the old side-by-side layout had. */
 .lab-flyout-item {
   --dash: 7px;
   --gap: 6px;
@@ -493,16 +471,12 @@ html.home-locked .connector-lines {
   }
 }
 
-/* main content — top padding trimmed: body's 96px already clears
-   the fixed nav, so the old second 96px here was pure duplication
-   and pushed every page's content a full nav-height too far down */
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: clamp(0.25rem, 1.5vh, 1rem) clamp(16px, 3vw, 32px) 32px;
 }
 
-/* about page */
 .avatar-container {
   position: relative;
   display: flex;
@@ -516,14 +490,6 @@ html.home-locked .connector-lines {
   z-index: 2;
 }
 
-/* blob background — contained inside avatar-container (position:relative
-   above) instead of escaping to the page's root positioning context.
-   without that, this 900x900px absolutely-positioned element had no
-   real containing block, so it was likely floating somewhere over
-   later content on the page — including the contact section — and
-   silently intercepting clicks since it was never pointer-events:none.
-   that combination is the most likely explanation for "can't click
-   the links" and the animation-driven repaint explains the "lag." */
 .about-page {
   font-family: "Space Grotesk", sans-serif;
   font-weight: 400;
@@ -550,7 +516,6 @@ html.home-locked .connector-lines {
   color: #917fd2;
 }
 
-/* mobile about text */
 @media (max-width: 768px) {
   .about-page .bio-content,
   .about-page .bio-content p,
@@ -564,7 +529,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* typewriter accent */
 .typewriter {
   display: inline-flex;
   align-items: center;
@@ -613,7 +577,6 @@ html.home-locked .connector-lines {
   font-size: 1em;
 }
 
-/* layout containers */
 .container,
 .image-box {
   display: flex;
@@ -627,7 +590,6 @@ html.home-locked .connector-lines {
   text-align: center;
 }
 
-/* responsive network box */
 .image-box {
   background: transparent;
   width: var(--net-size);
@@ -666,7 +628,6 @@ html.home-locked .connector-lines {
   stroke-opacity: 0.7;
 }
 
-/* line boxes */
 .line-box {
   background-color: #ffffff;
   width: var(--linebox-size);
@@ -720,7 +681,6 @@ html.home-locked .connector-lines {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* positions */
 .box1 {
   border-color: var(--code-color);
   top: 6%;
@@ -767,7 +727,6 @@ html.home-locked .connector-lines {
   background-color: #d6ebf8cc;
 }
 
-/* project drawers */
 .drawer {
   position: relative;
   overflow: hidden;
@@ -793,7 +752,7 @@ html.home-locked .connector-lines {
   transition: transform 0.5s ease;
   z-index: 10;
   max-height: var(--drawer-height);
-  overflow: visible !important; /* Allow tab to show */
+  overflow: visible !important;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -802,7 +761,7 @@ html.home-locked .connector-lines {
 }
 .projects-drawer.open {
   transform: translateY(0);
-  overflow-y: auto; /* Enable scrolling when open */
+  overflow-y: auto;
 }
 .projects-drawer[data-section="craft"] {
   background-color: var(--craft-bg);
@@ -826,7 +785,7 @@ html.home-locked .connector-lines {
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
   padding-bottom: 4px;
-  margin-top: 8px; /* Space for chevron tab */
+  margin-top: 8px;
 }
 .projects-scroll-container::-webkit-scrollbar {
   height: 8px;
@@ -872,13 +831,20 @@ html.home-locked .connector-lines {
   scroll-snap-align: start;
   min-width: 0;
 }
+/* subtle lift on hover, plus a slight alternating tilt so a card
+   reads as being picked up off the table at an angle rather than
+   lifted straight up. this is the rule that actually wins the
+   cascade over ProjectBox.module.css's .card:hover — both selectors
+   tie on specificity, and this stylesheet loads later, so any tilt
+   meant to live in the module quietly lost every time. keep this as
+   the single source of truth for the hover transform. */
 .project-box:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) rotate(-1.2deg);
+}
+.project-box:nth-child(even):hover {
+  transform: translateY(-3px) rotate(1.2deg);
 }
 
-/* a small poetic moment on hover, instead of a headline explaining
-   the work — the image breathes slightly, and a ✿ blooms into the
-   corner, echoing the Inkbloom mark from the patchwork sampler */
 .project-box .project-image {
   transition:
     transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
@@ -905,9 +871,6 @@ html.home-locked .connector-lines {
   opacity: 0.7;
   transform: rotate(8deg) scale(1);
 }
-/* .project-box[data-category="craft"]:hover {
-  box-shadow: 0 8px 16px var(--shadow-craft);
-} */
 .project-box[data-category="code"]:hover {
   box-shadow: 0 8px 16px var(--shadow-code);
 }
@@ -917,11 +880,7 @@ html.home-locked .connector-lines {
 .project-box[data-category="electronics"]:hover {
   box-shadow: 0 8px 16px var(--shadow-electronics);
 }
-/* .project-box[data-category="text"]:hover {
-  box-shadow: 0 8px 16px var(--shadow-text);
-} */
 
-/* title (generic) */
 .project-box .box-text {
   display: block;
   position: relative;
@@ -936,7 +895,6 @@ html.home-locked .connector-lines {
   overflow-wrap: anywhere;
 }
 
-/* image */
 .project-box .project-image {
   width: clamp(120px, 16vw, 150px);
   height: clamp(120px, 16vw, 150px);
@@ -946,7 +904,6 @@ html.home-locked .connector-lines {
   background: transparent !important;
 }
 
-/* description (global default) — FULL TEXT (no clamp) */
 .project-description {
   margin: 8px auto 12px;
   padding: 0 14px;
@@ -961,7 +918,6 @@ html.home-locked .connector-lines {
   overflow-wrap: anywhere;
 }
 
-/* design links: in flow, anchored to card bottom via margin-top auto */
 .project-links.design-links {
   display: none;
   position: static;
@@ -981,7 +937,6 @@ html.home-locked .connector-lines {
   display: flex !important;
 }
 .project-links.design-links .project-link.button-link {
-  /* background-color: var(--soft-pink, #f8dce8); */
   color: #000;
   padding: 0.3rem 0.6rem;
   font-size: 0.7rem;
@@ -992,11 +947,9 @@ html.home-locked .connector-lines {
   white-space: nowrap;
 }
 .project-links.design-links .project-link.button-link:hover {
-  /* background-color: var(--soft-pink-hover, #f3cde2); */
   transform: translateY(-1px);
 }
 
-/* fallback links */
 .project-links a {
   text-decoration: none;
   color: #333;
@@ -1031,7 +984,6 @@ html.home-locked .connector-lines {
   box-shadow: 0 4px 8px rgba(120, 63, 143, 0.3) !important;
 }
 
-/* UPDATED DRAWER CLOSE BUTTON - PROMINENT TAB */
 .drawer-close {
   position: absolute;
   top: -40px;
@@ -1104,9 +1056,7 @@ html.home-locked .connector-lines {
     height: 24px;
   }
 }
-/* ========== END DRAWER CLOSE BUTTON ========== */
 
-/* === all projects grid — responsive + FULL TEXT === */
 .projects-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1127,12 +1077,6 @@ html.home-locked .connector-lines {
   width: clamp(110px, 12vw, 135px);
   height: clamp(110px, 12vw, 135px);
 }
-/* drawer cards, compact — a smaller, tighter variant than the
-   featured "selected work" cards, so the drawer reads as a compact
-   secondary listing rather than a sparser copy of the main grid.
-   also fixes the translucent background letting page content bleed
-   through behind the open drawer (the *-bg tokens carry alpha;
-   these mist/foam/dust tokens are solid). */
 .projects-drawer[data-section="code"] {
   background-color: var(--matcha-foam);
 }
@@ -1148,10 +1092,6 @@ html.home-locked .connector-lines {
 .projects-drawer[data-section="text"] {
   background-color: var(--sky-mist);
 }
-/* the close tab sets its own background per-section elsewhere in
-   this file with matching specificity — these rules must repeat
-   that exact selector shape (not a flat .drawer-close rule) or they
-   silently lose the cascade and the tab stays translucent */
 .projects-drawer[data-section="code"] .drawer-close {
   background-color: var(--matcha-foam);
 }
@@ -1203,12 +1143,6 @@ html.home-locked .connector-lines {
   font-size: 0.6rem;
   padding: 0.22rem 0.45rem;
 }
-/* the "more projects" drawer — an inline panel that expands in
-   normal document flow (pushes the page down) instead of a fixed
-   bottom sheet with its own max-height. this is a deliberate fix
-   for the drawer looking empty around 2-3 small cards: a panel
-   sized to its content can't have leftover space, by construction,
-   regardless of how large or small the cards inside render. */
 .more-drawer {
   position: relative;
   width: 100%;
@@ -1273,11 +1207,6 @@ html.home-locked .connector-lines {
   gap: clamp(0.6rem, 1.5vw, 1rem);
 }
 
-/* compact card treatment, forced with !important — a CSS module
-   (ProjectBox.module.css) sets its own width/sizing on these cards
-   with source-order priority that non-!important overrides here
-   were losing to silently. !important is the reliable way to win
-   regardless of where that module's styles land in the bundle. */
 .more-drawer-grid .project-box {
   width: 220px !important;
   min-width: 220px !important;
@@ -1352,7 +1281,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* imagery cleanup in line boxes */
 .line-box img,
 .line-box .box-content img {
   background: transparent !important;
@@ -1361,7 +1289,6 @@ html.home-locked .connector-lines {
   box-shadow: none !important;
 }
 
-/* cv page */
 .cv-page {
   max-width: 900px;
   margin: 0 auto;
@@ -1531,7 +1458,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* contact page */
 .contact-page {
   max-width: 900px;
   margin: 0 auto;
@@ -1665,7 +1591,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* blog + archive */
 .blog-section {
   margin: 2rem 0;
 }
@@ -1678,12 +1603,10 @@ html.home-locked .connector-lines {
   margin: 0;
 }
 
-/* anchor for absolute badge */
 .project-box .box-content {
   position: relative;
 }
 
-/* text-only (blog) cards */
 .project-box[data-category="text"] .box-content.text-only {
   display: flex;
   flex-direction: column;
@@ -1704,7 +1627,6 @@ html.home-locked .connector-lines {
   hyphens: auto;
 }
 
-/* badge */
 .project-badge {
   position: absolute;
   bottom: 0.5rem;
@@ -1747,7 +1669,6 @@ html.home-locked .connector-lines {
   color: #000;
 }
 
-/* pastel pill buttons */
 .link-btn {
   --btn-bg: #eee;
   --btn-fg: #111;
@@ -1839,7 +1760,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* archive */
 .archive {
   --arch-radius: 8px;
   --arch-bg: #fff;
@@ -2011,7 +1931,6 @@ html.home-locked .connector-lines {
   transform: translateX(0);
 }
 
-/* archive cards / masonry */
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -2094,7 +2013,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* grouped roles / linkedin-style */
 .cv-item.grouped {
   padding: 10px 0 2px;
 }
@@ -2167,7 +2085,6 @@ html.home-locked .connector-lines {
   white-space: nowrap;
 }
 
-/* opportunities section */
 .opportunities-section {
   margin-top: 3rem;
   padding-top: 2rem;
@@ -2182,7 +2099,6 @@ html.home-locked .connector-lines {
   line-height: 1.7;
 }
 
-/* patchwork sampler, replaces .bio-window on the about page. */
 .patchwork {
   display: flex;
   flex-direction: column;
@@ -2307,7 +2223,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* image settle */
 .reveal-item .project-image {
   opacity: 0;
   transform: scale(0.92);
@@ -2330,9 +2245,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* ==========================================================
-   selected work page
-   ========================================================== */
 .work-page {
   width: 100%;
 }
@@ -2348,10 +2260,6 @@ html.home-locked .connector-lines {
   border: 0;
 }
 
-/* work hero — headline with a cycling word instead of the flower
-   mark (the mark already lives in the nav and everywhere else).
-   the dashed underline on the cycling word is the running stitch,
-   so the signature survives the flower's removal */
 .work-intro {
   max-width: 760px;
   margin: 0 auto;
@@ -2369,9 +2277,6 @@ html.home-locked .connector-lines {
 }
 .work-headline-cycle {
   display: inline-block;
-  /* sized to "intentional interfaces", the longest pair in the
-     cycle — prevents the headline reflowing on each swap. resize
-     if the pair list changes */
   min-width: 15ch;
   text-align: center;
   color: #6b57c8;
@@ -2422,10 +2327,6 @@ html.home-locked .connector-lines {
   padding: 0 10px;
   margin-bottom: 4px;
 }
-/* in equal-height rows, distribute leftover space evenly between
-   content blocks instead of collecting it into one large gap.
-   scoped to simple-link cards (content lives inside .box-content);
-   design cards with link rows keep their bottom-anchored buttons. */
 .projects-grid .project-box:not(.design-project) > .box-content {
   flex: 1;
   display: flex;
@@ -2434,8 +2335,6 @@ html.home-locked .connector-lines {
   align-items: center;
   width: 100%;
 }
-/* neutralize the old single-gap anchor inside grid cards — auto
-   margins would absorb all free space and defeat space-evenly */
 .projects-grid .project-box .project-tags:last-child {
   margin-top: 0;
   padding-top: 0;
@@ -2554,7 +2453,6 @@ html.home-locked .connector-lines {
   padding: 2.5rem 0 3rem;
 }
 
-/* about page: cv link + embedded contact section */
 .about-cv-cta {
   display: flex;
   justify-content: center;
@@ -2566,7 +2464,6 @@ html.home-locked .connector-lines {
   border-top: 2px solid rgba(0, 0, 0, 0.06);
 }
 
-/* fix: link pills stay in flow, stacked below the tag pills, not overlapping */
 .project-box .project-links.design-links,
 .project-box .project-links.design-links.always-visible {
   position: static !important;
@@ -2579,7 +2476,6 @@ html.home-locked .connector-lines {
   padding-bottom: 1.4rem;
 }
 
-/* homepage */
 .page-container.home-flow {
   padding: 0.5rem 1.5rem clamp(2rem, 5vh, 3rem);
   display: flex;
@@ -2870,7 +2766,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* fix: flower-network logo was rendering past its 500x500 box. */
 .image-box img {
   max-width: 100% !important;
   max-height: 100% !important;
@@ -2879,11 +2774,6 @@ html.home-locked .connector-lines {
   object-fit: contain !important;
 }
 
-/* ml5 card only — the docs-plugin screen recording is wide and
-   detailed, so let it fill the card width instead of the standard
-   square thumbnail box. !important because two grid-scoped rules
-   (.projects-grid .project-box .project-image and the drawer
-   variant) tie or beat a plain override on specificity/order. */
 .project-box .project-image[src*="ml5.gif"],
 .projects-grid .project-box .project-image[src*="ml5.gif"] {
   width: calc(100% - 24px) !important;
@@ -2892,12 +2782,6 @@ html.home-locked .connector-lines {
   aspect-ratio: auto !important;
 }
 
-/* ==========================================================
-   merged homepage — the portfolio IS the homepage.
-   hero claim → selected work cards → more-project rows → contact.
-   (the old blob/drawer homepage styles further up are now fully
-   unused and can be deleted in a cleanup pass)
-   ========================================================== */
 .home-page {
   position: relative;
   width: 100%;
@@ -2906,7 +2790,6 @@ html.home-locked .connector-lines {
   padding: clamp(0.25rem, 1.5vh, 1rem) 1rem 3rem;
 }
 
-/* hero claim */
 .home-claim-wrap {
   position: relative;
   z-index: 2;
@@ -2915,10 +2798,6 @@ html.home-locked .connector-lines {
   margin: 0 auto clamp(2rem, 5vh, 3rem);
 }
 
-/* desktop-only hero air — the padding cleanup above pulled the hero
-   up hard, which read as cramped on wide screens (flower kissing the
-   nav, elements stacked tight). this restores a composed vertical
-   rhythm on desktop without re-inflating mobile, which stays tight. */
 @media (min-width: 900px) {
   .home-claim-wrap {
     padding-top: clamp(1.25rem, 4vh, 2.75rem);
@@ -2987,20 +2866,11 @@ html.home-locked .connector-lines {
   }
 }
 
-/* homepage section headings sit above the cards grid, which
-   provides its own top padding */
 .home-page .work-section-heading {
   position: relative;
   z-index: 2;
 }
 
-/* more projects — now a pill row + sliding drawer instead of a
-   flat list (reusing the site's original drawer CSS below), so
-   "more projects" gets the discovery interaction back without
-   gating anything in "selected work" behind a click. */
-/* the "selected work" micro-interaction — a checkmark that draws
-   itself once, replacing a plain text label with something that
-   performs "selected" rather than stating it. */
 .selected-mark-heading {
   display: flex;
   align-items: center;
@@ -3050,7 +2920,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* contact strip */
 .home-contact {
   position: relative;
   z-index: 2;
@@ -3075,12 +2944,6 @@ html.home-locked .connector-lines {
   height: 15px;
 }
 
-/* section marks — each one is pinned to the section it lives in
-   (position: relative on that section, position: absolute on the
-   mark), never to the whole page. this is the fix for marks
-   drifting into card content as the page grows: a percentage of a
-   short header block can't ever land inside a project grid below
-   it, because it isn't measured against the page at all. */
 .home-claim-wrap,
 .index-block,
 .home-contact {
@@ -3103,9 +2966,6 @@ html.home-locked .connector-lines {
   display: block;
 }
 
-/* a real, working toggle in the hero's margin — small, quiet proof
-   of component engineering rather than a picture of a UI control. */
-/* a dashed trace with a pulse that travels it — current, flowing */
 .mark-signal {
   top: 4px;
   right: 4px;
@@ -3128,8 +2988,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* a dot that drifts toward the cursor within a bounded field —
-   calm, physical, capped travel distance */
 .mark-magnet {
   top: 2px;
   left: 2px;
@@ -3196,9 +3054,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* discipline badges — small icons on a card showing which halves of
-   "design engineer" that project touched. purely visual, renders
-   nothing when a project has no `disciplines` array. */
 .discipline-badges {
   position: absolute;
   top: 10px;
@@ -3224,9 +3079,6 @@ html.home-locked .connector-lines {
   object-fit: contain;
 }
 
-/* the process — an expandable reveal showing problem / approach /
-   result, plus the project's actual tokens as live swatches instead
-   of a screenshot of them. currently used on electrocute-ui. */
 .process-reveal {
   margin-top: 10px;
   padding: 0 14px;
@@ -3293,10 +3145,6 @@ html.home-locked .connector-lines {
   color: #777;
 }
 
-/* the duality strip — replaces GithubActivity. states "design
-   engineer" literally, using the same icons as the per-card
-   discipline badges so it's the existing vocabulary made explicit
-   once, up front, rather than a new decorative idea. */
 .duality-strip {
   display: flex;
   align-items: center;
@@ -3329,9 +3177,6 @@ html.home-locked .connector-lines {
   }
 }
 
-/* skills strip — a curated, color-coded set of real skills, so the
-   duality strip's claim ("design ⌁ code ⌁ hardware") is backed by
-   concrete named tools a second later, in the same glance. */
 .skills-strip {
   list-style: none;
   display: flex;
