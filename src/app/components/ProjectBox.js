@@ -9,12 +9,16 @@ import styles from "./ProjectBox.module.css";
 
 const IframePanel = dynamic(() => import("./IframePanel"), { ssr: false });
 
-// preview window restored (was removed earlier, then accidentally
-// stayed removed when the drawer was rebuilt to use these cards
-// directly). embeddable links open in the handmade preview window;
-// figma/github/npm/wordpress/twitter/x/instagram/linkedin/notion
-// (see BLOCKED in IframePanel) and anything on mobile fall through
-// to a normal new tab.
+// card redesign: thumbnail fills the card top edge-to-edge with a
+// category tag floating on it, hairline border + shadow instead of
+// the old .line-box 3px border, description clamped to 2 lines, and
+// tags/links merged into a single meta row instead of three stacked
+// rows. same props and embeddable-link/IframePanel behavior as before.
+//
+// note: deliberately does NOT include "line-box" in its class list —
+// that class still carries a leftover `border: solid 3px` from the
+// old flower-network feature, which is what was drawing the thick
+// black border. project-box alone is enough for this component.
 
 const ProjectBox = ({
   title,
@@ -35,9 +39,6 @@ const ProjectBox = ({
     setIsMobile(window.matchMedia("(max-width: 640px)").matches);
   }, []);
 
-  const isDesign =
-    category === "design" || (links && Object.keys(links).length > 0);
-
   const handleClick = (e, url) => {
     if (!url) return;
     if (isMobile) return; // let the browser open a new tab as normal
@@ -54,7 +55,15 @@ const ProjectBox = ({
           (v) => typeof v === "string" && v.startsWith("http"),
         )
       : null);
-  const showLaunchBtn = primaryLink && category !== "text";
+
+  // every link becomes a small pill in the meta row — either the
+  // `links` map (excluding its optional `description` key) or a
+  // single fallback pill for the simple `link` shape
+  const linkEntries = links
+    ? Object.entries(links).filter(([k]) => k !== "description")
+    : link
+      ? [["visit", link]]
+      : [];
 
   const panel =
     panelUrl && typeof document !== "undefined"
@@ -68,112 +77,86 @@ const ProjectBox = ({
         )
       : null;
 
-  const metaBlock = (
-    <>
-      {stack && <p className="project-stack">{stack}</p>}
-      {Array.isArray(tags) && tags.length > 0 && (
-        <div className="project-tags">
-          {tags.map((t) => (
-            <span key={t} className="project-tag">
-              {t}
-            </span>
-          ))}
-        </div>
-      )}
-    </>
-  );
-
   return (
     <>
-      <div
-        className={`project-box line-box ${isDesign ? "design-project" : ""} ${styles.card}`}
-        data-category={category}
-      >
-        {isDesign ? (
-          <>
-            <a
-              href={link ?? "#"}
-              target={link && !isEmbeddable(link) ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="box-content"
-              style={{ textDecoration: "none" }}
-              onClick={(e) => handleClick(e, link)}
-            >
-              {badge && (
-                <span className={`project-badge ${badge}`}>{badge}</span>
-              )}
-              <span className="box-text">{title}</span>
-              <img
-                src={imageUrl}
-                alt={title}
-                className="project-image"
-                style={{ background: "transparent" }}
-              />
-            </a>
-            {(description || links?.description) && (
-              <p className="project-description">
-                {description || links.description}
-              </p>
+      <div className={`project-box ${styles.card}`} data-category={category}>
+        {imageUrl ? (
+          <a
+            href={primaryLink ?? "#"}
+            target={
+              primaryLink && !isEmbeddable(primaryLink) ? "_blank" : undefined
+            }
+            rel="noopener noreferrer"
+            className={styles.thumb}
+            onClick={(e) => handleClick(e, primaryLink)}
+          >
+            <img src={imageUrl} alt={title} className={styles.thumbImg} />
+            <span className={styles.catTag}>{category}</span>
+            {badge && (
+              <span className={`project-badge ${badge} ${styles.badgeOverlay}`}>
+                {badge}
+              </span>
             )}
-            {metaBlock}
-            {links && (
-              <div
-                className={`project-links design-links ${showLinksAlways ? "always-visible" : ""}`}
-              >
-                {Object.entries(links)
-                  .filter(([k]) => k !== "description")
-                  .map(([key, url]) => (
-                    <a
-                      key={key}
-                      href={url}
-                      target={!isEmbeddable(url) ? "_blank" : undefined}
-                      rel="noopener noreferrer"
-                      className="project-link button-link"
-                      onClick={(e) => handleClick(e, url)}
-                    >
-                      {String(key).toUpperCase()}
-                    </a>
-                  ))}
-              </div>
-            )}
-          </>
+          </a>
         ) : (
           <a
-            href={link ?? "#"}
-            target={link && !isEmbeddable(link) ? "_blank" : undefined}
+            href={primaryLink ?? "#"}
+            target={
+              primaryLink && !isEmbeddable(primaryLink) ? "_blank" : undefined
+            }
             rel="noopener noreferrer"
-            className={`box-content ${category === "text" ? "text-only" : ""}`}
-            style={{ textDecoration: "none", background: "transparent" }}
-            onClick={(e) => handleClick(e, link)}
+            className={`${styles.thumb} ${styles.thumbPlaceholder}`}
+            onClick={(e) => handleClick(e, primaryLink)}
           >
-            {badge && <span className={`project-badge ${badge}`}>{badge}</span>}
-            <span className="box-text">{title}</span>
-            {category !== "text" && imageUrl && (
-              <img
-                src={imageUrl}
-                alt={title}
-                className="project-image"
-                style={{ background: "transparent" }}
-              />
+            <span className={styles.catTag}>{category}</span>
+            {badge && (
+              <span className={`project-badge ${badge} ${styles.badgeOverlay}`}>
+                {badge}
+              </span>
             )}
-            {category !== "text" && description && (
-              <p className="project-description">{description}</p>
-            )}
-            {category !== "text" && metaBlock}
           </a>
         )}
 
-        {showLaunchBtn && (
-          <button
-            className={styles.launchBtn}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClick(e, primaryLink);
-            }}
-            aria-label={`open ${title}`}
+        <div className={styles.body}>
+          <h3 className={styles.title}>{title}</h3>
+          {(description || links?.description) && (
+            <p className={styles.desc}>{description || links.description}</p>
+          )}
+
+          {stack && (
+            <div className={styles.metaRow}>
+              <span className={styles.stack}>{stack}</span>
+            </div>
+          )}
+
+          {Array.isArray(tags) && tags.length > 0 && (
+            <div className={styles.tagRow}>
+              {tags.map((t) => (
+                <span key={t} className={styles.tag}>
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {linkEntries.length > 0 && (
+          <div
+            className={`${styles.cornerLinks} ${showLinksAlways ? "" : styles.linksHoverOnly}`}
           >
-            ↗
-          </button>
+            {linkEntries.map(([key, url]) => (
+              <a
+                key={key}
+                href={url}
+                target={!isEmbeddable(url) ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className={styles.linkPill}
+                onClick={(e) => handleClick(e, url)}
+              >
+                {String(key).toLowerCase()} ↗
+              </a>
+            ))}
+          </div>
         )}
       </div>
 

@@ -1,125 +1,225 @@
 /* ProjectBox.module.css */
+/* redesigned card: thumbnail-forward, hairline border, tags/links
+   merged into one meta row. project-box (global, in globals.css)
+   still supplies the hover lift+tilt and box-shadow base — this
+   module only owns the new internal layout and its own border.
+
+   .card.card below is an intentional specificity bump: globals.css's
+   .project-box sets overflow:visible / padding / min-height for other
+   contexts (drawer, more-drawer) and ties with .card on specificity,
+   so whichever rule compiles later wins the cascade. Repeating the
+   class guarantees this module's box model always wins regardless of
+   stylesheet import order — see card blowout bug, July 2026.
+
+   description shows in full, no clamping — card height simply grows
+   to fit whatever content is in it. */
 
 .card {
   position: relative;
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* subtle lift on hover — shadow does the work, not distance */
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(184, 169, 217, 0.22);
-}
-
-/* launch button — hidden by default, shown on card hover */
-.launchBtn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-  border: 1.5px solid currentColor;
-  background: #feffed;
-  color: inherit;
-  font-family: monospace;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.card.card {
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  align-items: stretch;
+  background: #fff;
+  min-height: 0;
+}
+
+.thumb {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  text-decoration: none;
+  background-color: #f3f0ff;
+  overflow: hidden;
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: transparent !important;
+  mix-blend-mode: normal !important;
+}
+
+.thumbPlaceholder {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+.catTag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-code, monospace);
+  font-size: 0.62rem;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  z-index: 1;
+}
+
+.badgeOverlay {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  bottom: auto !important;
+  left: auto !important;
+}
+
+.body {
+  padding: 18px 18px 52px;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-display, inherit);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+  overflow-wrap: anywhere;
+}
+
+.desc {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.55;
+  margin: 0 0 16px;
+  overflow-wrap: anywhere;
+}
+
+.metaRow {
+  padding-top: 12px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  min-width: 0;
+}
+
+.stack {
+  font-family: var(--font-code, monospace);
+  font-size: 0.68rem;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.cornerLinks {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: calc(100% - 28px);
+}
+
+.linksHoverOnly {
   opacity: 0;
-  transform: scale(0.85);
+  transform: translateY(2px);
   transition:
-    opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 2;
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
-.card:hover .launchBtn {
+.card:hover .linksHoverOnly,
+.card:focus-within .linksHoverOnly {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0);
 }
 
-/* slightly more prominent on button hover */
-.launchBtn:hover {
-  background: currentColor;
-  color: #feffed;
+.linkPill {
+  font-family: var(--font-code, monospace);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.card[data-category="code"] .catTag,
+.card[data-category="code"] .linkPill {
+  color: #1f5c33;
+}
+.card[data-category="code"] .linkPill {
+  background: #dcf1de;
+}
+
+.card[data-category="design"] .catTag,
+.card[data-category="design"] .linkPill {
+  color: #8f3b5c;
+}
+.card[data-category="design"] .linkPill {
+  background: #f8dbe9;
+}
+
+.card[data-category="electronics"] .catTag,
+.card[data-category="electronics"] .linkPill {
+  color: #3d2f6b;
+}
+.card[data-category="electronics"] .linkPill {
+  background: #e7defc;
+}
+
+.card[data-category="text"] .catTag,
+.card[data-category="text"] .linkPill {
+  color: #1f5070;
+}
+.card[data-category="text"] .linkPill {
+  background: #dceefa;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #666;
 }
 
 @media (max-width: 640px) {
-  .launchBtn {
-    display: none;
-  }
-}
-
-/* opt-in marching stitch — add alongside the card class:
-   className={`${styles.card} ${styles.stitch}`}
-   note: if the card already has a dashed border from globals.css,
-   remove that rule for these cards so the stitches don't double up */
-.stitch {
-  --stitchColor: #b8a9d9;
-  --dash: 7px;
-  --gap: 6px;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      var(--stitchColor) 0 var(--dash),
-      transparent var(--dash) calc(var(--dash) + var(--gap))
-    ),
-    repeating-linear-gradient(
-      90deg,
-      var(--stitchColor) 0 var(--dash),
-      transparent var(--dash) calc(var(--dash) + var(--gap))
-    ),
-    repeating-linear-gradient(
-      0deg,
-      var(--stitchColor) 0 var(--dash),
-      transparent var(--dash) calc(var(--dash) + var(--gap))
-    ),
-    repeating-linear-gradient(
-      0deg,
-      var(--stitchColor) 0 var(--dash),
-      transparent var(--dash) calc(var(--dash) + var(--gap))
-    );
-  background-position:
-    0 0,
-    0 100%,
-    0 0,
-    100% 0;
-  background-size:
-    100% 2px,
-    100% 2px,
-    2px 100%,
-    2px 100%;
-  background-repeat: no-repeat;
-}
-
-.stitch:hover {
-  animation: stitchMarch 0.8s linear infinite;
-}
-
-@keyframes stitchMarch {
-  to {
-    background-position:
-      calc(var(--dash) + var(--gap)) 0,
-      calc(-1 * (var(--dash) + var(--gap))) 100%,
-      0 calc(-1 * (var(--dash) + var(--gap))),
-      100% calc(var(--dash) + var(--gap));
+  .linksHoverOnly {
+    opacity: 1;
+    transform: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card,
-  .launchBtn,
-  .stitch {
+  .linksHoverOnly {
     transition: none;
-    animation: none !important;
-  }
-  .card:hover {
-    transform: none;
   }
 }

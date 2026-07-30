@@ -44,10 +44,24 @@ export const selectedWork = [
     disciplines: ["design", "code"],
     links: {
       web: "https://soft-components.vercel.app/",
-      code: "https://github.com/yafira/tinytinker-tools",
+      code: "https://github.com/yafira/soft-components",
     },
   },
-
+  {
+    title: "cache",
+    imageUrl: "/assets/cache.gif",
+    category: "code",
+    description:
+      "A moodboard tool where you paste, drag, and style inspiration like you actually think. Create a patch, collect your stash, keep everything cached!",
+    stack: "Next.js · React · CSS Modules",
+    tags: ["design engineering", "web tooling", "frontend"],
+    disciplines: ["design", "code"],
+    links: {
+      web: "https://cacheboard.vercel.app",
+      code: "https://github.com/yafira/cache",
+      casestudy: "https://cacheboard.vercel.app/case-study",
+    },
+  },
   {
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
@@ -59,7 +73,7 @@ export const selectedWork = [
     disciplines: ["design", "code"],
     links: {
       web: "https://tinytinker.tools",
-      code: "https://github.com/yafira/soft-components",
+      code: "https://github.com/yafira/tinytinker-tools",
     },
   },
   {
