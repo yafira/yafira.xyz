@@ -57,7 +57,7 @@ export default function AboutPage() {
           <p>
             I recently completed my master's degree at NYU's Interactive
             Telecommunications Program (ITP), where I explored physical
-            computing, web development, creative coding, fabrication, and
+            computing, hardware design & development, creative coding, fabrication, and
             interaction design. My work lives at the expressive overlap of
             technology and art, spanning front-end development, UX/UI/product
             design, and playful, tactile computing.
