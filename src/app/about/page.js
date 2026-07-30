@@ -59,7 +59,7 @@ export default function AboutPage() {
             Telecommunications Program (ITP), where I explored physical
             computing, hardware design & development, creative coding, fabrication, and
             interaction design. My work lives at the expressive overlap of
-            technology and art, spanning front-end development, UX/UI/product
+            technology and art, spanning web/front-end, UX/UI/product
             design, and playful, tactile computing.
           </p>
         </Reveal>
