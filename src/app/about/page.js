@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Github, Linkedin, Mail, Instagram, Figma } from "lucide-react";
 import { FaChessPawn } from "react-icons/fa";
 import MobileBack from "@/app/components/MobileBack";
@@ -57,9 +58,9 @@ export default function AboutPage() {
           <p>
             I recently completed my master's degree at NYU's Interactive
             Telecommunications Program (ITP), where I explored physical
-            computing, hardware design & development, creative coding, fabrication, and
-            interaction design. My work lives at the expressive overlap of
-            technology and art, spanning web/front-end, UX/UI/product
+            computing, hardware design & development, creative coding,
+            fabrication, and interaction design. My work lives at the expressive
+            overlap of technology and art, spanning web/front-end, UX/UI/product
             design, and playful, tactile computing.
           </p>
         </Reveal>
@@ -231,10 +232,10 @@ export default function AboutPage() {
         {/* CV link */}
         <Reveal>
           <div className="about-cv-cta">
-            <a href="/cv" className="link-btn primary">
+            <Link href="/cv" className="link-btn primary">
               <span>view my cv</span>
               <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
         </Reveal>
 

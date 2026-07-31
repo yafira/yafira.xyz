@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { Inkbloom } from "electrocute-ui";
 import CycleWord from "@/app/components/CycleWord";
@@ -315,13 +316,13 @@ export default function Portfolio() {
           </span>
         </p>
         <div className="home-hero-cta">
-          <a href="/contact" className="link-btn primary">
+          <Link href="/contact" className="link-btn primary">
             <span>get in touch</span>
             <span aria-hidden="true">→</span>
-          </a>
-          <a href="/cv" className="link-btn">
+          </Link>
+          <Link href="/cv" className="link-btn">
             view cv
-          </a>
+          </Link>
         </div>
       </section>
     </div>

@@ -2,6 +2,7 @@ import { Pixelify_Sans } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import LabFlyout from "@/app/components/LabFlyout";
+import ThemeToggle from "@/app/components/ThemeToggle";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
 import "./styles/globals.css";
 import "./styles/styles.css";
@@ -53,7 +54,16 @@ const pixelifySans = Pixelify_Sans({ weight: "400", subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <script
+          // runs before paint so the right theme applies immediately —
+          // no flash of the wrong theme on load. falls back to the
+          // system dark-mode preference if the person hasn't chosen yet.
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("portfolio-theme");if(!t){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className={pixelifySans.className}>
         <BackgroundPattern />
         <nav className="navigation">
@@ -69,6 +79,7 @@ export default function RootLayout({ children }) {
             <Link href="/about">about</Link>
             <Link href="/cv">cv</Link>
             <LabFlyout />
+            <ThemeToggle />
           </div>
         </nav>
         <main className="main-content">{children}</main>

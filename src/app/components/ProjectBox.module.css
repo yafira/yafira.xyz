@@ -20,10 +20,10 @@
   flex-direction: column;
   min-width: 0;
   max-width: 100%;
-  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  border: 0.5px solid var(--card-border, rgba(0, 0, 0, 0.08));
   border-radius: 12px;
   overflow: hidden;
-  background: #fff;
+  background: var(--surface-card);
 }
 
 .card.card {
@@ -31,7 +31,7 @@
   padding-top: 0;
   padding-bottom: 0;
   align-items: stretch;
-  background: #fff;
+  background: var(--surface-card);
   min-height: 0;
 }
 
@@ -41,7 +41,7 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   text-decoration: none;
-  background-color: #f3f0ff;
+  background-color: var(--wisteria-dust);
   overflow: hidden;
 }
 
@@ -73,8 +73,8 @@
   letter-spacing: 0.05em;
   padding: 3px 9px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #333;
+  background: var(--cat-tag-bg, rgba(255, 255, 255, 0.85));
+  color: var(--text-primary);
   z-index: 1;
 }
 
@@ -97,13 +97,13 @@
   font-size: 1.05rem;
   line-height: 1.3;
   margin: 0 0 8px;
-  color: #1a1a1a;
+  color: var(--text-primary);
   overflow-wrap: anywhere;
 }
 
 .desc {
   font-size: 0.85rem;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.55;
   margin: 0 0 16px;
   overflow-wrap: anywhere;
@@ -111,14 +111,14 @@
 
 .metaRow {
   padding-top: 12px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  border-top: 1px dashed var(--card-hairline, rgba(0, 0, 0, 0.1));
   min-width: 0;
 }
 
 .stack {
   font-family: var(--font-code, monospace);
   font-size: 0.68rem;
-  color: #888;
+  color: var(--text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -163,34 +163,34 @@
 
 .card[data-category="code"] .catTag,
 .card[data-category="code"] .linkPill {
-  color: #1f5c33;
+  color: var(--pb-ink-code, #1f5c33);
 }
 .card[data-category="code"] .linkPill {
-  background: #dcf1de;
+  background: var(--pb-bg-code, #dcf1de);
 }
 
 .card[data-category="design"] .catTag,
 .card[data-category="design"] .linkPill {
-  color: #8f3b5c;
+  color: var(--pb-ink-design, #8f3b5c);
 }
 .card[data-category="design"] .linkPill {
-  background: #f8dbe9;
+  background: var(--pb-bg-design, #f8dbe9);
 }
 
 .card[data-category="electronics"] .catTag,
 .card[data-category="electronics"] .linkPill {
-  color: #3d2f6b;
+  color: var(--pb-ink-electronics, #3d2f6b);
 }
 .card[data-category="electronics"] .linkPill {
-  background: #e7defc;
+  background: var(--pb-bg-electronics, #e7defc);
 }
 
 .card[data-category="text"] .catTag,
 .card[data-category="text"] .linkPill {
-  color: #1f5070;
+  color: var(--pb-ink-text, #1f5070);
 }
 .card[data-category="text"] .linkPill {
-  background: #dceefa;
+  background: var(--pb-bg-text, #dceefa);
 }
 
 .tagRow {
@@ -207,8 +207,8 @@
   text-transform: uppercase;
   padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.04);
-  color: #666;
+  background: var(--tag-bg, rgba(0, 0, 0, 0.04));
+  color: var(--text-secondary);
 }
 
 @media (max-width: 640px) {
@@ -222,4 +222,48 @@
   .linksHoverOnly {
     transition: none;
   }
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .card.card {
+  --card-border: rgba(255, 255, 255, 0.12);
+  --card-hairline: rgba(255, 255, 255, 0.14);
+  --cat-tag-bg: rgba(22, 21, 28, 0.82);
+  --tag-bg: rgba(255, 255, 255, 0.08);
+  --pb-ink-code: #a8e0b8;
+  --pb-bg-code: #223326;
+  --pb-ink-design: #e0b8d8;
+  --pb-bg-design: #332430;
+  --pb-ink-electronics: #cbb8f0;
+  --pb-bg-electronics: #2a2740;
+  --pb-ink-text: #a0d0f0;
+  --pb-bg-text: #1e2c33;
+}
+
+[data-theme="reader"] .card,
+[data-theme="reader"] .card.card {
+  --card-border: #000000;
+  --card-hairline: #000000;
+  --cat-tag-bg: #ffffff;
+  --tag-bg: #f0f0f0;
+  --pb-ink-code: #000000;
+  --pb-bg-code: #ffffff;
+  --pb-ink-design: #000000;
+  --pb-bg-design: #ffffff;
+  --pb-ink-electronics: #000000;
+  --pb-bg-electronics: #ffffff;
+  --pb-ink-text: #000000;
+  --pb-bg-text: #ffffff;
+  border-width: 2px;
+}
+[data-theme="reader"] .catTag,
+[data-theme="reader"] .linkPill,
+[data-theme="reader"] .tag {
+  border: 1px solid #000000;
+}
+[data-theme="reader"] .title {
+  font-size: 1.2rem;
+}
+[data-theme="reader"] .desc {
+  font-size: 1rem;
 }

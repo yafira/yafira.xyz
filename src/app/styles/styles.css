@@ -118,7 +118,7 @@ html.home-locked .connector-lines {
   font-size: clamp(1.1rem, 1.3vw + 0.8rem, 1.7rem);
   width: 100%;
   padding: 20px 0;
-  background-color: #e8e8fa;
+  background-color: var(--surface-nav);
   position: fixed;
   top: 0;
   left: 0;
@@ -141,7 +141,7 @@ html.home-locked .connector-lines {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: var(--text-primary);
   text-decoration: none;
   padding: 4px 8px;
   transition: color 0.3s ease;
@@ -149,16 +149,16 @@ html.home-locked .connector-lines {
   top: 2px;
 }
 .nav-links .home-icon:hover {
-  color: #000;
+  color: var(--text-strong);
 }
 .nav-links a {
-  color: #333;
+  color: var(--text-primary);
   text-decoration: none;
   padding: 8px 16px;
   transition: color 0.3s ease;
 }
 .nav-links a:hover {
-  color: #000;
+  color: var(--text-strong);
 }
 
 /* NOTE: .main-content now lives ONLY in globals.css. this file's old
@@ -404,14 +404,14 @@ html.home-locked .connector-lines {
   pointer-events: none;
 }
 .connector-lines line {
-  stroke: #333;
+  stroke: var(--text-primary);
   stroke-width: 2;
   stroke-opacity: 0.7;
 }
 
 /* line boxes */
 .line-box {
-  background-color: #ffffff;
+  background-color: var(--surface-card);
   width: var(--linebox-size);
   height: var(--linebox-size);
   position: absolute;
@@ -639,7 +639,7 @@ html.home-locked .connector-lines {
   position: relative;
   margin-top: 0.9rem;
   text-align: center;
-  color: #222;
+  color: var(--text-primary);
   font-weight: 700;
   font-size: var(--project-title-size);
   line-height: 1.25;
@@ -664,7 +664,7 @@ html.home-locked .connector-lines {
   padding: 0 14px;
   font-size: var(--project-desc-size);
   line-height: 1.55;
-  color: #222;
+  color: var(--text-primary);
   max-width: calc(var(--card-w) - 20px);
   text-align: center;
   display: block;
@@ -696,7 +696,7 @@ html.home-locked .connector-lines {
 }
 .project-links.design-links .project-link.button-link {
   background-color: var(--soft-pink, #f8dce8);
-  color: #000;
+  color: var(--text-strong);
   padding: 0.3rem 0.6rem;
   font-size: 0.7rem;
   border-radius: 999px;
@@ -713,7 +713,7 @@ html.home-locked .connector-lines {
 /* fallback links */
 .project-links a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-primary);
   background-color: #eee;
   padding: 4px 8px;
   border-radius: 6px;
@@ -809,7 +809,7 @@ html.home-locked .connector-lines {
   width: 28px;
   height: 28px;
   stroke-width: 3;
-  color: #333;
+  color: var(--text-primary);
 }
 
 /* Section-specific colors */
@@ -1068,23 +1068,23 @@ html.home-locked .connector-lines {
   font-weight: 600;
 }
 .cv-org {
-  color: #555;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 .cv-date {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 .cv-summary {
   margin-top: 4px;
   line-height: 1.6;
   max-width: 68ch;
-  color: #333;
+  color: var(--text-primary);
 }
 .cv-skills {
   margin-top: 4px;
   font-size: 1rem;
-  color: #555;
+  color: var(--text-secondary);
 }
 .cv-skills .label {
   font-weight: 600;
@@ -1154,7 +1154,7 @@ html.home-locked .connector-lines {
 .contact-blurb {
   max-width: 60ch;
   margin: 0 auto var(--spacing-md);
-  color: #333;
+  color: var(--text-primary);
   line-height: 1.6;
 }
 .contact-button {
@@ -1165,7 +1165,7 @@ html.home-locked .connector-lines {
   border-radius: 999px;
   background: var(--pill-neutral, #eef0f1);
   border: 2px solid rgba(0, 0, 0, 0.14);
-  color: #000;
+  color: var(--text-strong);
   text-decoration: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
@@ -1179,7 +1179,7 @@ html.home-locked .connector-lines {
   border-color: transparent;
 }
 .contact-button:focus-visible {
-  outline: 2px solid #333;
+  outline: 2px solid var(--text-primary);
   outline-offset: 3px;
 }
 .contact-links {
@@ -1205,7 +1205,7 @@ html.home-locked .connector-lines {
   background: var(--pill-neutral, #eef0f1);
   border: 2px solid rgba(0, 0, 0, 0.14);
   text-decoration: none;
-  color: #111;
+  color: var(--text-strong);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.15s ease,
@@ -1224,7 +1224,7 @@ html.home-locked .connector-lines {
 }
 .social-link:focus-visible {
   outline: none;
-  border-color: #111;
+  border-color: var(--text-strong);
 }
 .social-link span {
   font-weight: 600;
@@ -1308,7 +1308,7 @@ html.home-locked .connector-lines {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background: rgba(0, 0, 0, 0.78);
-  color: #fff;
+  color: var(--surface-card);
   opacity: 0;
   transform: translateY(6px);
   transition:
@@ -1330,19 +1330,19 @@ html.home-locked .connector-lines {
 .blog-itp,
 .archive-badge.itp {
   background: lavender;
-  color: #000;
+  color: var(--text-strong);
 }
 .project-badge.electrocute,
 .blog-electrocute,
 .archive-badge.electrocute {
   background-color: var(--soft-pink);
-  color: #000;
+  color: var(--text-strong);
 }
 
 /* pastel pill buttons */
 .link-btn {
   --btn-bg: #eee;
-  --btn-fg: #111;
+  --btn-fg: var(--text-strong);
   --btn-border: transparent;
   display: inline-flex;
   align-items: center;
@@ -1372,26 +1372,26 @@ html.home-locked .connector-lines {
 .link-btn:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px #fff,
+    0 0 0 2px var(--surface-card),
     0 0 0 6px color-mix(in oklab, var(--btn-bg) 55%, #0000);
 }
 .link-btn.electrocute {
   --btn-bg: var(--soft-pink);
-  --btn-fg: #000;
+  --btn-fg: var(--text-strong);
 }
 .link-btn.itp {
   --btn-bg: lavender;
-  --btn-fg: #000;
+  --btn-fg: var(--text-strong);
 }
 .link-btn.archive {
-  --btn-bg: color-mix(in oklab, #000 9%, #fff 91%);
-  --btn-fg: #111;
+  --btn-bg: color-mix(in oklab, var(--text-strong) 9%, var(--surface-card) 91%);
+  --btn-fg: var(--text-strong);
   --btn-border: rgba(0, 0, 0, 0.08);
 }
 .link-btn.primary {
   padding: 0.52rem 1rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
-  background: #fff;
+  background: var(--surface-card);
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
   gap: 0.55rem;
 }
@@ -1434,10 +1434,10 @@ html.home-locked .connector-lines {
 /* archive */
 .archive {
   --arch-radius: 8px;
-  --arch-bg: #fff;
+  --arch-bg: var(--surface-card);
   --arch-border: rgba(0, 0, 0, 0.08);
   --arch-border-hover: rgba(0, 0, 0, 0.14);
-  --arch-title: #111;
+  --arch-title: var(--text-strong);
   --arch-muted: rgba(0, 0, 0, 0.6);
   --arch-pad: 8px;
   padding: 1rem 0.75rem;
@@ -1447,7 +1447,7 @@ html.home-locked .connector-lines {
   top: 64px;
   z-index: 5;
   backdrop-filter: blur(6px);
-  background: color-mix(in oklab, #fff 85%, transparent);
+  background: color-mix(in oklab, var(--surface-card) 85%, transparent);
   padding: 0.35rem 0 0.5rem;
   margin: 0 0 0.25rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
@@ -1472,7 +1472,7 @@ html.home-locked .connector-lines {
 }
 .chip input {
   appearance: auto;
-  accent-color: #111;
+  accent-color: var(--text-strong);
 }
 .chip-pill {
   padding: 0.22rem 0.5rem;
@@ -1496,7 +1496,7 @@ html.home-locked .connector-lines {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 10px;
   min-width: 200px;
-  background: #fff;
+  background: var(--surface-card);
   outline: none;
 }
 .archive-search:focus {
@@ -1511,7 +1511,7 @@ html.home-locked .connector-lines {
 .view-btn {
   padding: 0.32rem 0.55rem;
   font: 600 0.72rem/1 var(--font-body);
-  background: #fff;
+  background: var(--surface-card);
   border: 0;
 }
 .view-btn.is-active {
@@ -1628,7 +1628,7 @@ html.home-locked .connector-lines {
   align-items: center;
   min-height: 56px;
   padding: 10px;
-  background: #fff;
+  background: var(--surface-card);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   text-decoration: none;
@@ -1721,7 +1721,7 @@ html.home-locked .connector-lines {
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: #000;
+  background: var(--text-strong);
   box-shadow: 0 0 0 2px #fefeff;
 }
 .cv-role-meta {
@@ -1736,7 +1736,7 @@ html.home-locked .connector-lines {
 }
 .cv-role-date {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 .cv-role p {
   margin-top: 4px;
@@ -1751,10 +1751,10 @@ html.home-locked .connector-lines {
 .cv-bullets li {
   margin: 6px 0;
   line-height: 1.5;
-  color: #333;
+  color: var(--text-primary);
 }
 .cv-date-inline {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin-left: 6px;
   white-space: nowrap;

@@ -169,7 +169,7 @@ span {
     aspect-ratio: 1 / 1;
     border-radius: 18px;
     border: 2px solid rgba(0, 0, 0, 0.06);
-    background: #fff;
+    background: var(--surface-card);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     text-transform: lowercase;
     font: 800 1rem/1 var(--font-body, "Space Grotesk", system-ui, sans-serif);
@@ -240,7 +240,7 @@ span {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
-    background: #fff;
+    background: var(--surface-card);
     padding: var(--spacing-md);
     border-radius: 20px;
     box-shadow: var(--box-shadow);
@@ -275,7 +275,7 @@ span {
     position: absolute;
     top: 6px;
     right: 8px;
-    background: #fff;
+    background: var(--surface-card);
     border: 1.5px solid #ddd;
     border-radius: 50%;
     width: 26px;
@@ -316,7 +316,7 @@ span {
     font-size: 1.1rem;
     text-transform: lowercase;
     margin: 0.25rem 0 0.6rem;
-    color: #111;
+    color: var(--text-strong);
   }
 
   /* list container */
@@ -341,7 +341,7 @@ span {
     justify-content: space-between !important;
     gap: 8px !important;
     padding: 10px !important;
-    background: #fff !important;
+    background: var(--surface-card) !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
     border-radius: 14px !important;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04) !important;
@@ -396,7 +396,7 @@ span {
   .row-title {
     font-weight: 800;
     font-size: 0.98rem;
-    color: #111;
+    color: var(--text-strong);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -422,28 +422,32 @@ span {
     border-radius: 999px;
     border: 1px solid var(--btn-border, transparent);
     background: var(--btn-bg, #eee);
-    color: var(--btn-fg, #111);
+    color: var(--btn-fg, var(--text-strong));
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
   }
 
   .row-actions .link-btn:visited {
-    color: var(--btn-fg, #111);
+    color: var(--btn-fg, var(--text-strong));
   }
 
   .row-actions .link-btn.archive {
-    --btn-bg: color-mix(in oklab, #000 9%, #fff 91%);
-    --btn-fg: #111;
+    --btn-bg: color-mix(
+      in oklab,
+      var(--text-strong) 9%,
+      var(--surface-card) 91%
+    );
+    --btn-fg: var(--text-strong);
     --btn-border: rgba(0, 0, 0, 0.08);
   }
 
   .row-actions .link-btn.itp {
     --btn-bg: lavender;
-    --btn-fg: #000;
+    --btn-fg: var(--text-strong);
   }
 
   .row-actions .link-btn.electrocute {
     --btn-bg: var(--soft-pink);
-    --btn-fg: #000;
+    --btn-fg: var(--text-strong);
   }
 
   /* text shortcuts (pills under "text") */
@@ -456,8 +460,8 @@ span {
 
   /* base pill */
   .mobile-blog-shortcuts .link-btn {
-    --btn-bg: #fff;
-    --btn-fg: #111;
+    --btn-bg: var(--surface-card);
+    --btn-fg: var(--text-strong);
     --btn-border: rgba(0, 0, 0, 0.1);
     min-height: 44px;
     padding: 0.62rem 0.95rem;
@@ -489,19 +493,23 @@ span {
   /* variants */
   .mobile-blog-shortcuts .electrocute {
     --btn-bg: var(--soft-pink);
-    --btn-fg: #000;
+    --btn-fg: var(--text-strong);
   }
 
   .mobile-blog-shortcuts .itp {
     --btn-bg: lavender;
-    --btn-fg: #000;
+    --btn-fg: var(--text-strong);
   }
 
   /* primary (full width) */
   .mobile-blog-shortcuts .archive {
     flex: 1 1 100%;
     justify-content: space-between;
-    --btn-bg: color-mix(in oklab, #000 8%, #fff 92%);
+    --btn-bg: color-mix(
+      in oklab,
+      var(--text-strong) 8%,
+      var(--surface-card) 92%
+    );
     --btn-border: rgba(0, 0, 0, 0.12);
     font-size: 1rem;
     padding: 0.72rem 1.05rem;
@@ -566,7 +574,7 @@ span {
     pointer-events: auto;
     display: inline-block;
     background: var(--craft-color);
-    color: #000;
+    color: var(--text-strong);
     border: none;
     border-radius: 30px;
     padding: var(--spacing-sm) var(--spacing-md);
@@ -645,12 +653,12 @@ span {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1.2rem;
-    color: #333; /* ensure good contrast */
+    color: var(--text-primary); /* ensure good contrast */
   }
 
   /* bio window adjustments */
   .bio-window {
-    background: #fff !important;
+    background: var(--surface-card) !important;
     background-image: none !important;
     border-radius: 12px;
     padding: 1.5rem;
@@ -703,7 +711,7 @@ span {
     width: 40px;
     height: 40px;
     background: lavender;
-    color: #000;
+    color: var(--text-strong);
     border: none;
     border-radius: 50%;
     font-size: 1.2rem;
@@ -863,12 +871,12 @@ span {
   .line-box,
   .line-box a,
   .line-box .box-text {
-    color: #000 !important;
+    color: var(--text-strong) !important;
     text-decoration: none !important;
   }
 
   .line-box a:hover .box-text {
-    color: #000 !important;
+    color: var(--text-strong) !important;
     text-decoration: underline; /* optional: keep a hint for hover/focus */
   }
 }
@@ -899,7 +907,7 @@ span {
 /* arrow buttons match the section color */
 .mobile-row .row-actions .link-btn {
   --btn-bg: color-mix(in oklab, var(--accent) 88%, #fff 12%);
-  --btn-fg: #000;
+  --btn-fg: var(--text-strong);
   --btn-border: color-mix(in oklab, var(--accent) 45%, #0000);
 }
 
