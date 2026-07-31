@@ -41,7 +41,7 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   text-decoration: none;
-  background-color: var(--wisteria-dust, #f3f0ff);
+  background-color: #ffffff;
   overflow: hidden;
 }
 
