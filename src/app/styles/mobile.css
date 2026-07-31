@@ -294,6 +294,30 @@ span {
     background: #f3f3f3;
   }
 
+  [data-theme="dark"] .flower-menu a {
+    background: #241e40;
+    border-color: #6b5a9e;
+    color: #d8c8f5;
+  }
+  [data-theme="dark"] .flower-menu a:hover,
+  [data-theme="dark"] .flower-menu a:focus {
+    background: #332b50;
+    color: #efe6ff;
+  }
+  [data-theme="dark"] .flower-menu-close:hover {
+    background: #2a2740;
+  }
+  [data-theme="accessible"] .flower-menu a {
+    background: #ffffff;
+    border-color: #000000;
+    color: #000000;
+    text-decoration: underline;
+  }
+  [data-theme="accessible"] .flower-menu a:hover,
+  [data-theme="accessible"] .flower-menu a:focus {
+    background: #f0f0f0;
+  }
+
   /* pop-in animation */
   @keyframes popIn {
     from {

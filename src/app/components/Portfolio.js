@@ -180,10 +180,12 @@ export default function Portfolio() {
     : [];
 
   // size the panel to fit one row of up to 4 compact cards exactly —
-  // 2 items stay snug, 3-4 sit in a single row, 5+ wraps cleanly
-  const DRAWER_CARD_W = 220;
+  // 2 items stay snug, 3-4 sit in a single row, 5+ wraps cleanly.
+  // card width narrows slightly at 4 columns so the row still fits
+  // inside .home-page's 1120px cap instead of wrapping to a 2nd row.
   const DRAWER_GAP = 16;
   const cols = Math.min(Math.max(drawerItems.length, 1), 4);
+  const DRAWER_CARD_W = cols >= 4 ? 244 : 260;
   const drawerWidth = cols * DRAWER_CARD_W + (cols - 1) * DRAWER_GAP + 48;
 
   return (
@@ -284,7 +286,10 @@ export default function Portfolio() {
         <div
           className="more-drawer"
           data-section={activeCategory}
-          style={{ maxWidth: `${drawerWidth}px` }}
+          style={{
+            maxWidth: `${drawerWidth}px`,
+            "--drawer-card-w": `${DRAWER_CARD_W}px`,
+          }}
         >
           <button
             className="more-drawer-close"
@@ -300,6 +305,7 @@ export default function Portfolio() {
                   {...item}
                   category={item.category}
                   showLinksAlways
+                  compact
                 />
               </Reveal>
             ))}

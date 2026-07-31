@@ -31,6 +31,7 @@ const ProjectBox = ({
   tags,
   showLinksAlways = false,
   badge,
+  compact = false,
 }) => {
   const [panelUrl, setPanelUrl] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -62,7 +63,7 @@ const ProjectBox = ({
   const linkEntries = links
     ? Object.entries(links).filter(([k]) => k !== "description")
     : link
-      ? [["visit", link]]
+      ? [["view", link]]
       : [];
 
   const panel =
@@ -79,7 +80,11 @@ const ProjectBox = ({
 
   return (
     <>
-      <div className={`project-box ${styles.card}`} data-category={category}>
+      <div
+        className={`project-box ${styles.card}`}
+        data-category={category}
+        data-compact={compact ? "true" : undefined}
+      >
         {imageUrl ? (
           <a
             href={primaryLink ?? "#"}

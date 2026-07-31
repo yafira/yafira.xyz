@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Instagram, Figma } from "lucide-react";
+import { Github, Linkedin, Instagram, Figma } from "lucide-react";
+import EmailContact from "@/app/components/EmailContact";
 import { FaChessPawn } from "react-icons/fa";
 import MobileBack from "@/app/components/MobileBack";
 import Reveal from "@/app/components/Reveal";
@@ -259,14 +260,7 @@ export default function AboutPage() {
               by! ♡ ꣑ৎ
             </p>
 
-            <a
-              className="contact-button"
-              href="mailto:yafira@proton.me"
-              aria-label="send me an email"
-            >
-              <Mail size={18} aria-hidden="true" />
-              <span>email me</span>
-            </a>
+            <EmailContact email="yafira@proton.me" />
           </section>
         </Reveal>
 
