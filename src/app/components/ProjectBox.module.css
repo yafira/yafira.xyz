@@ -45,6 +45,11 @@
   overflow: hidden;
 }
 
+.thumb:focus-visible {
+  outline: 2px solid var(--border-accent, #8b7ab8);
+  outline-offset: -2px;
+}
+
 .thumbImg {
   width: 100%;
   height: 100%;
@@ -158,6 +163,11 @@
   border-radius: 999px;
   color: inherit;
   white-space: nowrap;
+}
+
+.linkPill:focus-visible {
+  outline: 2px solid var(--text-primary, #1a1a1a);
+  outline-offset: 2px;
 }
 
 .card[data-category="code"] .catTag,
