@@ -72,10 +72,12 @@ export default function AboutPage() {
             With a background in computer science and a lifelong passion for
             design, I approach every project with intention and care. My focus
             is on building intuitive, meaningful interfaces and experiences that
-            empower users, challenge norms, and embrace simplicity. I'm deeply
-            inspired by Dieter Rams' <em>Ten Principles of Good Design</em> and
-            John Maeda's <em>Laws of Simplicity</em>, and I believe that{" "}
-            <em>less</em> is often <em>more</em>.
+            empower users, challenge norms, and embrace simplicity. Dieter Rams
+            is a huge inspiration to me—his whole body of work, not just one
+            idea, though I especially love his belief that <em>less</em> is
+            often <em>more</em>. That same spirit shows up in John Maeda's{" "}
+            <em>Laws of Simplicity</em> and Susan Kare's belief that an icon can
+            hold as much warmth as a paragraph.
           </p>
         </Reveal>
 
@@ -104,7 +106,10 @@ export default function AboutPage() {
                 ideas, and build things that matter. I see code as craft, a
                 practice of shaping the world around me in practical, poetic
                 ways. I code because it challenges me, and because it gives form
-                to imagination.
+                to imagination. I'm drawn to Olia Lialina's net art—her
+                insistence that the internet still has room for the handmade,
+                the amateur, the strange—as a reminder that code doesn't have to
+                be polished to be alive.
               </p>
               <PatchMark />
             </section>
@@ -129,43 +134,34 @@ export default function AboutPage() {
               <h2>myjourney://</h2>
 
               <p>
-                My path to tech wasn't linear. I've always lived in the current
-                of creativity: as a child, I filled notebooks with poems,
-                stories, sketches, and pages of ideas, and assembled mood boards
-                long before I knew the term existed. A high school writing
-                contest earned me my first international trip—to London—which
-                broadened my perspective on the world and introduced me to the
-                excitement of connecting across cultures. Inspired by that
-                experience, I began dreaming of creating an international print
-                magazine, combining my love for writing, design, and
-                storytelling with a desire to connect people and ideas across
-                borders.
+                My path to tech wasn't linear. As a kid I filled notebooks with
+                poems, stories, and mood boards before I knew what a mood board
+                was. A high school writing contest sent me to London, and I
+                started dreaming of running an international print
+                magazine—writing, design, and storytelling, connecting people
+                across borders.
               </p>
 
               <p>
-                That dream led me to study business and journalism, but along
-                the way I realized something was missing. I loved creating
-                stories and experiences, but I wanted to understand the
-                technology that made them possible. I found myself asking how
-                things worked beneath the surface—how devices communicated, how
-                circuits carried information, and how ideas became physical
-                objects. That curiosity brought me back to school to study
-                electrical engineering. Everything changed when I took my first
-                programming class. I fell in love with the logic, creativity,
-                and problem-solving of code, switched my major to computer
-                science, and never looked back.
+                That dream led me to study business and journalism, but
+                something was missing. I wanted to understand the technology
+                underneath the stories—how circuits carried information, how
+                ideas became physical objects—so I went back to school for
+                electrical engineering. Then I took my first programming class,
+                fell in love with the logic and problem-solving of code, and
+                switched to computer science.
               </p>
 
               <p>
-                Looking back, the signs had always been there. I spent hours
-                customizing MySpace pages, tinkering with electronics, and
-                taking things apart just to understand how they worked.
-                Technology had always been part of my life—I just never thought
-                it was something I could pursue professionally. I saw myself as
-                a writer, a designer, and an artist. Programming showed me that
-                technology could be a creative medium, one that combined
-                everything I loved about making, storytelling, design, and
-                solving problems. At{" "}
+                Looking back, the signs were always there: hours spent
+                customizing MySpace pages, taking electronics apart just to see
+                how they worked. I just never thought it could be a career. I'm
+                especially drawn to the hidden history of women in computing—
+                the ENIAC programmers who did the invisible labor of programming
+                the first electronic general-purpose computer, and the Jacquard
+                loom weavers whose punch cards became the literal ancestor of
+                computer code. That lineage feels close to home in my own work
+                with textiles and circuits. At{" "}
                 <a
                   href="https://itp.nyu.edu/"
                   target="_blank"
@@ -173,9 +169,8 @@ export default function AboutPage() {
                 >
                   ITP
                 </a>
-                , those pieces finally came together. It was the first place
-                where creativity, design, engineering, and computation all spoke
-                the same language, and where I realized I didn't have to choose
+                , it all finally clicked—creativity, design, engineering, and
+                computation speaking the same language, no longer a choice
                 between being creative and being technical.
               </p>
 

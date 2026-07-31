@@ -291,7 +291,8 @@ html.home-locked .connector-lines {
   opacity: 1;
 }
 [data-theme="dark"] .nav-links .home-icon img {
-  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
+  filter:
+    drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
 }
 .nav-links a {
   position: relative;
@@ -538,7 +539,8 @@ html.home-locked .connector-lines {
 }
 [data-theme="dark"] .lab-flyout-flower svg,
 [data-theme="dark"] .lab-flyout-flower img {
-  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
+  filter:
+    drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
 }
 .lab-flyout-glyph svg {
   width: 16px;
@@ -719,21 +721,23 @@ html.home-locked .connector-lines {
 
 [data-theme="dark"] .avatar {
   position: relative;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7))
+  z-index: 2;
+  filter:
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.7))
     drop-shadow(0 0 16px rgba(185, 168, 232, 0.75))
     drop-shadow(0 0 32px rgba(185, 168, 232, 0.5));
 }
-
 [data-theme="dark"] .avatar-container::before {
   content: "";
   position: absolute;
-  inset: -20px;
+  inset: 30px;
   background: radial-gradient(
     circle at center,
-    rgba(185, 168, 232, 0.45) 0%,
-    rgba(185, 168, 232, 0.25) 40%,
-    transparent 72%
+    rgba(185, 168, 232, 0.65) 0%,
+    rgba(185, 168, 232, 0.35) 45%,
+    transparent 75%
   );
+  filter: blur(45px);
   z-index: 1;
   pointer-events: none;
 }
@@ -856,7 +860,8 @@ html.home-locked .connector-lines {
   transition: opacity var(--transition-ease);
 }
 [data-theme="dark"] .flower-image {
-  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
+  filter:
+    drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
 }
 .flower-network {
   position: relative;
@@ -1669,7 +1674,8 @@ html.home-locked .connector-lines {
   transform: rotate(8deg) scale(1.05);
 }
 [data-theme="dark"] .flower-icon {
-  filter: drop-shadow(0 0 8px rgba(185, 168, 232, 0.4));
+  filter:
+    drop-shadow(0 0 8px rgba(185, 168, 232, 0.4));
 }
 .contact-hero {
   text-align: center;
@@ -2741,7 +2747,8 @@ html.home-locked .connector-lines {
   height: auto !important;
 }
 [data-theme="dark"] .home-hero-flower img {
-  filter: drop-shadow(0 0 8px rgba(185, 168, 232, 0.4));
+  filter:
+    drop-shadow(0 0 8px rgba(185, 168, 232, 0.4));
 }
 .home-hero-name {
   font-family: var(--font-display);
@@ -3186,7 +3193,8 @@ html.home-locked .connector-lines {
 }
 [data-theme="dark"] .contact-inkbloom svg,
 [data-theme="dark"] .contact-inkbloom img {
-  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
+  filter:
+    drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
 }
 
 .home-claim-wrap,
