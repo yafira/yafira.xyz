@@ -290,11 +290,31 @@ html.home-locked .connector-lines {
 .nav-links .home-icon:hover {
   opacity: 1;
 }
+[data-theme="dark"] .nav-links .home-icon img {
+  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
+}
 .nav-links a {
+  position: relative;
   color: var(--text-primary);
   text-decoration: none;
   padding: 8px 16px;
   transition: color 0.3s ease;
+}
+.nav-links > a:not(.home-icon)::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 4px;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-links > a:not(.home-icon):hover::after,
+.nav-links > a:not(.home-icon):focus-visible::after {
+  transform: scaleX(1);
 }
 .theme-toggle {
   display: inline-flex;
@@ -369,31 +389,27 @@ html.home-locked .connector-lines {
 .nav-links .nav-lab-link:hover {
   color: var(--text-strong);
 }
-.nav-lab-tooltip {
+.nav-lab-squiggle {
   position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translate(-50%, -4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #b9a8e8;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 70;
-  transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
+  left: 16px;
+  right: 16px;
+  bottom: 2px;
+  width: calc(100% - 32px);
+  height: 8px;
+  overflow: visible;
 }
-.nav-lab-tooltip svg {
-  width: 18px;
-  height: 18px;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+.nav-lab-squiggle path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  transition: stroke-dashoffset 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.nav-lab-link:hover .nav-lab-tooltip,
-.nav-lab-link:focus-visible .nav-lab-tooltip {
-  opacity: 1;
-  transform: translate(-50%, 0);
+.nav-lab-link:hover .nav-lab-squiggle path,
+.nav-lab-link:focus-visible .nav-lab-squiggle path {
+  stroke-dashoffset: 0;
 }
 
 .lab-toast {
@@ -519,6 +535,10 @@ html.home-locked .connector-lines {
 }
 .lab-flyout-header:hover .lab-flyout-flower {
   animation: lab-toast-spin 1.6s linear infinite;
+}
+[data-theme="dark"] .lab-flyout-flower svg,
+[data-theme="dark"] .lab-flyout-flower img {
+  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
 }
 .lab-flyout-glyph svg {
   width: 16px;
@@ -698,8 +718,24 @@ html.home-locked .connector-lines {
 }
 
 [data-theme="dark"] .avatar {
-  filter: drop-shadow(0 0 10px rgba(185, 168, 232, 0.55))
-    drop-shadow(0 0 20px rgba(240, 238, 245, 0.35));
+  position: relative;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7))
+    drop-shadow(0 0 16px rgba(185, 168, 232, 0.75))
+    drop-shadow(0 0 32px rgba(185, 168, 232, 0.5));
+}
+
+[data-theme="dark"] .avatar-container::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle at center,
+    rgba(185, 168, 232, 0.45) 0%,
+    rgba(185, 168, 232, 0.25) 40%,
+    transparent 72%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 .about-page {
@@ -818,6 +854,9 @@ html.home-locked .connector-lines {
   max-height: 100%;
   display: block;
   transition: opacity var(--transition-ease);
+}
+[data-theme="dark"] .flower-image {
+  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
 }
 .flower-network {
   position: relative;
@@ -1629,6 +1668,9 @@ html.home-locked .connector-lines {
 .flower-icon:hover {
   transform: rotate(8deg) scale(1.05);
 }
+[data-theme="dark"] .flower-icon {
+  filter: drop-shadow(0 0 8px rgba(185, 168, 232, 0.4));
+}
 .contact-hero {
   text-align: center;
   margin-bottom: var(--spacing-xl);
@@ -2369,6 +2411,9 @@ html.home-locked .connector-lines {
   transform: rotate(12deg) scale(1.15);
   opacity: 1;
 }
+[data-theme="dark"] .patch .patch-mark {
+  filter: none;
+}
 .patch--wisteria {
   --patch-bg: var(--wisteria-dust);
   --stitch: var(--border-accent);
@@ -2694,6 +2739,9 @@ html.home-locked .connector-lines {
 .home-hero-flower img {
   width: clamp(140px, 16vw, 220px) !important;
   height: auto !important;
+}
+[data-theme="dark"] .home-hero-flower img {
+  filter: drop-shadow(0 0 8px rgba(185, 168, 232, 0.4));
 }
 .home-hero-name {
   font-family: var(--font-display);
@@ -3135,6 +3183,10 @@ html.home-locked .connector-lines {
 .contact-inkbloom img {
   width: 15px;
   height: 15px;
+}
+[data-theme="dark"] .contact-inkbloom svg,
+[data-theme="dark"] .contact-inkbloom img {
+  filter: drop-shadow(0 0 4px rgba(185, 168, 232, 0.5));
 }
 
 .home-claim-wrap,

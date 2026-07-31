@@ -8,7 +8,7 @@ import Reveal from "@/app/components/Reveal";
 import PatchMark from "@/app/components/PatchMark";
 
 export const metadata = {
-  title: "Yafira ✿",
+  title: "Yafira | about",
 };
 
 /* eslint-disable react/no-unescaped-entities */

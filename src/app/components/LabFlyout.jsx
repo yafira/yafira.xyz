@@ -61,21 +61,6 @@ const IconMoon = () => (
   </svg>
 );
 
-// a small filled lightning bolt — cute, quick, techy
-const IconCraftTech = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinejoin="round"
-    strokeLinecap="round"
-    aria-hidden="true"
-  >
-    <path d="M13 2 4 14h6l-1.5 8L20 10h-6.5L15 2z" />
-  </svg>
-);
-
 const LAB_LINKS = [
   {
     label: "blog",
@@ -137,10 +122,14 @@ export default function LabFlyout() {
         onClick={() => setOpen((v) => !v)}
       >
         lab
-        <span className="nav-lab-tooltip" role="tooltip">
-          <IconCraftTech />
-          <span className="sr-only">creative tech</span>
-        </span>
+        <svg
+          className="nav-lab-squiggle"
+          viewBox="0 0 40 8"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M1 4 Q5 0.5 9 4 T17 4 T25 4 T33 4 T39 4" />
+        </svg>
       </button>
 
       {open && (

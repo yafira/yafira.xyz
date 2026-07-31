@@ -1,7 +1,9 @@
-"use client";
-
 import React from "react";
 import MobileBack from "@/app/components/MobileBack";
+
+export const metadata = {
+  title: "Yafira | cv",
+};
 
 export default function CVPage() {
   return (
@@ -255,9 +257,7 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
-              <div className="cv-title">
-                intro to machine learning workshop
-              </div>
+              <div className="cv-title">intro to machine learning workshop</div>
               <span className="cv-date">jul 2026</span>
             </div>
             <div className="cv-org">

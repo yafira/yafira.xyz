@@ -207,7 +207,7 @@ export default function Portfolio() {
         </h1>
         <p className="home-proof">
           NYU ITP · electrocute-ui on npm · 22+ tools at tinytinker.tools · open
-          hardware summit berlin
+          hardware summit berlin fellow
         </p>
         <div className="duality-strip" aria-label="design, code, hardware">
           <span className="duality-item">
