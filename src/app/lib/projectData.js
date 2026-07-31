@@ -20,7 +20,7 @@ export const selectedWork = [
     description:
       "Design system and React component library published on npm: 18 design tokens, 8 components, and a live documentation site. Designed, built, documented, and shipped end to end.",
     stack: "React · npm · Storybook",
-    tags: ["design systems", "design engineering", "frontend"],
+    tags: ["design systems", "design engineering", "frontend", "open source"],
     disciplines: ["design", "code"],
     links: {
       web: "https://ui.electrocute.io",
@@ -89,6 +89,7 @@ export const selectedWork = [
       "case study",
       "mobile ux/ui",
       "hardware",
+      "wearables",
     ],
     disciplines: ["design", "hardware"],
     links: {
@@ -103,7 +104,7 @@ export const selectedWork = [
     description:
       "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
     stack: "Leaflet · SheetJS · Redis · Vercel",
-    tags: ["full-stack", "web tooling"],
+    tags: ["full-stack", "web tooling", "real-time collaboration"],
     disciplines: ["design", "code"],
     links: {
       demo: "https://spot-mapper.vercel.app",
@@ -177,7 +178,7 @@ export const moreProjects = [
     category: "design",
     description:
       "A generative system that creates Riso-printable stamps from obsolete electronics.",
-    tags: ["generative design", "frontend"],
+    tags: ["generative design", "creative coding", "print"],
     stack: "p5.js · Riso print",
     link: "https://lost-circuits.netlify.app/",
   },
@@ -188,7 +189,7 @@ export const moreProjects = [
     description:
       "A digital archive of whimsical, conceptual, and defiant machines, built as a commissioned client project.",
     stack: "Next.js · Are.na API",
-    tags: ["client work", "frontend"],
+    tags: ["client work", "frontend", "archive"],
     link: "https://uselessmachines.vercel.app/",
   },
   {
@@ -198,7 +199,7 @@ export const moreProjects = [
     description:
       "A documentation hub for computational craft: riso-printed generative animation, a plotter-drawn machine drawing series, a generative postage stamp system, and a soft-circuits zine.",
     stack: "p5.js · HTML/CSS/JS",
-    tags: ["generative design", "frontend", "creative coding"],
+    tags: ["generative design", "frontend", "creative coding", "print"],
     link: "https://print-code.netlify.app/",
   },
   {
@@ -208,7 +209,7 @@ export const moreProjects = [
     description:
       "A cute tech tools blog built with Next.js and the Notion API.",
     stack: "Next.js · Notion API",
-    tags: ["cms", "full-stack"],
+    tags: ["cms", "full-stack", "content"],
     link: "https://cutetech.tools/",
   },
   {
@@ -249,7 +250,7 @@ export const moreProjects = [
     description:
       "A handheld poetry generator that creates generative text with Markov chains, built on an ESP32-S3 in CircuitPython.",
     stack: "ESP32-S3 · CircuitPython",
-    tags: ["hardware", "generative text"],
+    tags: ["hardware", "generative text", "embedded systems"],
     link: "https://months-tap-da9.craft.me/ribbon-logic",
   },
   {
@@ -259,7 +260,7 @@ export const moreProjects = [
     description:
       "A flower-shaped laser-cut USB drive and generative text device running a custom pygame file explorer on a Raspberry Pi.",
     stack: "Raspberry Pi · pygame",
-    tags: ["hardware"],
+    tags: ["hardware", "generative text", "physical computing"],
     link: "https://months-tap-da9.craft.me/petalbyte",
   },
   {
@@ -269,7 +270,7 @@ export const moreProjects = [
     description:
       "Indoor air quality monitor and live dashboard, built with Arduino and React.",
     stack: "Arduino · React",
-    tags: ["hardware", "dashboard", "hardware + web"],
+    tags: ["hardware", "dashboard", "iot"],
     link: "https://months-tap-da9.craft.me/airsense",
   },
   {
@@ -279,7 +280,7 @@ export const moreProjects = [
     description:
       "A handmade craft foam controller for Philips Hue, inspired by soft foam novelty phones of the 80s-90s.",
     stack: "Arduino · Philips Hue API",
-    tags: ["hardware", "networks"],
+    tags: ["hardware", "physical computing", "smart home"],
     link: "https://months-tap-da9.craft.me/cIaDWsryPp9LdS",
   },
 ];
