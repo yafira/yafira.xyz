@@ -42,7 +42,7 @@ const ProjectBox = ({
 
   const handleClick = (e, url) => {
     if (!url) return;
-    if (isMobile) return; // let the browser open a new tab as normal
+    if (isMobile) return;
     if (isEmbeddable(url)) {
       e.preventDefault();
       setPanelUrl(url);
@@ -57,9 +57,6 @@ const ProjectBox = ({
         )
       : null);
 
-  // every link becomes a small pill in the meta row — either the
-  // `links` map (excluding its optional `description` key) or a
-  // single fallback pill for the simple `link` shape
   const linkEntries = links
     ? Object.entries(links).filter(([k]) => k !== "description")
     : link
@@ -78,6 +75,18 @@ const ProjectBox = ({
         )
       : null;
 
+  // render as a real link only when there's somewhere to go — otherwise
+  // a plain, non-focusable wrapper so it doesn't eat a tab stop
+  const ThumbTag = primaryLink ? "a" : "div";
+  const thumbLinkProps = primaryLink
+    ? {
+        href: primaryLink,
+        target: !isEmbeddable(primaryLink) ? "_blank" : undefined,
+        rel: "noopener noreferrer",
+        onClick: (e) => handleClick(e, primaryLink),
+      }
+    : {};
+
   return (
     <>
       <div
@@ -86,15 +95,7 @@ const ProjectBox = ({
         data-compact={compact ? "true" : undefined}
       >
         {imageUrl ? (
-          <a
-            href={primaryLink ?? "#"}
-            target={
-              primaryLink && !isEmbeddable(primaryLink) ? "_blank" : undefined
-            }
-            rel="noopener noreferrer"
-            className={styles.thumb}
-            onClick={(e) => handleClick(e, primaryLink)}
-          >
+          <ThumbTag className={styles.thumb} {...thumbLinkProps}>
             <img src={imageUrl} alt={title} className={styles.thumbImg} />
             <span className={styles.catTag}>{category}</span>
             {badge && (
@@ -102,16 +103,11 @@ const ProjectBox = ({
                 {badge}
               </span>
             )}
-          </a>
+          </ThumbTag>
         ) : (
-          <a
-            href={primaryLink ?? "#"}
-            target={
-              primaryLink && !isEmbeddable(primaryLink) ? "_blank" : undefined
-            }
-            rel="noopener noreferrer"
+          <ThumbTag
             className={`${styles.thumb} ${styles.thumbPlaceholder}`}
-            onClick={(e) => handleClick(e, primaryLink)}
+            {...thumbLinkProps}
           >
             <span className={styles.catTag}>{category}</span>
             {badge && (
@@ -119,7 +115,7 @@ const ProjectBox = ({
                 {badge}
               </span>
             )}
-          </a>
+          </ThumbTag>
         )}
 
         <div className={styles.body}>
@@ -156,6 +152,7 @@ const ProjectBox = ({
                 target={!isEmbeddable(url) ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 className={styles.linkPill}
+                aria-label={`${title} — ${String(key).toLowerCase()}`}
                 onClick={(e) => handleClick(e, url)}
               >
                 {String(key).toLowerCase()} ↗

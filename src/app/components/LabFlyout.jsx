@@ -3,15 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Inkbloom } from "electrocute-ui";
 
-// the lab nav item — opens a small in-place menu of the lab's live
-// properties instead of navigating anywhere. every link opens in a
-// new tab; the flyout closes on selection, Escape, or click-outside.
-//
-// each property has its own tint + stitch color from the patchwork
-// palette; on hover the row's running stitch actually runs. icons
-// are inline SVGs drawn in the stitch style (stroke, rounded caps)
-// and inherit each row's stitch color via currentColor.
-
 const IconPen = () => (
   <svg
     viewBox="0 0 24 24"
@@ -27,8 +18,6 @@ const IconPen = () => (
   </svg>
 );
 
-// a sewing button: circle with four thread holes — the felt-button
-// icon for the soft electronics gallery
 const IconButton = () => (
   <svg
     viewBox="0 0 24 24"
@@ -46,7 +35,6 @@ const IconButton = () => (
   </svg>
 );
 
-// a crescent moon — poetronics' night-sky motif
 const IconMoon = () => (
   <svg
     viewBox="0 0 24 24"
@@ -91,12 +79,26 @@ const LAB_LINKS = [
 export default function LabFlyout() {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef(null);
+  const buttonRef = useRef(null);
+  const panelRef = useRef(null);
+
+  // move focus into the panel when it opens
+  useEffect(() => {
+    if (!open) return;
+    const firstFocusable = panelRef.current?.querySelector("a");
+    firstFocusable?.focus();
+  }, [open]);
+
+  const closeAndReturnFocus = () => {
+    setOpen(false);
+    buttonRef.current?.focus();
+  };
 
   useEffect(() => {
     if (!open) return;
 
     const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") closeAndReturnFocus();
     };
     const onPointerDown = (e) => {
       if (wrapRef.current && !wrapRef.current.contains(e.target)) {
@@ -115,10 +117,12 @@ export default function LabFlyout() {
   return (
     <span className="lab-flyout-wrap" ref={wrapRef}>
       <button
+        ref={buttonRef}
         type="button"
         className="nav-lab-link"
         aria-haspopup="true"
         aria-expanded={open}
+        aria-controls="lab-flyout-panel"
         onClick={() => setOpen((v) => !v)}
       >
         lab
@@ -133,14 +137,18 @@ export default function LabFlyout() {
       </button>
 
       {open && (
-        <div className="lab-flyout" role="menu" aria-label="electrocute lab">
+        <div
+          id="lab-flyout-panel"
+          className="lab-flyout"
+          ref={panelRef}
+          aria-label="electrocute lab"
+        >
           <a
             href="https://electrocute.io"
             target="_blank"
             rel="noopener noreferrer"
             className="lab-flyout-header"
-            role="menuitem"
-            onClick={() => setOpen(false)}
+            onClick={closeAndReturnFocus}
           >
             <span className="lab-flyout-title">
               electrocute lab{" "}
@@ -158,13 +166,9 @@ export default function LabFlyout() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  role="menuitem"
                   className="lab-flyout-item"
-                  style={{
-                    "--item-tint": tint,
-                    "--item-stitch": stitch,
-                  }}
-                  onClick={() => setOpen(false)}
+                  style={{ "--item-tint": tint, "--item-stitch": stitch }}
+                  onClick={closeAndReturnFocus}
                 >
                   <span className="lab-flyout-glyph" aria-hidden="true">
                     <Icon />
