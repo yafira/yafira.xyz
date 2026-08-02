@@ -65,9 +65,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={pixelifySans.className}>
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
         <BackgroundPattern />
         <nav className="navigation">
           <div className="nav-links">
