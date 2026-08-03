@@ -179,14 +179,10 @@ export default function Portfolio() {
     ? moreProjects.filter((p) => p.category === activeCategory)
     : [];
 
-  // size the panel to fit one row of up to 4 compact cards exactly —
-  // 2 items stay snug, 3-4 sit in a single row, 5+ wraps cleanly.
-  // card width narrows slightly at 4 columns so the row still fits
-  // inside .home-page's 1120px cap instead of wrapping to a 2nd row.
-  const DRAWER_GAP = 16;
-  const cols = Math.min(Math.max(drawerItems.length, 1), 4);
-  const DRAWER_CARD_W = cols >= 4 ? 244 : 260;
-  const drawerWidth = cols * DRAWER_CARD_W + (cols - 1) * DRAWER_GAP + 48;
+  // more than 2 items: scroll horizontally instead of trying to
+  // squeeze an exact-fit row width (that math was landing a few px
+  // short at real browser widths, so the 3rd/4th card kept wrapping).
+  const isDrawerScrollable = drawerItems.length > 2;
 
   return (
     <div className="home-page">
@@ -283,14 +279,7 @@ export default function Portfolio() {
       </div>
 
       {activeCategory && isDrawerOpen && (
-        <div
-          className="more-drawer"
-          data-section={activeCategory}
-          style={{
-            maxWidth: `${drawerWidth}px`,
-            "--drawer-card-w": `${DRAWER_CARD_W}px`,
-          }}
-        >
+        <div className="more-drawer" data-section={activeCategory}>
           <button
             className="more-drawer-close"
             onClick={handleCloseDrawer}
@@ -298,7 +287,9 @@ export default function Portfolio() {
           >
             <ChevronDown />
           </button>
-          <div className="more-drawer-grid">
+          <div
+            className={`more-drawer-grid ${isDrawerScrollable ? "scrollable" : ""}`}
+          >
             {drawerItems.map((item, i) => (
               <Reveal key={item.title} delay={Math.min(i * 60, 300)}>
                 <ProjectBox

@@ -1051,6 +1051,23 @@ html.home-locked .connector-lines {
   border-radius: 10px;
 }
 
+/* Horizontal scroll variant for .projects-grid when it has more than 3 items.
+   Reuses .projects-scroll-container above — this just teaches .projects-grid
+   how to behave when nested inside it (used by ProjectsGrid.jsx). */
+.projects-scroll-container .projects-grid {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 3rem 0.5rem;
+}
+.projects-scroll-container .projects-grid .project-box {
+  flex: 0 0 auto;
+}
+@media (max-width: 520px) {
+  .projects-scroll-container .projects-grid {
+    padding: 1.25rem 1rem;
+  }
+}
+
 .projects-drawer-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1083,13 +1100,6 @@ html.home-locked .connector-lines {
   scroll-snap-align: start;
   min-width: 0;
 }
-/* subtle lift on hover, plus a slight alternating tilt so a card
-   reads as being picked up off the table at an angle rather than
-   lifted straight up. this is the rule that actually wins the
-   cascade over ProjectBox.module.css's .card:hover — both selectors
-   tie on specificity, and this stylesheet loads later, so any tilt
-   meant to live in the module quietly lost every time. keep this as
-   the single source of truth for the hover transform. */
 .project-box:hover {
   transform: translateY(-3px) rotate(-1.2deg);
 }

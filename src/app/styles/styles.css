@@ -1774,3 +1774,72 @@ html.home-locked .connector-lines {
   font-size: 1.05rem;
   line-height: 1.7;
 }
+
+/* more-drawer-grid: scroll horizontally instead of wrapping once
+   there are more than 3 items in a filtered category (e.g.
+   "electronics (4)"). Reuses the same hidden-scrollbar treatment as
+   .projects-scroll-container above. The exact-fit pixel width the
+   component used to compute is gone — .more-drawer now just has a
+   stable max width and this grid scrolls inside it when needed. */
+.more-drawer-grid.scrollable {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.more-drawer-grid.scrollable::-webkit-scrollbar {
+  height: 8px;
+}
+.more-drawer-grid.scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.more-drawer-grid.scrollable::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.more-drawer-grid.scrollable > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.more-drawer {
+  width: min(100%, 780px);
+}
+
+@media (max-width: 640px) {
+  .more-drawer {
+    width: 100%;
+  }
+
+  /* on mobile, always scroll horizontally regardless of item count —
+     a swipeable row reads better on narrow screens than a stacked
+     column, and sidesteps card-width math entirely. */
+  .more-drawer-grid {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 4px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .more-drawer-grid::-webkit-scrollbar {
+    height: 8px;
+  }
+  .more-drawer-grid::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  .more-drawer-grid::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  .more-drawer-grid > * {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
