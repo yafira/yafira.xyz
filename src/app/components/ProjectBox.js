@@ -19,6 +19,16 @@ const IframePanel = dynamic(() => import("./IframePanel"), { ssr: false });
 // that class still carries a leftover `border: solid 3px` from the
 // old flower-network feature, which is what was drawing the thick
 // black border. project-box alone is enough for this component.
+//
+// reader mode: every link (thumbnail + corner links) falls back to
+// plain new-tab navigation, same as DirectoryList — no IframePanel
+// overlay. Reader mode's whole premise is predictability over
+// cleverness (no motion, no custom overlays), so the in-page preview
+// panel is skipped there regardless of whether a URL is embeddable.
+// Detected directly off <html data-theme="accessible">, the same
+// attribute the CSS itself keys off of — no theme context needed.
+// A MutationObserver keeps this in sync if theme is toggled without
+// a full page reload.
 
 const ProjectBox = ({
   title,
@@ -35,14 +45,32 @@ const ProjectBox = ({
 }) => {
   const [panelUrl, setPanelUrl] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isReaderMode, setIsReaderMode] = useState(false);
 
   useEffect(() => {
     setIsMobile(window.matchMedia("(max-width: 640px)").matches);
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined;
+
+    const updateReaderMode = () => {
+      setIsReaderMode(document.documentElement.dataset.theme === "accessible");
+    };
+    updateReaderMode();
+
+    const observer = new MutationObserver(updateReaderMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
   const handleClick = (e, url) => {
     if (!url) return;
     if (isMobile) return;
+    if (isReaderMode) return; // let the link navigate normally, no overlay
     if (isEmbeddable(url)) {
       e.preventDefault();
       setPanelUrl(url);
@@ -81,7 +109,8 @@ const ProjectBox = ({
   const thumbLinkProps = primaryLink
     ? {
         href: primaryLink,
-        target: !isEmbeddable(primaryLink) ? "_blank" : undefined,
+        target:
+          isReaderMode || !isEmbeddable(primaryLink) ? "_blank" : undefined,
         rel: "noopener noreferrer",
         onClick: (e) => handleClick(e, primaryLink),
       }
@@ -149,7 +178,9 @@ const ProjectBox = ({
               <a
                 key={key}
                 href={url}
-                target={!isEmbeddable(url) ? "_blank" : undefined}
+                target={
+                  isReaderMode || !isEmbeddable(url) ? "_blank" : undefined
+                }
                 rel="noopener noreferrer"
                 className={styles.linkPill}
                 aria-label={`${title} — ${String(key).toLowerCase()}`}
@@ -162,7 +193,7 @@ const ProjectBox = ({
         )}
       </div>
 
-      {panel}
+      {!isReaderMode && panel}
     </>
   );
 };

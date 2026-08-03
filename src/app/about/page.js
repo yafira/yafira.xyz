@@ -32,7 +32,7 @@ export default function AboutPage() {
 
         <Reveal delay={120}>
           <h1 className="typewriter">
-            <span className="typing-text">Hello, World</span>
+            <span className="typing-text">Hello, World!</span>
             <Image
               src="/assets/flower-sm.png"
               alt="flower shape logo"

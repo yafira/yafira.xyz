@@ -8,13 +8,22 @@ import { ChevronDown } from "lucide-react";
 import { Inkbloom } from "electrocute-ui";
 import CycleWord from "@/app/components/CycleWord";
 import ProjectBox from "@/app/components/ProjectBox";
+import DirectoryList from "@/app/components/DirectoryList";
 import Reveal from "@/app/components/Reveal";
 import { selectedWork, moreProjects } from "@/app/lib/projectData";
 
 // the merged homepage — the portfolio IS the homepage now.
-// hero claim → selected work as full cards → more projects as
-// compact thumbnail rows → contact. /work redirects here.
-// craft lives at electrocute lab; blogs live in the lab flyout.
+// hero claim → selected work as full cards → more projects → contact.
+// /work redirects here. craft lives at electrocute lab; blogs live
+// in the lab flyout.
+//
+// "more projects" renders TWO ways at once: the filter-pill + drawer
+// UI (light/dark mode) and the flat DirectoryList (reader mode).
+// Both are always in the DOM; CSS shows exactly one per theme via
+// [data-theme="accessible"] — same pattern used everywhere else on
+// the site for reader mode, so no JS access to theme state is
+// needed here. See .drawer-mode-projects / .directory-mode-projects
+// in the stylesheet.
 
 // pill color classes in globals.css are numbered by index and tied
 // to category identity site-wide (matcha = code, wisteria =
@@ -254,55 +263,68 @@ export default function Portfolio() {
         <h2 className="work-section-heading work-more-heading">
           more projects
         </h2>
-        <div
-          className="work-filter-row"
-          role="tablist"
-          aria-label="more projects by category"
-        >
-          {categories.map((cat) => {
-            const count = moreProjects.filter((p) => p.category === cat).length;
-            const isActive = activeCategory === cat && isDrawerOpen;
-            return (
+
+        {/* light/dark mode: filter pills + drawer. Hidden entirely in
+            reader mode via CSS ([data-theme="accessible"] .drawer-mode-projects). */}
+        <div className="drawer-mode-projects">
+          <div
+            className="work-filter-row"
+            role="tablist"
+            aria-label="more projects by category"
+          >
+            {categories.map((cat) => {
+              const count = moreProjects.filter(
+                (p) => p.category === cat,
+              ).length;
+              const isActive = activeCategory === cat && isDrawerOpen;
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`work-filter-pill work-filter-pill-${PILL_STYLE[cat] ?? 0} ${isActive ? "active" : ""}`}
+                  onClick={() => handlePillClick(cat)}
+                >
+                  {cat} <span className="pill-count">({count})</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {activeCategory && isDrawerOpen && (
+            <div className="more-drawer" data-section={activeCategory}>
               <button
-                key={cat}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`work-filter-pill work-filter-pill-${PILL_STYLE[cat] ?? 0} ${isActive ? "active" : ""}`}
-                onClick={() => handlePillClick(cat)}
+                className="more-drawer-close"
+                onClick={handleCloseDrawer}
+                aria-label="close"
               >
-                {cat} <span className="pill-count">({count})</span>
+                <ChevronDown />
               </button>
-            );
-          })}
+              <div
+                className={`more-drawer-grid ${isDrawerScrollable ? "scrollable" : ""}`}
+              >
+                {drawerItems.map((item, i) => (
+                  <Reveal key={item.title} delay={Math.min(i * 60, 300)}>
+                    <ProjectBox
+                      {...item}
+                      category={item.category}
+                      showLinksAlways
+                      compact
+                    />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* reader mode: flat directory list. Hidden entirely outside
+            reader mode via CSS. */}
+        <div className="directory-mode-projects">
+          <DirectoryList projects={moreProjects} order={MORE_CATEGORY_ORDER} />
         </div>
       </div>
-
-      {activeCategory && isDrawerOpen && (
-        <div className="more-drawer" data-section={activeCategory}>
-          <button
-            className="more-drawer-close"
-            onClick={handleCloseDrawer}
-            aria-label="close"
-          >
-            <ChevronDown />
-          </button>
-          <div
-            className={`more-drawer-grid ${isDrawerScrollable ? "scrollable" : ""}`}
-          >
-            {drawerItems.map((item, i) => (
-              <Reveal key={item.title} delay={Math.min(i * 60, 300)}>
-                <ProjectBox
-                  {...item}
-                  category={item.category}
-                  showLinksAlways
-                  compact
-                />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      )}
 
       <section className="home-contact">
         <p className="home-contact-line">

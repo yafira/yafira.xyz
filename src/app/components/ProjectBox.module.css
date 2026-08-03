@@ -323,3 +323,148 @@
 [data-theme="accessible"] .desc {
   font-size: 1rem;
 }
+
+/* ============================================================
+   reader mode as a directory view: card collapses into a flat row.
+   Every contested property below uses !important — the block just
+   above sets padding/font-size/border directly on .linkPill/.tag/
+   .catTag at the SAME specificity as anything added afterward, so
+   without !important, whichever block happens to load later would
+   silently win. This version guarantees these rules always take,
+   regardless of where in the file it ends up.
+   ============================================================ */
+
+[data-theme="accessible"] .card,
+[data-theme="accessible"] .card.card {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 14px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+  border: none !important;
+  border-top: 0.5px solid #000000 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+[data-theme="accessible"] .card:hover,
+[data-theme="accessible"] .card.card:hover {
+  transform: none;
+  box-shadow: none !important;
+}
+
+/* category label: small, attached directly above the title instead
+   of floating in its own column with a big gap before the text */
+[data-theme="accessible"] .thumb {
+  width: 100%;
+  aspect-ratio: auto;
+  display: block;
+  background: transparent;
+  overflow: visible;
+  order: 1;
+}
+[data-theme="accessible"] .thumbImg {
+  display: none;
+}
+[data-theme="accessible"] .thumbPlaceholder {
+  padding: 0.85rem 0 0;
+  align-items: flex-start;
+}
+[data-theme="accessible"] .catTag {
+  position: static;
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  font-weight: 600;
+}
+[data-theme="accessible"] .badgeOverlay {
+  display: none;
+}
+
+[data-theme="accessible"] .body {
+  order: 2;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  padding: 0 0 0.6rem;
+}
+[data-theme="accessible"] .title {
+  margin: 2px 0 6px;
+}
+[data-theme="accessible"] .desc {
+  margin: 0 0 10px;
+  max-width: 62ch;
+}
+
+/* stack + tags collapse into one quiet line of plain text instead
+   of bordered pills — same treatment DirectoryList already uses */
+[data-theme="accessible"] .metaRow {
+  border-top: none;
+  padding-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+}
+[data-theme="accessible"] .stack {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+[data-theme="accessible"] .tagRow {
+  gap: 0;
+  margin-top: 0;
+}
+[data-theme="accessible"] .tag,
+[data-theme="accessible"] .card[data-compact] .tag {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  color: var(--text-muted, #333) !important;
+}
+[data-theme="accessible"] .tag::before {
+  content: " · ";
+}
+[data-theme="accessible"] .tag:first-child::before {
+  content: "";
+}
+
+/* links: quiet inline text, always visible, no button chrome */
+[data-theme="accessible"] .cornerLinks {
+  order: 3;
+  flex: none;
+  width: 100%;
+  padding: 0 0 0.85rem;
+  margin: 0;
+  gap: 2px 16px;
+}
+[data-theme="accessible"] .linksHoverOnly {
+  opacity: 1 !important;
+  transform: none !important;
+}
+[data-theme="accessible"] .linkPill,
+[data-theme="accessible"] .card[data-compact] .linkPill {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+}
+
+[data-theme="accessible"] .card[data-compact] {
+  width: 100% !important;
+  max-width: 720px !important;
+  min-width: 0 !important;
+}

@@ -5,7 +5,6 @@ import LabFlyout from "@/app/components/LabFlyout";
 import ThemeToggle from "@/app/components/ThemeToggle";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
 import "./styles/globals.css";
-import "./styles/styles.css";
 import "./styles/mobile.css";
 
 export const viewport = {
