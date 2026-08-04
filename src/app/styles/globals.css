@@ -1102,12 +1102,11 @@ html.home-locked .connector-lines {
   scroll-snap-align: start;
   min-width: 0;
 }
-.project-box:hover {
-  transform: translateY(-3px) rotate(-1.2deg);
-}
-.project-box:nth-child(even):hover {
-  transform: translateY(-3px) rotate(1.2deg);
-}
+/* NOTE: the tilt+rotate hover effect that used to live here was dead
+   code — a second, later .project-box:hover rule elsewhere in this
+   file was already overriding it with a simpler translateY(-5px).
+   Removed rather than kept as unreachable duplicate; see that rule
+   below for the real (now touch-safe) hover treatment. */
 
 .project-box .project-image {
   transition:
@@ -4189,8 +4188,17 @@ html.home-locked .connector-lines {
   scroll-snap-align: start;
   min-width: 0;
 }
-.project-box:hover {
-  transform: translateY(-5px);
+/* hover lift: scoped to devices with real hover support (mouse/
+   trackpad) only. Touch devices fake a :hover state on tap, and
+   during a swipe your finger passes over several cards in sequence
+   — each one was briefly triggering this transform, which felt like
+   the cards jiggling/jumping while scrolling through the drawer on
+   mobile. (hover: hover) and (pointer: fine) excludes touch
+   entirely, so this now only ever fires from an actual mouse. */
+@media (hover: hover) and (pointer: fine) {
+  .project-box:hover {
+    transform: translateY(-5px);
+  }
 }
 .project-box[data-category="craft"]:hover {
   box-shadow: 0 8px 16px var(--shadow-craft);
@@ -6032,4 +6040,530 @@ html.home-locked .connector-lines {
    see it live if the balance isn't quite right. */
 [data-theme="accessible"] .skills-strip {
   max-width: 460px;
+}
+
+/* ============================================================
+   MERGED FROM mobile.css — confirmed-live rules only. Several
+   selectors in the original file (.mobile-categories, .chip-btn,
+   .flower-menu, .mobile-list, .mobile-row, .row-actions,
+   .mobile-blog-shortcuts, and the old .flower-network/.line-box
+   homepage) have no matching markup in Portfolio.jsx, ProjectBox.jsx,
+   DirectoryList.jsx, or Navigation.jsx — confirmed via HomePage.jsx
+   rendering only <Portfolio /> unconditionally, no mobile/desktop
+   split. Those are moved to legacy-mobile-dead-code.css instead of
+   being merged here. See that file for the full excluded content.
+   ============================================================ */
+
+/* global reset (already covered by globals.css's own reset, kept
+   here too since the original had this extra user-select nuance) */
+button,
+.navigation,
+.projects-drawer {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+a,
+a * {
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-touch-callout: default;
+}
+p,
+h1,
+h2,
+h3,
+li,
+span {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.mobile-back-btn {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --nav-h: calc(60px + env(safe-area-inset-top, 0px));
+  }
+
+  .navigation {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 8px 8px;
+    padding-top: calc(10px + env(safe-area-inset-top, 0px));
+    font-size: 1rem;
+    z-index: 20;
+  }
+
+  .nav-links {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 2px 6px;
+  }
+
+  .nav-links a,
+  .nav-links .nav-lab-link {
+    padding: 8px 10px;
+  }
+
+  .nav-links .home-icon {
+    padding: 8px 6px;
+  }
+
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    padding-top: var(--nav-h);
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .main-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .archive {
+    position: relative !important;
+    padding: 16px;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .archive-header {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .archive-controls {
+    position: relative !important;
+  }
+
+  .archive-list,
+  .archive-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .view-toggle {
+    display: none !important;
+  }
+
+  .posts-container {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .back-button {
+    position: relative !important;
+    top: auto !important;
+    z-index: 10000;
+    pointer-events: auto;
+    display: inline-block;
+    background: var(--craft-color);
+    color: var(--text-strong);
+    border: none;
+    border-radius: 30px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    margin-bottom: var(--spacing-md);
+  }
+  .back-button:hover {
+    opacity: 0.8;
+  }
+
+  .about-page {
+    padding: 16px;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .avatar {
+    width: min(76vw, 300px);
+    height: auto;
+    object-fit: contain;
+    border-radius: 10%;
+  }
+
+  .bio-content {
+    padding: 0 12px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    overflow-x: hidden;
+  }
+
+  .about-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .about-page p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    color: var(--text-primary);
+  }
+
+  .bio-window {
+    background: var(--surface-card) !important;
+    background-image: none !important;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* NOTE: this rule hardcodes purple with !important — a color leak
+     on mobile about-page headings, missed until now since it's mobile-
+     only and lived in a third file. Covered below under a proper
+     [data-theme="accessible"] override. */
+  .bio-window__content h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    margin-top: 1.5rem;
+    color: #9d87eb !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .bio-window__content h2:first-child {
+    margin-top: 0;
+  }
+  .bio-window__content p {
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .about-page::after {
+    content: "";
+    display: block;
+    height: 2rem;
+  }
+
+  /* mobile-specific back button layout: flows in-line above content
+     (not floating/absolute) — layered after the base .mobile-back-btn
+     rule elsewhere in this file, so this only changes positioning/size
+     for mobile; color still comes from the theme-aware base rule, not
+     the old hardcoded "lavender" this originally had. */
+  .mobile-back-btn {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+  .mobile-back-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .typewriter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .flower-image {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* NOTE: hardcoded purple link colors — higher specificity than the
+     existing [data-theme="accessible"] .bio-content a rule (2 classes
+     vs 1), so on mobile this was silently winning and showing purple
+     links in reader mode. Covered below with a matching-specificity
+     !important override. */
+  .about-page .bio-window__content a,
+  .about-page .bio-content a {
+    color: #9d87eb;
+    text-decoration: none;
+    font-weight: 600;
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+    display: inline;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(157, 135, 235, 0.3);
+  }
+  .about-page .bio-window__content a:hover,
+  .about-page .bio-content a:hover {
+    color: #917fd2;
+  }
+  .about-page .bio-window__content a:active,
+  .about-page .bio-content a:active {
+    opacity: 0.85;
+  }
+  .about-page .bio-window__content a:visited,
+  .about-page .bio-content a:visited {
+    color: #866fe0;
+  }
+
+  .contact-page {
+    padding: 24px 12px !important;
+  }
+  .contact-links {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .social-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+  .social-links > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    list-style: none !important;
+  }
+  .social-link {
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 7px !important;
+    padding: 12px 6px !important;
+    min-height: 48px !important;
+    overflow: hidden !important;
+  }
+  .social-link svg,
+  .social-link img {
+    flex: none;
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .social-link span {
+    font-size: 0.86rem !important;
+    letter-spacing: 0 !important;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .contact-hero {
+    margin-bottom: var(--spacing-lg) !important;
+  }
+
+  @media (max-width: 359px) {
+    .social-links {
+      grid-auto-flow: dense !important;
+    }
+    #profile-link4 {
+      grid-column: 1 / -1 !important;
+    }
+  }
+}
+
+/* reader mode: fix the two newly-discovered mobile color leaks
+   above — the bio-window__content heading purple, and the mobile
+   about-page link colors, both hardcoded with higher-than-usual
+   specificity that was beating the existing (non-mobile-specific)
+   accessible-mode link fix. */
+[data-theme="accessible"] .bio-window__content h2 {
+  color: #000000 !important;
+}
+[data-theme="accessible"] .about-page .bio-window__content a,
+[data-theme="accessible"] .about-page .bio-content a,
+[data-theme="accessible"] .about-page .bio-window__content a:hover,
+[data-theme="accessible"] .about-page .bio-content a:hover,
+[data-theme="accessible"] .about-page .bio-window__content a:visited,
+[data-theme="accessible"] .about-page .bio-content a:visited {
+  color: #000000 !important;
+  text-decoration: underline !important;
+}
+
+/* skills-strip on mobile: pure flex-wrap cannot mathematically
+   guarantee zero orphaned last-row chips for 20 variable-length
+   words on every possible screen width — only a fixed-column grid
+   can guarantee that, and that approach was tried and reverted
+   (disliked the shared-column-width look). Everything below is
+   best-effort tuning: smaller chips fit more per row, which reduces
+   how often an orphan happens, but doesn't eliminate the
+   possibility entirely. If a specific chip is still ending up alone
+   after this, the width numbers below can be nudged further, or
+   grid can be reconsidered with adjustments to address what didn't
+   work visually last time. */
+@media (max-width: 640px) {
+  .skills-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 280px;
+    padding: 0;
+  }
+  .skill-chip {
+    font-size: 0.54rem;
+    padding: 2px 6px;
+  }
+}
+
+/* directory-list groups: native <details>/<summary> disclosure,
+   collapsed by default, instead of showing every project's full
+   description under every category all at once. Chosen over a JS
+   accordion since <details> is keyboard-accessible and works with
+   screen readers out of the box — fits reader mode's philosophy of
+   predictable, unsurprising interaction. */
+.directory-group {
+  margin-bottom: 0.5rem;
+}
+.directory-group:last-child {
+  margin-bottom: 0;
+}
+.directory-group[open] {
+  margin-bottom: 2rem;
+}
+
+.directory-group-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.directory-group-label::-webkit-details-marker {
+  display: none;
+}
+.directory-group-label:hover {
+  opacity: 0.7;
+}
+.directory-group-label:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.directory-group-count {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.directory-group-chevron {
+  transition: transform 0.15s ease;
+}
+.directory-group[open] .directory-group-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .directory-group-chevron {
+    transition: none;
+  }
+}
+
+/* home-proof credential line: add text-wrap:balance so wrapped
+   lines distribute evenly instead of leaving a short orphaned last
+   line ("berlin fellow" alone). .home-claim already uses this same
+   property above — .home-proof never got it. Not theme-scoped:
+   applies everywhere, since balanced wrapping is a pure readability
+   improvement regardless of which font is active. */
+.home-proof {
+  text-wrap: balance;
+}
+
+/* directory-row-meta: force stack and tags onto always-separate
+   lines instead of letting flex-wrap decide based on content width.
+   Previously they'd share a line whenever short enough to fit
+   (e.g. "Arduino · React · hardware · dashboard" all inline) but
+   wrap apart when longer — pure accidental inconsistency, not
+   intentional. Switching to block-level stacking makes it
+   deterministic: stack is always its own line, tags always their
+   own line below it, regardless of length. */
+.directory-row-meta {
+  display: block;
+}
+.directory-row-stack,
+.directory-row-tags {
+  display: block;
+}
+.directory-row-tags {
+  margin-top: 2px;
+}
+
+/* home-contact-line: same text-wrap:balance treatment as
+   .home-proof above — "roles" was landing alone on an orphaned
+   third line. */
+.home-contact-line {
+  text-wrap: balance;
+}
+
+/* directory-row-tags on mobile: clamp to 2 lines max with an
+   ellipsis fallback, so a long combination of tag words can't
+   stretch a row's height unpredictably on a narrow screen. Overrides
+   display:block set earlier — line-clamp requires -webkit-box
+   specifically to work. */
+@media (max-width: 640px) {
+  .directory-row-tags {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

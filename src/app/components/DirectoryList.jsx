@@ -1,6 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 
+// a small chevron for the category disclosure toggle — rotates via
+// CSS based on the parent <details>'s [open] state.
+const Chevron = () => (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 12 12"
+    fill="none"
+    aria-hidden="true"
+    className="directory-group-chevron"
+  >
+    <path
+      d="M3 4.5 L6 7.5 L9 4.5"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 // a plain rightward arrow — replaces the "→" character, which on
 // mobile gets rendered by the system emoji font instead of as plain
 // text. Same fix as ProjectBox's ArrowUpRight, applied here for
@@ -69,10 +90,12 @@ export default function DirectoryList({ projects, order }) {
       {categories.map((cat) => {
         const items = projects.filter((p) => p.category === cat);
         return (
-          <div className="directory-group" key={cat}>
-            <p className="directory-group-label" data-cat={cat}>
+          <details className="directory-group" key={cat}>
+            <summary className="directory-group-label" data-cat={cat}>
               {CATEGORY_LABEL[cat] ?? cat}
-            </p>
+              <span className="directory-group-count">({items.length})</span>
+              <Chevron />
+            </summary>
             {items.map((project) => {
               const link = firstLink(project);
               const row = (
@@ -104,7 +127,6 @@ export default function DirectoryList({ projects, order }) {
                       {Array.isArray(project.tags) &&
                         project.tags.length > 0 && (
                           <span className="directory-row-tags">
-                            {project.stack ? "· " : ""}
                             {project.tags.slice(0, 2).join(" · ")}
                           </span>
                         )}
@@ -136,7 +158,7 @@ export default function DirectoryList({ projects, order }) {
                 </div>
               );
             })}
-          </div>
+          </details>
         );
       })}
     </div>

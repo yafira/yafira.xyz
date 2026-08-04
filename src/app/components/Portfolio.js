@@ -41,17 +41,22 @@ const SKILLS = [
   { label: "Next.js", cat: "code" },
   { label: "TypeScript", cat: "code" },
   { label: "JavaScript", cat: "code" },
+  { label: "p5.js", cat: "code" },
+  { label: "Git", cat: "code" },
+  { label: "Machine Learning", cat: "code" },
   { label: "HTML/CSS", cat: "code" },
+  { label: "Open Source", cat: "code" },
   { label: "Figma", cat: "design" },
   { label: "Design Systems", cat: "design" },
   { label: "UX/UI", cat: "design" },
   { label: "Interaction Design", cat: "design" },
+  { label: "Digital Accessibility", cat: "design" },
   { label: "Arduino", cat: "electronics" },
   { label: "Raspberry Pi", cat: "electronics" },
   { label: "Python", cat: "electronics" },
   { label: "Physical Computing", cat: "electronics" },
-  { label: "Prototyping", cat: "electronics" },
   { label: "E-Textiles", cat: "electronics" },
+  { label: "Fabrication", cat: "electronics" },
 ];
 
 // a dashed circuit trace with a pulse that actually travels along

@@ -190,7 +190,7 @@ const ProjectBox = ({
 
           {Array.isArray(tags) && tags.length > 0 && (
             <div className={styles.tagRow}>
-              {tags.map((t) => (
+              {tags.slice(0, 3).map((t) => (
                 <span key={t} className={styles.tag}>
                   {t}
                 </span>

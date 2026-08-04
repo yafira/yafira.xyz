@@ -2,7 +2,6 @@ import { Pixelify_Sans } from "next/font/google";
 import Navigation from "@/app/components/Navigation";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
 import "./styles/globals.css";
-import "./styles/mobile.css";
 
 export const viewport = {
   width: "device-width",
