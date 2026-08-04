@@ -5844,3 +5844,144 @@ html.home-locked .connector-lines {
 [data-theme="accessible"] .about-page {
   padding-top: 2.5rem;
 }
+
+/* reader mode: go fully monochrome. No decorative color left
+   anywhere — the two remaining leaks were the cyan typewriter
+   heading (hardcoded rgb, purely decorative) and the directory
+   list's per-category label colors (green/purple/indigo), which
+   are fully redundant with the label text itself ("code"/"design"/
+   "electronics" already says what it is without the color coding). */
+[data-theme="accessible"] .typing-text {
+  color: #000000 !important;
+  border-right-color: #000000 !important;
+}
+
+[data-theme="accessible"] .directory-group-label,
+[data-theme="accessible"] .directory-group-label[data-cat="code"],
+[data-theme="accessible"] .directory-group-label[data-cat="design"],
+[data-theme="accessible"] .directory-group-label[data-cat="electronics"] {
+  color: #000000 !important;
+}
+
+[data-theme="accessible"] .directory-row:hover .directory-row-title,
+[data-theme="accessible"] .directory-row:focus-visible .directory-row-title {
+  color: #000000 !important;
+}
+
+/* leftover from an older version of the /work page — not currently
+   rendered by WorkHero, but covering it in case it's still reachable
+   somewhere so no colored text can leak through. */
+[data-theme="accessible"] .work-headline-cycle {
+  color: #000000 !important;
+  border-bottom-color: #000000 !important;
+}
+
+/* reader mode: restore bold weight specifically for the typewriter
+   heading — it was bold originally, but the earlier blanket fix
+   that forced .typing-text to font-weight:400 (to kill the Pixelify
+   Sans look) accidentally flattened its weight too. Heading should
+   still read as a heading, just in plain black instead of color. */
+[data-theme="accessible"] .typing-text {
+  font-weight: 700 !important;
+}
+
+/* about page: each patchwork section has its own hardcoded ink
+   color (purple/pink/green/gold) for its heading — real color leaks
+   that weren't covered by any existing override. */
+[data-theme="accessible"] .about-page .patch h2 {
+  color: #000000 !important;
+}
+
+/* about page: "let's build something together!" heading is
+   hardcoded pink. */
+[data-theme="accessible"] .opportunities-section h2 {
+  color: #000000 !important;
+}
+
+/* cv page: the "creative explorations" section border is hardcoded
+   teal, not driven by any of the category color variables (which
+   are already forced black in reader mode). */
+[data-theme="accessible"] .cv-section.creative-explorations {
+  border-color: #000000 !important;
+}
+
+/* contact page: the chess.com link border is a hardcoded light gray
+   rather than one of the category color variables. */
+[data-theme="accessible"] #profile-link6.social-link {
+  border-color: #000000 !important;
+}
+
+/* reader mode: remaining color leaks, found via screenshots.
+   Pattern observed: direct hardcoded overrides (chess link, patch
+   heading ink, cv creative-explorations border) ARE taking effect;
+   anything relying on the root [data-theme="accessible"] variable
+   overrides (var(--design-color), var(--code-color), etc. supposedly
+   forced to black) is NOT taking effect in practice. Rather than dig
+   into why that cascade isn't landing, every remaining color-bearing
+   selector below is hardcoded directly with !important instead of
+   depending on the variables at all. */
+
+/* cv page: section border-left accents */
+[data-theme="accessible"] .cv-section.experience,
+[data-theme="accessible"] .cv-section.education,
+[data-theme="accessible"] .cv-section.technologies,
+[data-theme="accessible"] .cv-section.tools,
+[data-theme="accessible"] .cv-section.certifications,
+[data-theme="accessible"] .cv-section.interests,
+[data-theme="accessible"] .cv-section.honors {
+  border-color: #000000 !important;
+}
+
+/* contact page: per-platform social link borders */
+[data-theme="accessible"] #profile-link1.social-link,
+[data-theme="accessible"] #profile-link2.social-link,
+[data-theme="accessible"] #profile-link3.social-link,
+[data-theme="accessible"] #profile-link4.social-link,
+[data-theme="accessible"] #profile-link5.social-link,
+[data-theme="accessible"] #profile-link6.social-link {
+  border-color: #000000 !important;
+}
+
+/* about page: patchwork dashed border color (--stitch) per variant —
+   drawn via a repeating-linear-gradient background-image that reads
+   this custom property, so it needs to be redefined directly rather
+   than styled via border-color. */
+[data-theme="accessible"] .patch {
+  --stitch: #000000 !important;
+}
+
+/* reader mode: lab flyout dropdown — same treatment as everything
+   above. .lab-flyout-item's --item-stitch/--item-tint are set per
+   item (blog/soft-interfaces/poetronics each get their own accent
+   color), almost certainly via inline style from the component —
+   external !important still wins over a non-important inline style,
+   so these overrides take effect regardless. */
+[data-theme="accessible"] .lab-flyout {
+  background: #ffffff !important;
+  border-color: #000000 !important;
+}
+[data-theme="accessible"] .lab-flyout-title {
+  color: #000000 !important;
+}
+[data-theme="accessible"] .lab-flyout-sub {
+  color: #333333 !important;
+}
+[data-theme="accessible"] .lab-flyout-header:hover {
+  background: #f0f0f0 !important;
+}
+[data-theme="accessible"] .lab-flyout-item {
+  --item-stitch: #000000 !important;
+  --item-tint: #f0f0f0 !important;
+}
+[data-theme="accessible"] .lab-flyout-glyph,
+[data-theme="accessible"] .lab-flyout-go {
+  color: #000000 !important;
+}
+
+/* lab toast notification (shown briefly when interacting with the
+   lab menu) — same hardcoded purple pattern as the flyout. */
+[data-theme="accessible"] .lab-toast {
+  background: #ffffff !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
