@@ -468,3 +468,49 @@
   max-width: 720px !important;
   min-width: 0 !important;
 }
+
+/* reader mode: hide the per-card category label. Unlike DirectoryList's
+   category headers (which appear once per group and mark a real
+   transition), this label repeats on every single card even when
+   several in a row share the same category — pure redundant noise
+   with no new information each repeat. */
+[data-theme="accessible"] .catTag {
+  display: none !important;
+}
+
+/* reader mode: fix uneven tag separator spacing. content:" · " had
+   a leading space, but that space sits at the very start of each
+   .tag element's inline box — browsers trim whitespace at inline
+   box edges, so the leading space silently collapsed, gluing the
+   dot to the previous word ("source·" instead of "source ·"). A
+   non-breaking space isn't subject to that collapsing rule, so it
+   stays intact on both sides regardless of position. Also zero out
+   the flex gap so this pseudo-element is the only source of
+   spacing — no risk of doubled-up gaps. */
+[data-theme="accessible"] .tagRow {
+  gap: 0 !important;
+}
+[data-theme="accessible"] .tag::before {
+  content: "\00a0·\00a0" !important;
+}
+
+/* differentiate tech stack from category tags: stack is concrete,
+   functional info ("what this is built with") so it reads darker
+   and slightly heavier; tags are secondary categorization and stay
+   quieter, same as before. */
+[data-theme="accessible"] .stack {
+  color: var(--text-primary, #000000) !important;
+  font-weight: 600 !important;
+}
+[data-theme="accessible"] .tag {
+  color: var(--text-muted, #333333) !important;
+  font-weight: 400 !important;
+}
+
+/* the separator fix above (content: "\00a0·\00a0" !important) also
+   needs its first-child exception re-applied with matching
+   !important, or the general rule wins for the first tag too and a
+   leading dot reappears before the very first tag in the row. */
+[data-theme="accessible"] .tag:first-child::before {
+  content: "" !important;
+}

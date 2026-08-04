@@ -5985,3 +5985,51 @@ html.home-locked .connector-lines {
   border-color: #000000 !important;
   color: #000000 !important;
 }
+
+/* home hero claim on mobile: the base clamp() floors at 1.7rem
+   regardless of viewport (3.6vw is smaller than 1.7rem below ~756px,
+   so mobile was always hitting the same fixed minimum) — that's too
+   large for narrow screens with a long cycling word, and was
+   causing the trailing period to wrap onto its own line. Lower the
+   floor specifically for mobile so lines break more comfortably. */
+@media (max-width: 640px) {
+  .home-claim {
+    font-size: clamp(1.35rem, 6.2vw, 1.9rem);
+  }
+}
+
+/* directory-list rows: show the full project description instead of
+   clamping to 1 line (2 on mobile) with an ellipsis. Overrides the
+   line-clamp set earlier in this file, including the mobile
+   variant. */
+.directory-row-desc {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* directory-list rows: same stack-vs-tags differentiation as
+   ProjectBox above, for consistency across both places project
+   metadata shows up in reader mode. */
+[data-theme="accessible"] .directory-row-stack {
+  color: #000000 !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+[data-theme="accessible"] .directory-row-tags {
+  color: #333333 !important;
+  font-weight: 400 !important;
+}
+
+/* reader mode: skill chips use a proportional font (system-ui)
+   instead of monospace, so the same words measure narrower and more
+   chips fit per row before wrapping — the last row was ending up
+   sparse (just 2 chips) instead of a balanced count like the other
+   rows. Narrowing the container forces an earlier wrap, producing
+   more even row lengths. This is an estimate based on the font
+   swap's width difference — nudge the max-width up or down once you
+   see it live if the balance isn't quite right. */
+[data-theme="accessible"] .skills-strip {
+  max-width: 460px;
+}
