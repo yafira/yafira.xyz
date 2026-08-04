@@ -1,6 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
 
+// a plain rightward arrow — replaces the "→" character, which on
+// mobile gets rendered by the system emoji font instead of as plain
+// text. Same fix as ProjectBox's ArrowUpRight, applied here for
+// consistency across every arrow in reader mode's directory view.
+const ArrowRight = () => (
+  <svg
+    width="11"
+    height="11"
+    viewBox="0 0 12 12"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M2 6 H10 M6.5 2.5 L10 6 L6.5 9.5"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 // Category label colors follow the same convention used elsewhere
 // on the site (matcha = code, lilac = design, wisteria = electronics).
 const CATEGORY_LABEL = {
@@ -89,7 +111,7 @@ export default function DirectoryList({ projects, order }) {
                     </div>
                   </div>
                   <span className="directory-row-arrow" aria-hidden="true">
-                    →
+                    <ArrowRight />
                   </span>
                 </>
               );

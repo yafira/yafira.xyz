@@ -9,6 +9,35 @@ import styles from "./ProjectBox.module.css";
 
 const IframePanel = dynamic(() => import("./IframePanel"), { ssr: false });
 
+// a plain outward arrow, used instead of the "↗" character — on
+// mobile (iOS/Android), that Unicode glyph gets rendered by the
+// system's colored emoji font instead of as plain text, which broke
+// reader mode's fully-monochrome goal. An inline SVG using
+// currentColor can't be hijacked by an emoji font, so it renders
+// consistently everywhere, in every theme.
+const ArrowUpRight = () => (
+  <svg
+    width="10"
+    height="10"
+    viewBox="0 0 10 10"
+    fill="none"
+    aria-hidden="true"
+    style={{
+      display: "inline-block",
+      marginLeft: "3px",
+      verticalAlign: "-0.5px",
+    }}
+  >
+    <path
+      d="M2 8 L8 2 M3.4 2 H8 V6.6"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 // card redesign: thumbnail fills the card top edge-to-edge with a
 // category tag floating on it, hairline border + shadow instead of
 // the old .line-box 3px border, description clamped to 2 lines, and
@@ -186,7 +215,7 @@ const ProjectBox = ({
                 aria-label={`${title} — ${String(key).toLowerCase()}`}
                 onClick={(e) => handleClick(e, url)}
               >
-                {String(key).toLowerCase()} ↗
+                {String(key).toLowerCase()} <ArrowUpRight />
               </a>
             ))}
           </div>
