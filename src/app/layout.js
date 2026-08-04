@@ -1,8 +1,5 @@
 import { Pixelify_Sans } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
-import LabFlyout from "@/app/components/LabFlyout";
-import ThemeToggle from "@/app/components/ThemeToggle";
+import Navigation from "@/app/components/Navigation";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
 import "./styles/globals.css";
 import "./styles/mobile.css";
@@ -65,22 +62,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={pixelifySans.className}>
         <BackgroundPattern />
-        <nav className="navigation">
-          <div className="nav-links">
-            <Link href="/" className="home-icon">
-              <Image
-                src="/assets/flower-sm.png"
-                alt="home"
-                width={22}
-                height={22}
-              />
-            </Link>
-            <Link href="/about">about</Link>
-            <Link href="/cv">cv</Link>
-            <LabFlyout />
-            <ThemeToggle />
-          </div>
-        </nav>
+        <Navigation />
         <main className="main-content">{children}</main>
       </body>
     </html>

@@ -5813,3 +5813,34 @@ html.home-locked .connector-lines {
   font-family: var(--font-body) !important;
   letter-spacing: normal !important;
 }
+
+/* nav active-page indicator (Navigation.jsx). Reuses the existing
+   underline animation on .nav-links a::after — for the active page
+   it's just permanently in the "shown" state (scaleX(1)) instead of
+   only appearing on hover/focus, plus a small weight bump so the
+   current page reads clearly at a glance. */
+.nav-links a.nav-active {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.nav-links a.nav-active::after {
+  transform: scaleX(1);
+}
+
+/* duality-strip icons (design/code/circuit pngs) are nearly
+   invisible in dark mode: mix-blend-mode:multiply darkens colors
+   against the background, which works great on a light page but
+   makes dark line-art vanish against a dark one. Switch to normal
+   blending + invert so the dark line-art reads as light line-art
+   instead, matching the surrounding light text. */
+[data-theme="dark"] .duality-item img {
+  mix-blend-mode: normal;
+  filter: invert(1) brightness(1.5);
+}
+
+/* reader mode: give the about page a bit more breathing room below
+   the nav before "Hello, World!" starts — was sitting right up
+   against the nav's bottom edge. */
+[data-theme="accessible"] .about-page {
+  padding-top: 2.5rem;
+}
