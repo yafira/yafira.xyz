@@ -57,9 +57,9 @@ export const selectedWork = [
     tags: ["design engineering", "web tooling", "frontend"],
     disciplines: ["design", "code"],
     links: {
-      web: "https://cacheboard.vercel.app",
+      web: "https://cachecraft.io/",
       code: "https://github.com/yafira/cache",
-      casestudy: "https://cacheboard.vercel.app/case-study",
+      casestudy: "https://cachecraft.io/case-study",
     },
   },
   {
