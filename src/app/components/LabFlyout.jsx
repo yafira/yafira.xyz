@@ -183,7 +183,7 @@ export default function LabFlyout() {
                 <Inkbloom />
               </span>
             </span>
-            <span className="lab-flyout-sub">creative practice</span>
+            <span className="lab-flyout-sub">creative technology practice</span>
           </a>
 
           <ul className="lab-flyout-list">
