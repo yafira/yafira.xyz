@@ -629,6 +629,10 @@ html.home-locked .connector-lines {
       100% 13px;
   }
 }
+[data-theme="dark"] .lab-flyout-item:hover,
+[data-theme="dark"] .lab-flyout-header:hover {
+  background-color: transparent !important;
+}
 .lab-flyout-glyph {
   color: var(--item-stitch);
   width: 16px;
