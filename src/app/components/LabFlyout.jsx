@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Inkbloom } from "electrocute-ui";
 
-const IconPen = () => (
+const IconComputerArt = () => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -13,8 +13,12 @@ const IconPen = () => (
     strokeLinejoin="round"
     aria-hidden="true"
   >
-    <path d="M4 20l1.2-4.2L16.4 4.6a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8 4 20z" />
-    <path d="M13.5 7.5l3 3" />
+    <rect x="3" y="4.5" width="13" height="9.5" rx="1.3" />
+    <path d="M7 17.5h5" />
+    <path d="M9.5 14v3.5" />
+    <circle cx="7.4" cy="8.2" r="0.65" fill="currentColor" stroke="none" />
+    <circle cx="11.6" cy="8.2" r="0.65" fill="currentColor" stroke="none" />
+    <path d="M6.8 10.3q2.7 2.6 5.4 0" />
   </svg>
 );
 
@@ -49,14 +53,29 @@ const IconMoon = () => (
   </svg>
 );
 
+const IconPen = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 20l1.2-4.2L16.4 4.6a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8 4 20z" />
+    <path d="M13.5 7.5l3 3" />
+  </svg>
+);
+
 const LAB_LINKS = [
   {
-    label: "blog",
-    href: "https://blog.electrocute.io",
-    note: "writing + process",
-    Icon: IconPen,
-    tint: "var(--blush-powder)",
-    stitch: "#c76a8f",
+    label: "computer art",
+    href: "https://electrocute.io/computer-art",
+    note: "generative sketches",
+    Icon: IconComputerArt,
+    tint: "#ECF3FE",
+    stitch: "#C0C1DE",
   },
   {
     label: "soft interfaces",
@@ -69,10 +88,18 @@ const LAB_LINKS = [
   {
     label: "poetronics",
     href: "https://electrocute.io/poetronics",
-    note: "generative poetry, gentle machines",
+    note: "electronic text, gentle machines",
     Icon: IconMoon,
-    tint: "var(--wisteria-dust)",
+    tint: "#E8E6FF",
     stitch: "#8f7fc9",
+  },
+  {
+    label: "blog",
+    href: "https://blog.electrocute.io",
+    note: "writing + process",
+    Icon: IconPen,
+    tint: "var(--blush-powder)",
+    stitch: "#F2B9E0",
   },
 ];
 
