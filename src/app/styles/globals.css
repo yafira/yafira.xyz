@@ -3501,9 +3501,14 @@ html.home-locked .connector-lines {
   color: #000000;
   border-color: #000000;
 }
+[data-theme="accessible"] .skills-strip {
+  max-width: 640px;
+  gap: 4px;
+}
+
 [data-theme="accessible"] .skill-chip {
   font-size: 11px;
-  padding: 3px 10px;
+  padding: 3px 8px;
 }
 
 [data-theme="dark"] .lab-flyout-title,
