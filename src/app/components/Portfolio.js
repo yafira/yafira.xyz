@@ -10,12 +10,26 @@ import CycleWord from "@/app/components/CycleWord";
 import ProjectBox from "@/app/components/ProjectBox";
 import DirectoryList from "@/app/components/DirectoryList";
 import Reveal from "@/app/components/Reveal";
-import { selectedWork, moreProjects } from "@/app/lib/projectData";
+import {
+  featuredWork,
+  secondaryWork,
+  moreProjects,
+} from "@/app/lib/projectData";
 
 // the merged homepage — the portfolio IS the homepage now.
-// hero claim → selected work as full cards → more projects → contact.
+// hero claim → featured work (full cards + process) → secondary work
+// (compact cards) → more projects → contact.
 // /work redirects here. craft lives at electrocute lab; blogs live
 // in the lab flyout.
+//
+// tiering (per Karl Koch's portfolio feedback, Aug 2026): previously
+// all 10 "selected work" projects rendered at identical visual
+// weight, which made it hard to tell what to look at first. Split
+// into featuredWork (electrocute-ui, Soft Components — full-size
+// cards with an expandable "the process" reveal) and secondaryWork
+// (the other 8 — same visual language, compact sizing, same
+// treatment the "more projects" drawer cards already use). Nothing
+// removed, just re-weighted.
 //
 // "more projects" renders TWO ways at once: the filter-pill + drawer
 // UI (light/dark mode) and the flat DirectoryList (reader mode).
@@ -244,18 +258,43 @@ export default function Portfolio() {
         </ul>
       </section>
 
+      {/* tier 1 — featured work: electrocute-ui + Soft Components.
+          full-size cards, always-visible links, expandable process
+          reveal (problem/approach/result + design tokens). */}
       <div className="index-block">
         <span className="section-mark mark-signal" aria-hidden="true">
           <SignalTrace />
         </span>
         <SelectedMark />
         <div className="projects-grid featured">
-          {selectedWork.map((project) => (
+          {featuredWork.map((project) => (
             <ProjectBox
               key={project.title}
               {...project}
               category={project.category}
               showLinksAlways
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* tier 2 — secondary work: everything else that used to live
+          in "selected work" at full size. Same cards, same links,
+          just compact sizing — same visual language the "more
+          projects" drawer already established, so the demotion
+          reads as intentional rather than like a downgrade. */}
+      <div className="index-block">
+        <h2 className="work-section-heading work-secondary-heading">
+          additional work
+        </h2>
+        <div className="projects-grid secondary">
+          {secondaryWork.map((project) => (
+            <ProjectBox
+              key={project.title}
+              {...project}
+              category={project.category}
+              showLinksAlways
+              compact
             />
           ))}
         </div>

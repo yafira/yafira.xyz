@@ -6576,3 +6576,94 @@ span {
     text-overflow: ellipsis;
   }
 }
+
+/* secondary work tier */
+
+.projects-grid.featured {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(20px, 3vw, 36px);
+  max-width: 1000px;
+}
+.projects-grid.featured .project-box {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+}
+
+.projects-grid.secondary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  align-items: stretch;
+  gap: clamp(14px, 2vw, 22px);
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+.projects-grid.secondary .project-box[data-compact] {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+}
+
+/* explicit safety net: neutralize the old last-child hack for both
+   new tiers regardless of layout mode, in case anything else in the
+   cascade still references flex-grow/max-width on these cards */
+.projects-grid.featured .project-box:last-child,
+.projects-grid.secondary .project-box:last-child {
+  flex-grow: 0;
+  max-width: none;
+}
+
+@media (max-width: 780px) {
+  .projects-grid.featured {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
+
+.work-secondary-heading {
+  text-align: center;
+  margin: 3rem 0 0.5rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  opacity: 0.85;
+}
+
+/* process toggle: was plain underlined text with a dashed
+   border-bottom that only spans the text width — reads as a stray
+   broken line rather than a button. Restyled as a small pill,
+   matching the site's existing button language (tags, work-filter
+   pills) instead of looking like unstyled leftover markup. */
+.process-toggle {
+  display: inline-block;
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #5a4a8a;
+  background: var(--wisteria-dust);
+  border: 1px solid var(--border-accent-soft);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    transform 0.15s ease;
+}
+.process-toggle:hover {
+  background: #f0eaff;
+  transform: translateY(-1px);
+}
+.process-toggle:focus-visible {
+  outline: 2px solid var(--border-accent);
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .process-toggle {
+  color: #cbb8f0;
+  background: #2a2740;
+  border-color: #6b5a9e;
+}
+[data-theme="dark"] .process-toggle:hover {
+  background: #332e4d;
+}

@@ -58,6 +58,16 @@ const ArrowUpRight = () => (
 // attribute the CSS itself keys off of — no theme context needed.
 // A MutationObserver keeps this in sync if theme is toggled without
 // a full page reload.
+//
+// process reveal (new): "the process" expandable section for
+// featured-tier projects only. Uses the .process-reveal /
+// .process-toggle / .process-body / .process-swatches classes
+// already defined in globals.css — those existed before this
+// component ever rendered anything into them. `process` is
+// { problem, approach, result }; `swatches` is an optional array of
+// { name, color }. Both are undefined for every card except the
+// two featured projects, so this renders nothing extra anywhere
+// else — no layout change for secondary/more-projects cards.
 
 const ProjectBox = ({
   title,
@@ -71,10 +81,13 @@ const ProjectBox = ({
   showLinksAlways = false,
   badge,
   compact = false,
+  process,
+  swatches,
 }) => {
   const [panelUrl, setPanelUrl] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isReaderMode, setIsReaderMode] = useState(false);
+  const [processOpen, setProcessOpen] = useState(false);
 
   useEffect(() => {
     setIsMobile(window.matchMedia("(max-width: 640px)").matches);
@@ -195,6 +208,54 @@ const ProjectBox = ({
                   {t}
                 </span>
               ))}
+            </div>
+          )}
+
+          {process && (
+            <div className="process-reveal">
+              <button
+                type="button"
+                className="process-toggle"
+                onClick={() => setProcessOpen((v) => !v)}
+                aria-expanded={processOpen}
+              >
+                {processOpen ? "hide the process ↑" : "the process ↓"}
+              </button>
+
+              {processOpen && (
+                <div className="process-body">
+                  {process.problem && (
+                    <p>
+                      <strong>problem</strong> — {process.problem}
+                    </p>
+                  )}
+                  {process.approach && (
+                    <p>
+                      <strong>approach</strong> — {process.approach}
+                    </p>
+                  )}
+                  {process.result && (
+                    <p>
+                      <strong>result</strong> — {process.result}
+                    </p>
+                  )}
+
+                  {Array.isArray(swatches) && swatches.length > 0 && (
+                    <div className="process-swatches">
+                      {swatches.map((s) => (
+                        <div key={s.name} className="process-swatch">
+                          <span
+                            className="process-swatch-color"
+                            style={{ background: s.color }}
+                            aria-hidden="true"
+                          />
+                          <span className="process-swatch-name">{s.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </div>

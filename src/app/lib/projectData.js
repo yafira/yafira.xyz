@@ -1,18 +1,12 @@
-// selected work: the projects that carry the professional pitch,
-// ordered by design-engineering focus.
-// more projects: strong secondary work, with the electronics
-// cluster grouped at the end.
+// three tiers, decreasing weight: featuredWork (full cards + process
+// reveal) > secondaryWork (compact cards) > moreProjects (lightest).
 // everything else lives at electrocute.io.
 //
-// `disciplines` (optional): which halves of "design engineer" a
-// project touched — renders as small icon badges on the card.
-// values: "design" | "code" | "hardware"
-//
-// `process` + `swatches` (optional, electrocute-ui only for now):
-// powers the expandable "the process" reveal — a short problem /
-// approach / result plus the actual design tokens rendered live.
+// disciplines (optional): "design" | "code" | "hardware" — renders as badges.
+// process (featuredWork only): { problem, approach, result }.
+// swatches (optional): design tokens rendered as live color chips.
 
-export const selectedWork = [
+export const featuredWork = [
   {
     title: "electrocute-ui",
     imageUrl: "/assets/ecuteui.gif",
@@ -27,6 +21,22 @@ export const selectedWork = [
       npm: "https://www.npmjs.com/package/electrocute-ui",
       code: "https://github.com/yafira/electrocute-ui",
     },
+    process: {
+      problem:
+        "Every project was accumulating its own one-off palette and spacing decisions. Nothing was reusable, and an early attempt at fixing that overcorrected into 30+ tokens — more categories than anyone could actually keep straight while building.",
+      approach:
+        "Cut back to 18 tokens organized around function rather than hue — wisteria for structure, blush for accents, matcha for confirmation states, butter for highlights — so a component's color choice reads as a decision, not a guess. The 8 components shipped were the ones that kept getting rebuilt from scratch across other projects: buttons, tags, pills, the pieces with the most repeated, and most inconsistent, prior implementations.",
+      result:
+        "Published to npm with a live Storybook documentation site, and now the actual dependency the rest of electrocute.io builds on — including this portfolio's own pill and badge components.",
+    },
+    swatches: [
+      { name: "wisteria", color: "#faf6ff" },
+      { name: "blush", color: "#fdf1f9" },
+      { name: "matcha", color: "#f3faea" },
+      { name: "butter", color: "#ffffd8" },
+      { name: "lilac", color: "#f7ecfb" },
+      { name: "sky", color: "#eef8fd" },
+    ],
   },
   {
     title: "Soft Components",
@@ -46,7 +56,18 @@ export const selectedWork = [
       web: "https://soft-components.vercel.app/",
       code: "https://github.com/yafira/soft-components",
     },
+    process: {
+      problem:
+        "Static diagrams can't show how a soft circuit actually behaves — the squish of a felt button, the slide of a fabric potentiometer, the give of a pressure sensor. Documentation for e-textiles usually flattens exactly the quality that makes them worth using.",
+      approach:
+        "Prototyped three different animation approaches — plain CSS transforms, GSAP timeline sequencing, and Motion's spring physics — before realizing the right answer wasn't picking one, but matching the animation model to the material behavior each component actually needed to demonstrate. A felt button's squash-and-release needed spring easing; a fabric potentiometer's slide needed timeline-driven interpolation instead.",
+      result:
+        "A library where every component's demo teaches its physical behavior first, material science second — interaction as documentation rather than a diagram bolted on afterward.",
+    },
   },
+];
+
+export const secondaryWork = [
   {
     title: "cache",
     imageUrl: "/assets/cache.gif",
@@ -169,7 +190,28 @@ export const selectedWork = [
       web: "https://thesoft.computer/",
     },
   },
+  {
+    title: "AirSense",
+    imageUrl: "/assets/airsense.png",
+    category: "electronics",
+    description:
+      "Indoor air quality monitor and live dashboard, built with Arduino and React.",
+    stack: "Arduino · BME680 · MQTT · Chart.js · React",
+    tags: [
+      "real-time systems",
+      "iot",
+      "data visualization",
+      "physical computing",
+    ],
+    disciplines: ["design", "code", "hardware"],
+    links: {
+      demo: "https://months-tap-da9.craft.me/airsense",
+    },
+  },
 ];
+
+// kept for backward compatibility with anything importing selectedWork
+export const selectedWork = [...featuredWork, ...secondaryWork];
 
 export const moreProjects = [
   {
@@ -262,16 +304,6 @@ export const moreProjects = [
     stack: "Raspberry Pi · pygame",
     tags: ["hardware", "generative text", "physical computing"],
     link: "https://months-tap-da9.craft.me/petalbyte",
-  },
-  {
-    title: "AirSense",
-    imageUrl: "/assets/airsense.png",
-    category: "electronics",
-    description:
-      "Indoor air quality monitor and live dashboard, built with Arduino and React.",
-    stack: "Arduino · React",
-    tags: ["hardware", "dashboard", "iot"],
-    link: "https://months-tap-da9.craft.me/airsense",
   },
   {
     title: "Puffcast",
