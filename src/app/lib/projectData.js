@@ -172,6 +172,24 @@ export const secondaryWork = [
     },
   },
   {
+    title: "AirSense",
+    imageUrl: "/assets/airsense.png",
+    category: "electronics",
+    description:
+      "An indoor air quality sensor housed in a transparent, house-shaped acrylic enclosure with a color-coded display for at-a-glance readability, paired with a live web dashboard. Rebuilt from HTTP polling to an MQTT pub/sub pipeline to support real-time historical charting.",
+    stack: "Arduino · BME680 · MQTT · Chart.js · React",
+    tags: [
+      "real-time systems",
+      "iot",
+      "data visualization",
+      "physical computing",
+    ],
+    disciplines: ["design", "code", "hardware"],
+    links: {
+      demo: "https://months-tap-da9.craft.me/airsense",
+    },
+  },
+  {
     title: "the soft computer",
     imageUrl: "/assets/tsc.png",
     category: "electronics",
@@ -188,24 +206,6 @@ export const secondaryWork = [
     disciplines: ["design", "code", "hardware"],
     links: {
       web: "https://thesoft.computer/",
-    },
-  },
-  {
-    title: "AirSense",
-    imageUrl: "/assets/airsense.png",
-    category: "electronics",
-    description:
-      "An indoor air quality sensor housed in a transparent, house-shaped acrylic enclosure with a color-coded display for at-a-glance readability, paired with a live web dashboard. Rebuilt from HTTP polling to an MQTT pub/sub pipeline to support real-time historical charting.",
-    stack: "Arduino · BME680 · MQTT · Chart.js · React",
-    tags: [
-      "real-time systems",
-      "iot",
-      "data visualization",
-      "physical computing",
-    ],
-    disciplines: ["design", "code", "hardware"],
-    links: {
-      demo: "https://months-tap-da9.craft.me/airsense",
     },
   },
 ];
