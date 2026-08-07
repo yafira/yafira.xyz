@@ -195,7 +195,7 @@ export const secondaryWork = [
     imageUrl: "/assets/airsense.png",
     category: "electronics",
     description:
-      "Indoor air quality monitor and live dashboard, built with Arduino and React.",
+      "An indoor air quality sensor housed in a transparent, house-shaped acrylic enclosure with a color-coded display for at-a-glance readability, paired with a live web dashboard. Rebuilt from HTTP polling to an MQTT pub/sub pipeline to support real-time historical charting.",
     stack: "Arduino · BME680 · MQTT · Chart.js · React",
     tags: [
       "real-time systems",
