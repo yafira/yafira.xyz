@@ -217,7 +217,7 @@ export default function Portfolio() {
       <section className="home-claim-wrap">
         <div className="home-hero-flower">
           <Image
-            src="/assets/flower-network-logo.png"
+            src="/assets/flower-logo.png"
             alt="Yafira's flower mark"
             width={340}
             height={340}
