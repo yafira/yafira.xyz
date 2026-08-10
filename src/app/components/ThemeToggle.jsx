@@ -13,8 +13,13 @@ export default function ThemeToggle() {
   const [theme, setThemeState] = useState("light");
 
   useEffect(() => {
-    const saved = localStorage.getItem("portfolio-theme") || "light";
-    setThemeState(saved);
+    // the blocking script in layout.js has already applied the correct
+    // theme (saved preference, or system preference as fallback) before
+    // this component even mounts — just read it back so the toggle
+    // buttons highlight correctly, don't re-derive or overwrite it.
+    const applied =
+      document.documentElement.getAttribute("data-theme") || "light";
+    setThemeState(applied);
   }, []);
 
   const setTheme = (id) => {

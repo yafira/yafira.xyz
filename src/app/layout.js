@@ -48,7 +48,11 @@ const pixelifySans = Pixelify_Sans({ weight: "400", subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning: the blocking theme script below means the
+    // server-rendered HTML and the first client paint can legitimately
+    // differ (server doesn't know the visitor's saved/system theme) —
+    // this tells React that mismatch is expected and safe to ignore.
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           // runs before paint so the right theme applies immediately —
