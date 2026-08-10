@@ -10,6 +10,7 @@ import {
   Sparkles,
   Download,
   Frame,
+  Paintbrush,
 } from "lucide-react";
 
 // one toolbar, one set of tools (highlighter / crayon / stamp), used
@@ -26,17 +27,29 @@ const COLORS = [
   { name: "ink", value: "#1a1a1a" },
 ];
 
-const STAMPS = ["✿", "⚡\uFE0E", "♡", "★", "☁", "⚙"];
+const STAMPS = ["✿", "⚡\uFE0E", "♡", "★", "⚙"];
 
 const TOOLS = {
   highlighter: { width: 4, alpha: 0.5, jitter: 0 },
   crayon: { width: 10, alpha: 0.85, jitter: 1.4 },
+  marker: { width: 18, alpha: 0.9, jitter: 0.4 },
 };
 
 const PAGE_STORAGE_PREFIX = "draw-layer:";
 const PAD_STORAGE_KEY = "draw-layer:pad";
 
 export default function DrawTools() {
+  // hidden on mobile entirely (see draw-tools.css) — skip mounting
+  // the canvas/resize logic there too rather than let it run for a
+  // feature nobody on that screen size can even see.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const [active, setActive] = useState(false);
   const [mode, setMode] = useState("page"); // 'page' | 'pad'
   const [tool, setTool] = useState("highlighter");
@@ -146,8 +159,21 @@ export default function DrawTools() {
     const canvas = pageCanvasRef.current;
     if (!canvas) return;
     const dpr = window.devicePixelRatio || 1;
-    const width = document.documentElement.scrollWidth;
+
+    // shrink to zero before measuring — otherwise the canvas's own
+    // previous size gets baked into document.documentElement's
+    // scrollWidth/scrollHeight, and the canvas can only ever grow on
+    // resize, never shrink back down. That inflated the page's total
+    // layout width past the viewport, breaking responsiveness.
+    canvas.style.width = "0px";
+    canvas.style.height = "0px";
+
+    // width comes from the viewport, not scrollWidth — the site has
+    // overflow-x: hidden globally, so there's no legitimate reason
+    // for the canvas to be wider than the visible viewport anyway.
+    const width = window.innerWidth;
     const height = document.documentElement.scrollHeight;
+
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
@@ -350,6 +376,8 @@ export default function DrawTools() {
 
   const hasStrokes = mode === "pad" ? hasPadStrokes : hasPageStrokes;
 
+  if (isMobile) return null;
+
   return (
     <>
       <canvas
@@ -390,6 +418,15 @@ export default function DrawTools() {
                 aria-pressed={tool === "crayon"}
               >
                 <Pencil size={15} />
+              </button>
+              <button
+                type="button"
+                className={`draw-toolpick-btn ${tool === "marker" ? "active" : ""}`}
+                onClick={() => setTool("marker")}
+                aria-label="marker"
+                aria-pressed={tool === "marker"}
+              >
+                <Paintbrush size={15} />
               </button>
               <button
                 type="button"

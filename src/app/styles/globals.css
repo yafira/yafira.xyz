@@ -6861,7 +6861,10 @@ span {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  border: 2px solid transparent;
+  /* always-visible border, not just transparent-until-active — a
+     solid black swatch otherwise disappears against a dark toolbar
+     in dark mode with no edge to define it. */
+  border: 2px solid rgba(128, 128, 128, 0.35);
   background: var(--swatch);
   cursor: pointer;
   transition:
@@ -6880,6 +6883,19 @@ span {
 [data-theme="accessible"] .draw-toolbar,
 [data-theme="accessible"] .cutepix-pad-backdrop {
   display: none !important;
+}
+
+/* hidden on mobile entirely rather than made "responsive" — a single
+   finger is inherently ambiguous between drawing and scrolling on
+   touch, so this is a desktop-only extra rather than a feature worth
+   fighting that conflict for. matches the site's existing 640px
+   mobile breakpoint used elsewhere. */
+@media (max-width: 640px) {
+  .draw-layer-canvas,
+  .draw-toolbar,
+  .cutepix-pad-backdrop {
+    display: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
