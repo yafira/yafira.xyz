@@ -9,79 +9,77 @@ import {
   Highlighter,
   Sparkles,
   Download,
+  Frame,
 } from "lucide-react";
 
-// non-destructive draw layer: a transparent canvas fixed above the
-// whole page. pointer-events stays "none" until draw mode is on, so
-// the underlying page (links, scroll, layout) is never affected —
-// this only ever adds pixels to its own canvas, never touches the DOM.
-//
-// three tools: highlighter (thin, translucent), crayon (thick,
-// opaque, slightly jittered for texture), stamp (tap to place a
-// glyph, matching the site's flower/circuit motifs).
-//
-// touch scrolling: one finger draws, two fingers scroll — checked at
-// touchstart so a normal two-finger scroll gesture still works even
-// while draw mode is on.
+// one toolbar, one set of tools (highlighter / crayon / stamp), used
+// on whichever of two draw targets is currently active: the full
+// page (draws directly on top of the site) or a bounded pad (a
+// dashed-border canvas). the frame icon just switches which surface
+// your strokes land on — no second toolbar, no duplicate tool set.
 
 const COLORS = [
   { name: "wisteria", value: "#8b7ab8" },
   { name: "blush", value: "#e6a8c4" },
   { name: "matcha", value: "#7fb88a" },
-  { name: "butter", value: "#d9b84a" },
+  { name: "sky", value: "#6ea8c9" },
+  { name: "ink", value: "#1a1a1a" },
 ];
 
-// U+FE0E (text variation selector) after the bolt forces it to render
-// as a plain monochrome glyph like the rest of the set, instead of
-// defaulting to a colorful emoji presentation the way lone "⚡" does
-// on most platforms — no actual emoji font involved, same as the
-// other stamps.
-const STAMPS = ["✿", "☺", "★", "⚡\uFE0E", "♡", "✂", "⚙", "☁"];
+const STAMPS = ["✿", "⚡\uFE0E", "♡", "★", "☁", "⚙"];
 
 const TOOLS = {
   highlighter: { width: 4, alpha: 0.5, jitter: 0 },
   crayon: { width: 10, alpha: 0.85, jitter: 1.4 },
 };
 
-const STORAGE_PREFIX = "draw-layer:";
+const PAGE_STORAGE_PREFIX = "draw-layer:";
+const PAD_STORAGE_KEY = "draw-layer:pad";
 
 export default function DrawTools() {
-  const canvasRef = useRef(null);
-  const ctxRef = useRef(null);
-  const strokesRef = useRef([]); // {type:'stroke', points, color, width, alpha, jitter} | {type:'stamp', x, y, glyph, rotation}
-  const currentStrokeRef = useRef(null);
-  const isDrawingRef = useRef(false);
-  const activeTouchesRef = useRef(0);
-
   const [active, setActive] = useState(false);
-  const [tool, setTool] = useState("highlighter"); // 'highlighter' | 'crayon' | 'stamp'
+  const [mode, setMode] = useState("page"); // 'page' | 'pad'
+  const [tool, setTool] = useState("highlighter");
   const [color, setColor] = useState(COLORS[0].value);
   const [stamp, setStamp] = useState(STAMPS[0]);
-  const [hasStrokes, setHasStrokes] = useState(false);
 
-  const storageKey =
+  // ── two independent draw targets, same engine ────────────────────
+  const pageCanvasRef = useRef(null);
+  const pageCtxRef = useRef(null);
+  const pageStrokesRef = useRef([]);
+
+  const padCanvasRef = useRef(null);
+  const padCtxRef = useRef(null);
+  const padStrokesRef = useRef([]);
+
+  const currentStrokeRef = useRef(null);
+  const isDrawingRef = useRef(false);
+
+  const [hasPageStrokes, setHasPageStrokes] = useState(false);
+  const [hasPadStrokes, setHasPadStrokes] = useState(false);
+
+  const pageStorageKey =
     typeof window !== "undefined"
-      ? STORAGE_PREFIX + window.location.pathname
+      ? PAGE_STORAGE_PREFIX + window.location.pathname
       : null;
 
-  const resizeCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const dpr = window.devicePixelRatio || 1;
-    const width = document.documentElement.scrollWidth;
-    const height = document.documentElement.scrollHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    const ctx = canvas.getContext("2d");
-    ctx.scale(dpr, dpr);
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctxRef.current = ctx;
-    redraw();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // returns the refs/setters for whichever surface is currently active
+  const target = () =>
+    mode === "pad"
+      ? {
+          canvasRef: padCanvasRef,
+          ctxRef: padCtxRef,
+          strokesRef: padStrokesRef,
+          storageKey: PAD_STORAGE_KEY,
+          setHas: setHasPadStrokes,
+        }
+      : {
+          canvasRef: pageCanvasRef,
+          ctxRef: pageCtxRef,
+          strokesRef: pageStrokesRef,
+          storageKey: pageStorageKey,
+          setHas: setHasPageStrokes,
+        };
 
   const drawStamp = (ctx, mark) => {
     ctx.save();
@@ -103,59 +101,136 @@ export default function DrawTools() {
     ctx.globalAlpha = s.alpha;
     ctx.beginPath();
     ctx.moveTo(s.points[0].x, s.points[0].y);
-    for (let i = 1; i < s.points.length; i++) {
+    for (let i = 1; i < s.points.length; i++)
       ctx.lineTo(s.points[i].x, s.points[i].y);
-    }
     ctx.stroke();
     ctx.globalAlpha = 1;
   };
 
-  const redraw = useCallback(() => {
-    const ctx = ctxRef.current;
-    const canvas = canvasRef.current;
+  const redraw = (t) => {
+    const ctx = t.ctxRef.current;
+    const canvas = t.canvasRef.current;
     if (!ctx || !canvas) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (const mark of strokesRef.current) {
+    for (const mark of t.strokesRef.current) {
       if (mark.type === "stamp") drawStamp(ctx, mark);
       else drawStroke(ctx, mark);
     }
-  }, []);
+  };
 
-  useEffect(() => {
-    if (!storageKey) return;
+  const persist = (t) => {
+    if (!t.storageKey) return;
     try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        strokesRef.current = JSON.parse(saved);
-        setHasStrokes(strokesRef.current.length > 0);
-      }
-    } catch (e) {
-      // corrupted or unavailable storage — start empty rather than break the page
-    }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-    return () => window.removeEventListener("resize", resizeCanvas);
-  }, [resizeCanvas, storageKey]);
-
-  const persist = useCallback(() => {
-    if (!storageKey) return;
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(strokesRef.current));
+      localStorage.setItem(t.storageKey, JSON.stringify(t.strokesRef.current));
     } catch (e) {
       // storage full/blocked — drawing still works this session, just won't persist
     }
-    setHasStrokes(strokesRef.current.length > 0);
-  }, [storageKey]);
+    t.setHas(t.strokesRef.current.length > 0);
+  };
 
-  const getPoint = (e) => {
-    const canvas = canvasRef.current;
+  const loadSaved = (t) => {
+    if (!t.storageKey) return;
+    try {
+      const saved = localStorage.getItem(t.storageKey);
+      if (saved) {
+        t.strokesRef.current = JSON.parse(saved);
+        t.setHas(t.strokesRef.current.length > 0);
+      }
+    } catch (e) {
+      // corrupted/unavailable storage — start empty rather than break the page
+    }
+  };
+
+  // ── page canvas: full scrollable page, sized on mount ────────────
+  const resizePageCanvas = useCallback(() => {
+    const canvas = pageCanvasRef.current;
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    const width = document.documentElement.scrollWidth;
+    const height = document.documentElement.scrollHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    pageCtxRef.current = ctx;
+    redraw({
+      canvasRef: pageCanvasRef,
+      ctxRef: pageCtxRef,
+      strokesRef: pageStrokesRef,
+    });
+  }, []);
+
+  useEffect(() => {
+    loadSaved({
+      storageKey: pageStorageKey,
+      strokesRef: pageStrokesRef,
+      setHas: setHasPageStrokes,
+    });
+    resizePageCanvas();
+    window.addEventListener("resize", resizePageCanvas);
+    return () => window.removeEventListener("resize", resizePageCanvas);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resizePageCanvas]);
+
+  // ── pad canvas: bounded box, sized whenever it becomes visible ───
+  const resizePadCanvas = useCallback(() => {
+    const canvas = padCanvasRef.current;
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    padCtxRef.current = ctx;
+    redraw({
+      canvasRef: padCanvasRef,
+      ctxRef: padCtxRef,
+      strokesRef: padStrokesRef,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (mode !== "pad") return;
+    loadSaved({
+      storageKey: PAD_STORAGE_KEY,
+      strokesRef: padStrokesRef,
+      setHas: setHasPadStrokes,
+    });
+    resizePadCanvas();
+    window.addEventListener("resize", resizePadCanvas);
+    return () => window.removeEventListener("resize", resizePadCanvas);
+  }, [mode, resizePadCanvas]);
+
+  useEffect(() => {
+    if (mode !== "pad") return;
+    const onKey = (e) => e.key === "Escape" && setMode("page");
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mode]);
+
+  const getPoint = (e, canvas) => {
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return {
-      x: clientX - rect.left + window.scrollX,
-      y: clientY - rect.top + window.scrollY,
-    };
+    // the full-page canvas needs the scroll offset added (it's
+    // absolutely positioned over the whole document); the pad canvas
+    // doesn't scroll independently, so it doesn't need the offset.
+    if (mode === "page") {
+      return {
+        x: clientX - rect.left + window.scrollX,
+        y: clientY - rect.top + window.scrollY,
+      };
+    }
+    return { x: clientX - rect.left, y: clientY - rect.top };
   };
 
   const jitterPoint = (p, amount) => {
@@ -166,7 +241,7 @@ export default function DrawTools() {
     };
   };
 
-  const placeStamp = (point) => {
+  const placeStamp = (t, point) => {
     const mark = {
       type: "stamp",
       x: point.x,
@@ -174,26 +249,23 @@ export default function DrawTools() {
       glyph: stamp,
       color,
       size: 26,
-      rotation: (Math.random() - 0.5) * 0.6, // slight hand-stamped tilt
+      rotation: (Math.random() - 0.5) * 0.6,
     };
-    strokesRef.current.push(mark);
-    redraw();
-    persist();
+    t.strokesRef.current.push(mark);
+    redraw(t);
+    persist(t);
   };
 
   const handleStart = (e) => {
     if (!active) return;
-    // two-finger touch: let it scroll natively, don't start a stroke
     if (e.touches && e.touches.length > 1) {
-      activeTouchesRef.current = e.touches.length;
       isDrawingRef.current = false;
       return;
     }
-    activeTouchesRef.current = e.touches ? e.touches.length : 1;
-
-    const point = getPoint(e);
+    const t = target();
+    const point = getPoint(e, t.canvasRef.current);
     if (tool === "stamp") {
-      placeStamp(point);
+      placeStamp(t, point);
       return;
     }
     isDrawingRef.current = true;
@@ -210,14 +282,15 @@ export default function DrawTools() {
 
   const handleMove = (e) => {
     if (!active) return;
-    if (e.touches && e.touches.length > 1) return; // two fingers: let native scroll happen
+    if (e.touches && e.touches.length > 1) return;
     if (!isDrawingRef.current || tool === "stamp") return;
     e.preventDefault();
+    const t = target();
     const cfg = TOOLS[tool];
-    const point = jitterPoint(getPoint(e), cfg.jitter);
+    const point = jitterPoint(getPoint(e, t.canvasRef.current), cfg.jitter);
     currentStrokeRef.current.points.push(point);
 
-    const ctx = ctxRef.current;
+    const ctx = t.ctxRef.current;
     const pts = currentStrokeRef.current.points;
     if (pts.length < 2) return;
     ctx.strokeStyle = color;
@@ -233,34 +306,34 @@ export default function DrawTools() {
   const handleEnd = () => {
     if (!active || !isDrawingRef.current) return;
     isDrawingRef.current = false;
+    const t = target();
     if (
       currentStrokeRef.current &&
       currentStrokeRef.current.points.length > 1
     ) {
-      strokesRef.current.push(currentStrokeRef.current);
-      persist();
+      t.strokesRef.current.push(currentStrokeRef.current);
+      persist(t);
     }
     currentStrokeRef.current = null;
   };
 
   const handleUndo = () => {
-    strokesRef.current.pop();
-    redraw();
-    persist();
+    const t = target();
+    t.strokesRef.current.pop();
+    redraw(t);
+    persist(t);
   };
 
   const handleClear = () => {
-    strokesRef.current = [];
-    redraw();
-    persist();
+    const t = target();
+    t.strokesRef.current = [];
+    redraw(t);
+    persist(t);
   };
 
   const handleDownload = () => {
-    const canvas = canvasRef.current;
-    // flatten onto a pastel backdrop — the doodle canvas itself is
-    // transparent, so a raw export alone would just be marks floating
-    // on nothing. This saves the doodle as its own little artifact,
-    // not a screenshot of the actual page behind it.
+    const t = target();
+    const canvas = t.canvasRef.current;
     const flat = document.createElement("canvas");
     flat.width = canvas.width;
     flat.height = canvas.height;
@@ -269,18 +342,19 @@ export default function DrawTools() {
     fctx.fillRect(0, 0, flat.width, flat.height);
     fctx.drawImage(canvas, 0, 0);
     const link = document.createElement("a");
-    link.download = "yafira-site-doodle.png";
+    link.download =
+      mode === "pad" ? "cutepix-doodle.png" : "yafira-site-doodle.png";
     link.href = flat.toDataURL("image/png");
     link.click();
   };
 
-  // canvas only claims touch when a single finger is drawing — CSS
-  // touch-action switches based on tool/finger state below via class.
+  const hasStrokes = mode === "pad" ? hasPadStrokes : hasPageStrokes;
+
   return (
     <>
       <canvas
-        ref={canvasRef}
-        className={`draw-layer-canvas ${active ? "is-active" : ""}`}
+        ref={pageCanvasRef}
+        className={`draw-layer-canvas ${active && mode === "page" ? "is-active" : ""}`}
         onMouseDown={handleStart}
         onMouseMove={handleMove}
         onMouseUp={handleEnd}
@@ -291,11 +365,7 @@ export default function DrawTools() {
         aria-hidden="true"
       />
 
-      <div
-        className="draw-toolbar"
-        role="toolbar"
-        aria-label="page annotation tools"
-      >
+      <div className="draw-toolbar" role="toolbar" aria-label="drawing tools">
         {active && (
           <>
             <div
@@ -332,6 +402,19 @@ export default function DrawTools() {
               </button>
             </div>
 
+            <button
+              type="button"
+              className={`draw-toolpick-btn draw-pad-btn ${mode === "pad" ? "active" : ""}`}
+              onClick={() => setMode((m) => (m === "pad" ? "page" : "pad"))}
+              aria-label={
+                mode === "pad" ? "draw on the page" : "open a bounded pad"
+              }
+              aria-pressed={mode === "pad"}
+              title={mode === "pad" ? "draw on the page" : "open pad"}
+            >
+              <Frame size={15} />
+            </button>
+
             {tool === "stamp" ? (
               <div className="draw-stamp-row">
                 {STAMPS.map((s) => (
@@ -355,7 +438,7 @@ export default function DrawTools() {
                   className={`draw-color-btn ${color === c.value ? "active" : ""}`}
                   style={{ "--swatch": c.value }}
                   onClick={() => setColor(c.value)}
-                  aria-label={`${c.name}`}
+                  aria-label={c.name}
                   aria-pressed={color === c.value}
                 />
               ))
@@ -383,7 +466,7 @@ export default function DrawTools() {
               type="button"
               className="draw-tool-btn"
               onClick={handleDownload}
-              aria-label="save doodle as image"
+              aria-label="save as image"
               disabled={!hasStrokes}
             >
               <Download size={16} />
@@ -394,12 +477,33 @@ export default function DrawTools() {
           type="button"
           className={`draw-toggle-btn ${active ? "active" : ""}`}
           onClick={() => setActive((v) => !v)}
-          aria-label={active ? "exit draw mode" : "highlight the page"}
+          aria-label={active ? "exit draw mode" : "draw"}
           aria-pressed={active}
         >
           {active ? <X size={18} /> : <Pencil size={18} />}
         </button>
       </div>
+
+      {mode === "pad" && active && (
+        <div className="cutepix-pad-backdrop" onClick={() => setMode("page")}>
+          <div
+            className="cutepix-pad-frame"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <canvas
+              ref={padCanvasRef}
+              className="cutepix-pad-canvas"
+              onMouseDown={handleStart}
+              onMouseMove={handleMove}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
+              onTouchStart={handleStart}
+              onTouchMove={handleMove}
+              onTouchEnd={handleEnd}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

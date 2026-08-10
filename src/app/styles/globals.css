@@ -6721,18 +6721,23 @@ span {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 41;
+  z-index: 56; /* above .cutepix-pad-backdrop, so the toolbar stays usable while the pad is open */
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
-  max-width: min(94vw, 480px);
-  flex-wrap: wrap;
-  justify-content: center;
+  padding: 8px 14px;
+  max-width: min(94vw, 560px);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   background: var(--surface-card);
   border: 1px solid var(--border-accent-soft);
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+.draw-toolbar::-webkit-scrollbar {
+  display: none;
 }
 
 .draw-tool-group {
@@ -6741,6 +6746,7 @@ span {
   padding: 2px;
   border-radius: 999px;
   background: var(--wisteria-dust);
+  flex-shrink: 0;
 }
 .draw-toolpick-btn {
   display: flex;
@@ -6766,9 +6772,25 @@ span {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
+/* the pad button lives outside .draw-tool-group — it's a surface
+   switch (page vs. bounded pad), not a tool selection, so it gets
+   its own small pill background instead of joining the radiogroup. */
+.draw-pad-btn {
+  background: var(--wisteria-dust);
+  flex-shrink: 0;
+}
+.draw-pad-btn:hover {
+  background: var(--blush-powder);
+}
+.draw-pad-btn.active {
+  background: var(--border-accent);
+  color: #ffffff;
+}
+
 .draw-stamp-row {
   display: flex;
   gap: 2px;
+  flex-shrink: 0;
 }
 .draw-stamp-btn {
   display: flex;
@@ -6802,6 +6824,7 @@ span {
   justify-content: center;
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
   border: none;
   border-radius: 50%;
   background: none;
@@ -6854,7 +6877,8 @@ span {
 }
 
 [data-theme="accessible"] .draw-layer-canvas,
-[data-theme="accessible"] .draw-toolbar {
+[data-theme="accessible"] .draw-toolbar,
+[data-theme="accessible"] .cutepix-pad-backdrop {
   display: none !important;
 }
 
@@ -6890,183 +6914,63 @@ span {
   }
 }
 
-/* kid pix inspired drawing canvas */
-.kid-canvas-page {
+/* the pad: a bounded canvas box, centered on screen, backed by a
+   dimmed overlay. no toolbar of its own — the same bottom toolbar
+   above stays in control the whole time, this is purely a different
+   surface to draw on. */
+.cutepix-pad-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1rem 6rem;
-  max-width: 900px;
-  margin: 0 auto;
+  justify-content: center;
+  padding: 1rem;
+  padding-bottom: 6rem; /* keep clear of the toolbar docked at the bottom */
+  background: rgba(20, 18, 30, 0.35);
+  animation: cutepix-pad-fade-in 0.18s ease;
+}
+@keyframes cutepix-pad-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.kid-canvas-title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.kid-canvas-frame {
-  width: 100%;
+.cutepix-pad-frame {
+  width: min(94vw, 640px);
   aspect-ratio: 4 / 3;
   border-radius: 20px;
   border: 3px dashed var(--border-accent-soft);
   background: #fffdf6;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: cutepix-pad-pop-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes cutepix-pad-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
-.kid-canvas {
+.cutepix-pad-canvas {
   width: 100%;
   height: 100%;
   display: block;
-  touch-action: none;
-}
-.kid-canvas.cursor-draw {
   cursor: crosshair;
-}
-.kid-canvas.cursor-eraser {
-  cursor: cell;
-}
-
-.kid-toolbar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  width: 100%;
-  padding: 0.75rem;
-  background: var(--surface-card);
-  border: 2px solid var(--border-accent-soft);
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-
-.kid-tool-row,
-.kid-stamp-row,
-.kid-color-row,
-.kid-action-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.kid-tool-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  border: 2px solid var(--border-accent-soft);
-  background: var(--wisteria-dust);
-  font-size: 1.15rem;
-  cursor: pointer;
-  transition:
-    transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-    background 0.18s ease,
-    border-color 0.18s ease;
-}
-.kid-tool-btn:hover {
-  transform: translateY(-2px) scale(1.05);
-}
-.kid-tool-btn.active {
-  background: var(--blush-powder);
-  border-color: var(--border-accent);
-  transform: scale(1.08);
-}
-
-.kid-stamp-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  background: var(--wisteria-dust);
-  color: var(--text-primary);
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    border-color 0.15s ease;
-}
-.kid-stamp-btn:hover {
-  transform: scale(1.12);
-}
-.kid-stamp-btn.active {
-  border-color: var(--border-accent);
-}
-
-.kid-color-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  background: var(--swatch);
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    border-color 0.15s ease;
-}
-.kid-color-btn:hover {
-  transform: scale(1.12);
-}
-.kid-color-btn.active {
-  border-color: var(--text-primary);
-  transform: scale(1.15);
-}
-
-.kid-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 2px solid var(--border-accent-soft);
-  background: none;
-  font-family: var(--font-code);
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition:
-    background 0.18s ease,
-    transform 0.15s ease;
-}
-.kid-action-btn:hover {
-  background: var(--wisteria-dust);
-  transform: translateY(-1px);
-}
-.kid-action-btn.primary {
-  background: var(--blush-powder);
-  border-color: var(--border-accent);
-  color: var(--text-primary);
-  font-weight: 600;
-}
-.kid-action-btn.primary:hover {
-  background: #f3d6ff;
+  touch-action: pan-x pan-y;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kid-tool-btn,
-  .kid-stamp-btn,
-  .kid-color-btn,
-  .kid-action-btn {
-    transition: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .kid-tool-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-  .kid-stamp-btn {
-    width: 34px;
-    height: 34px;
-  }
-  .kid-color-btn {
-    width: 28px;
-    height: 28px;
+  .cutepix-pad-backdrop,
+  .cutepix-pad-frame {
+    animation: none;
   }
 }

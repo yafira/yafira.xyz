@@ -3,16 +3,15 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Download, Trash2 } from "lucide-react";
 
-// a tiny KidPix-inspired canvas — chunky tools, bright pastel palette,
-// stamps drawn from the site's own motifs (flower, circuit, felt
-// heart, star) instead of clip art. standalone page, own local save
-// (download as PNG), no backend — small and cute on purpose.
+// cute-pix — chunky tools, bright pastel palette, stamps drawn from
+// the site's own motifs (flower, circuit, felt heart, star) instead
+// of clip art. standalone page, own local save (download as PNG),
+// no backend — small and cute on purpose.
 
 const COLORS = [
   "#8b7ab8", // wisteria
   "#e6a8c4", // blush
   "#7fb88a", // matcha
-  "#d9b84a", // butter
   "#6ea8c9", // sky
   "#1a1a1a", // ink
 ];
@@ -25,10 +24,20 @@ const BRUSHES = {
 
 // U+FE0E forces the bolt to render as a plain monochrome glyph
 // instead of defaulting to a colorful emoji, matching the rest of
-// the set — see DrawTools.jsx for the same fix.
+// the set — see CutePix.jsx for the same fix.
 const STAMPS = ["✿", "⚡\uFE0E", "♡", "★", "☁", "⚙"];
 
-export default function KidCanvasPage() {
+// background presets — these only affect the frame while doodling and
+// what gets baked in when you save. The doodle itself is always drawn
+// on its own transparent layer, so switching presets never touches
+// your marks either way.
+const BACKGROUNDS = [
+  { id: "blank", label: "blank", color: "#fffdf6" },
+  { id: "canvas", label: "canvas", color: "#f2e8d5", textured: true },
+  { id: "dark", label: "dark", color: "#201f2b" },
+];
+
+export default function CutePixPage() {
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const isDrawingRef = useRef(false);
@@ -37,6 +46,7 @@ export default function KidCanvasPage() {
   const [tool, setTool] = useState("crayon"); // 'pencil' | 'crayon' | 'big' | 'stamp' | 'eraser'
   const [color, setColor] = useState(COLORS[0]);
   const [stamp, setStamp] = useState(STAMPS[0]);
+  const [background, setBackground] = useState(BACKGROUNDS[0]);
 
   const resize = useCallback(() => {
     const canvas = canvasRef.current;
@@ -146,13 +156,14 @@ export default function KidCanvasPage() {
 
   const handleDownload = () => {
     const canvas = canvasRef.current;
-    // flatten onto a white background — the canvas itself is transparent,
-    // a raw PNG export would otherwise save with a see-through backdrop.
+    // flatten onto the chosen background — the doodle canvas itself is
+    // transparent, so a raw export alone would just be marks floating
+    // on nothing. This bakes in whichever preset you picked.
     const flat = document.createElement("canvas");
     flat.width = canvas.width;
     flat.height = canvas.height;
     const fctx = flat.getContext("2d");
-    fctx.fillStyle = "#fffdf6";
+    fctx.fillStyle = background.color;
     fctx.fillRect(0, 0, flat.width, flat.height);
     fctx.drawImage(canvas, 0, 0);
     const link = document.createElement("a");
@@ -162,13 +173,16 @@ export default function KidCanvasPage() {
   };
 
   return (
-    <div className="kid-canvas-page">
-      <h1 className="kid-canvas-title">✿ doodle pad ✿</h1>
+    <div className="cutepix-page">
+      <h1 className="cutepix-title">✿ cute-pix ✿</h1>
 
-      <div className="kid-canvas-frame">
+      <div
+        className={`cutepix-frame ${background.textured ? "textured" : ""}`}
+        style={{ backgroundColor: background.color }}
+      >
         <canvas
           ref={canvasRef}
-          className={`kid-canvas ${tool === "eraser" ? "cursor-eraser" : "cursor-draw"}`}
+          className={`cutepix-canvas ${tool === "eraser" ? "cursor-eraser" : "cursor-draw"}`}
           onMouseDown={handleStart}
           onMouseMove={handleMove}
           onMouseUp={handleEnd}
@@ -179,13 +193,13 @@ export default function KidCanvasPage() {
         />
       </div>
 
-      <div className="kid-toolbar">
-        <div className="kid-tool-row">
+      <div className="cutepix-toolbar">
+        <div className="cutepix-tool-row">
           {["pencil", "crayon", "big", "stamp", "eraser"].map((t) => (
             <button
               key={t}
               type="button"
-              className={`kid-tool-btn ${tool === t ? "active" : ""}`}
+              className={`cutepix-tool-btn ${tool === t ? "active" : ""}`}
               onClick={() => setTool(t)}
             >
               {t === "pencil" && "✎"}
@@ -198,12 +212,12 @@ export default function KidCanvasPage() {
         </div>
 
         {tool === "stamp" ? (
-          <div className="kid-stamp-row">
+          <div className="cutepix-stamp-row">
             {STAMPS.map((s) => (
               <button
                 key={s}
                 type="button"
-                className={`kid-stamp-btn ${stamp === s ? "active" : ""}`}
+                className={`cutepix-stamp-btn ${stamp === s ? "active" : ""}`}
                 onClick={() => setStamp(s)}
               >
                 {s}
@@ -211,12 +225,12 @@ export default function KidCanvasPage() {
             ))}
           </div>
         ) : (
-          <div className="kid-color-row">
+          <div className="cutepix-color-row">
             {COLORS.map((c) => (
               <button
                 key={c}
                 type="button"
-                className={`kid-color-btn ${color === c ? "active" : ""}`}
+                className={`cutepix-color-btn ${color === c ? "active" : ""}`}
                 style={{ "--swatch": c }}
                 onClick={() => setColor(c)}
                 aria-label={c}
@@ -225,17 +239,36 @@ export default function KidCanvasPage() {
           </div>
         )}
 
-        <div className="kid-action-row">
+        <div
+          className="cutepix-bg-row"
+          role="radiogroup"
+          aria-label="canvas background"
+        >
+          {BACKGROUNDS.map((bg) => (
+            <button
+              key={bg.id}
+              type="button"
+              className={`cutepix-bg-btn ${background.id === bg.id ? "active" : ""}`}
+              style={{ "--swatch": bg.color }}
+              onClick={() => setBackground(bg)}
+              aria-label={bg.label}
+              aria-pressed={background.id === bg.id}
+              title={bg.label}
+            />
+          ))}
+        </div>
+
+        <div className="cutepix-action-row">
           <button
             type="button"
-            className="kid-action-btn"
+            className="cutepix-action-btn"
             onClick={handleClear}
           >
             <Trash2 size={16} /> clear
           </button>
           <button
             type="button"
-            className="kid-action-btn primary"
+            className="cutepix-action-btn primary"
             onClick={handleDownload}
           >
             <Download size={16} /> save
