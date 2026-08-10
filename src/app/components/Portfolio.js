@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,40 +15,20 @@ import {
   moreProjects,
 } from "@/app/lib/projectData";
 
-// the merged homepage — the portfolio IS the homepage now.
-// hero claim → featured work (full cards + process) → secondary work
-// (compact cards) → more projects → contact.
-// /work redirects here. craft lives at electrocute lab; blogs live
-// in the lab flyout.
+// homepage: hero → featured work → secondary work → more projects → contact.
+// /work redirects here. craft lives at electrocute lab; blogs live in the lab flyout.
 //
-// tiering (per Karl Koch's portfolio feedback, Aug 2026): previously
-// all 10 "selected work" projects rendered at identical visual
-// weight, which made it hard to tell what to look at first. Split
-// into featuredWork (electrocute-ui, Soft Components — full-size
-// cards with an expandable "the process" reveal) and secondaryWork
-// (the other 8 — same visual language, compact sizing, same
-// treatment the "more projects" drawer cards already use). Nothing
-// removed, just re-weighted.
-//
-// "more projects" renders TWO ways at once: the filter-pill + drawer
-// UI (light/dark mode) and the flat DirectoryList (reader mode).
-// Both are always in the DOM; CSS shows exactly one per theme via
-// [data-theme="accessible"] — same pattern used everywhere else on
-// the site for reader mode, so no JS access to theme state is
-// needed here. See .drawer-mode-projects / .directory-mode-projects
-// in the stylesheet.
+// section marks perform their tier instead of naming it — checkmark draws
+// in, stitch draws in, magnet follows the cursor. sr-only text carries the
+// real label for screen readers.
 
-// pill color classes in globals.css are numbered by index and tied
-// to category identity site-wide (matcha = code, wisteria =
-// electronics, lilac = design), so map by name rather than render
-// order, same convention used elsewhere on the site.
+// pill colors are tied to category identity site-wide (matcha = code,
+// wisteria = electronics, lilac = design) — map by name, not render order.
 const MORE_CATEGORY_ORDER = ["code", "design", "electronics"];
 const PILL_STYLE = { code: 1, design: 3, electronics: 2 };
 
-// a curated slice of the résumé's skill list — not the full dump,
-// just enough per domain to read as real breadth at a glance.
-// colored per domain using the same category tokens as everything
-// else on the site (matcha/lilac/wisteria).
+// curated slice of the résumé skills, colored using the same category
+// tokens as elsewhere.
 const SKILLS = [
   { label: "React", cat: "code" },
   { label: "Next.js", cat: "code" },
@@ -69,9 +48,8 @@ const SKILLS = [
   { label: "Fabrication", cat: "electronics" },
 ];
 
-// a dashed circuit trace with a pulse that actually travels along
-// it (CSS offset-path, not a static image) — the running-stitch
-// idea rendered as current flowing through a trace.
+// dashed circuit trace with a pulse traveling along it (CSS offset-path) —
+// current flowing through a trace.
 const SignalTrace = () => (
   <svg
     viewBox="0 0 60 44"
@@ -93,9 +71,8 @@ const SignalTrace = () => (
   </svg>
 );
 
-// a small dot that drifts gently toward the cursor within a bounded
-// field — a tiny, calm, physical-feeling interaction rather than a
-// static mark. capped travel distance so it never wanders far.
+// dot that drifts toward the cursor within a bounded field — capped
+// travel distance so it never wanders far.
 function MagnetDot() {
   const ref = useRef(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -138,10 +115,8 @@ function MagnetDot() {
   );
 }
 
-// replaces the plain "selected work" label — a checkmark that draws
-// itself the first time this section scrolls into view, performing
-// the word "selected" rather than stating it. fires once per visit;
-// screen readers still get the real heading text via sr-only.
+// checkmark that draws itself on first scroll into view. sr-only
+// text carries the real label for screen readers.
 function SelectedMark() {
   const ref = useRef(null);
   const [drawn, setDrawn] = useState(false);
@@ -164,7 +139,7 @@ function SelectedMark() {
 
   return (
     <h2 className="selected-mark-heading" ref={ref}>
-      <span className="sr-only">selected work</span>
+      <span className="sr-only">featured work</span>
       <svg
         viewBox="0 0 28 28"
         aria-hidden="true"
@@ -176,6 +151,48 @@ function SelectedMark() {
       <span aria-hidden="true" className="selected-mark-label">
         work
       </span>
+    </h2>
+  );
+}
+
+// running-stitch line that draws itself on scroll into view — same
+// pattern as SelectedMark. extends the duality-stitch motif from the hero.
+function StitchMark() {
+  const ref = useRef(null);
+  const [drawn, setDrawn] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setDrawn(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <h2 className="stitch-mark-heading" ref={ref}>
+      <span className="sr-only">also</span>
+      <svg
+        viewBox="0 0 120 12"
+        aria-hidden="true"
+        className={`stitch-mark-line ${drawn ? "is-drawn" : ""}`}
+      >
+        <path
+          d="M2 6 L118 6"
+          fill="none"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeDasharray="6 5"
+        />
+      </svg>
     </h2>
   );
 }
@@ -203,9 +220,6 @@ export default function Portfolio() {
     ? moreProjects.filter((p) => p.category === activeCategory)
     : [];
 
-  // more than 2 items: scroll horizontally instead of trying to
-  // squeeze an exact-fit row width (that math was landing a few px
-  // short at real browser widths, so the 3rd/4th card kept wrapping).
   const isDrawerScrollable = drawerItems.length > 2;
 
   return (
@@ -254,9 +268,7 @@ export default function Portfolio() {
         </ul>
       </section>
 
-      {/* tier 1 — featured work: electrocute-ui + Soft Components.
-          full-size cards, always-visible links, expandable process
-          reveal (problem/approach/result + design tokens). */}
+      {/* tier 1 — full cards, always-visible links, expandable process reveal. */}
       <div className="index-block">
         <span className="section-mark mark-signal" aria-hidden="true">
           <SignalTrace />
@@ -274,15 +286,9 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* tier 2 — secondary work: everything else that used to live
-          in "selected work" at full size. Same cards, same links,
-          just compact sizing — same visual language the "more
-          projects" drawer already established, so the demotion
-          reads as intentional rather than like a downgrade. */}
+      {/* tier 2 — same cards, compact sizing. */}
       <div className="index-block">
-        <h2 className="work-section-heading work-secondary-heading">
-          additional work
-        </h2>
+        <StitchMark />
         <div className="projects-grid secondary">
           {secondaryWork.map((project) => (
             <ProjectBox
@@ -301,11 +307,10 @@ export default function Portfolio() {
           <MagnetDot />
         </span>
         <h2 className="work-section-heading work-more-heading">
-          more projects
+          <span className="sr-only">more projects</span>
         </h2>
 
-        {/* light/dark mode: filter pills + drawer. Hidden entirely in
-            reader mode via CSS ([data-theme="accessible"] .drawer-mode-projects). */}
+        {/* light/dark: filter pills + drawer. reader mode hides this via CSS. */}
         <div className="drawer-mode-projects">
           <div
             className="work-filter-row"
@@ -359,8 +364,7 @@ export default function Portfolio() {
           )}
         </div>
 
-        {/* reader mode: flat directory list. Hidden entirely outside
-            reader mode via CSS. */}
+        {/* reader mode: flat directory list, hidden outside reader mode via CSS. */}
         <div className="directory-mode-projects">
           <DirectoryList projects={moreProjects} order={MORE_CATEGORY_ORDER} />
         </div>

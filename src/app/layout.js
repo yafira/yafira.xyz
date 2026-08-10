@@ -1,6 +1,7 @@
 import { Pixelify_Sans } from "next/font/google";
 import Navigation from "@/app/components/Navigation";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
+import DrawTools from "@/app/components/DrawTools";
 import "./styles/globals.css";
 
 export const viewport = {
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
       <body className={pixelifySans.className}>
         <BackgroundPattern />
         <Navigation />
+        <DrawTools />
         <main className="main-content">{children}</main>
       </body>
     </html>
