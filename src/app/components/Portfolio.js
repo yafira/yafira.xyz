@@ -237,7 +237,7 @@ export default function Portfolio() {
         </div>
         <h1 className="home-claim">
           i&apos;m <span className="hero-name-accent">yafira</span>, a design
-          engineer and creative technologist building <CycleWord />.
+          engineer and creative technologist crafting <CycleWord />.
         </h1>
         <p className="home-proof">
           NYU ITP · electrocute-ui on npm · 22+ tools at tinytinker.tools · open
