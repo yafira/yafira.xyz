@@ -1326,9 +1326,25 @@ html.home-locked .connector-lines {
 /* hover lift: scoped to devices with real hover support (mouse/trackpad)
    only. Touch fakes a :hover on tap, so a swipe through several cards was
    triggering this transform on each one — jiggling while scrolling. */
+/* tilt-lift on hover: alternating rotation direction card-to-card,
+   echoing the stacked-photo look from Google Labs' hero — but only
+   on hover, so the grid still sits flat and aligned at rest. Scoped
+   to real hover devices only (see comment above) for the same
+   touch-jiggle reason. */
+/* base hover lift, all grids — no tilt by default. */
 @media (hover: hover) and (pointer: fine) {
   .project-box:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+  }
+
+  /* tilt-lift, featured tier only — the 2 large cards at the top.
+     Everything below (secondary grid, "more" drawer) keeps the
+     plain lift above, no rotation. */
+  .projects-grid.featured .project-box:hover {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+  .projects-grid.featured .project-box:nth-child(even):hover {
+    transform: translateY(-6px) rotate(1deg);
   }
 }
 
@@ -3080,6 +3096,7 @@ html.home-locked .connector-lines {
   margin: 1.25rem 0 1.75rem;
 }
 .work-filter-pill {
+  --tilt: 0deg;
   font-family: var(--font-code);
   font-size: 0.88rem;
   text-transform: lowercase;
@@ -3090,14 +3107,82 @@ html.home-locked .connector-lines {
   color: #444;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: rotate(var(--tilt));
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease,
     transform 0.15s ease;
 }
+/* alternating rest tilt, echoing labs.google's scattered pill row —
+   a CSS variable per pill so the drop-in animation below and the
+   hover lift can both build on top of the same resting angle
+   instead of fighting over the transform property. */
+.work-filter-row .work-filter-pill:nth-child(6n + 1) {
+  --tilt: -3deg;
+}
+.work-filter-row .work-filter-pill:nth-child(6n + 2) {
+  --tilt: 2deg;
+}
+.work-filter-row .work-filter-pill:nth-child(6n + 3) {
+  --tilt: -1.5deg;
+}
+.work-filter-row .work-filter-pill:nth-child(6n + 4) {
+  --tilt: 3deg;
+}
+.work-filter-row .work-filter-pill:nth-child(6n + 5) {
+  --tilt: -2deg;
+}
+.work-filter-row .work-filter-pill:nth-child(6n + 6) {
+  --tilt: 1.5deg;
+}
+
+/* drop-in on mount: pills fall from above and settle into their
+   resting tilt with a little overshoot bounce, staggered so they
+   land one after another rather than all at once. */
+@keyframes pill-drop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-70px) rotate(calc(var(--tilt) - 10deg));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(6px) rotate(calc(var(--tilt) + 2deg));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--tilt));
+  }
+}
+.work-filter-row .work-filter-pill {
+  animation: pill-drop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.work-filter-row .work-filter-pill:nth-child(1) {
+  animation-delay: 0s;
+}
+.work-filter-row .work-filter-pill:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.work-filter-row .work-filter-pill:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.work-filter-row .work-filter-pill:nth-child(4) {
+  animation-delay: 0.24s;
+}
+.work-filter-row .work-filter-pill:nth-child(5) {
+  animation-delay: 0.32s;
+}
+.work-filter-row .work-filter-pill:nth-child(6) {
+  animation-delay: 0.4s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-filter-row .work-filter-pill {
+    animation: none;
+  }
+}
+
 .work-filter-pill:hover {
-  transform: translateY(-1px);
+  transform: translateY(-1px) rotate(var(--tilt));
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .work-filter-pill {
@@ -3217,6 +3302,12 @@ html.home-locked .connector-lines {
   display: flex;
   justify-content: center;
   margin-bottom: 0.5rem;
+}
+
+.home-hero-flower-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 .home-hero-flower img {
   width: clamp(140px, 16vw, 220px) !important;
@@ -3544,6 +3635,10 @@ html.home-locked .connector-lines {
   height: 30px;
 }
 .home-claim {
+  position: relative;
+  z-index: 1; /* explicit — guarantees this stays above the blob
+                 layer (z-index:0) regardless of DOM order, now that
+                 the blobs are large/opaque enough to matter. */
   font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(1.7rem, 3.6vw, 2.7rem);
@@ -3558,6 +3653,8 @@ html.home-locked .connector-lines {
   }
 }
 .home-proof {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-code);
   font-size: 0.82rem;
   letter-spacing: 0.02em;

@@ -225,15 +225,17 @@ export default function Portfolio() {
   return (
     <div className="home-page">
       <section className="home-claim-wrap">
-        <div className="home-hero-flower">
-          <Image
-            src="/assets/flower-logo.png"
-            alt="Yafira's flower mark"
-            width={340}
-            height={340}
-            priority
-            style={{ objectFit: "contain", mixBlendMode: "multiply" }}
-          />
+        <div className="home-hero-flower-wrap">
+          <div className="home-hero-flower">
+            <Image
+              src="/assets/flower-logo.png"
+              alt="Yafira's flower mark"
+              width={340}
+              height={340}
+              priority
+              style={{ objectFit: "contain", mixBlendMode: "multiply" }}
+            />
+          </div>
         </div>
         <h1 className="home-claim">
           i&apos;m <span className="hero-name-accent">yafira</span>, a design
