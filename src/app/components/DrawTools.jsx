@@ -13,12 +13,6 @@ import {
   Paintbrush,
 } from "lucide-react";
 
-// one toolbar, one set of tools (highlighter / crayon / stamp), used
-// on whichever of two draw targets is currently active: the full
-// page (draws directly on top of the site) or a bounded pad (a
-// dashed-border canvas). the frame icon just switches which surface
-// your strokes land on — no second toolbar, no duplicate tool set.
-
 const COLORS = [
   { name: "wisteria", value: "#8b7ab8" },
   { name: "blush", value: "#e6a8c4" },
@@ -39,9 +33,6 @@ const PAGE_STORAGE_PREFIX = "draw-layer:";
 const PAD_STORAGE_KEY = "draw-layer:pad";
 
 export default function DrawTools() {
-  // hidden on mobile entirely (see draw-tools.css) — skip mounting
-  // the canvas/resize logic there too rather than let it run for a
-  // feature nobody on that screen size can even see.
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 640);
@@ -51,12 +42,11 @@ export default function DrawTools() {
   }, []);
 
   const [active, setActive] = useState(false);
-  const [mode, setMode] = useState("page"); // 'page' | 'pad'
+  const [mode, setMode] = useState("page");
   const [tool, setTool] = useState("highlighter");
   const [color, setColor] = useState(COLORS[0].value);
   const [stamp, setStamp] = useState(STAMPS[0]);
 
-  // ── two independent draw targets, same engine ────────────────────
   const pageCanvasRef = useRef(null);
   const pageCtxRef = useRef(null);
   const pageStrokesRef = useRef([]);
@@ -76,7 +66,6 @@ export default function DrawTools() {
       ? PAGE_STORAGE_PREFIX + window.location.pathname
       : null;
 
-  // returns the refs/setters for whichever surface is currently active
   const target = () =>
     mode === "pad"
       ? {
@@ -135,9 +124,7 @@ export default function DrawTools() {
     if (!t.storageKey) return;
     try {
       localStorage.setItem(t.storageKey, JSON.stringify(t.strokesRef.current));
-    } catch (e) {
-      // storage full/blocked — drawing still works this session, just won't persist
-    }
+    } catch (e) {}
     t.setHas(t.strokesRef.current.length > 0);
   };
 
@@ -149,29 +136,31 @@ export default function DrawTools() {
         t.strokesRef.current = JSON.parse(saved);
         t.setHas(t.strokesRef.current.length > 0);
       }
-    } catch (e) {
-      // corrupted/unavailable storage — start empty rather than break the page
-    }
+    } catch (e) {}
   };
 
-  // ── page canvas: full scrollable page, sized on mount ────────────
+  // page canvas resize — FIXED: resets to 0 before remeasuring, and
+  // measures window.innerWidth instead of document.documentElement's
+  // scrollWidth. The old version fed the canvas's own current size
+  // back into the next measurement, so on resize it could only grow,
+  // never shrink — inflating the page's total width past the visible
+  // viewport. Since overflow-x:hidden is set globally, that showed up
+  // as every line of text getting silently clipped at the right edge
+  // instead of a scrollbar appearing — exactly the compressed-window
+  // bug reported.
   const resizePageCanvas = useCallback(() => {
     const canvas = pageCanvasRef.current;
     if (!canvas) return;
     const dpr = window.devicePixelRatio || 1;
 
-    // shrink to zero before measuring — otherwise the canvas's own
-    // previous size gets baked into document.documentElement's
-    // scrollWidth/scrollHeight, and the canvas can only ever grow on
-    // resize, never shrink back down. That inflated the page's total
-    // layout width past the viewport, breaking responsiveness.
     canvas.style.width = "0px";
     canvas.style.height = "0px";
 
-    // width comes from the viewport, not scrollWidth — the site has
-    // overflow-x: hidden globally, so there's no legitimate reason
-    // for the canvas to be wider than the visible viewport anyway.
-    const width = window.innerWidth;
+    // clientWidth, not innerWidth — innerWidth includes the vertical
+    // scrollbar's track width, so it was still a few px wider than
+    // the actual visible content area. clientWidth excludes it,
+    // matching exactly what overflow-x:hidden is meant to protect.
+    const width = document.documentElement.clientWidth;
     const height = document.documentElement.scrollHeight;
 
     canvas.width = width * dpr;
@@ -202,7 +191,6 @@ export default function DrawTools() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resizePageCanvas]);
 
-  // ── pad canvas: bounded box, sized whenever it becomes visible ───
   const resizePadCanvas = useCallback(() => {
     const canvas = padCanvasRef.current;
     if (!canvas) return;
@@ -247,9 +235,6 @@ export default function DrawTools() {
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    // the full-page canvas needs the scroll offset added (it's
-    // absolutely positioned over the whole document); the pad canvas
-    // doesn't scroll independently, so it doesn't need the offset.
     if (mode === "page") {
       return {
         x: clientX - rect.left + window.scrollX,

@@ -3563,25 +3563,9 @@ html.home-locked .connector-lines {
   letter-spacing: 0.02em;
   color: var(--text-secondary);
   margin-bottom: 1.4rem;
-  white-space: nowrap;
-  max-width: none;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   text-align: center;
   text-wrap: balance;
 }
-@media (max-width: 700px) {
-  .home-proof {
-    white-space: normal;
-    width: auto;
-    position: static;
-    left: auto;
-    transform: none;
-  }
-}
-
 .selected-mark-heading {
   display: flex;
   align-items: center;
@@ -4451,11 +4435,26 @@ span {
 }
 .projects-grid.secondary {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* capped at 3 columns — auto-fill was producing 4+ on wide screens,
+     which read as visually unbalanced sitting under the 2-column
+     featured grid above it. repeat(3, ...) with a max-width also
+     keeps individual cards from stretching too wide on huge screens. */
+  grid-template-columns: repeat(3, minmax(240px, 340px));
+  justify-content: center;
   align-items: stretch;
   gap: clamp(14px, 2vw, 22px);
   padding-top: 0.5rem;
   padding-bottom: 1rem;
+}
+@media (max-width: 900px) {
+  .projects-grid.secondary {
+    grid-template-columns: repeat(2, minmax(220px, 340px));
+  }
+}
+@media (max-width: 560px) {
+  .projects-grid.secondary {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 .projects-grid.secondary .project-box[data-compact] {
   width: 100%;
