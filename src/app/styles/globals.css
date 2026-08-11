@@ -2455,6 +2455,10 @@ html.home-locked .connector-lines {
   font-weight: 800;
   letter-spacing: 0.02em;
 }
+[data-theme="dark"] .link-btn.primary:hover {
+  color: #000000;
+  background: rgba(185, 168, 232, 0.1);
+}
 .posts-all {
   display: flex;
   align-items: center;
