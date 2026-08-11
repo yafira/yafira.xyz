@@ -3096,7 +3096,6 @@ html.home-locked .connector-lines {
   margin: 1.25rem 0 1.75rem;
 }
 .work-filter-pill {
-  --tilt: 0deg;
   font-family: var(--font-code);
   font-size: 0.88rem;
   text-transform: lowercase;
@@ -3107,7 +3106,6 @@ html.home-locked .connector-lines {
   color: #444;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transform: rotate(var(--tilt));
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -3137,26 +3135,26 @@ html.home-locked .connector-lines {
   --tilt: 1.5deg;
 }
 
-/* drop-in on mount: pills fall from above and settle into their
-   resting tilt with a little overshoot bounce, staggered so they
-   land one after another rather than all at once. */
+/* drop-in on mount: pills fall straight from above with a vertical bounce */
 @keyframes pill-drop-in {
   0% {
     opacity: 0;
-    transform: translateY(-70px) rotate(calc(var(--tilt) - 10deg));
+    transform: translateY(-70px);
   }
   60% {
     opacity: 1;
-    transform: translateY(6px) rotate(calc(var(--tilt) + 2deg));
+    transform: translateY(6px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) rotate(var(--tilt));
+    transform: translateY(0);
   }
 }
-.work-filter-row .work-filter-pill {
+
+.work-filter-pill {
   animation: pill-drop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
+
 .work-filter-row .work-filter-pill:nth-child(1) {
   animation-delay: 0s;
 }
@@ -3175,14 +3173,15 @@ html.home-locked .connector-lines {
 .work-filter-row .work-filter-pill:nth-child(6) {
   animation-delay: 0.4s;
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .work-filter-row .work-filter-pill {
+  .work-filter-pill {
     animation: none;
   }
 }
 
 .work-filter-pill:hover {
-  transform: translateY(-1px) rotate(var(--tilt));
+  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .work-filter-pill {
