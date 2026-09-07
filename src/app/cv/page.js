@@ -28,6 +28,38 @@ export default function CVPage() {
         <h2 className="cv-heading">experience</h2>
 
         <div className="cv-list">
+          {/* electrocute lab */}
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                founder, design engineer & creative technologist, electrocute
+                lab
+              </div>
+              <span className="cv-date">jan 2023 – present</span>
+            </div>
+            <p className="cv-summary">
+              tinkerer-in-chief at electrocute lab, my independent creative
+              technology practice spanning soft electronics, physical computing,
+              and web-based tools. i design and build interactive prototypes,
+              write code, and develop educational resources that make circuitry
+              and hardware more approachable — sharing the process through
+              documentation, writing, and open-source projects. ongoing work
+              also shared{" "}
+              <a
+                href="https://www.instagram.com/electrocutelab/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @electrocutelab{" "}
+              </a>
+              on instagram.
+            </p>
+            <p className="cv-skills">
+              <span className="label">skills:</span> physical computing, soft
+              electronics, web development, technical writing, open-source
+            </p>
+          </div>
+
           {/* nyu (grouped) */}
           <div className="cv-item grouped">
             <div className="cv-company-row">
