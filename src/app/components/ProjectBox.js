@@ -83,6 +83,7 @@ const ProjectBox = ({
   compact = false,
   process,
   swatches,
+  status,
 }) => {
   const [panelUrl, setPanelUrl] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -169,6 +170,11 @@ const ProjectBox = ({
           <ThumbTag className={styles.thumb} {...thumbLinkProps}>
             <img src={imageUrl} alt={title} className={styles.thumbImg} />
             <span className={styles.catTag}>{category}</span>
+            {status && (
+              <span className={styles.statusTag} data-status={status}>
+                {status}
+              </span>
+            )}
             {badge && (
               <span className={`project-badge ${badge} ${styles.badgeOverlay}`}>
                 {badge}
@@ -181,6 +187,11 @@ const ProjectBox = ({
             {...thumbLinkProps}
           >
             <span className={styles.catTag}>{category}</span>
+            {status && (
+              <span className={styles.statusTag} data-status={status}>
+                {status}
+              </span>
+            )}
             {badge && (
               <span className={`project-badge ${badge} ${styles.badgeOverlay}`}>
                 {badge}

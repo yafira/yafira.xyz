@@ -5,12 +5,18 @@
 // disciplines (optional): "design" | "code" | "hardware" — renders as badges.
 // process (featuredWork only): { problem, approach, result }.
 // swatches (optional): design tokens rendered as live color chips.
+// status (optional): "shipped" | "concept" | "prototype" — renders as a
+// small always-visible tag on the thumbnail. "shipped" = live/published/
+// in real use; "prototype" = built and working but not published/
+// distributed (most hardware); "concept" = speculative/design-only, no
+// working build (e.g. a Figma case study).
 
 export const featuredWork = [
   {
     title: "electrocute-ui",
     imageUrl: "/assets/ecuteui.gif",
     category: "code",
+    status: "shipped",
     description:
       "Design system and React component library published on npm: 18 design tokens, 8 components, and a live documentation site. Designed, built, documented, and shipped end to end.",
     stack: "React · npm · Storybook",
@@ -42,6 +48,7 @@ export const featuredWork = [
     title: "cache",
     imageUrl: "/assets/cache.gif",
     category: "code",
+    status: "shipped",
     description:
       "A moodboard tool where you paste, drag, and style inspiration like you actually think. Create a patch, collect your stash, keep everything cached!",
     stack: "Next.js · React · CSS Modules",
@@ -65,6 +72,7 @@ export const featuredWork = [
     title: "Spot Mapper",
     imageUrl: "/assets/spot-mapper.gif",
     category: "code",
+    status: "shipped",
     description:
       "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
     stack: "Leaflet · SheetJS · Redis · Vercel",
@@ -90,6 +98,7 @@ export const secondaryWork = [
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
     category: "code",
+    status: "shipped",
     description:
       "A growing suite of free browser-based tools for makers, featuring utilities for electronics, programming, color, generative text, accessibility, print, and other creative workflows.",
     stack: "Next.js · TypeScript",
@@ -104,6 +113,7 @@ export const secondaryWork = [
     title: "Lumi",
     imageUrl: "/assets/lumi-preview.gif",
     category: "design",
+    status: "concept",
     description:
       "Speculative migraine-detection wearable taken from research to a working prototype, spanning three hardware form factors and a companion app.",
     stack: "React · TypeScript · Vite",
@@ -125,6 +135,7 @@ export const secondaryWork = [
     title: "ml5.js contributions",
     imageUrl: "/assets/ml5.gif",
     category: "code",
+    status: "shipped",
     description:
       "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
     stack: "Docsify · JavaScript",
@@ -138,6 +149,7 @@ export const secondaryWork = [
     title: "Equitable Syllabus Project",
     imageUrl: "/assets/esp.gif",
     category: "code",
+    status: "shipped",
     description:
       "Redesigned and rebuilt the Equitable Syllabus Project's website for NYU ITP as lead developer, migrating to Next.js with a new information architecture.",
     stack: "Next.js",
@@ -159,6 +171,7 @@ export const rdWork = [
     title: "Soft Components",
     imageUrl: "/assets/soft-components.gif",
     category: "code",
+    status: "shipped",
     description:
       "Interactive reference library for soft electronic components — felt buttons, fabric potentiometers, pressure sensors — each pairing a live physics-based demo with the material science underneath it.",
     stack: "Next.js · TypeScript · GSAP · Motion",
@@ -186,6 +199,7 @@ export const rdWork = [
     title: "TinkerThread",
     imageUrl: "/assets/tt.gif",
     category: "code",
+    status: "shipped",
     description:
       "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
     stack: "JavaScript · Canvas",
@@ -199,6 +213,7 @@ export const rdWork = [
     title: "AirSense",
     imageUrl: "/assets/airsense.png",
     category: "electronics",
+    status: "prototype",
     description:
       "An indoor air quality sensor housed in a transparent, house-shaped acrylic enclosure with a color-coded display for at-a-glance readability, paired with a live web dashboard. Rebuilt from HTTP polling to an MQTT pub/sub pipeline to support real-time historical charting.",
     stack: "Arduino · BME680 · MQTT · Chart.js · React",
@@ -217,6 +232,7 @@ export const rdWork = [
     title: "the soft computer",
     imageUrl: "/assets/tsc.png",
     category: "electronics",
+    status: "prototype",
     description:
       "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
     stack: "Raspberry Pi · RP2350 · Python · machine knitting",

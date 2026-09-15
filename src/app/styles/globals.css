@@ -91,6 +91,18 @@
   --border-accent: #b9a8e8;
   --border-accent-soft: #6b5a9e;
 
+  /* these five previously had no dark override at all, so they stayed
+     at their pale light-mode values (e.g. --text-color: #d7efff) even
+     in dark mode — nearly invisible against the dark background at
+     the low opacities the background-pattern doodles use them at.
+     brighter/more saturated versions here, tuned for a dark backdrop
+     instead of a light one. */
+  --craft-color: #e8a8c8;
+  --code-color: #8ee0a8;
+  --design-color: #d8a8ec;
+  --electronics-color: #b9a8e8;
+  --text-color: #a8d4f0;
+
   --wisteria-dust: #2a2740;
   --blush-powder: #332430;
   --matcha-foam: #223326;
@@ -418,6 +430,65 @@ html.home-locked .connector-lines {
   height: 100%;
   z-index: -1;
   pointer-events: none;
+}
+
+/* second layer, for the five clickable doodles only. sits above normal
+   page content (positive z-index, unlike .bg-pattern's -1) so clicks
+   can actually reach the doodles instead of being intercepted by
+   body/main's own box — but pointer-events:none on the svg itself
+   means this layer is invisible to clicks everywhere else. z-index:6
+   clears every plain content z-index on the page (.index-block and
+   friends top out at 2-5 — .index-block ties at 2 is what caused
+   doodles near cards/sections to stop working, since ties go to
+   whichever element is later in the DOM), while staying well below
+   real UI chrome like .navigation (10) and .lab-toast (50). */
+.bg-pattern-interactive {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+  pointer-events: none;
+}
+.bg-pattern-interactive .doodle-interactive {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.bg-pattern-interactive .doodle-interactive:focus-visible {
+  outline: 2px solid var(--border-accent);
+  outline-offset: 4px;
+}
+/* one-shot: spins several full turns while shrinking to nothing and
+   fading out, staying anchored in place the whole time (fill-box is
+   what keeps rotate/scale centered on the spiral itself rather than
+   the whole 1600x1200 svg viewport — without it, "center" resolves
+   relative to the viewport and the spiral swings around a distant
+   point instead of spinning in place). `forwards` holds the final
+   (invisible) state until the component's onAnimationEnd fires and
+   resets it back to the plain resting spiral, ready to trigger again —
+   it doesn't loop or bounce back to full size mid-animation. */
+@keyframes void-spiral-fall {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.32;
+  }
+  100% {
+    transform: rotate(1080deg) scale(0);
+    opacity: 0;
+  }
+}
+.void-spiral-falling {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: void-spiral-fall 2.6s ease-in forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .void-spiral-falling {
+    animation: none;
+  }
+}
+[data-theme="accessible"] .bg-pattern-interactive {
+  display: none;
 }
 
 .lab-toast {
