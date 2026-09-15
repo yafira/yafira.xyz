@@ -6,6 +6,8 @@
   --font-body: "Space Grotesk", sans-serif;
   --font-code: "Fira Code", monospace;
   --font-display: "Pixelify Sans", sans-serif;
+  --font-hero: "Space Mono", monospace;
+  --font-name-accent: "Departure Mono", monospace;
   --font-family: var(--font-body);
 
   --net-size: clamp(340px, 70vw, 920px);
@@ -3298,7 +3300,7 @@ html.home-locked .connector-lines {
   z-index: 2;
 }
 .hero-name-accent {
-  font-family: var(--font-display);
+  font-family: var(--font-name-accent);
   font-weight: 400;
 }
 .home-hero-flower {
@@ -3642,7 +3644,7 @@ html.home-locked .connector-lines {
   z-index: 1; /* explicit — guarantees this stays above the blob
                  layer (z-index:0) regardless of DOM order, now that
                  the blobs are large/opaque enough to matter. */
-  font-family: var(--font-display);
+  font-family: var(--font-hero);
   font-weight: 400;
   font-size: clamp(1.7rem, 3.6vw, 2.7rem);
   line-height: 1.3;
@@ -3916,8 +3918,10 @@ html.home-locked .connector-lines {
   border-radius: 10px;
   border: 1px dashed var(--border-accent-soft);
   text-align: left;
+  font-family: var(--font-body);
 }
 .process-body p {
+  font-family: var(--font-body);
   font-size: 0.8rem;
   line-height: 1.5;
   color: var(--text-primary);
@@ -3941,7 +3945,7 @@ html.home-locked .connector-lines {
 .process-swatches {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px dashed rgba(139, 122, 184, 0.4);
@@ -3953,8 +3957,8 @@ html.home-locked .connector-lines {
   gap: 3px;
 }
 .process-swatch-color {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -4519,13 +4523,19 @@ span {
   }
 }
 
-/* secondary work tier */
+/* secondary work tier
+   grid column counts are matched to each tier's current item count
+   (featured=3 → one full row of 3; secondary=4 and r&d=4 → clean 2x2
+   grids) so every row fills completely instead of leaving an orphan
+   card. if a project is added or removed from featuredWork,
+   secondaryWork, or rdWork in projectData.js, revisit these column
+   counts so rows keep dividing evenly. */
 .projects-grid.featured {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: clamp(20px, 3vw, 36px);
-  max-width: 1000px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(24px, 3vw, 40px);
+  max-width: 1860px;
   padding-top: 0.5rem;
 }
 .projects-grid.featured .project-box {
@@ -4535,46 +4545,30 @@ span {
 }
 .projects-grid.secondary {
   display: grid;
-  /* capped at 3 columns — auto-fill was producing 4+ on wide screens,
-     which read as visually unbalanced sitting under the 2-column
-     featured grid above it. repeat(3, ...) with a max-width also
-     keeps individual cards from stretching too wide on huge screens. */
-  grid-template-columns: repeat(3, minmax(240px, 340px));
-  justify-content: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
-  gap: clamp(14px, 2vw, 22px);
+  gap: clamp(18px, 2.4vw, 28px);
+  max-width: 900px;
+  margin: 0 auto;
   padding-top: 0.5rem;
   padding-bottom: 1rem;
-}
-@media (max-width: 900px) {
-  .projects-grid.secondary {
-    grid-template-columns: repeat(2, minmax(220px, 340px));
-  }
-}
-@media (max-width: 560px) {
-  .projects-grid.secondary {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 .projects-grid.secondary .project-box[data-compact] {
   width: 100%;
   min-width: 0;
   max-width: none;
 }
-.projects-grid.featured .project-box:last-child,
-.projects-grid.secondary .project-box:last-child {
-  flex-grow: 0;
-  max-width: none;
-}
-@media (max-width: 780px) {
+@media (max-width: 900px) {
   .projects-grid.featured {
-    grid-template-columns: 1fr;
-    max-width: 480px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 920px;
   }
 }
 @media (max-width: 560px) {
-  .projects-grid.featured .project-box {
-    width: 100%;
+  .projects-grid.featured,
+  .projects-grid.secondary {
+    grid-template-columns: 1fr;
+    max-width: 460px;
   }
 }
 
@@ -4583,25 +4577,16 @@ span {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.75rem;
   margin: 3rem 0 0.5rem;
 }
-.stitch-mark-line {
-  width: 100px;
-  height: 12px;
-  color: var(--border-accent);
-  stroke: currentColor;
-  stroke-dasharray: 130;
-  stroke-dashoffset: 130;
-  transition: stroke-dashoffset 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.stitch-mark-line.is-drawn {
-  stroke-dashoffset: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  .stitch-mark-line {
-    stroke-dashoffset: 0;
-    transition: none;
-  }
+.stitch-mark-label {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  color: var(--text-primary);
+  opacity: 0.85;
 }
 
 /* draw layer: transparent canvas fixed above the whole page.

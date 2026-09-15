@@ -12,10 +12,15 @@ import Reveal from "@/app/components/Reveal";
 import {
   featuredWork,
   secondaryWork,
+  rdWork,
   moreProjects,
 } from "@/app/lib/projectData";
 
-// homepage: hero → featured work → secondary work → more projects → contact.
+// homepage: hero → featured work → secondary work → r&d/physical computing →
+// more projects → contact. featured + secondary are software/product work,
+// kept first for design-engineering-focused readers; r&d is the soft
+// electronics/e-textile/hardware practice, deliberately a step down in
+// weight so it reads as R&D rather than the main pitch.
 // /work redirects here. craft lives at electrocute lab; blogs live in the lab flyout.
 //
 // section marks perform their tier instead of naming it — checkmark draws
@@ -155,44 +160,15 @@ function SelectedMark() {
   );
 }
 
-// running-stitch line that draws itself on scroll into view — same
-// pattern as SelectedMark. extends the duality-stitch motif from the hero.
+// section label for the web & product tier. previously an animated
+// stitch line; now just the label text.
 function StitchMark() {
-  const ref = useRef(null);
-  const [drawn, setDrawn] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setDrawn(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.6 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
-    <h2 className="stitch-mark-heading" ref={ref}>
+    <h2 className="stitch-mark-heading">
       <span className="sr-only">also</span>
-      <svg
-        viewBox="0 0 120 12"
-        aria-hidden="true"
-        className={`stitch-mark-line ${drawn ? "is-drawn" : ""}`}
-      >
-        <path
-          d="M2 6 L118 6"
-          fill="none"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeDasharray="6 5"
-        />
-      </svg>
+      <span aria-hidden="true" className="stitch-mark-label">
+        web &amp; product
+      </span>
     </h2>
   );
 }
@@ -242,7 +218,7 @@ export default function Portfolio() {
           engineer and creative technologist crafting <CycleWord />.
         </h1>
         <p className="home-proof">
-          NYU ITP · electrocute-ui on npm · 22+ tools at tinytinker.tools · open
+          electrocute-ui on npm · 22+ tools at tinytinker.tools · NYU ITP · open
           hardware summit berlin fellow
         </p>
         <div className="duality-strip" aria-label="design, code, hardware">
@@ -293,6 +269,26 @@ export default function Portfolio() {
         <StitchMark />
         <div className="projects-grid secondary">
           {secondaryWork.map((project) => (
+            <ProjectBox
+              key={project.title}
+              {...project}
+              category={project.category}
+              showLinksAlways
+              compact
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* tier 3 — r&d / physical computing. same compact card as secondary,
+          but visually labeled and a step down in weight so this reads as
+          R&D alongside the software/product work above, not part of it. */}
+      <div className="index-block">
+        <h2 className="work-section-heading work-secondary-heading">
+          r&amp;d / physical computing
+        </h2>
+        <div className="projects-grid secondary">
+          {rdWork.map((project) => (
             <ProjectBox
               key={project.title}
               {...project}

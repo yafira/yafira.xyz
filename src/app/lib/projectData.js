@@ -39,36 +39,6 @@ export const featuredWork = [
     ],
   },
   {
-    title: "Soft Components",
-    imageUrl: "/assets/soft-components.gif",
-    category: "code",
-    description:
-      "Interactive reference library for soft electronic components — felt buttons, fabric potentiometers, pressure sensors — each pairing a live physics-based demo with the material science underneath it.",
-    stack: "Next.js · TypeScript · GSAP · Motion",
-    tags: [
-      "design engineering",
-      "e-textiles",
-      "physical computing",
-      "creative coding",
-    ],
-    disciplines: ["design", "code"],
-    links: {
-      web: "https://soft-components.vercel.app/",
-      code: "https://github.com/yafira/soft-components",
-    },
-    process: {
-      problem:
-        "Static diagrams can't show how a soft circuit actually behaves — the squish of a felt button, the slide of a fabric potentiometer, the give of a pressure sensor. Documentation for e-textiles usually flattens exactly the quality that makes them worth using.",
-      approach:
-        "Prototyped three different animation approaches — plain CSS transforms, GSAP timeline sequencing, and Motion's spring physics — before realizing the right answer wasn't picking one, but matching the animation model to the material behavior each component actually needed to demonstrate. A felt button's squash-and-release needed spring easing; a fabric potentiometer's slide needed timeline-driven interpolation instead.",
-      result:
-        "A library where every component's demo teaches its physical behavior first, material science second — interaction as documentation rather than a diagram bolted on afterward.",
-    },
-  },
-];
-
-export const secondaryWork = [
-  {
     title: "cache",
     imageUrl: "/assets/cache.gif",
     category: "code",
@@ -82,7 +52,40 @@ export const secondaryWork = [
       code: "https://github.com/yafira/cache",
       casestudy: "https://cachecraft.io/case-study",
     },
+    process: {
+      problem:
+        "Most moodboard tools force inspiration into a rigid grid or board layout — but visual reference doesn't actually get collected that way. It gets pasted in fast, layered, and revisited out of order.",
+      approach:
+        "Built around one core interaction: paste an image or link and it drops onto a freely-positioned canvas immediately, no upload flow in the way. Kept the organizing model to just two concepts — a patch (a working canvas) and a stash (a saved collection) — so styling and arranging stays fast instead of growing into folder-and-database overhead.",
+      result:
+        "A tool that gets out of the way: paste, drag, style, done. Full write-up in the case study.",
+    },
   },
+  {
+    title: "Spot Mapper",
+    imageUrl: "/assets/spot-mapper.gif",
+    category: "code",
+    description:
+      "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
+    stack: "Leaflet · SheetJS · Redis · Vercel",
+    tags: ["full-stack", "web tooling", "real-time collaboration"],
+    disciplines: ["design", "code"],
+    links: {
+      demo: "https://spot-mapper.vercel.app",
+      casestudy: "https://spot-mapper-case-study.vercel.app",
+    },
+    process: {
+      problem:
+        "150+ participants needed to claim physical exhibition spots on a shared floor plan during ITP Camp's showcase setup, without an admin manually resolving conflicting claims by hand.",
+      approach:
+        "Built the floor plan on Leaflet, with Redis backing shared state so one participant's claim appears live for everyone else immediately. Token-based access scoped each participant to claiming and editing only their own spot, with separate admin and viewer modes so instructors could oversee the whole map without opening every claim up to everyone.",
+      result:
+        "A live tool that ran the actual showcase setup for 150+ participants, plus handoff docs so ITP staff can run it themselves in future years without needing a developer on call.",
+    },
+  },
+];
+
+export const secondaryWork = [
   {
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
@@ -119,33 +122,6 @@ export const secondaryWork = [
     },
   },
   {
-    title: "Spot Mapper",
-    imageUrl: "/assets/spot-mapper.gif",
-    category: "code",
-    description:
-      "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
-    stack: "Leaflet · SheetJS · Redis · Vercel",
-    tags: ["full-stack", "web tooling", "real-time collaboration"],
-    disciplines: ["design", "code"],
-    links: {
-      demo: "https://spot-mapper.vercel.app",
-      casestudy: "https://spot-mapper-case-study.vercel.app",
-    },
-  },
-  {
-    title: "TinkerThread",
-    imageUrl: "/assets/tt.gif",
-    category: "code",
-    description:
-      "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
-    stack: "JavaScript · Canvas",
-    tags: ["simulation", "circuits", "e-textiles", "web tooling", "frontend"],
-    disciplines: ["code", "hardware"],
-    links: {
-      demo: "https://tinkerthread.netlify.app/",
-    },
-  },
-  {
     title: "ml5.js contributions",
     imageUrl: "/assets/ml5.gif",
     category: "code",
@@ -169,6 +145,54 @@ export const secondaryWork = [
     disciplines: ["design", "code"],
     links: {
       web: "https://itp.nyu.edu/esp#/",
+    },
+  },
+];
+
+// r&d / physical computing — soft electronics, e-textiles, and hardware
+// work. Kept as a visually distinct, lower-weight tier from the
+// software/product work above so a design-engineering-focused reader
+// hits the product work first and this reads as R&D rather than the
+// main pitch.
+export const rdWork = [
+  {
+    title: "Soft Components",
+    imageUrl: "/assets/soft-components.gif",
+    category: "code",
+    description:
+      "Interactive reference library for soft electronic components — felt buttons, fabric potentiometers, pressure sensors — each pairing a live physics-based demo with the material science underneath it.",
+    stack: "Next.js · TypeScript · GSAP · Motion",
+    tags: [
+      "design engineering",
+      "e-textiles",
+      "physical computing",
+      "creative coding",
+    ],
+    disciplines: ["design", "code"],
+    links: {
+      web: "https://soft-components.vercel.app/",
+      code: "https://github.com/yafira/soft-components",
+    },
+    process: {
+      problem:
+        "Static diagrams can't show how a soft circuit actually behaves — the squish of a felt button, the slide of a fabric potentiometer, the give of a pressure sensor. Documentation for e-textiles usually flattens exactly the quality that makes them worth using.",
+      approach:
+        "Prototyped three different animation approaches — plain CSS transforms, GSAP timeline sequencing, and Motion's spring physics — before realizing the right answer wasn't picking one, but matching the animation model to the material behavior each component actually needed to demonstrate. A felt button's squash-and-release needed spring easing; a fabric potentiometer's slide needed timeline-driven interpolation instead.",
+      result:
+        "A library where every component's demo teaches its physical behavior first, material science second — interaction as documentation rather than a diagram bolted on afterward.",
+    },
+  },
+  {
+    title: "TinkerThread",
+    imageUrl: "/assets/tt.gif",
+    category: "code",
+    description:
+      "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
+    stack: "JavaScript · Canvas",
+    tags: ["simulation", "circuits", "e-textiles", "web tooling", "frontend"],
+    disciplines: ["code", "hardware"],
+    links: {
+      demo: "https://tinkerthread.netlify.app/",
     },
   },
   {
@@ -211,7 +235,7 @@ export const secondaryWork = [
 ];
 
 // kept for backward compatibility with anything importing selectedWork
-export const selectedWork = [...featuredWork, ...secondaryWork];
+export const selectedWork = [...featuredWork, ...secondaryWork, ...rdWork];
 
 export const moreProjects = [
   {

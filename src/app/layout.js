@@ -1,4 +1,5 @@
-import { Pixelify_Sans } from "next/font/google";
+import { Pixelify_Sans, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import Navigation from "@/app/components/Navigation";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
 import DrawTools from "@/app/components/DrawTools";
@@ -46,6 +47,39 @@ export const metadata = {
 };
 
 const pixelifySans = Pixelify_Sans({ weight: "400", subsets: ["latin"] });
+// hero headline only — a genuinely "computerized" monospace, distinct
+// from Pixelify Sans's retro-pixel-game feel. exposed as --font-hero
+// so it doesn't touch the rest of the site (section headers, project
+// titles, etc. all stay on Pixelify Sans).
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-hero",
+});
+// name accent in the hero — Departure Mono isn't on Google Fonts, so
+// it's self-hosted from src/app/fonts (font files + SIL OFL license
+// from github.com/rektdeckard/departure-mono, itself sourced from
+// departuremono.com by Helena Zhang). previously the name used
+// Pixelify Sans here, which clashed visually against the Space Mono
+// sentence around it — Departure Mono is monospace like the rest of
+// the hero, so it stays legible as a unit while still standing out
+// via color/weight.
+const departureMono = localFont({
+  src: [
+    {
+      path: "./fonts/departure-mono/DepartureMono-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/departure-mono/DepartureMono-Regular.woff",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-name-accent",
+  display: "swap",
+});
 
 export default function RootLayout({ children }) {
   return (
@@ -64,7 +98,9 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={pixelifySans.className}>
+      <body
+        className={`${pixelifySans.className} ${spaceMono.variable} ${departureMono.variable}`}
+      >
         <BackgroundPattern />
         <Navigation />
         <DrawTools />
