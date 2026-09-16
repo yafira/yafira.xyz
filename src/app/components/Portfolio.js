@@ -12,6 +12,7 @@ import Reveal from "@/app/components/Reveal";
 import {
   featuredWork,
   secondaryWork,
+  spotlightProject,
   rdWork,
   moreProjects,
 } from "@/app/lib/projectData";
@@ -277,6 +278,61 @@ export default function Portfolio() {
               compact
             />
           ))}
+        </div>
+      </div>
+
+      {/* standalone spotlight — deliberately not a card in a grid. a
+          full-width interlude between the software/product tier above
+          and the r&d tier below, meant to read as a surprise beat in
+          the page's rhythm rather than one more project in a row. */}
+      <div className="index-block spotlight-block">
+        <div className="spotlight">
+          <div className="spotlight-media">
+            <img
+              src={spotlightProject.gifUrl}
+              alt=""
+              className="spotlight-gif"
+            />
+          </div>
+          <div className="spotlight-body">
+            <span className="spotlight-eyebrow">
+              {spotlightProject.eyebrow}
+            </span>
+            <h3 className="spotlight-title">{spotlightProject.title}</h3>
+            <p className="spotlight-description">
+              {spotlightProject.description}
+            </p>
+            <div className="spotlight-stack">{spotlightProject.stack}</div>
+            <div className="spotlight-tags">
+              {spotlightProject.tags.map((tag) => (
+                <span key={tag} className="spotlight-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="spotlight-links">
+              {spotlightProject.links.demo && (
+                <a
+                  href={spotlightProject.links.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="spotlight-link"
+                >
+                  demo ↗
+                </a>
+              )}
+              {spotlightProject.links.code && (
+                <a
+                  href={spotlightProject.links.code}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="spotlight-link"
+                >
+                  code ↗
+                </a>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 

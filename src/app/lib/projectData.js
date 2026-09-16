@@ -161,6 +161,25 @@ export const secondaryWork = [
   },
 ];
 
+// a single standalone showcase, not part of any grid — deliberately
+// full-width and visually distinct, sitting between the software/
+// product tier above and the r&d tier below as a surprise beat rather
+// than another card in a row. no "process" field: this one's meant to
+// read fast and punchy, not like another case study.
+export const spotlightProject = {
+  eyebrow: "a live experiment",
+  title: "pixel picnic",
+  gifUrl: "/assets/pixel-picnic.gif",
+  description:
+    "Pixel Picnic started as a browser-based dithering tool — upload a photo, choose from four algorithms, export real fabrication-ready files for laser engraving or embroidery. This is its newest, liveliest feature: real-time, region-aware dithering over your camera, where an on-device segmentation model finds you in the frame and gives you one treatment while the background gets another — live, with nothing ever sent anywhere.",
+  stack: "Next.js · TypeScript · MediaPipe · Canvas",
+  tags: ["on-device ML", "computer vision", "creative coding"],
+  links: {
+    demo: "https://pixel-picnic.vercel.app/live",
+    code: "https://github.com/yafira/pixel-picnic",
+  },
+};
+
 // r&d / physical computing — soft electronics, e-textiles, and hardware
 // work. Kept as a visually distinct, lower-weight tier from the
 // software/product work above so a design-engineering-focused reader

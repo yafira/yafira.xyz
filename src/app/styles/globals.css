@@ -4643,6 +4643,120 @@ span {
   }
 }
 
+/* standalone spotlight interlude — deliberately not a grid card.
+   wider than the tiers above/below it, side-by-side on desktop, so it
+   reads as a surprise beat in the page's rhythm rather than one more
+   project in a row. */
+.spotlight-block {
+  margin: 4rem 0;
+}
+.spotlight {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 40px);
+  border-radius: 16px;
+  border: 2px dashed var(--border-accent);
+  background: var(--wisteria-dust);
+}
+.spotlight-media {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-accent-soft);
+  background: #000;
+}
+.spotlight-gif {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.spotlight-body {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.spotlight-eyebrow {
+  display: inline-block;
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--border-accent);
+  margin-bottom: 10px;
+}
+.spotlight-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  color: var(--text-primary);
+  margin: 0 0 12px;
+}
+.spotlight-description {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+  max-width: 52ch;
+}
+.spotlight-stack {
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.spotlight-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.spotlight-tag {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--pill-neutral, #f2f0fa);
+  color: var(--text-secondary);
+}
+.spotlight-links {
+  display: flex;
+  gap: 10px;
+}
+.spotlight-link {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #dcf1de;
+  color: #1f5c33;
+}
+.spotlight-link:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+[data-theme="dark"] .spotlight-link {
+  background: #223326;
+  color: #a8e0b8;
+}
+[data-theme="accessible"] .spotlight-link {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+@media (max-width: 860px) {
+  .spotlight {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 /* tier 2's running-stitch mark */
 .stitch-mark-heading {
   display: flex;
