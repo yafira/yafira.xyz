@@ -202,6 +202,7 @@ export default function Portfolio() {
   return (
     <div className="home-page">
       <section className="home-claim-wrap">
+        <p className="home-motto">computing as craft</p>
         <div className="home-hero-flower-wrap">
           <div className="home-hero-flower">
             <Image
@@ -239,8 +240,13 @@ export default function Portfolio() {
           </span>
         </div>
         <ul className="skills-strip" aria-label="core skills">
-          {SKILLS.map((s) => (
-            <li key={s.label} className="skill-chip" data-cat={s.cat}>
+          {SKILLS.map((s, i) => (
+            <li
+              key={s.label}
+              className="skill-chip"
+              data-cat={s.cat}
+              style={{ animationDelay: `${i * 0.045}s` }}
+            >
               {s.label}
             </li>
           ))}
