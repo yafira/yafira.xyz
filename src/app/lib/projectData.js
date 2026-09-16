@@ -69,26 +69,26 @@ export const featuredWork = [
     },
   },
   {
-    title: "Spot Mapper",
-    imageUrl: "/assets/spot-mapper.gif",
+    title: "alt-loom",
+    imageUrl: "/assets/alt-loom.gif",
     category: "code",
     status: "shipped",
     description:
-      "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
-    stack: "Leaflet · SheetJS · Redis · Vercel",
-    tags: ["full-stack", "web tooling", "real-time collaboration"],
+      "An accessibility audit tool that flags missing or weak alt text in pasted HTML, then drafts candidates using a word-level Markov chain — the same technique behind ribbon_logic and PetalByte.",
+    stack: "Vanilla JavaScript · Markov chains",
+    tags: ["accessibility", "generative text", "web tooling"],
     disciplines: ["design", "code"],
     links: {
-      demo: "https://spot-mapper.vercel.app",
-      casestudy: "https://spot-mapper-case-study.vercel.app",
+      web: "https://alt-loom.vercel.app/",
+      code: "https://github.com/yafira/alt-loom",
     },
     process: {
       problem:
-        "150+ participants needed to claim physical exhibition spots on a shared floor plan during ITP Camp's showcase setup, without an admin manually resolving conflicting claims by hand.",
+        "Alt-text checkers either need to crawl a live URL (permission and CORS headaches) or lean on a vision model to actually see the image — an API dependency and a cost. Most just flag the gap and leave the blank field, which is exactly the moment someone tired types 'image' and moves on.",
       approach:
-        "Built the floor plan on Leaflet, with Redis backing shared state so one participant's claim appears live for everyone else immediately. Token-based access scoped each participant to claiming and editing only their own spot, with separate admin and viewer modes so instructors could oversee the whole map without opening every claim up to everyone.",
+        "Runs entirely on pasted markup, no crawling: parses the HTML client-side and flags missing alt, alt that's just the filename, and single-word alt as a general rule rather than a fixed list of bad words, so 'chart' and 'logo' both get caught, not just the obvious ones. For each flag, pulls whatever text context already exists — a figcaption, a title attribute, the filename itself — and runs it through an actual order-2 Markov chain trained on alt-text sentence structures to draft candidates. The tool says plainly, in its own UI, that it reads text and not pixels — drafts are a starting point, never a description to trust blindly.",
       result:
-        "A live tool that ran the actual showcase setup for 150+ participants, plus handoff docs so ITP staff can run it themselves in future years without needing a developer on call.",
+        "A standalone accessibility tool that also makes the case that the generative-text practice and the engineering-rigor practice aren't two different skills.",
     },
   },
 ];
@@ -254,6 +254,16 @@ export const rdWork = [
 export const selectedWork = [...featuredWork, ...secondaryWork, ...rdWork];
 
 export const moreProjects = [
+  {
+    title: "Spot Mapper",
+    imageUrl: "/assets/spot-mapper.gif",
+    category: "code",
+    description:
+      "Real-time collaborative floor plan tool used by 150+ participants to claim exhibition spots at ITP Camp's showcase. Admin and viewer modes, token-based access, live sync, and handoff docs.",
+    stack: "Leaflet · SheetJS · Redis · Vercel",
+    tags: ["full-stack", "web tooling", "real-time collaboration"],
+    link: "https://spot-mapper.vercel.app",
+  },
   {
     title: "Department of Lost Circuits",
     imageUrl: "/assets/dlc.gif",
