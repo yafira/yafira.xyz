@@ -4647,6 +4647,18 @@ span {
    wider than the tiers above/below it, side-by-side on desktop, so it
    reads as a surprise beat in the page's rhythm rather than one more
    project in a row. */
+/* standalone spotlight interlude — deliberately not a grid card.
+   wider than the tiers above/below it, side-by-side on desktop, so it
+   reads as a surprise beat in the page's rhythm rather than one more
+   project in a row.
+
+   reader mode: mirrors what ProjectBox/.thumbImg already does for
+   every other project — the animated gif is hidden outright
+   ([data-theme="accessible"] .thumbImg { display: none }) rather than
+   left to play. .spotlight-gif gets the same treatment here, plus the
+   surrounding card sheds its decorative border/background and drops
+   into the same quiet, stacked, flat-row look reader mode uses
+   everywhere else (see .card, .directory-row). */
 .spotlight-block {
   margin: 4rem 0;
 }
@@ -4749,6 +4761,70 @@ span {
   background: #ffffff;
   color: #000000;
   border: 1px solid #000000;
+}
+
+@media (max-width: 860px) {
+  .spotlight {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ============================================================
+   reader mode: same treatment as .card in ProjectBox.module.css —
+   hide the gif outright, strip the decorative card chrome, and flow
+   as a plain stacked block instead of a two-column layout.
+   ============================================================ */
+[data-theme="accessible"] .spotlight {
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 720px;
+  padding: 0;
+  border: none !important;
+  border-top: 0.5px solid #000000 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  gap: 0;
+}
+[data-theme="accessible"] .spotlight-media {
+  display: none;
+}
+[data-theme="accessible"] .spotlight-gif {
+  display: none;
+}
+[data-theme="accessible"] .spotlight-body {
+  padding: 0.85rem 0 0.6rem;
+}
+[data-theme="accessible"] .spotlight-eyebrow {
+  color: var(--text-muted, #333333) !important;
+}
+[data-theme="accessible"] .spotlight-tags {
+  gap: 0;
+}
+[data-theme="accessible"] .spotlight-tag {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
+  color: var(--text-muted, #333333) !important;
+}
+[data-theme="accessible"] .spotlight-tag::before {
+  content: "\00a0·\00a0";
+}
+[data-theme="accessible"] .spotlight-tag:first-child::before {
+  content: "";
+}
+[data-theme="accessible"] .spotlight-link {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  margin-right: 16px;
 }
 
 @media (max-width: 860px) {
