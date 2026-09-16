@@ -4673,6 +4673,7 @@ span {
   display: block;
   width: 100%;
   height: auto;
+  mix-blend-mode: normal;
 }
 .spotlight-body {
   flex: 1 1 0;
