@@ -202,7 +202,7 @@ export const rdWork = [
     ],
     disciplines: ["design", "code"],
     links: {
-      web: "https://soft-components.vercel.app/",
+      web: "https://www.softcomponents.xyz/",
       code: "https://github.com/yafira/soft-components",
     },
     process: {
