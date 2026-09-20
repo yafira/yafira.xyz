@@ -226,6 +226,7 @@ export const rdWork = [
     disciplines: ["code", "hardware"],
     links: {
       demo: "https://tinkerthread.netlify.app/",
+      code: "https://github.com/yafira/tinker-thread",
     },
   },
   {
@@ -244,7 +245,7 @@ export const rdWork = [
     ],
     disciplines: ["design", "code", "hardware"],
     links: {
-      demo: "https://months-tap-da9.craft.me/airsense",
+      documentation: "https://months-tap-da9.craft.me/airsense",
     },
   },
   {
