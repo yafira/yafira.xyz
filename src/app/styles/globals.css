@@ -3164,6 +3164,32 @@ html.home-locked .connector-lines {
   margin: 3rem 0 0.5rem;
   font-size: clamp(1.2rem, 2vw, 1.5rem);
 }
+/* one-line hint under "more projects" so the pills read as a way in,
+   not as decoration */
+.more-hint {
+  text-align: center;
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin: 0 auto 1rem;
+  max-width: 44ch;
+}
+/* chevron on each pill flips when its drawer is open */
+.work-filter-pill .pill-chevron {
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  vertical-align: -2px;
+  transition: transform 0.2s ease;
+}
+.work-filter-pill[aria-expanded="true"] .pill-chevron {
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-filter-pill .pill-chevron {
+    transition: none;
+  }
+}
 .work-secondary-heading {
   text-align: center;
   margin: 3rem 0 0.5rem;
@@ -4662,10 +4688,10 @@ span {
   }
 }
 
-/* standalone spotlight interlude — deliberately not a grid card.
-   wider than the tiers above/below it, side-by-side on desktop, so it
-   reads as a surprise beat in the page's rhythm rather than one more
-   project in a row. */
+/* standalone spotlight interlude, deliberately not a grid card.
+   just a touch wider than the secondary tier above it, side-by-side on
+   desktop, so it reads as a surprise beat in the page's rhythm rather
+   than one more project in a row. */
 .spotlight-block {
   margin: 4rem 0;
 }
@@ -4674,8 +4700,8 @@ span {
   z-index: 7;
   display: flex;
   align-items: center;
-  gap: clamp(24px, 4vw, 56px);
-  max-width: 1400px;
+  gap: clamp(20px, 3.5vw, 40px);
+  max-width: 960px;
   margin: 0 auto;
   padding: clamp(20px, 3vw, 40px);
   border-radius: 16px;
@@ -4683,7 +4709,7 @@ span {
   background: var(--wisteria-dust);
 }
 .spotlight-media {
-  flex: 1 1 0;
+  flex: 1.2 1 0;
   min-width: 0;
   border-radius: 10px;
   overflow: hidden;
@@ -4770,6 +4796,23 @@ span {
   background: #ffffff;
   color: #000000;
   border: 1px solid #000000;
+}
+/* reader mode: no imagery, same as the project cards. the spotlight
+   collapses to a plain text block with a solid black border. */
+[data-theme="accessible"] .spotlight-media {
+  display: none;
+}
+[data-theme="accessible"] .spotlight {
+  display: block;
+  border: 2px solid #000000;
+  background: #ffffff;
+}
+[data-theme="accessible"] .spotlight-eyebrow {
+  color: #000000;
+}
+[data-theme="accessible"] .spotlight-tag {
+  background: #f0f0f0;
+  color: #000000;
 }
 
 @media (max-width: 860px) {

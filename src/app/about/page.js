@@ -57,19 +57,30 @@ export default function AboutPage() {
         {/* Current Work */}
         <Reveal>
           <p>
-            I recently completed my master's degree at NYU's Interactive
+            I hold a BS in Computer Science from CUNY Lehman College and
+            recently completed my master's degree at NYU's Interactive
             Telecommunications Program (ITP), where I explored physical
             computing, hardware design & development, creative coding,
-            fabrication, and interaction design. My work lives at the expressive
-            overlap of technology and art, spanning web/front-end, UX/UI/product
-            design, and playful, tactile computing.
+            fabrication, and interaction design. While there, I contributed to{" "}
+            <a
+              href="https://ml5js.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ml5.js
+            </a>
+            , the open source machine learning library for the web, building
+            documentation tooling and researching browser-based speech-to-text.
+            My work lives at the expressive overlap of technology and art,
+            spanning web/front-end, UX/UI/product design, and playful, tactile
+            computing.
           </p>
         </Reveal>
 
         {/* Philosophy */}
         <Reveal>
           <p>
-            With a background in computer science and a lifelong passion for
+            With that computer science foundation and a lifelong passion for
             design, I approach every project with intention and care. My focus
             is on building intuitive, meaningful interfaces and experiences that
             empower users, challenge norms, and embrace simplicity. Dieter Rams

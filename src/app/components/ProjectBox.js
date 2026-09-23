@@ -72,6 +72,7 @@ const ArrowUpRight = () => (
 const ProjectBox = ({
   title,
   imageUrl,
+  imageAlt,
   link,
   description,
   links,
@@ -168,7 +169,11 @@ const ProjectBox = ({
       >
         {imageUrl ? (
           <ThumbTag className={styles.thumb} {...thumbLinkProps}>
-            <img src={imageUrl} alt={title} className={styles.thumbImg} />
+            <img
+              src={imageUrl}
+              alt={imageAlt || title}
+              className={styles.thumbImg}
+            />
             <span className={styles.catTag}>{category}</span>
             {status && (
               <span className={styles.statusTag} data-status={status}>

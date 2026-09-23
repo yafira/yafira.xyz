@@ -110,6 +110,23 @@ export const secondaryWork = [
     },
   },
   {
+    title: "Fluoro",
+    imageUrl: "/assets/fluoro.gif",
+    imageAlt:
+      "Fluoro's press panel: loading an image, cycling ink presets, switching screens, and adjusting the print-flaw sliders",
+    category: "code",
+    status: "shipped",
+    description:
+      "Riso-fy (almost) anything. A zero-dependency browser toolkit that rebuilds the risograph process instead of faking it with a filter: per-ink separation, 1-bit screening, and multiply overprint with misregistration. Works on images via canvas, and on live web pages via CSS and SVG filters.",
+    stack: "Vanilla JavaScript · Canvas · SVG filters",
+    tags: ["creative coding", "web tooling", "generative design"],
+    disciplines: ["design", "code"],
+    links: {
+      web: "https://fluoro-riso.vercel.app",
+      code: "https://github.com/yafira/fluoro-riso",
+    },
+  },
+  {
     title: "Lumi",
     imageUrl: "/assets/lumi-preview.gif",
     category: "design",
@@ -129,20 +146,6 @@ export const secondaryWork = [
     links: {
       prototype: "https://lumi-wearable.vercel.app",
       casestudy: "https://lumi-case-study.vercel.app",
-    },
-  },
-  {
-    title: "ml5.js contributions",
-    imageUrl: "/assets/ml5.gif",
-    category: "code",
-    status: "shipped",
-    description:
-      "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
-    stack: "Docsify · JavaScript",
-    tags: ["open source", "machine learning", "web tooling", "documentation"],
-    disciplines: ["code"],
-    links: {
-      blog: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
     },
   },
   {
@@ -170,6 +173,8 @@ export const spotlightProject = {
   eyebrow: "a live experiment",
   title: "pixel picnic",
   gifUrl: "/assets/pixel-picnic.gif",
+  gifAlt:
+    "Pixel Picnic's live mode: a person on camera dithered in one style while the background is dithered in another, separated in real time by an on-device segmentation model",
   description:
     "Pixel Picnic started as a browser-based dithering tool — upload a photo, choose from four algorithms, export real fabrication-ready files for laser engraving or embroidery. This is its newest, liveliest feature: real-time, region-aware dithering over your camera, where an on-device segmentation model finds you in the frame and gives you one treatment while the background gets another — live, with nothing ever sent anywhere.",
   stack: "Next.js · TypeScript · MediaPipe · Canvas",
@@ -303,6 +308,16 @@ export const moreProjects = [
     stack: "Next.js · Are.na API",
     tags: ["client work", "frontend", "archive"],
     link: "https://uselessmachines.vercel.app/",
+  },
+  {
+    title: "ml5.js contributions",
+    imageUrl: "/assets/ml5.gif",
+    category: "code",
+    description:
+      "Open source contributions to ml5.js: custom Docsify plugins for the documentation site, adding inline code explanations and copy-to-clipboard with a toast.",
+    stack: "Docsify · JavaScript",
+    tags: ["open source", "machine learning", "documentation"],
+    link: "https://ml5js.org/blog/docsify-plugins-soft-ui/",
   },
   {
     title: "Print + Code",

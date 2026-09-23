@@ -231,7 +231,7 @@ export default function CVPage() {
                 <p className="cv-summary">
                   researching and prototyping speech-to-text models with the
                   goal of integrating accessible, browser-based transcription
-                  into transformer.js.
+                  into transformers.js.
                 </p>
                 <p className="cv-skills">
                   <span className="label">skills:</span> javascript, web-based
@@ -247,11 +247,20 @@ export default function CVPage() {
                   <span className="cv-role-date">jun 2025 – aug 2025</span>
                 </div>
                 <p className="cv-summary">
-                  contributed to ml5.js through technical development,
-                  documentation, and community support; published a public pull
-                  request improving the ml5.js website and documentation
-                  experience, with a focus on accessibility and clearer
-                  onboarding for creative learners.
+                  contributed to ml5.js through development, documentation, and
+                  community support. built two custom docsify plugins for the
+                  documentation site (inline code explanations, and
+                  copy-to-clipboard with a toast), merged through a public pull
+                  request and{" "}
+                  <a
+                    href="https://ml5js.org/blog/docsify-plugins-soft-ui/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    written up on the ml5.js blog
+                  </a>
+                  , with a focus on accessibility and clearer onboarding for
+                  creative learners.
                 </p>
                 <p className="cv-skills">
                   <span className="label">skills:</span> gatsby, docsify,

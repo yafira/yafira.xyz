@@ -367,14 +367,18 @@ export default function Portfolio() {
           <MagnetDot />
         </span>
         <h2 className="work-section-heading work-more-heading">
-          <span className="sr-only">more projects</span>
+          more projects
         </h2>
+        <p className="more-hint">
+          {moreProjects.length} smaller builds, experiments, and design work.
+          pick a category to open them.
+        </p>
 
         {/* light/dark: filter pills + drawer. reader mode hides this via CSS. */}
         <div className="drawer-mode-projects">
           <div
             className="work-filter-row"
-            role="tablist"
+            role="group"
             aria-label="more projects by category"
           >
             {categories.map((cat) => {
@@ -386,19 +390,24 @@ export default function Portfolio() {
                 <button
                   key={cat}
                   type="button"
-                  role="tab"
-                  aria-selected={isActive}
+                  aria-expanded={isActive}
+                  aria-controls="more-drawer"
                   className={`work-filter-pill work-filter-pill-${PILL_STYLE[cat] ?? 0} ${isActive ? "active" : ""}`}
                   onClick={() => handlePillClick(cat)}
                 >
                   {cat} <span className="pill-count">({count})</span>
+                  <ChevronDown className="pill-chevron" aria-hidden="true" />
                 </button>
               );
             })}
           </div>
 
           {activeCategory && isDrawerOpen && (
-            <div className="more-drawer" data-section={activeCategory}>
+            <div
+              id="more-drawer"
+              className="more-drawer"
+              data-section={activeCategory}
+            >
               <button
                 className="more-drawer-close"
                 onClick={handleCloseDrawer}
