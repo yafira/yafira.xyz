@@ -367,12 +367,8 @@ export default function Portfolio() {
           <MagnetDot />
         </span>
         <h2 className="work-section-heading work-more-heading">
-          more projects
+          more projects! ━☆ﾟ.*･｡ﾟ҉̛
         </h2>
-        <p className="more-hint">
-          {moreProjects.length} smaller builds, experiments, and design work.
-          pick a category to open them.
-        </p>
 
         {/* light/dark: filter pills + drawer. reader mode hides this via CSS. */}
         <div className="drawer-mode-projects">
