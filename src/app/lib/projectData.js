@@ -100,7 +100,7 @@ export const secondaryWork = [
     category: "code",
     status: "shipped",
     description:
-      "A growing suite of free browser-based tools for makers, featuring utilities for electronics, programming, color, generative text, accessibility, print, and other creative workflows.",
+      "A growing suite of free browser-based tools for makers, featuring utilities for electronics, programming, color, text, and print, with a tiny resident knowledge companion to help you find your way around.",
     stack: "Next.js · TypeScript",
     tags: ["open source", "web tooling", "frontend"],
     disciplines: ["design", "code"],
