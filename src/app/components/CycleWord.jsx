@@ -60,6 +60,8 @@ export default function CycleWord({ pairs = DEFAULT_PAIRS }) {
     if (reduced) return;
 
     const cycle = setInterval(() => {
+      // the riso print theme holds the headline still
+      if (document.documentElement.getAttribute("data-theme") === "riso") return;
       setFading(true);
       const swap = setTimeout(() => {
         setIndex((i) => pickNext(i, pairs.length));

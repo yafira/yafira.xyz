@@ -5023,6 +5023,20 @@ span {
   display: none !important;
 }
 
+/* riso print theme: just the content. no motion, no background
+   doodles, no drawing tool, so the print sits still and scrolls fast */
+[data-theme="riso"] * {
+  animation: none !important;
+  transition: none !important;
+}
+[data-theme="riso"] .bg-pattern,
+[data-theme="riso"] .bg-pattern-interactive,
+[data-theme="riso"] .draw-layer-canvas,
+[data-theme="riso"] .draw-toolbar,
+[data-theme="riso"] .cutepix-pad-backdrop {
+  display: none !important;
+}
+
 /* hidden on mobile entirely rather than made "responsive" — a single
    finger is inherently ambiguous between drawing and scrolling on
    touch, so this is a desktop-only extra. */
