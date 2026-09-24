@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 import { apply, remove } from "fluoro-riso";
 
-// the two inks the site prints in; swap for any fluoro preset or hex pair
-const INKS = { inkA: "#ff48b0", inkB: "#0078bf" };
+// how the site prints: two inks, in fluoro's lite mode. lite lays three blend
+// layers over the page instead of filtering it, so scrolling stays fast and
+// every part of the page gets printed, in safari too
+const PRINT = { inkA: "#ff48b0", inkB: "#0078bf", mode: "lite" };
 
-// prints the page through fluoro while the riso theme is on.
-// fluoro picks what to filter per browser (the root in chrome, the body in
-// safari and firefox), so this only has to watch the theme attribute.
+// prints the page through fluoro while the riso theme is on
 export default function RisoPrint() {
   useEffect(() => {
     const root = document.documentElement;
@@ -16,8 +16,8 @@ export default function RisoPrint() {
 
     const sync = () => {
       const wanted = root.getAttribute("data-theme") === "riso";
-      if (wanted && !printed) apply(INKS);
-      if (!wanted && printed) remove();
+      if (wanted && !printed) apply(PRINT);
+      if (!wanted && printed) remove(PRINT);
       printed = wanted;
     };
 
@@ -27,7 +27,7 @@ export default function RisoPrint() {
 
     return () => {
       observer.disconnect();
-      if (printed) remove();
+      if (printed) remove(PRINT);
     };
   }, []);
 
