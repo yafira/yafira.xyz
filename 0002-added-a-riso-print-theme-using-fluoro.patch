@@ -1,0 +1,148 @@
+From a957d9fa85ada723e9edb79cdb5b0359a1ebc676 Mon Sep 17 00:00:00 2001
+From: Yafira Martinez <26886866+yafira@users.noreply.github.com>
+Date: Thu, 24 Sep 2026 00:40:12 +0000
+Subject: [PATCH 2/2] added a riso print theme using fluoro
+
+---
+ package-lock.json                  |  7 ++++++
+ package.json                       |  1 +
+ src/app/components/RisoPrint.jsx   | 35 ++++++++++++++++++++++++++++++
+ src/app/components/ThemeToggle.jsx |  3 ++-
+ src/app/layout.js                  |  2 ++
+ src/app/lib/projectData.js         |  2 +-
+ 6 files changed, 48 insertions(+), 2 deletions(-)
+ create mode 100644 src/app/components/RisoPrint.jsx
+
+diff --git a/package-lock.json b/package-lock.json
+index d2206b7..095805d 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -9,6 +9,7 @@
+       "version": "0.1.0",
+       "dependencies": {
+         "electrocute-ui": "^0.3.5",
++        "fluoro-riso": "^0.1.1",
+         "lucide-react": "^0.488.0",
+         "next": "15.1.11",
+         "react": "^19.0.0",
+@@ -2505,6 +2506,12 @@
+       "dev": true,
+       "license": "ISC"
+     },
++    "node_modules/fluoro-riso": {
++      "version": "0.1.1",
++      "resolved": "https://registry.npmjs.org/fluoro-riso/-/fluoro-riso-0.1.1.tgz",
++      "integrity": "sha512-NBskafASnYunikRr7CJTD6SD+2SogD1Rar9dZXM6gZ/HSsES6LPuFjydS5kvirTKstUfSu8p+K64QReUTwAePg==",
++      "license": "MIT"
++    },
+     "node_modules/for-each": {
+       "version": "0.3.3",
+       "resolved": "https://registry.npmjs.org/for-each/-/for-each-0.3.3.tgz",
+diff --git a/package.json b/package.json
+index 513853b..d3d2c46 100644
+--- a/package.json
++++ b/package.json
+@@ -10,6 +10,7 @@
+   },
+   "dependencies": {
+     "electrocute-ui": "^0.3.5",
++    "fluoro-riso": "^0.1.1",
+     "lucide-react": "^0.488.0",
+     "next": "15.1.11",
+     "react": "^19.0.0",
+diff --git a/src/app/components/RisoPrint.jsx b/src/app/components/RisoPrint.jsx
+new file mode 100644
+index 0000000..fb00149
+--- /dev/null
++++ b/src/app/components/RisoPrint.jsx
+@@ -0,0 +1,35 @@
++"use client";
++
++import { useEffect } from "react";
++import { apply, remove } from "fluoro-riso";
++
++// the two inks the site prints in; swap for any fluoro preset or hex pair
++const INKS = { inkA: "#ff48b0", inkB: "#0078bf" };
++
++// prints the page through fluoro while the riso theme is on.
++// fluoro picks what to filter per browser (the root in chrome, the body in
++// safari and firefox), so this only has to watch the theme attribute.
++export default function RisoPrint() {
++  useEffect(() => {
++    const root = document.documentElement;
++    let printed = false;
++
++    const sync = () => {
++      const wanted = root.getAttribute("data-theme") === "riso";
++      if (wanted && !printed) apply(INKS);
++      if (!wanted && printed) remove();
++      printed = wanted;
++    };
++
++    sync();
++    const observer = new MutationObserver(sync);
++    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
++
++    return () => {
++      observer.disconnect();
++      if (printed) remove();
++    };
++  }, []);
++
++  return null;
++}
+diff --git a/src/app/components/ThemeToggle.jsx b/src/app/components/ThemeToggle.jsx
+index cd8cea7..597a321 100644
+--- a/src/app/components/ThemeToggle.jsx
++++ b/src/app/components/ThemeToggle.jsx
+@@ -1,12 +1,13 @@
+ "use client";
+ 
+ import { useEffect, useState } from "react";
+-import { Sun, Moon, Glasses } from "lucide-react";
++import { Sun, Moon, Glasses, Printer } from "lucide-react";
+ 
+ const THEMES = [
+   { id: "light", label: "Light", Icon: Sun },
+   { id: "dark", label: "Dark", Icon: Moon },
+   { id: "accessible", label: "Reader", Icon: Glasses },
++  { id: "riso", label: "Riso print", Icon: Printer },
+ ];
+ 
+ export default function ThemeToggle() {
+diff --git a/src/app/layout.js b/src/app/layout.js
+index 9b67bdd..807faf7 100644
+--- a/src/app/layout.js
++++ b/src/app/layout.js
+@@ -3,6 +3,7 @@ import localFont from "next/font/local";
+ import Navigation from "@/app/components/Navigation";
+ import BackgroundPattern from "@/app/components/BackgroundPattern";
+ import DrawTools from "@/app/components/DrawTools";
++import RisoPrint from "@/app/components/RisoPrint";
+ import "./styles/globals.css";
+ 
+ export const viewport = {
+@@ -101,6 +102,7 @@ export default function RootLayout({ children }) {
+       <body
+         className={`${pixelifySans.className} ${spaceMono.variable} ${departureMono.variable}`}
+       >
++        <RisoPrint />
+         <BackgroundPattern />
+         <Navigation />
+         <DrawTools />
+diff --git a/src/app/lib/projectData.js b/src/app/lib/projectData.js
+index 7d399c9..45f8dc8 100644
+--- a/src/app/lib/projectData.js
++++ b/src/app/lib/projectData.js
+@@ -117,7 +117,7 @@ export const secondaryWork = [
+     category: "code",
+     status: "shipped",
+     description:
+-      "Riso-fy (almost) anything. A zero-dependency browser toolkit that rebuilds the risograph process instead of faking it with a filter: per-ink separation, 1-bit screening, and multiply overprint with misregistration. Works on images via canvas, and on live web pages via CSS and SVG filters. Published on npm, so any site can add a Riso-fy button with one script tag.",
++      "Riso-fy (almost) anything. A zero-dependency browser toolkit that rebuilds the risograph process instead of faking it with a filter: per-ink separation, 1-bit screening, and multiply overprint with misregistration. Works on images via canvas, and on live web pages via CSS and SVG filters. Published on npm, so any site can add a Riso-fy button with one script tag, and this site's own Riso print theme runs on it.",
+     stack: "Vanilla JavaScript · Canvas · SVG filters · npm",
+     tags: ["creative coding", "web tooling", "generative design"],
+     disciplines: ["design", "code"],
+-- 
+2.43.0
+
