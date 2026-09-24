@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Navigation from "@/app/components/Navigation";
 import BackgroundPattern from "@/app/components/BackgroundPattern";
 import DrawTools from "@/app/components/DrawTools";
+import RisoPrint from "@/app/components/RisoPrint";
 import "./styles/globals.css";
 
 export const viewport = {
@@ -101,6 +102,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${pixelifySans.className} ${spaceMono.variable} ${departureMono.variable}`}
       >
+        <RisoPrint />
         <BackgroundPattern />
         <Navigation />
         <DrawTools />

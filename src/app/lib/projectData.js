@@ -117,7 +117,7 @@ export const secondaryWork = [
     category: "code",
     status: "shipped",
     description:
-      "Riso-fy (almost) anything. A zero-dependency browser toolkit that rebuilds the risograph process instead of faking it with a filter: per-ink separation, 1-bit screening, and multiply overprint with misregistration. Works on images via canvas, and on live web pages via CSS and SVG filters. Published on npm, so any site can add a Riso-fy button with one script tag.",
+      "Riso-fy (almost) anything. A zero-dependency browser toolkit that rebuilds the risograph process instead of faking it with a filter: per-ink separation, 1-bit screening, and multiply overprint with misregistration. Works on images via canvas, and on live web pages via CSS and SVG filters. Published on npm, so any site can add a Riso-fy button with one script tag, and this site's own Riso print theme runs on it.",
     stack: "Vanilla JavaScript · Canvas · SVG filters · npm",
     tags: ["creative coding", "web tooling", "generative design"],
     disciplines: ["design", "code"],

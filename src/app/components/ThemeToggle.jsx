@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Sun, Moon, Glasses } from "lucide-react";
+import { Sun, Moon, Glasses, Printer } from "lucide-react";
 
 const THEMES = [
   { id: "light", label: "Light", Icon: Sun },
   { id: "dark", label: "Dark", Icon: Moon },
   { id: "accessible", label: "Reader", Icon: Glasses },
+  { id: "riso", label: "Riso print", Icon: Printer },
 ];
 
 export default function ThemeToggle() {
