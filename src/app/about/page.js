@@ -112,18 +112,25 @@ export default function AboutPage() {
           <Reveal>
             <section className="patch patch--blush">
               <h2>whyicompute://</h2>
-              <p> Programming is my paintbrush: a way to solve puzzles, express
-                ideas, and build things that matter. I see code as craft, a practice 
-                of shaping the world around me in practical, poetic ways. I'm interested 
-                in the{" "}
-                <a href="https://luckysoap.com/statements/handmadeweb.html" target="_blank"
-                 rel="noopener noreferrer"
-                 > handmade web
-                </a>
-                {" "}and the idea that the internet still has room for the handmade,
-                the amateur, the strange. I'm drawn to Olia Lialina's net art and
-                her insistence that code doesn't have to be polished to be alive.
-                </p>
+              <p>
+                {" "}
+                Programming is my paintbrush: a way to solve puzzles, express
+                ideas, and build things that matter. I see code as craft, a
+                practice of shaping the world around me in practical, poetic
+                ways. I'm interested in the{" "}
+                <a
+                  href="https://luckysoap.com/statements/handmadeweb.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {" "}
+                  handmade web
+                </a>{" "}
+                and the idea that the internet still has room for the handmade,
+                the amateur, the strange. I'm drawn to Olia Lialina's net art
+                and her insistence that code doesn't have to be polished to be
+                alive.
+              </p>
               <PatchMark />
             </section>
           </Reveal>
@@ -168,13 +175,15 @@ export default function AboutPage() {
               <p>
                 Looking back, the signs were always there: hours spent
                 customizing MySpace pages, taking electronics apart just to see
-                how they worked. I just never thought it could be a career. I'm
-                especially drawn to the hidden history of women in computing—
-                the ENIAC programmers who did the invisible labor of programming
-                the first electronic general-purpose computer, and the Jacquard
-                loom weavers whose punch cards became the literal ancestor of
-                computer code. That lineage feels close to home in my own work
-                with textiles and circuits. At{" "}
+                how they worked. I just never realized, at the time, that these
+                were things I could build a life around. They were simply things
+                I loved doing for fun. I’m especially drawn to the hidden
+                history of women in computing: the ENIAC programmers who did the
+                invisible labor of programming the first electronic
+                general-purpose computer, and the Jacquard loom weavers whose
+                punch cards became a literal ancestor of computer code. That
+                lineage feels close to home in my own exploration with textiles and
+                circuits. At{" "}
                 <a
                   href="https://itp.nyu.edu/"
                   target="_blank"
