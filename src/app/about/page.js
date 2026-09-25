@@ -112,16 +112,18 @@ export default function AboutPage() {
           <Reveal>
             <section className="patch patch--blush">
               <h2>whyicompute://</h2>
-              <p>
-                Programming is my paintbrush: a way to solve puzzles, express
-                ideas, and build things that matter. I see code as craft, a
-                practice of shaping the world around me in practical, poetic
-                ways. I code because it challenges me, and because it gives form
-                to imagination. I'm drawn to Olia Lialina's net art—her
-                insistence that the internet still has room for the handmade,
-                the amateur, the strange—as a reminder that code doesn't have to
-                be polished to be alive.
-              </p>
+              <p> Programming is my paintbrush: a way to solve puzzles, express
+                ideas, and build things that matter. I see code as craft, a practice 
+                of shaping the world around me in practical, poetic ways. I'm interested 
+                in the{" "}
+                <a href="https://luckysoap.com/statements/handmadeweb.html" target="_blank"
+                 rel="noopener noreferrer"
+                 > handmade web
+                </a>
+                {" "}and the idea that the internet still has room for the handmade,
+                the amateur, the strange. I'm drawn to Olia Lialina's net art and
+                her insistence that code doesn't have to be polished to be alive.
+                </p>
               <PatchMark />
             </section>
           </Reveal>
