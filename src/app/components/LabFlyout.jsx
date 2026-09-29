@@ -53,6 +53,21 @@ const IconMoon = () => (
   </svg>
 );
 
+const IconTerminal = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M5 7.5l4.5 4.5L5 16.5" />
+    <path d="M12.5 17h6.5" />
+  </svg>
+);
+
 const IconPen = () => (
   <svg
     viewBox="0 0 24 24"
@@ -88,10 +103,18 @@ const LAB_LINKS = [
   {
     label: "poetronics",
     href: "https://electrocute.io/poetronics",
-    note: "electronic text, gentle machines",
+    note: "generative text, gentle machines",
     Icon: IconMoon,
     tint: "#E8E6FF",
     stitch: "#8f7fc9",
+  },
+  {
+    label: "electronic text",
+    href: "https://electrocute.io/electronic-text",
+    note: "poems by rules and chance",
+    Icon: IconTerminal,
+    tint: "#F2F2F2",
+    stitch: "#7a7a7a",
   },
   {
     label: "blog",
