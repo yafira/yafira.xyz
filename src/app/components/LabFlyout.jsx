@@ -103,7 +103,7 @@ const LAB_LINKS = [
   {
     label: "poetronics",
     href: "https://electrocute.io/poetronics",
-    note: "electronic text, gentle machines",
+    note: "generative text, gentle machines",
     Icon: IconMoon,
     tint: "#E8E6FF",
     stitch: "#8f7fc9",
