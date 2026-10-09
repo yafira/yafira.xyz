@@ -324,6 +324,28 @@ export default function CVPage() {
           </div>
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">computer.garden()</div>
+              <span className="cv-date">oct 2026</span>
+            </div>
+            <div className="cv-org">
+              processing community day @ nyc 2026 · new york, ny
+            </div>
+            <p className="cv-summary">
+              exhibited a computer generative sketch that grows soft-circuit
+              gardens, using breadth-first search (bfs) maze-routing to wire
+              each one and rendering it in a bayer-dithered e-ink aesthetic.{" "}
+              <a
+                href="https://openprocessing.org/@electrocute/3004986"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                view it live
+              </a>{" "}
+              and click to regrow.
+            </p>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">intro to machine learning workshop</div>
               <span className="cv-date">jul 2026</span>
             </div>
@@ -466,14 +488,14 @@ export default function CVPage() {
               <span className="cv-date">feb 2026 - present</span>
             </div>
             <div className="cv-org">
-              open source hardware summit · berlin, germany
+              open source hardware association · berlin, germany
             </div>
             <p className="cv-summary">
-              selected as a 2026 fellow to exhibit my thesis project at nyu’s
-              interactive telecommunications program (itp),{" "}
-              <i>the soft computer</i>, along with additional experimental
-              open-source hardware and soft interface projects exploring tactile
-              computing and alternative interaction design.
+              selected as a 2026 fellow to exhibit <i>the soft computer mini</i>
+              , a travel-ready extension of my nyu itp master&apos;s thesis,
+              along with additional experimental open-source hardware and soft
+              interface projects exploring tactile computing and alternative
+              interaction design.
             </p>
           </div>
           <div className="cv-item">
