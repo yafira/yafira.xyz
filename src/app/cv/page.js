@@ -306,7 +306,7 @@ export default function CVPage() {
             </div>
             <p className="cv-summary">
               co-designed + co-taught an intro to physical computing and
-              alternative diy computing with alanna okun for 16 participants,
+              alternative interfaces with alanna okun for 16 participants,
               developed remotely over a two-month residency and taught in person
               in denmark. led the hardware and software: designed the
               microcontroller + e-ink display kit, wrote the circuitpython code,
