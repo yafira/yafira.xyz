@@ -298,6 +298,32 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
+              <div className="cv-title">tiny soft computers workshop</div>
+              <span className="cv-date">aug 2026 – oct 2026</span>
+            </div>
+            <div className="cv-org">
+              softer digital futures (remote residency + conference) · denmark
+            </div>
+            <p className="cv-summary">
+              co-designed + co-taught an intro to physical computing and
+              alternative diy computing with alanna okun for 16 participants,
+              developed remotely over a two-month residency and taught in person
+              in denmark. led the hardware and software: designed the
+              microcontroller + e-ink display kit, wrote the circuitpython code,
+              and preloaded and tested every kit. built the{" "}
+              <a
+                href="https://tiny-soft-computer.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                workshop website
+              </a>
+              , which doubles as open-source documentation for educators who
+              want to teach it themselves.
+            </p>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
               <div className="cv-title">intro to machine learning workshop</div>
               <span className="cv-date">jul 2026</span>
             </div>
