@@ -1396,9 +1396,7 @@ html.home-locked .connector-lines {
   z-index: 7;
   padding-top: 1rem;
   padding-bottom: 1.25rem;
-  transition:
-    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.18s ease;
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: visible;
   scroll-snap-align: start;
   min-width: 0;
@@ -1413,6 +1411,13 @@ html.home-locked .connector-lines {
    touch-jiggle reason. */
 /* base hover lift, all grids — no tilt by default. */
 @media (hover: hover) and (pointer: fine) {
+  /* own compositor layer so safari doesn't repaint the rounded,
+     clipped card (and its gif) on every frame of the lift */
+  .project-box {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
   .project-box:hover {
     transform: translateY(-6px);
   }

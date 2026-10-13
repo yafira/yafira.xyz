@@ -81,42 +81,57 @@ const SignalTrace = () => (
 // travel distance so it never wanders far.
 function MagnetDot() {
   const ref = useRef(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const dotRef = useRef(null);
 
+  // writes the transform straight to the dot inside a frame instead of
+  // setting react state on every pointer move
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    const dot = dotRef.current;
+    if (!el || !dot) return;
     const MAX = 9;
+    const field = 90; // px radius the dot responds within
+    let frame = 0;
+    let lastX = 0;
+    let lastY = 0;
+    let atRest = true;
 
-    const onMove = (e) => {
+    const update = () => {
+      frame = 0;
       const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
+      const dx = lastX - (rect.left + rect.width / 2);
+      const dy = lastY - (rect.top + rect.height / 2);
       const dist = Math.hypot(dx, dy);
-      const field = 90; // px radius the dot responds within
       if (dist > field) {
-        setPos({ x: 0, y: 0 });
+        if (!atRest) {
+          dot.style.transform = "translate(0px, 0px)";
+          atRest = true;
+        }
         return;
       }
       const pull = 1 - dist / field;
-      setPos({
-        x: Math.max(-MAX, Math.min(MAX, dx * pull * 0.3)),
-        y: Math.max(-MAX, Math.min(MAX, dy * pull * 0.3)),
-      });
+      const x = Math.max(-MAX, Math.min(MAX, dx * pull * 0.3));
+      const y = Math.max(-MAX, Math.min(MAX, dy * pull * 0.3));
+      dot.style.transform = `translate(${x}px, ${y}px)`;
+      atRest = false;
     };
 
-    window.addEventListener("pointermove", onMove);
-    return () => window.removeEventListener("pointermove", onMove);
+    const onMove = (e) => {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
     <span className="magnet-field" ref={ref} aria-hidden="true">
-      <span
-        className="magnet-dot"
-        style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
-      />
+      <span className="magnet-dot" ref={dotRef} />
     </span>
   );
 }
