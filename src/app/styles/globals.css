@@ -2188,63 +2188,79 @@ html.home-locked .connector-lines {
   color: var(--text-primary);
   line-height: 1.6;
 }
-.contact-button {
+.contact-email {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: var(--pill-neutral);
-  border: 2px solid rgba(0, 0, 0, 0.14);
-  color: var(--text-strong);
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.15s ease,
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
-.contact-button:hover {
-  transform: translateY(-1px);
-  background: var(--soft-pink);
-  border-color: transparent;
-}
-.contact-button:focus-visible {
-  outline: 2px solid var(--text-primary);
-  outline-offset: 3px;
-}
-.contact-email-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
 }
-.contact-copy-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 13px;
-  border-radius: 999px;
-  background: none;
-  border: 2px dashed var(--border-accent);
-  color: var(--text-secondary);
-  font: inherit;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
+.contact-email .contact-email-address {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-strong);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
 }
-.contact-copy-button:hover {
-  color: var(--text-primary);
-  border-color: var(--text-primary);
-  background: var(--wisteria-dust);
+.contact-email-address:hover {
+  border-bottom-color: var(--border-accent);
 }
-.contact-copy-button:focus-visible {
+.contact-email-address:focus-visible,
+.contact-email-copy:focus-visible {
   outline: 2px solid var(--text-primary);
   outline-offset: 3px;
+  border-radius: 4px;
+}
+.contact-email-copy {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--border-accent);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+.contact-email-copy:hover {
+  background: var(--wisteria-dust);
+}
+.contact-email-copy:active {
+  transform: scale(0.9);
+}
+.contact-email-tip {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--text-strong);
+  color: var(--wisteria-dust);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.contact-email-copy.is-copied .contact-email-tip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-email-copy,
+  .contact-email-tip {
+    transition: none;
+  }
 }
 .contact-links {
   display: flex;

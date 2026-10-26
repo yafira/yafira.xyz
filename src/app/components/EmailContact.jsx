@@ -1,52 +1,66 @@
 "use client";
 
-import { useState } from "react";
-import { Mail, Copy, Check } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Copy, Check } from "lucide-react";
 
-// two ways to reach the same email: the primary button still opens the
-// mail app immediately (mailto:), same as before. the second small
-// button copies the address to the clipboard instead — for anyone who'd
-// rather not have their mail client pop open. it's always present (not
-// hover-only) so it works the same on touch as it does with a mouse.
+// the address itself is the mailto link, with a little copy icon beside it
+// that flips to a check when it's on your clipboard
 
 export default function EmailContact({ email }) {
   const [copied, setCopied] = useState(false);
+  const timer = useRef(null);
+
+  useEffect(() => () => clearTimeout(timer.current), []);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
     } catch {
-      // clipboard API unavailable — fall back silently, the mailto
-      // button right next to this one still works
+      // older browsers, select + copy instead
+      const el = document.createElement("textarea");
+      el.value = email;
+      el.setAttribute("readonly", "");
+      el.style.position = "absolute";
+      el.style.left = "-9999px";
+      document.body.appendChild(el);
+      el.select();
+      try {
+        document.execCommand("copy");
+      } catch {
+        document.body.removeChild(el);
+        return;
+      }
+      document.body.removeChild(el);
     }
+    setCopied(true);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setCopied(false), 1800);
   };
 
   return (
-    <div className="contact-email-group">
-      <a
-        className="contact-button"
-        href={`mailto:${email}`}
-        aria-label="send me an email"
-      >
-        <Mail size={18} aria-hidden="true" />
-        <span>email me</span>
+    <div className="contact-email">
+      <a className="contact-email-address" href={`mailto:${email}`}>
+        {email}
       </a>
       <button
         type="button"
-        className="contact-copy-button"
+        className={`contact-email-copy${copied ? " is-copied" : ""}`}
         onClick={handleCopy}
-        aria-label={copied ? "email address copied" : "copy email address"}
+        aria-label="copy email address"
         title="copy email address"
       >
         {copied ? (
-          <Check size={16} aria-hidden="true" />
+          <Check size={20} strokeWidth={2.5} aria-hidden="true" />
         ) : (
-          <Copy size={16} aria-hidden="true" />
+          <Copy size={20} strokeWidth={2.5} aria-hidden="true" />
         )}
-        <span>{copied ? "copied!" : "copy email"}</span>
+        <span className="contact-email-tip" aria-hidden="true">
+          copied!
+        </span>
       </button>
+      <span className="sr-only" role="status" aria-live="polite">
+        {copied ? "email address copied" : ""}
+      </span>
     </div>
   );
 }
