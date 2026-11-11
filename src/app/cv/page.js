@@ -60,6 +60,30 @@ export default function CVPage() {
             </p>
           </div>
 
+          {/* kurppa hosk */}
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                creative technologist, brand systems, kurppa hosk
+              </div>
+              <span className="cv-date">oct 2026 – present</span>
+            </div>
+            <p className="cv-summary">
+              contract role with the brand and communications team at a global
+              brand and design agency, exploring how ai can extend creative
+              work. leading focused sprints prototyping ai-assisted creative
+              production, evaluating and building new features for brand os,
+              the agency’s brand systems platform, alongside the engineering
+              team at above, and sharing findings and recommendations with the
+              wider team.
+            </p>
+            <p className="cv-skills">
+              <span className="label">skills:</span> front-end development, ui
+              engineering, brand systems, creative prototyping, ai tooling
+              research
+            </p>
+          </div>
+
           {/* nyu (grouped) */}
           <div className="cv-item grouped">
             <div className="cv-company-row">
