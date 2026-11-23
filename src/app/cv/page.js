@@ -30,6 +30,7 @@ export default function CVPage() {
         <a href="#selected-work">selected work</a>
         <a href="#education">education</a>
         <a href="#honors">honors</a>
+        <a href="#press">press</a>
         <a href="#skills">skills</a>
         <CVFullToggle />
       </nav>
@@ -1020,6 +1021,34 @@ export default function CVPage() {
             <span className="cv-date-inline">2020</span>
           </li>
         </ul>
+      </section>
+
+      {/* press */}
+      <section className="cv-section press" id="press">
+        <h2 className="cv-heading">press</h2>
+        <div className="cv-list">
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">arte tracks, cyberdecks</div>
+              <span className="cv-date">nov 2026</span>
+            </div>
+            <div className="cv-org">
+              <span className="cv-keep">featured interview ·</span>{" "}
+              <span className="cv-keep">electrocute lab</span>
+            </div>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                wgsn intelligence, girl-coded open interfaces
+              </div>
+              <span className="cv-date">jun 2026</span>
+            </div>
+            <div className="cv-org">
+              <span className="cv-keep">featured for the soft computer</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* skills, tools, certifications and interests, all in one grid */}

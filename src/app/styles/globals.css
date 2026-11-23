@@ -5193,6 +5193,12 @@ span {
 .cv-section.skills {
   border-color: var(--electronics-color);
 }
+.cv-section.press {
+  border-color: var(--craft-color);
+}
+[data-theme="accessible"] .cv-section.press {
+  border-color: #000000 !important;
+}
 [data-theme="accessible"] .cv-section.skills {
   border-color: #000000 !important;
 }
