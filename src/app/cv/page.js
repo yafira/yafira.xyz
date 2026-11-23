@@ -373,7 +373,10 @@ export default function CVPage() {
                 </div>
                 <span className="cv-date">nov</span>
               </div>
-              <div className="cv-org">powrplnt × no such thing · brooklyn, ny</div>
+              <div className="cv-org">
+                <span className="cv-keep">powrplnt × no such thing ·</span>{" "}
+                <span className="cv-keep">brooklyn, ny</span>
+              </div>
               <div className="cv-more">
                 <p className="cv-summary">
                   exhibited the soft computer at the release party and gallery show
@@ -390,7 +393,10 @@ export default function CVPage() {
                 </div>
                 <span className="cv-date">oct</span>
               </div>
-              <div className="cv-org">onassis onx · new york, ny</div>
+              <div className="cv-org">
+                <span className="cv-keep">onassis onx ·</span>{" "}
+                <span className="cv-keep">new york, ny</span>
+              </div>
               <div className="cv-more">
                 <p className="cv-summary">
                   exhibited the soft computer, pocket oracle of time, and ribbon
@@ -406,7 +412,8 @@ export default function CVPage() {
                 <span className="cv-date">oct</span>
               </div>
               <div className="cv-org">
-                processing community day @ nyc 2026 · new york, ny
+                processing community day @ nyc 2026 ·{" "}
+                <span className="cv-keep">new york, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -430,7 +437,8 @@ export default function CVPage() {
                 <span className="cv-date">aug – oct</span>
               </div>
               <div className="cv-org">
-                softer digital futures (remote residency + conference) · denmark
+                softer digital futures (remote residency + conference) ·{" "}
+                <span className="cv-keep">denmark</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -458,7 +466,8 @@ export default function CVPage() {
                 <span className="cv-date">jul</span>
               </div>
               <div className="cv-org">
-                nyu college & career lab (ccl) · new york city, ny
+                <span className="cv-keep">nyu college & career lab (ccl) ·</span>{" "}
+                <span className="cv-keep">new york city, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -476,8 +485,9 @@ export default function CVPage() {
                 <span className="cv-date">jun</span>
               </div>
               <div className="cv-org">
-                bring your own data (byod): a creative tech potluck · ny tech week
-                · brooklyn, ny
+                bring your own data (byod): a creative tech potluck ·{" "}
+                <span className="cv-keep">ny tech week ·</span>{" "}
+                <span className="cv-keep">brooklyn, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -496,7 +506,10 @@ export default function CVPage() {
                 </div>
                 <span className="cv-date">jun</span>
               </div>
-              <div className="cv-org">itp camp · nyu</div>
+              <div className="cv-org">
+                <span className="cv-keep">itp camp ·</span>{" "}
+                <span className="cv-keep">nyu</span>
+              </div>
               <div className="cv-more">
                 <p className="cv-summary">
                   designed + taught a hands-on workshop on handmade circuits: copper
@@ -513,7 +526,8 @@ export default function CVPage() {
                 <span className="cv-date">feb – jun</span>
               </div>
               <div className="cv-org">
-                open source hardware association · berlin, germany
+                <span className="cv-keep">open source hardware association ·</span>{" "}
+                <span className="cv-keep">berlin, germany</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -531,8 +545,8 @@ export default function CVPage() {
                 <span className="cv-date">may</span>
               </div>
               <div className="cv-org">
-                open source hardware association, open hardware summit · berlin,
-                germany
+                open source hardware association, open hardware summit ·{" "}
+                <span className="cv-keep">berlin, germany</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -550,8 +564,11 @@ export default function CVPage() {
               </div>
   
               <div className="cv-org">
-                nyu interactive telecommunications program (itp) master&apos;s
-                thesis · periphery, nyc resistor
+  
+                nyu interactive telecommunications program (itp) master&apos;s thesis ·{" "}
+  
+                <span className="cv-keep">periphery, nyc resistor</span>
+  
               </div>
   
               <div className="cv-more">
@@ -569,7 +586,8 @@ export default function CVPage() {
                 <span className="cv-date">apr</span>
               </div>
               <div className="cv-org">
-                electronics faire (theme: repair) · temple university libraries
+                <span className="cv-keep">electronics faire (theme: repair) ·</span>{" "}
+                <span className="cv-keep">temple university libraries</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -589,8 +607,9 @@ export default function CVPage() {
                 <span className="cv-date">apr</span>
               </div>
               <div className="cv-org">
-                playfulnyc 2026 hackathon · parsons school of design · new york,
-                ny
+                <span className="cv-keep">playfulnyc 2026 hackathon ·</span>{" "}
+                <span className="cv-keep">parsons school of design ·</span>{" "}
+                <span className="cv-keep">new york, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -609,8 +628,8 @@ export default function CVPage() {
                 <span className="cv-date">feb – apr</span>
               </div>
               <div className="cv-org">
-                complications, horological society of new york (hsny) · new york,
-                ny
+                complications, horological society of new york (hsny) ·{" "}
+                <span className="cv-keep">new york, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -627,7 +646,9 @@ export default function CVPage() {
                 <span className="cv-date">mar</span>
               </div>
               <div className="cv-org">
-                hard mode: hardware x ai hackathon · mit media lab · cambridge, ma
+                <span className="cv-keep">hard mode: hardware x ai hackathon ·</span>{" "}
+                <span className="cv-keep">mit media lab ·</span>{" "}
+                <span className="cv-keep">cambridge, ma</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -646,8 +667,8 @@ export default function CVPage() {
                 <span className="cv-date">jan</span>
               </div>
               <div className="cv-org">
-                pedestal playtime: art toy & tech toy open mic, nyc resistor ·
-                brooklyn, ny
+                pedestal playtime: art toy & tech toy open mic, nyc resistor ·{" "}
+                <span className="cv-keep">brooklyn, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -668,7 +689,8 @@ export default function CVPage() {
                 <span className="cv-date">dec</span>
               </div>
               <div className="cv-org">
-                nyu tandon school of engineering · brooklyn, ny
+                <span className="cv-keep">nyu tandon school of engineering ·</span>{" "}
+                <span className="cv-keep">brooklyn, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -686,8 +708,8 @@ export default function CVPage() {
                 <span className="cv-date">dec</span>
               </div>
               <div className="cv-org">
-                new interfaces for musical expression (nime), nyu itp ·
-                littlefield, ny
+                new interfaces for musical expression (nime), nyu itp ·{" "}
+                <span className="cv-keep">littlefield, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -704,7 +726,10 @@ export default function CVPage() {
                 </div>
                 <span className="cv-date">oct</span>
               </div>
-              <div className="cv-org">nyu global show & tell · new york, ny</div>
+              <div className="cv-org">
+                <span className="cv-keep">nyu global show & tell ·</span>{" "}
+                <span className="cv-keep">new york, ny</span>
+              </div>
               <div className="cv-more">
                 <p className="cv-summary">
                   presented <i>open tools, soft interfaces</i>, discussing
@@ -722,7 +747,8 @@ export default function CVPage() {
                 <span className="cv-date">jun</span>
               </div>
               <div className="cv-org">
-                united nations headquarters · new york, ny
+                <span className="cv-keep">united nations headquarters ·</span>{" "}
+                <span className="cv-keep">new york, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -738,8 +764,8 @@ export default function CVPage() {
                 <span className="cv-date">may</span>
               </div>
               <div className="cv-org">
-                volt couture, wearables + e-textiles open mic · nyc resistor,
-                brooklyn, ny
+                volt couture, wearables + e-textiles open mic ·{" "}
+                <span className="cv-keep">nyc resistor, brooklyn, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -754,7 +780,10 @@ export default function CVPage() {
                 <div className="cv-title">rejects, a benefit auction</div>
                 <span className="cv-date">may</span>
               </div>
-              <div className="cv-org">culturehub · new york, ny</div>
+              <div className="cv-org">
+                <span className="cv-keep">culturehub ·</span>{" "}
+                <span className="cv-keep">new york, ny</span>
+              </div>
               <div className="cv-more">
                 <p className="cv-summary">
                   contributed three oddities from my personal archive,{" "}
@@ -800,7 +829,8 @@ export default function CVPage() {
                 <span className="cv-date">jan – mar</span>
               </div>
               <div className="cv-org">
-                radiant fibers exhibition, nyu clive davis gallery · brooklyn, ny
+                radiant fibers exhibition, nyu clive davis gallery ·{" "}
+                <span className="cv-keep">brooklyn, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -816,7 +846,8 @@ export default function CVPage() {
                 <span className="cv-date">jan</span>
               </div>
               <div className="cv-org">
-                massachusetts institute of technology · cambridge, ma
+                massachusetts institute of technology ·{" "}
+                <span className="cv-keep">cambridge, ma</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
@@ -839,7 +870,8 @@ export default function CVPage() {
                 <span className="cv-date">oct</span>
               </div>
               <div className="cv-org">
-                hybrid body lab, cornell tech · new york, ny
+                <span className="cv-keep">hybrid body lab, cornell tech ·</span>{" "}
+                <span className="cv-keep">new york, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">

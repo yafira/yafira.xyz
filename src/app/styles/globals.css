@@ -5234,7 +5234,7 @@ span {
 .cv-page .cv-item:not(.grouped),
 .cv-page .cv-role {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) 150px;
+  grid-template-columns: minmax(0, 1fr) 150px;
   column-gap: 18px;
   align-items: baseline;
   margin: 0;
@@ -5245,7 +5245,7 @@ span {
 .cv-page .cv-role-meta { display: contents; }
 .cv-page .cv-item:not(.grouped) .cv-date,
 .cv-page .cv-role .cv-role-date {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1;
   text-align: right;
   font-family: var(--font-mono, ui-monospace, monospace);
@@ -5256,15 +5256,16 @@ span {
 .cv-page .cv-item:not(.grouped) .cv-title,
 .cv-page .cv-role .cv-role-title { grid-column: 1; grid-row: 1; }
 .cv-page .cv-item:not(.grouped) .cv-org {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 1;
+  grid-row: 2;
+  text-wrap: balance;
   font-size: 0.75rem;
 }
-.cv-page .cv-item:not(.grouped):not(:has(.cv-org)) .cv-title,
-.cv-page .cv-role .cv-role-title { grid-column: 1 / 3; }
+.cv-page .cv-item:not(.grouped) .cv-title,
+.cv-page .cv-role .cv-role-title { text-wrap: pretty; }
 .cv-page .cv-more {
   display: none;
-  grid-column: 1 / 3;
+  grid-column: 1 / -1;
   padding-top: 6px;
 }
 .cv-page[data-full="true"] .cv-more { display: block; }
@@ -5303,7 +5304,7 @@ span {
   padding-top: 7px;
   color: var(--link-color, #8a7fc9);
 }
-.cv-year .cv-item:not(.grouped) { grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) 96px; }
+.cv-year .cv-item:not(.grouped) { grid-template-columns: minmax(0, 1fr) 110px; }
 @media (max-width: 640px) {
   .cv-page .cv-item:not(.grouped),
   .cv-page .cv-role,
@@ -5320,3 +5321,6 @@ span {
   .cv-jump { display: none; }
   .cv-page .cv-more { display: block; }
 }
+
+/* keeps each part of a place together when it wraps */
+.cv-keep { white-space: nowrap; }
