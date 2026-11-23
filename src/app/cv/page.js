@@ -368,21 +368,18 @@ export default function CVPage() {
           <div className="cv-list">
             <div className="cv-item">
               <div className="cv-meta">
-                <div className="cv-title">
-                  girl irl, zine release + group exhibition
-                </div>
+                <div className="cv-title">girl irl, group exhibition</div>
                 <span className="cv-date">nov</span>
               </div>
               <div className="cv-org">
-                <span className="cv-keep">powrplnt × no such thing ·</span>{" "}
+                <span className="cv-keep">no such thing ·</span>{" "}
                 <span className="cv-keep">brooklyn, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
-                  exhibited the soft computer at the release party and gallery show
-                  for the zine <i>girl irl</i>, organized with the tech-education
-                  nonprofit powrplnt to celebrate the opening of its new computer
-                  lab at no such thing.
+                  exhibited the soft computer in a group show celebrating the
+                  opening of the new computer lab by powrplnt, a tech-education
+                  nonprofit.
                 </p>
               </div>
             </div>
