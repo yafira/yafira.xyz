@@ -13,6 +13,30 @@
 
 export const featuredWork = [
   {
+    title: "craftcomputery",
+    imageUrl: "/assets/craftcomputery.gif",
+    imageAlt:
+      "craftcomputery's storefront: the striped awning and hero, the shop shelves of downloads, and the crayon doodles on the about page",
+    category: "code",
+    status: "shipped",
+    description:
+      "An artisanal shop for handmade computing and the craft-tech r&d division of electrocute lab. Designed, illustrated, written, and built end to end, from checkout and signed downloads to a pager-style email list.",
+    stack: "Next.js · Stripe · Resend · Keystatic",
+    tags: ["e-commerce", "design engineering", "full-stack", "illustration"],
+    disciplines: ["design", "code"],
+    links: {
+      web: "https://craftcomputery.com",
+    },
+    process: {
+      problem:
+        "Electrocute lab's work mostly lived in shows and workshops, with no slow, small place for people to take a piece of it home. Off-the-shelf storefronts would have meant a template look and a marketplace feel, the opposite of the practice.",
+      approach:
+        "Built the whole shop around one idea: ideas brew in the lab, and fresh batches go to the shelf when they're ready. Stripe Checkout and a verified webhook hand off to Resend, which emails HMAC-signed download links served from Vercel Blob. Lab notes are YAML files edited in Keystatic. The page me list sends a pastel pager instead of a newsletter, with signed one-click unsubscribe. The crayon doodles are SVG paths roughened by turbulence and displacement filters that boil like a flipbook, paused for reduced motion.",
+      result:
+        "Launched Nov 22, 2026 with its first batch of digital downloads, in about three weeks from first note to open doors. Handmade physical pieces come next, in small batches.",
+    },
+  },
+  {
     title: "electrocute-ui",
     imageUrl: "/assets/ecuteui.gif",
     category: "code",

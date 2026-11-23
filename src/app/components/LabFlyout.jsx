@@ -83,6 +83,23 @@ const IconPen = () => (
   </svg>
 );
 
+const IconShop = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 9.5l1.4-4.5h13.2L20 9.5" />
+    <path d="M4 9.5q2 2 4 0q2 2 4 0q2 2 4 0q2 2 4 0" />
+    <path d="M5.5 11v8.5h13V11" />
+    <path d="M10 19.5v-4.5h4v4.5" />
+  </svg>
+);
+
 const LAB_LINKS = [
   {
     label: "computer art",
@@ -115,6 +132,14 @@ const LAB_LINKS = [
     Icon: IconTerminal,
     tint: "#F2F2F2",
     stitch: "#7a7a7a",
+  },
+  {
+    label: "craftcomputery",
+    href: "https://craftcomputery.com",
+    note: "artisanal shop, craft-tech r&d",
+    Icon: IconShop,
+    tint: "#FBF3CF",
+    stitch: "#c9a94a",
   },
   {
     label: "blog",

@@ -76,7 +76,16 @@ export default function CVPage() {
               >
                 @electrocutelab{" "}
               </a>
-              on instagram.
+              on instagram. in nov 2026 i launched{" "}
+              <a
+                href="https://craftcomputery.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                craftcomputery
+              </a>
+              , the lab&apos;s craft-tech r&amp;d division and artisanal shop
+              for handmade computing.
             </p>
             <p className="cv-skills">
               <span className="label">skills:</span> physical computing, soft
