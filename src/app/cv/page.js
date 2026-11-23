@@ -809,36 +809,6 @@ export default function CVPage() {
             </div>
             <div className="cv-item">
               <div className="cv-meta">
-                <div className="cv-title">
-                  <a
-                    href="https://internetphonebook.net/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    the internet book
-                  </a>
-                  , annual publication on the poetic web
-                </div>
-                <span className="cv-date">may</span>
-              </div>
-              <div className="cv-more">
-                <p className="cv-summary">
-                  featured for{" "}
-                  <a
-                    href="https://electrocute.io/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i>electrocute.io</i>
-                  </a>
-                  , a collection of soft-technology and poetic computing
-                  experiments, in a curated directory of designers, developers,
-                  writers, and digital artists.
-                </p>
-              </div>
-            </div>
-            <div className="cv-item">
-              <div className="cv-meta">
                 <div className="cv-title">soft glitch, e-textile swatch</div>
                 <span className="cv-date">jan – mar</span>
               </div>
@@ -1046,6 +1016,39 @@ export default function CVPage() {
             </div>
             <div className="cv-org">
               <span className="cv-keep">featured for the soft computer</span>
+            </div>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                <a
+                  href="https://internetphonebook.net/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  the internet phone book
+                </a>
+                , annual publication on the poetic web
+              </div>
+              <span className="cv-date">may 2025</span>
+            </div>
+            <div className="cv-org">
+              <span className="cv-keep">featured for electrocute.io</span>
+            </div>
+            <div className="cv-more">
+              <p className="cv-summary">
+                featured for{" "}
+                <a
+                  href="https://electrocute.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i>electrocute.io</i>
+                </a>
+                , a collection of soft-technology and poetic computing
+                experiments, in a curated directory of designers, developers,
+                writers, and digital artists.
+              </p>
             </div>
           </div>
         </div>
