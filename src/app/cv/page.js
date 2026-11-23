@@ -368,24 +368,6 @@ export default function CVPage() {
           <div className="cv-list">
             <div className="cv-item">
               <div className="cv-meta">
-                <div className="cv-title">open hardware summit fellow</div>
-                <span className="cv-date">feb – present</span>
-              </div>
-              <div className="cv-org">
-                open source hardware association · berlin, germany
-              </div>
-              <div className="cv-more">
-                <p className="cv-summary">
-                  selected as a 2026 fellow to exhibit <i>the soft computer mini</i>
-                  , a travel-ready extension of my nyu itp master&apos;s thesis,
-                  along with additional experimental open-source hardware and soft
-                  interface projects exploring tactile computing and alternative
-                  interaction design.
-                </p>
-              </div>
-            </div>
-            <div className="cv-item">
-              <div className="cv-meta">
                 <div className="cv-title">
                   girl irl, zine release + group exhibition
                 </div>
@@ -522,6 +504,24 @@ export default function CVPage() {
                   needed. developed through soft interfaces, an extension of my
                   creative practice electrocute lab, and grown from the soft circuit
                   library (exhibited at the electronics faire, temple university)
+                </p>
+              </div>
+            </div>
+            <div className="cv-item">
+              <div className="cv-meta">
+                <div className="cv-title">open hardware summit fellow</div>
+                <span className="cv-date">feb – jun</span>
+              </div>
+              <div className="cv-org">
+                open source hardware association · berlin, germany
+              </div>
+              <div className="cv-more">
+                <p className="cv-summary">
+                  selected as a 2026 fellow to exhibit <i>the soft computer mini</i>
+                  , a travel-ready extension of my nyu itp master&apos;s thesis,
+                  along with additional experimental open-source hardware and soft
+                  interface projects exploring tactile computing and alternative
+                  interaction design.
                 </p>
               </div>
             </div>
