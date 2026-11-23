@@ -5178,42 +5178,9 @@ span {
   text-decoration: none;
   border-bottom: 1px dashed currentColor;
 }
-.cv-open-all {
-  margin-left: auto;
-  font: inherit;
-  font-size: 0.75rem;
-  background: none;
-  border: 1px dashed currentColor;
-  border-radius: 999px;
-  padding: 2px 10px;
-  color: inherit;
-  cursor: pointer;
-  opacity: 0.75;
-}
-.cv-open-all:hover { opacity: 1; }
+
 .cv-section[id] { scroll-margin-top: 110px; }
-@media (prefers-reduced-motion: reduce) { .cv-more { transition: none; } }
 .cv-subheading { scroll-margin-top: 110px; }
-/* folded entries show one faded line, tap to read the rest */
-.cv-more {
-  position: relative;
-  max-height: 1.7em;
-  overflow: hidden;
-  cursor: pointer;
-  -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 98%);
-  mask-image: linear-gradient(to right, #000 55%, transparent 98%);
-  transition: max-height 0.25s ease;
-}
-.cv-more > *:first-child { margin-top: 0; }
-.cv-more:hover,
-.cv-more:focus-visible { opacity: 0.85; }
-.cv-more.open {
-  max-height: 60em;
-  cursor: auto;
-  -webkit-mask-image: none;
-  mask-image: none;
-}
-.cv-more.open:hover { opacity: 1; }
 .cv-subheading {
   margin: 2rem 0 0.75rem;
   font-family: var(--font-mono, ui-monospace, monospace);
@@ -5250,9 +5217,103 @@ span {
 @media (max-width: 640px) {
   .cv-skill-grid { grid-template-columns: 1fr; gap: 4px; }
   .cv-skill-grid dd { margin-bottom: 12px; }
-  .cv-open-all { margin-left: 0; }
+}
+
+
+/* cv as a table: date | title | place, descriptions behind one link */
+.cv-full-toggle {
+  margin-left: auto;
+  font: inherit;
+  background: none;
+  border: 0;
+  border-bottom: 1px dashed currentColor;
+  padding: 0;
+  color: var(--link-color, #6a4fd0);
+  cursor: pointer;
+}
+.cv-page .cv-item:not(.grouped),
+.cv-page .cv-role {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) minmax(0, 0.8fr);
+  column-gap: 18px;
+  align-items: baseline;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--cv-rule, #ddd7ec);
+}
+.cv-page .cv-meta,
+.cv-page .cv-role-meta { display: contents; }
+.cv-page .cv-item:not(.grouped) .cv-date,
+.cv-page .cv-role .cv-role-date {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+.cv-page .cv-item:not(.grouped) .cv-title,
+.cv-page .cv-role .cv-role-title { grid-column: 2; grid-row: 1; }
+.cv-page .cv-item:not(.grouped) .cv-org {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 0.75rem;
+}
+.cv-page .cv-item:not(.grouped):not(:has(.cv-org)) .cv-title { grid-column: 2 / 4; }
+.cv-page .cv-more {
+  display: none;
+  grid-column: 2 / 4;
+  padding-top: 6px;
+}
+.cv-page[data-full="true"] .cv-more { display: block; }
+.cv-page .cv-item.grouped { margin: 0; padding-top: 10px; }
+.cv-page .cv-company-row {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  column-gap: 18px;
+  align-items: baseline;
+  padding-bottom: 2px;
+}
+.cv-page .cv-company-row .cv-date {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+.cv-page .cv-company-row .cv-company { grid-column: 2; grid-row: 1; }
+.cv-page .cv-roles { border: 0; margin: 0; padding: 0; }
+.cv-page .cv-roles .cv-role::before { display: none; }
+.cv-page .cv-role .cv-role-title { padding-left: 14px; font-weight: 500; }
+.cv-page .cv-role .cv-more { padding-left: 14px; }
+.cv-year {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  column-gap: 14px;
+  margin-top: 14px;
+}
+.cv-year-label {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-weight: 600;
+  font-size: 1rem;
+  padding-top: 7px;
+  color: var(--link-color, #8a7fc9);
+}
+.cv-year .cv-item:not(.grouped) { grid-template-columns: 96px minmax(0, 1fr) minmax(0, 0.8fr); }
+@media (max-width: 640px) {
+  .cv-page .cv-item:not(.grouped),
+  .cv-page .cv-role,
+  .cv-year .cv-item:not(.grouped) { display: block; }
+  .cv-page .cv-item:not(.grouped) .cv-date,
+  .cv-page .cv-role .cv-role-date { display: block; }
+  .cv-page .cv-role .cv-role-title,
+  .cv-page .cv-role .cv-more { padding-left: 0; }
+  .cv-year { grid-template-columns: 1fr; }
+  .cv-year-label { padding-top: 0; }
+  .cv-page .cv-company-row { display: block; }
 }
 @media print {
   .cv-jump { display: none; }
-  .cv-more { max-height: none; -webkit-mask-image: none; mask-image: none; }
+  .cv-page .cv-more { display: block; }
 }
