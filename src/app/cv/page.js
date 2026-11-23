@@ -385,6 +385,22 @@ export default function CVPage() {
             </div>
             <div className="cv-item">
               <div className="cv-meta">
+                <div className="cv-title">every thing computer, group exhibition</div>
+                <span className="cv-date">oct – nov</span>
+              </div>
+              <div className="cv-org">
+                <span className="cv-keep">tiat gallery ·</span>{" "}
+                <span className="cv-keep">san francisco, ca</span>
+              </div>
+              <div className="cv-more">
+                <p className="cv-summary">
+                  exhibited the soft computer mini (travel edition), selected through
+                  an open call.
+                </p>
+              </div>
+            </div>
+            <div className="cv-item">
+              <div className="cv-meta">
                 <div className="cv-title">
                   they make you write your poems, group exhibition + panel
                 </div>
