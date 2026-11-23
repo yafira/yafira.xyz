@@ -999,7 +999,15 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
-              <div className="cv-title">arte tracks, cyberdecks</div>
+              <div className="cv-title">
+                <a
+                  href="https://www.arte.tv/fr/videos/126484-033-A/tracks/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  arte tracks, cyberdecks
+                </a>
+              </div>
               <span className="cv-date">nov 2026</span>
             </div>
             <div className="cv-org">
