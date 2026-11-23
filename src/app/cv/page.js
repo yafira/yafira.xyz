@@ -331,11 +331,18 @@ export default function CVPage() {
         <div className="cv-list">
           <div className="cv-item">
             <div className="cv-meta">
-              <div className="cv-title">girl irl, group exhibition</div>
+              <div className="cv-title">
+                girl irl, zine release + group exhibition
+              </div>
               <span className="cv-date">nov 2026</span>
             </div>
-            <div className="cv-org">no such thing · brooklyn, ny</div>
-            <p className="cv-summary">exhibited the soft computer.</p>
+            <div className="cv-org">powrplnt × no such thing · brooklyn, ny</div>
+            <p className="cv-summary">
+              exhibited the soft computer at the release party and gallery show
+              for the zine <i>girl irl</i>, organized with the tech-education
+              nonprofit powrplnt to celebrate the opening of its new computer
+              lab at no such thing.
+            </p>
           </div>
           <div className="cv-item">
             <div className="cv-meta">
