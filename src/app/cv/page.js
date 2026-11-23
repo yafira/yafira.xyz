@@ -28,30 +28,6 @@ export default function CVPage() {
         <h2 className="cv-heading">experience</h2>
 
         <div className="cv-list">
-          {/* kurppa hosk */}
-          <div className="cv-item">
-            <div className="cv-meta">
-              <div className="cv-title">
-                creative technologist, brand systems, kurppa hosk
-              </div>
-              <span className="cv-date">oct 2026 – present</span>
-            </div>
-            <p className="cv-summary">
-              contract role with the brand and communications team at a global
-              brand and design agency, exploring how ai can extend creative
-              work. leading focused sprints prototyping ai-assisted creative
-              production, evaluating and building new features for brand os,
-              the agency’s brand systems platform, alongside the engineering
-              team at above, and sharing findings and recommendations with the
-              wider team.
-            </p>
-            <p className="cv-skills">
-              <span className="label">skills:</span> front-end development, ui
-              engineering, brand systems, creative prototyping, ai tooling
-              research
-            </p>
-          </div>
-
           {/* electrocute lab */}
           <div className="cv-item">
             <div className="cv-meta">
@@ -90,6 +66,30 @@ export default function CVPage() {
             <p className="cv-skills">
               <span className="label">skills:</span> physical computing, soft
               electronics, web development, technical writing, open-source
+            </p>
+          </div>
+
+          {/* kurppa hosk */}
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                creative technologist, brand systems, kurppa hosk
+              </div>
+              <span className="cv-date">oct 2026 – nov 2026</span>
+            </div>
+            <p className="cv-summary">
+              contract role with the brand and communications team at a global
+              brand and design agency, explored how ai can extend creative
+              work. led focused sprints prototyping ai-assisted creative
+              production, evaluated and built new features for brand os,
+              the agency’s brand systems platform, alongside the engineering
+              team at above, and shared findings and recommendations with the
+              wider team.
+            </p>
+            <p className="cv-skills">
+              <span className="label">skills:</span> front-end development, ui
+              engineering, brand systems, creative prototyping, ai tooling
+              research
             </p>
           </div>
 
@@ -329,6 +329,29 @@ export default function CVPage() {
       <section className="cv-section creative-explorations">
         <h2 className="cv-heading">selected work + creative explorations</h2>
         <div className="cv-list">
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">girl irl, group exhibition</div>
+              <span className="cv-date">nov 2026</span>
+            </div>
+            <div className="cv-org">no such thing · brooklyn, ny</div>
+            <p className="cv-summary">exhibited the soft computer.</p>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                they make you write your poems, group exhibition + panel
+              </div>
+              <span className="cv-date">oct 2026</span>
+            </div>
+            <div className="cv-org">onassis onx · new york, ny</div>
+            <p className="cv-summary">
+              exhibited the soft computer, pocket oracle of time, and ribbon
+              logic in <i>artistic practices amid automated cognition</i>,
+              curated by giulia colletti, and spoke on the show&apos;s panel,
+              co-hosted by the american academy in rome.
+            </p>
+          </div>
           <div className="cv-item">
             <div className="cv-meta">
               <div className="cv-title">tiny soft computers workshop</div>
