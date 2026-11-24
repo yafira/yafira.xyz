@@ -368,20 +368,19 @@ export default function CVPage() {
             <div className="cv-item">
               <div className="cv-meta">
                 <div className="cv-title">
-                  softer nyc, diy hardware + community, co-host
+                  indie games x wearables, wearable tech workshop, co-instructor
                 </div>
-                <span className="cv-date">dec · upcoming</span>
+                <span className="cv-date">nov · upcoming</span>
               </div>
               <div className="cv-org">
-                <span className="cv-keep">softer × metalabel ·</span>{" "}
-                <span className="cv-keep">chinatown, nyc</span>
+                <span className="cv-keep">women in games nyc ·</span>{" "}
+                <span className="cv-keep">brooklyn, ny</span>
               </div>
               <div className="cv-more">
                 <p className="cv-summary">
-                  co-hosting softer&apos;s first nyc event with danielle paterson of
-                  metalabel and dark forest os, and alanna okun: an evening on diy
-                  hardware, private internets, and the role of community in building
-                  softer hardware and software.
+                  co-instructing a hands-on wearable tech workshop for the women in
+                  games nyc community, as part of an evening of indie game
+                  presentations with nyu game design days and gumbo collective.
                 </p>
               </div>
             </div>
@@ -421,7 +420,7 @@ export default function CVPage() {
             <div className="cv-item">
               <div className="cv-meta">
                 <div className="cv-title">
-                  they make you write your poems, group exhibition + panel
+                  they make you write your poems, group exhibition
                 </div>
                 <span className="cv-date">oct</span>
               </div>
@@ -433,8 +432,7 @@ export default function CVPage() {
                 <p className="cv-summary">
                   exhibited the soft computer, pocket oracle of time, and ribbon
                   logic in <i>artistic practices amid automated cognition</i>,
-                  curated by giulia colletti, and spoke on the show&apos;s panel,
-                  co-hosted by the american academy in rome.
+                  curated by giulia colletti.
                 </p>
               </div>
             </div>
@@ -754,26 +752,6 @@ export default function CVPage() {
             <div className="cv-item">
               <div className="cv-meta">
                 <div className="cv-title">
-                  lightning talk speaker, exploring creativity in the age of ai
-                </div>
-                <span className="cv-date">oct</span>
-              </div>
-              <div className="cv-org">
-                <span className="cv-keep">nyu global show & tell ·</span>{" "}
-                <span className="cv-keep">new york, ny</span>
-              </div>
-              <div className="cv-more">
-                <p className="cv-summary">
-                  presented <i>open tools, soft interfaces</i>, discussing
-                  contributions to ml5.js and open-source machine learning, and
-                  framing creativity in ai through openness, design as dialogue, and
-                  human-centered interfaces.
-                </p>
-              </div>
-            </div>
-            <div className="cv-item">
-              <div className="cv-meta">
-                <div className="cv-title">
                   un open source week hackathon, ahead of the storm challenge
                 </div>
                 <span className="cv-date">jun</span>
@@ -882,6 +860,71 @@ export default function CVPage() {
                   conductive threads through a DIY wet-spinning process.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* panels + talks */}
+      <section className="cv-section talks" id="talks">
+        <h2 className="cv-heading">panels + talks</h2>
+        <div className="cv-list">
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                softer nyc, diy hardware + community, co-host
+              </div>
+              <span className="cv-date">dec 2026 · upcoming</span>
+            </div>
+            <div className="cv-org">
+              <span className="cv-keep">softer × metalabel ·</span>{" "}
+              <span className="cv-keep">chinatown, nyc</span>
+            </div>
+            <div className="cv-more">
+              <p className="cv-summary">
+                co-hosting softer&apos;s first nyc event with danielle paterson of
+                metalabel and dark forest os, and alanna okun: an evening on diy
+                hardware, private internets, and the role of community in building
+                softer hardware and software.
+              </p>
+            </div>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                panelist, they make you write your poems
+              </div>
+              <span className="cv-date">oct 2026</span>
+            </div>
+            <div className="cv-org">
+              <span className="cv-keep">onassis onx × american academy in rome ·</span>{" "}
+              <span className="cv-keep">new york, ny</span>
+            </div>
+            <div className="cv-more">
+              <p className="cv-summary">
+                spoke on the panel for <i>artistic practices amid automated
+                cognition</i>, moderated by curator giulia colletti.
+              </p>
+            </div>
+          </div>
+          <div className="cv-item">
+            <div className="cv-meta">
+              <div className="cv-title">
+                lightning talk, exploring creativity in the age of ai
+              </div>
+              <span className="cv-date">oct 2025</span>
+            </div>
+            <div className="cv-org">
+              <span className="cv-keep">nyu global show & tell ·</span>{" "}
+              <span className="cv-keep">new york, ny</span>
+            </div>
+            <div className="cv-more">
+              <p className="cv-summary">
+                presented <i>open tools, soft interfaces</i>, discussing
+                contributions to ml5.js and open-source machine learning, and
+                framing creativity in ai through openness, design as dialogue, and
+                human-centered interfaces.
+              </p>
             </div>
           </div>
         </div>

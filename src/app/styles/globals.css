@@ -5196,6 +5196,12 @@ span {
 .cv-section.press {
   border-color: var(--craft-color);
 }
+.cv-section.talks {
+  border-color: var(--design-color);
+}
+[data-theme="accessible"] .cv-section.talks {
+  border-color: #000000 !important;
+}
 [data-theme="accessible"] .cv-section.press {
   border-color: #000000 !important;
 }

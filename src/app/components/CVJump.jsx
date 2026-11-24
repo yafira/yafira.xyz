@@ -14,6 +14,7 @@ export default function CVJump() {
       {more ? (
         <>
           <a href="#selected-work">selected work</a>
+          <a href="#talks">talks</a>
           <a href="#honors">honors</a>
           <a href="#press">press</a>
         </>
@@ -24,7 +25,7 @@ export default function CVJump() {
         aria-expanded={more}
         onClick={() => setMore(!more)}
       >
-        {more ? "less" : "+ 3 more"}
+        {more ? "less" : "+ 4 more"}
       </button>
     </>
   );
