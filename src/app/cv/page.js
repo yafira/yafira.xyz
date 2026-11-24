@@ -367,6 +367,26 @@ export default function CVPage() {
           <div className="cv-list">
             <div className="cv-item">
               <div className="cv-meta">
+                <div className="cv-title">
+                  softer nyc, diy hardware + community, co-host
+                </div>
+                <span className="cv-date">dec · upcoming</span>
+              </div>
+              <div className="cv-org">
+                <span className="cv-keep">softer × metalabel ·</span>{" "}
+                <span className="cv-keep">chinatown, nyc</span>
+              </div>
+              <div className="cv-more">
+                <p className="cv-summary">
+                  co-hosting softer&apos;s first nyc event with danielle paterson of
+                  metalabel and dark forest os, and alanna okun: an evening on diy
+                  hardware, private internets, and the role of community in building
+                  softer hardware and software.
+                </p>
+              </div>
+            </div>
+            <div className="cv-item">
+              <div className="cv-meta">
                 <div className="cv-title">girl irl, group exhibition</div>
                 <span className="cv-date">nov</span>
               </div>
