@@ -90,17 +90,19 @@ export default function CVPage() {
             <div className="cv-more">
               <p className="cv-summary">
                 contract role with the brand and communications team at a global
-                brand and design agency, explored how ai can extend creative
-                work. led focused sprints prototyping ai-assisted creative
-                production, evaluated and built new features for brand os,
-                the agency’s brand systems platform, alongside the engineering
-                team at above, and shared findings and recommendations with the
-                wider team.
+                brand and design agency. as the agency&apos;s ai lead, ran brand
+                experiments, benchmarked 14 competitors, and presented a phased
+                recommendation to leadership. built a copy helper and a creative
+                builder that turns one brief into an on-brand kit in figma,
+                flagging claims the brand can&apos;t back up. contributed to brand
+                os, a rust / surrealdb multi-brand platform, with the engineering
+                team at above, including a cross-brand link-routing fix, a
+                regression test, and updated docs.
               </p>
               <p className="cv-skills">
                 <span className="label">skills:</span> front-end development, ui
-                engineering, brand systems, creative prototyping, ai tooling
-                research
+                engineering, brand systems, figma plugins, rust, surrealdb,
+                creative prototyping
               </p>
             </div>
           </div>
