@@ -1008,7 +1008,14 @@ export default function CVPage() {
             </div>
             <div className="cv-org">
               <span className="cv-keep">featured interview ·</span>{" "}
-              <span className="cv-keep">electrocute lab</span>
+              <span className="cv-keep">softer digital futures, denmark</span>
+            </div>
+            <div className="cv-more">
+              <p className="cv-summary">
+                interviewed at softer digital futures in denmark about our practice
+                in diy hardware and soft computing, and the tiny soft computers
+                workshop we taught there.
+              </p>
             </div>
           </div>
           <div className="cv-item">
