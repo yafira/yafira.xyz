@@ -5330,3 +5330,15 @@ span {
 
 /* keeps each part of a place together when it wraps */
 .cv-keep { white-space: nowrap; }
+
+/* the "+ 3 more" in the cv jump links */
+.cv-jump-more {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.cv-jump-more:hover { opacity: 1; }

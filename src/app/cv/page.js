@@ -1,6 +1,7 @@
 import React from "react";
 import MobileBack from "@/app/components/MobileBack";
 import CVFullToggle from "@/app/components/CVFullToggle";
+import CVJump from "@/app/components/CVJump";
 
 export const metadata = {
   title: "Yafira | cv",
@@ -26,12 +27,7 @@ export default function CVPage() {
 
       {/* jump links, so the long page is easy to move around */}
       <nav className="cv-jump" aria-label="cv sections">
-        <a href="#experience">experience</a>
-        <a href="#selected-work">selected work</a>
-        <a href="#education">education</a>
-        <a href="#honors">honors</a>
-        <a href="#press">press</a>
-        <a href="#skills">skills</a>
+        <CVJump />
         <CVFullToggle />
       </nav>
 
