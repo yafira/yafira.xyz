@@ -370,7 +370,7 @@ export default function CVPage() {
                 <div className="cv-title">
                   indie games x wearables, wearable tech workshop, co-instructor
                 </div>
-                <span className="cv-date">nov · upcoming</span>
+                <span className="cv-date">nov 30 · upcoming</span>
               </div>
               <div className="cv-org">
                 <span className="cv-keep">women in games nyc ·</span>{" "}
