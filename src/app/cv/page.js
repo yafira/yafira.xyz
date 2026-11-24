@@ -386,7 +386,7 @@ export default function CVPage() {
             </div>
             <div className="cv-item">
               <div className="cv-meta">
-                <div className="cv-title">girl irl, group exhibition</div>
+                <div className="cv-title">girl irl</div>
                 <span className="cv-date">nov</span>
               </div>
               <div className="cv-org">
@@ -403,7 +403,7 @@ export default function CVPage() {
             </div>
             <div className="cv-item">
               <div className="cv-meta">
-                <div className="cv-title">every thing computer, group exhibition</div>
+                <div className="cv-title">every thing computer</div>
                 <span className="cv-date">oct – nov</span>
               </div>
               <div className="cv-org">
@@ -419,9 +419,7 @@ export default function CVPage() {
             </div>
             <div className="cv-item">
               <div className="cv-meta">
-                <div className="cv-title">
-                  they make you write your poems, group exhibition
-                </div>
+                <div className="cv-title">they make you write your poems</div>
                 <span className="cv-date">oct</span>
               </div>
               <div className="cv-org">
