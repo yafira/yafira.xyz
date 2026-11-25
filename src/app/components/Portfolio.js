@@ -36,17 +36,17 @@ const PILL_STYLE = { code: 1, design: 3, electronics: 2 };
 // curated slice of the résumé skills, colored using the same category
 // tokens as elsewhere.
 const SKILLS = [
+  { label: "Figma", cat: "design" },
+  { label: "Design Systems", cat: "design" },
+  { label: "UX/UI", cat: "design" },
+  { label: "Interaction Design", cat: "design" },
+  { label: "Digital Accessibility", cat: "design" },
   { label: "React", cat: "code" },
   { label: "Next.js", cat: "code" },
   { label: "TypeScript", cat: "code" },
   { label: "JavaScript", cat: "code" },
   { label: "p5.js", cat: "code" },
   { label: "Computational Text", cat: "code" },
-  { label: "Figma", cat: "design" },
-  { label: "Design Systems", cat: "design" },
-  { label: "UX/UI", cat: "design" },
-  { label: "Interaction Design", cat: "design" },
-  { label: "Digital Accessibility", cat: "design" },
   { label: "Arduino", cat: "electronics" },
   { label: "Raspberry Pi", cat: "electronics" },
   { label: "Physical Computing", cat: "electronics" },
