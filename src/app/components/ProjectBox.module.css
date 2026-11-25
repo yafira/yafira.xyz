@@ -255,11 +255,12 @@
 }
 
 .tag {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 3px 8px;
+  font-family: var(--font-body, "Space Grotesk", sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 3px 9px;
   border-radius: 999px;
   background: var(--tag-bg, rgba(0, 0, 0, 0.04));
   color: var(--text-secondary, #666);

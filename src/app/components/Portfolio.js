@@ -382,7 +382,6 @@ export default function Portfolio() {
           <MagnetDot />
         </span>
         <h2 className="work-section-heading work-more-heading">
-          <span className="sr-only">more projects</span>
           <span aria-hidden="true">more projects! ━☆ﾟ.*･｡ﾟ҉̛</span>
         </h2>
 

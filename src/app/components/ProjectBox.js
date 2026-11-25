@@ -173,7 +173,6 @@ const ProjectBox = ({
               alt={imageAlt || title}
               className={styles.thumbImg}
             />
-            <span className={styles.catTag}>{category}</span>
             {badge && (
               <span className={`project-badge ${badge} ${styles.badgeOverlay}`}>
                 {badge}
@@ -185,7 +184,6 @@ const ProjectBox = ({
             className={`${styles.thumb} ${styles.thumbPlaceholder}`}
             {...thumbLinkProps}
           >
-            <span className={styles.catTag}>{category}</span>
             {badge && (
               <span className={`project-badge ${badge} ${styles.badgeOverlay}`}>
                 {badge}
