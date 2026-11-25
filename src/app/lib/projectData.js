@@ -71,7 +71,7 @@ export const featuredWork = [
     tags: ["accessibility", "generative text", "web tooling"],
     disciplines: ["design", "code"],
     links: {
-      web: "https://alt-loom.vercel.app/",
+      web: "https://www.electrocutelab.com/altloom/",
       code: "https://github.com/yafira/alt-loom",
     },
     process: {
@@ -154,7 +154,7 @@ export const secondaryWork = [
     tags: ["creative coding", "web tooling", "generative design"],
     disciplines: ["design", "code"],
     links: {
-      web: "https://fluoro-riso.vercel.app",
+      web: "https://www.electrocutelab.com/fluoro/",
       npm: "https://www.npmjs.com/package/fluoro-riso",
       code: "https://github.com/yafira/fluoro-riso",
     },
@@ -211,7 +211,7 @@ export const spotlightProject = {
   stack: "Next.js · TypeScript · MediaPipe · Canvas",
   tags: ["on-device ML", "computer vision", "creative coding"],
   links: {
-    demo: "https://pixel-picnic.vercel.app/live",
+    demo: "https://www.electrocutelab.com/pixel-picnic/live/",
     code: "https://github.com/yafira/pixel-picnic",
   },
 };
