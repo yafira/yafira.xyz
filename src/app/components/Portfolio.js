@@ -192,6 +192,13 @@ function StitchMark() {
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [layout, setLayout] = useState(null);
+
+  // layout test switch: ?layout=1|2|3 (read after mount so server and client match)
+  useEffect(() => {
+    const v = new URLSearchParams(window.location.search).get("layout");
+    if (v) setLayout(v);
+  }, []);
 
   const categories = useMemo(() => {
     const present = new Set(moreProjects.map((p) => p.category));
@@ -215,7 +222,7 @@ export default function Portfolio() {
   const isDrawerScrollable = drawerItems.length > 2;
 
   return (
-    <div className="home-page">
+    <div className="home-page" data-layout={layout ?? undefined}>
       <section className="home-claim-wrap">
         <p className="home-motto">computing as craft</p>
         <div className="home-hero-flower-wrap">
@@ -234,10 +241,6 @@ export default function Portfolio() {
           i&apos;m <span className="hero-name-accent">yafira</span>, a design
           engineer and creative technologist crafting <CycleWord />.
         </h1>
-        <p className="home-proof">
-          electrocute-ui on npm · 22+ tools at tinytinker.tools · NYU ITP · open
-          hardware summit berlin fellow
-        </p>
         <div className="duality-strip" aria-label="design, code, hardware">
           <span className="duality-item">
             <img src="/assets/design.png" alt="" />

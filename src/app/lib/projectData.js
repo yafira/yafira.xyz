@@ -62,29 +62,6 @@ export const featuredWork = [
     ],
   },
   {
-    title: "cache",
-    imageUrl: "/assets/cache.gif",
-    category: "code",
-    description:
-      "A moodboard tool where you paste, drag, and style inspiration like you actually think. Create a patch, collect your stash, keep everything cached!",
-    stack: "Next.js · React · CSS Modules",
-    tags: ["design engineering", "web tooling", "frontend"],
-    disciplines: ["design", "code"],
-    links: {
-      web: "https://cachecraft.io/",
-      code: "https://github.com/yafira/cache",
-      casestudy: "https://cachecraft.io/case-study",
-    },
-    process: {
-      problem:
-        "Most moodboard tools force inspiration into a rigid grid or board layout — but visual reference doesn't actually get collected that way. It gets pasted in fast, layered, and revisited out of order.",
-      approach:
-        "Built around one core interaction: paste an image or link and it drops onto a freely-positioned canvas immediately, no upload flow in the way. Kept the organizing model to just two concepts — a patch (a working canvas) and a stash (a saved collection) — so styling and arranging stays fast instead of growing into folder-and-database overhead.",
-      result:
-        "A tool that gets out of the way: paste, drag, style, done. Full write-up in the case study.",
-    },
-  },
-  {
     title: "alt-loom",
     imageUrl: "/assets/alt-loom.gif",
     category: "code",
@@ -106,9 +83,51 @@ export const featuredWork = [
         "A standalone accessibility tool that also makes the case that the generative-text practice and the engineering-rigor practice aren't two different skills.",
     },
   },
+  {
+    title: "Soft Components",
+    imageUrl: "/assets/soft-components.gif",
+    category: "code",
+    description:
+      "Interactive reference library for soft electronic components — felt buttons, fabric potentiometers, pressure sensors — each pairing a live physics-based demo with the material science underneath it.",
+    stack: "Next.js · TypeScript · GSAP · Motion",
+    tags: [
+      "design engineering",
+      "e-textiles",
+      "physical computing",
+      "creative coding",
+    ],
+    disciplines: ["design", "code"],
+    links: {
+      web: "https://www.softcomponents.xyz/",
+      code: "https://github.com/yafira/soft-components",
+    },
+    process: {
+      problem:
+        "Static diagrams can't show how a soft circuit actually behaves — the squish of a felt button, the slide of a fabric potentiometer, the give of a pressure sensor. Documentation for e-textiles usually flattens exactly the quality that makes them worth using.",
+      approach:
+        "Prototyped three different animation approaches — plain CSS transforms, GSAP timeline sequencing, and Motion's spring physics — before realizing the right answer wasn't picking one, but matching the animation model to the material behavior each component actually needed to demonstrate. A felt button's squash-and-release needed spring easing; a fabric potentiometer's slide needed timeline-driven interpolation instead.",
+      result:
+        "A library where every component's demo teaches its physical behavior first, material science second — interaction as documentation rather than a diagram bolted on afterward.",
+    },
+  },
 ];
 
 export const secondaryWork = [
+  {
+    title: "cache",
+    imageUrl: "/assets/cache.gif",
+    category: "code",
+    description:
+      "A moodboard tool where you paste, drag, and style inspiration like you actually think. Create a patch, collect your stash, keep everything cached!",
+    stack: "Next.js · React · CSS Modules",
+    tags: ["design engineering", "web tooling", "frontend"],
+    disciplines: ["design", "code"],
+    links: {
+      web: "https://cachecraft.io/",
+      code: "https://github.com/yafira/cache",
+      casestudy: "https://cachecraft.io/case-study",
+    },
+  },
   {
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
@@ -203,33 +222,6 @@ export const spotlightProject = {
 // hits the product work first and this reads as R&D rather than the
 // main pitch.
 export const rdWork = [
-  {
-    title: "Soft Components",
-    imageUrl: "/assets/soft-components.gif",
-    category: "code",
-    description:
-      "Interactive reference library for soft electronic components — felt buttons, fabric potentiometers, pressure sensors — each pairing a live physics-based demo with the material science underneath it.",
-    stack: "Next.js · TypeScript · GSAP · Motion",
-    tags: [
-      "design engineering",
-      "e-textiles",
-      "physical computing",
-      "creative coding",
-    ],
-    disciplines: ["design", "code"],
-    links: {
-      web: "https://www.softcomponents.xyz/",
-      code: "https://github.com/yafira/soft-components",
-    },
-    process: {
-      problem:
-        "Static diagrams can't show how a soft circuit actually behaves — the squish of a felt button, the slide of a fabric potentiometer, the give of a pressure sensor. Documentation for e-textiles usually flattens exactly the quality that makes them worth using.",
-      approach:
-        "Prototyped three different animation approaches — plain CSS transforms, GSAP timeline sequencing, and Motion's spring physics — before realizing the right answer wasn't picking one, but matching the animation model to the material behavior each component actually needed to demonstrate. A felt button's squash-and-release needed spring easing; a fabric potentiometer's slide needed timeline-driven interpolation instead.",
-      result:
-        "A library where every component's demo teaches its physical behavior first, material science second — interaction as documentation rather than a diagram bolted on afterward.",
-    },
-  },
   {
     title: "TinkerThread",
     imageUrl: "/assets/tt.gif",

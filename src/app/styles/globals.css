@@ -3739,14 +3739,14 @@ html.home-locked .connector-lines {
 
 @media (min-width: 900px) {
   .home-claim-wrap {
-    padding-top: clamp(1.25rem, 4vh, 2.75rem);
-    margin-bottom: clamp(3.5rem, 8vh, 5rem);
+    padding-top: clamp(0.5rem, 2vh, 1rem);
+    margin-bottom: clamp(2rem, 4.5vh, 3rem);
   }
   .home-hero-flower {
-    margin-bottom: 1.8rem;
+    margin-bottom: 0.9rem;
   }
   .home-hero-flower img {
-    width: clamp(190px, 19vw, 260px) !important;
+    width: clamp(150px, 15vw, 200px) !important;
   }
   .home-claim {
     margin-bottom: 1.1rem;
@@ -4710,6 +4710,148 @@ span {
     grid-template-columns: 1fr;
     max-width: 460px;
   }
+}
+
+/* bottom projects (secondary + r&d): compact rows, so they read differently
+   from the featured cards above. the layout test variants below still win
+   when ?layout is set. */
+.projects-grid.secondary {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+  gap: 0;
+}
+.projects-grid.secondary .project-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 4px;
+  border: none;
+  border-bottom: 1px dashed var(--border-accent, rgba(0, 0, 0, 0.15));
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.projects-grid.secondary .project-box > :first-child {
+  flex: 0 0 clamp(180px, 22vw, 240px);
+  height: clamp(110px, 12vw, 150px);
+  overflow: hidden;
+  border-radius: 6px;
+}
+.projects-grid.secondary .project-box > :first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.projects-grid.secondary .project-box > :last-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+/* phones: stack each bottom row, image on top, text below */
+@media (max-width: 560px) {
+  .projects-grid.secondary .project-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 16px 2px;
+  }
+  .projects-grid.secondary .project-box > :first-child {
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+}
+/* let the link pills wrap inside the text column instead of being clipped */
+.projects-grid.secondary .project-box {
+  overflow: visible !important;
+}
+.projects-grid.secondary .project-box > :last-child,
+.projects-grid.secondary .project-box > :last-child * {
+  overflow: visible !important;
+}
+.projects-grid.secondary .project-box [class*="Links"],
+.projects-grid.secondary .project-box [class*="links"] {
+  flex-wrap: wrap !important;
+  max-width: 100%;
+}
+/* keep the link pills in the text column instead of floating over it */
+.projects-grid.secondary .project-box [class*="Links"],
+.projects-grid.secondary .project-box [class*="links"] {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  float: none !important;
+  width: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  justify-content: flex-start !important;
+}
+
+/* layout test variants, chosen with ?layout=1, ?layout=2, or ?layout=3.
+   no param keeps the current layout. */
+.home-page[data-layout="1"] .projects-grid.featured {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 920px;
+  gap: 40px;
+}
+.home-page[data-layout="1"] .projects-grid.featured .project-box {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.home-page[data-layout="1"] .projects-grid.featured .project-box > :first-child {
+  flex: 1.15 1 0;
+  min-width: 0;
+}
+.home-page[data-layout="1"] .projects-grid.featured .project-box > :last-child {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.home-page[data-layout="1"] .projects-grid.featured .project-box:nth-child(even) {
+  flex-direction: row-reverse;
+}
+@media (max-width: 700px) {
+  .home-page[data-layout="1"] .projects-grid.featured .project-box,
+  .home-page[data-layout="1"] .projects-grid.featured .project-box:nth-child(even) {
+    flex-direction: column;
+  }
+}
+.home-page[data-layout="2"] .projects-grid.featured {
+  max-width: 1040px;
+  gap: 48px;
+}
+.home-page[data-layout="2"] .projects-grid.secondary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1000px;
+}
+@media (max-width: 900px) {
+  .home-page[data-layout="2"] .projects-grid.secondary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.home-page[data-layout="3"] .projects-grid.featured {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 860px;
+  gap: 16px;
+}
+.home-page[data-layout="3"] .projects-grid.featured .project-box {
+  display: flex;
+  flex-direction: row;
+}
+.home-page[data-layout="3"] .projects-grid.featured .project-box > :first-child {
+  flex: 0 0 34%;
+}
+.home-page[data-layout="3"] .projects-grid.featured .project-box > :last-child {
+  flex: 1 1 auto;
+}
+.home-page[data-layout="3"] .projects-grid.secondary {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 640px;
+  gap: 4px;
+}
+.home-page[data-layout="3"] .projects-grid.secondary .project-box > :first-child {
+  display: none;
 }
 
 /* standalone spotlight interlude, deliberately not a grid card.
