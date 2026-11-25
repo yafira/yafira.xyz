@@ -156,7 +156,7 @@ export const secondaryWork = [
     links: {
       web: "https://www.electrocutelab.com/fluoro/",
       npm: "https://www.npmjs.com/package/fluoro-riso",
-      code: "https://github.com/yafira/fluoro-riso",
+      code: "https://github.com/yafira/fluoro",
     },
   },
   {
