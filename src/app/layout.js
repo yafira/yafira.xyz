@@ -12,11 +12,11 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: "Yafira | designer + engineer",
+  title: "Yafira | design engineer & creative technologist",
   description:
     "i design and build interactive products across software, hardware, and emerging interfaces.",
   openGraph: {
-    title: "Yafira | designer + engineer",
+    title: "Yafira | design engineer & creative technologist",
     description:
       "i design and build interactive products across software, hardware, and emerging interfaces.",
     images: [

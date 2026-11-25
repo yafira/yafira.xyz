@@ -26,7 +26,7 @@ export default function Navigation() {
         <Link href="/" className="home-icon">
           <Image
             src="/assets/flower-sm.png"
-            alt="home"
+            alt="yafira, home"
             width={22}
             height={22}
           />

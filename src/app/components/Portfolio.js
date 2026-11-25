@@ -382,7 +382,8 @@ export default function Portfolio() {
           <MagnetDot />
         </span>
         <h2 className="work-section-heading work-more-heading">
-          more projects! ━☆ﾟ.*･｡ﾟ҉̛
+          <span className="sr-only">more projects</span>
+          <span aria-hidden="true">more projects! ━☆ﾟ.*･｡ﾟ҉̛</span>
         </h2>
 
         {/* light/dark: filter pills + drawer. reader mode hides this via CSS. */}

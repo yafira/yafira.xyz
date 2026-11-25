@@ -5,11 +5,6 @@
 // disciplines (optional): "design" | "code" | "hardware" — renders as badges.
 // process (featuredWork only): { problem, approach, result }.
 // swatches (optional): design tokens rendered as live color chips.
-// status (optional): "shipped" | "concept" | "prototype" — renders as a
-// small always-visible tag on the thumbnail. "shipped" = live/published/
-// in real use; "prototype" = built and working but not published/
-// distributed (most hardware); "concept" = speculative/design-only, no
-// working build (e.g. a Figma case study).
 
 export const featuredWork = [
   {
@@ -18,7 +13,6 @@ export const featuredWork = [
     imageAlt:
       "craftcomputery's storefront: the striped awning and hero, the shop shelves of downloads, and the crayon doodles on the about page",
     category: "code",
-    status: "shipped",
     description:
       "An artisanal shop for handmade computing and the craft-tech r&d division of electrocute lab. Designed, illustrated, written, and built end to end, from checkout and signed downloads to a pager-style email list.",
     stack: "Next.js · Stripe · Resend · Keystatic",
@@ -31,7 +25,7 @@ export const featuredWork = [
       problem:
         "Electrocute lab's work mostly lived in shows and workshops, with no slow, small place for people to take a piece of it home. Off-the-shelf storefronts would have meant a template look and a marketplace feel, the opposite of the practice.",
       approach:
-        "Built the whole shop around one idea: ideas brew in the lab, and fresh batches go to the shelf when they're ready. Stripe Checkout and a verified webhook hand off to Resend, which emails HMAC-signed download links served from Vercel Blob. Lab notes are YAML files edited in Keystatic. The page me list sends a pastel pager instead of a newsletter, with signed one-click unsubscribe. The crayon doodles are SVG paths roughened by turbulence and displacement filters that boil like a flipbook, paused for reduced motion.",
+        "Built the whole shop around one idea: ideas brew in the lab, and fresh batches go to the shelf when they're ready. Stripe Checkout and a verified webhook hand off to Resend, which emails HMAC-signed download links served from Vercel Blob. Lab notes are YAML files edited in Keystatic. The email list sends a pastel pager instead of a newsletter, with signed one-click unsubscribe. The crayon doodles are SVG paths roughened by turbulence and displacement filters that boil like a flipbook, paused for reduced motion.",
       result:
         "Launched Nov 22, 2026 with its first batch of digital downloads, in about three weeks from first note to open doors. Handmade physical pieces come next, in small batches.",
     },
@@ -40,7 +34,6 @@ export const featuredWork = [
     title: "electrocute-ui",
     imageUrl: "/assets/ecuteui.gif",
     category: "code",
-    status: "shipped",
     description:
       "Design system and React component library published on npm: 18 design tokens, 8 components, and a live documentation site. Designed, built, documented, and shipped end to end.",
     stack: "React · npm · Storybook",
@@ -72,7 +65,6 @@ export const featuredWork = [
     title: "cache",
     imageUrl: "/assets/cache.gif",
     category: "code",
-    status: "shipped",
     description:
       "A moodboard tool where you paste, drag, and style inspiration like you actually think. Create a patch, collect your stash, keep everything cached!",
     stack: "Next.js · React · CSS Modules",
@@ -96,7 +88,6 @@ export const featuredWork = [
     title: "alt-loom",
     imageUrl: "/assets/alt-loom.gif",
     category: "code",
-    status: "shipped",
     description:
       "An accessibility audit tool that flags missing or weak alt text in pasted HTML, then drafts candidates using a word-level Markov chain — the same technique behind ribbon_logic and PetalByte.",
     stack: "Vanilla JavaScript · Markov chains",
@@ -122,7 +113,6 @@ export const secondaryWork = [
     title: "tinytinker.tools",
     imageUrl: "/assets/tinytinker.png",
     category: "code",
-    status: "shipped",
     description:
       "A growing suite of free browser-based tools for makers, featuring utilities for electronics, programming, color, text, and print, with a tiny resident knowledge companion to help you find your way around.",
     stack: "Next.js · TypeScript",
@@ -139,7 +129,6 @@ export const secondaryWork = [
     imageAlt:
       "Fluoro's press panel: loading an image, cycling ink presets, switching screens, and adjusting the print-flaw sliders",
     category: "code",
-    status: "shipped",
     description:
       "Riso-fy (almost) anything. A zero-dependency browser toolkit that rebuilds the risograph process instead of faking it with a filter: per-ink separation, 1-bit screening, and multiply overprint with misregistration. Works on images via canvas, and on live web pages via CSS and SVG filters. Published on npm, so any site can add a Riso-fy button with one script tag, and this site's own Riso print theme runs on it.",
     stack: "Vanilla JavaScript · Canvas · SVG filters · npm",
@@ -155,7 +144,6 @@ export const secondaryWork = [
     title: "Lumi",
     imageUrl: "/assets/lumi-preview.gif",
     category: "design",
-    status: "concept",
     description:
       "Speculative migraine-detection wearable taken from research to a working prototype, spanning three hardware form factors and a companion app.",
     stack: "React · TypeScript · Vite",
@@ -177,7 +165,6 @@ export const secondaryWork = [
     title: "Equitable Syllabus Project",
     imageUrl: "/assets/esp.gif",
     category: "code",
-    status: "shipped",
     description:
       "Redesigned and rebuilt the Equitable Syllabus Project's website for NYU ITP as lead developer, migrating to Next.js with a new information architecture.",
     stack: "Next.js",
@@ -220,7 +207,6 @@ export const rdWork = [
     title: "Soft Components",
     imageUrl: "/assets/soft-components.gif",
     category: "code",
-    status: "shipped",
     description:
       "Interactive reference library for soft electronic components — felt buttons, fabric potentiometers, pressure sensors — each pairing a live physics-based demo with the material science underneath it.",
     stack: "Next.js · TypeScript · GSAP · Motion",
@@ -248,7 +234,6 @@ export const rdWork = [
     title: "TinkerThread",
     imageUrl: "/assets/tt.gif",
     category: "code",
-    status: "shipped",
     description:
       "A circuit simulator for e-textiles and soft electronics, so makers can test soft circuits before stitching them.",
     stack: "JavaScript · Canvas",
@@ -263,7 +248,6 @@ export const rdWork = [
     title: "AirSense",
     imageUrl: "/assets/airsense.png",
     category: "electronics",
-    status: "prototype",
     description:
       "An indoor air quality sensor housed in a transparent, house-shaped acrylic enclosure with a color-coded display for at-a-glance readability, paired with a live web dashboard. Rebuilt from HTTP polling to an MQTT pub/sub pipeline to support real-time historical charting.",
     stack: "Arduino · BME680 · MQTT · Chart.js · React",
@@ -282,7 +266,6 @@ export const rdWork = [
     title: "the soft computer",
     imageUrl: "/assets/tsc.png",
     category: "electronics",
-    status: "prototype",
     description:
       "A textile-based computer: four haptic felt buttons, a capacitive fabric trackpad, an e-ink display, and generative text. Exhibited at ITP's thesis show and the Open Hardware Summit Berlin.",
     stack: "Raspberry Pi · RP2350 · Python · machine knitting",
