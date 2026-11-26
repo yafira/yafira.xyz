@@ -152,7 +152,7 @@ const LAB_LINKS = [
   {
     label: "tiny instruments",
     href: "https://electrocutelab.com/tiny-instruments/",
-    note: "small browser music toys",
+    note: "series of musical toys on the web",
     Icon: IconSpeaker,
     tint: "#F1E8FB",
     stitch: "#B9A6DC",
