@@ -100,6 +100,22 @@ const IconShop = () => (
   </svg>
 );
 
+const IconSpeaker = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <rect x="5.5" y="3.5" width="13" height="17" rx="6.5" />
+    <circle cx="12" cy="12" r="3.5" />
+    <circle cx="12" cy="12" r="1" />
+  </svg>
+);
+
 const LAB_LINKS = [
   {
     label: "computer art",
@@ -132,6 +148,14 @@ const LAB_LINKS = [
     Icon: IconTerminal,
     tint: "#F2F2F2",
     stitch: "#7a7a7a",
+  },
+  {
+    label: "tiny instruments",
+    href: "https://electrocutelab.com/tiny-instruments/",
+    note: "small browser music toys",
+    Icon: IconSpeaker,
+    tint: "#F1E8FB",
+    stitch: "#B9A6DC",
   },
   {
     label: "craftcomputery",
